@@ -32,27 +32,27 @@ const navItems = [
   {
     name: 'Home',
     component: HomeScreen,
-    icon: 'https://unsplash.it/15/15',
+    icon: require('../assets/images/sample.png'),
   },
   {
     name: 'Markets',
     component: MarketsScreen,
-    icon: 'https://unsplash.it/15/15',
+    icon: require('../assets/images/sample.png'),
   },
   {
     name: 'Trade',
     component: TradeScreen,
-    icon: 'https://unsplash.it/15/15',
+    icon: require('../assets/images/sample.png'),
   },
   {
     name: 'Wallet',
     component: WalletScreen,
-    icon: 'https://unsplash.it/15/15',
+    icon: require('../assets/images/sample.png'),
   },
   {
     name: 'Profile',
     component: ProfileScreen,
-    icon: 'https://unsplash.it/15/15',
+    icon: require('../assets/images/sample.png'),
   },
 ];
 
@@ -65,6 +65,8 @@ const Navigation: React.FC = () => {
         tabBarStyle: {
           height: 68,
           elevation: 0,
+          borderColor: '#fff',
+          backgroundColor: '#fff',
         },
       }}>
       {navItems.map(nav => {
@@ -78,15 +80,12 @@ const Navigation: React.FC = () => {
                 tabBarIcon: ({focused}) => (
                   <View style={styles.nav}>
                     <Image
-                      source={{
-                        uri: nav.icon,
-                        width: 15,
-                        height: 15,
-                      }}
+                      source={nav.icon}
                       resizeMode="contain"
                       style={{
                         marginBottom: 5,
-                        tintColor: focused ? '#0077FF' : '#A1A1A8',
+                        width: 15,
+                        height: 15,
                       }}
                     />
                     <Text
@@ -111,18 +110,15 @@ const Navigation: React.FC = () => {
             name={nav.name}
             component={nav.component}
             options={{
-              tabBarIcon: ({focused}) => (
+              tabBarIcon: () => (
                 <View style={styles.nav}>
                   <Image
-                    source={{
-                      uri: nav.icon,
-                      width: 15,
-                      height: 15,
-                    }}
+                    source={nav.icon}
                     resizeMode="contain"
                     style={{
                       marginBottom: 5,
-                      tintColor: focused ? '#0077FF' : '#A1A1A8',
+                      width: 15,
+                      height: 15,
                     }}
                   />
                 </View>
@@ -140,22 +136,22 @@ const styles = StyleSheet.create({
   nav: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'thistle',
-    borderRadius: 0,
+    backgroundColor: 'blue',
     minWidth: 69,
     minHeight: 52,
   },
   tradeButton: {
-    height: 48,
-    width: 48,
+    height: 65,
+    width: 65,
     backgroundColor: '#0077FF',
-    borderRadius: 48 / 2,
+    borderRadius: 65 / 2,
     alignItems: 'center',
     justifyContent: 'center',
-    top: -7,
+    top: -11,
     marginLeft: 10,
     marginRight: 10,
+    borderWidth: 7,
+    borderColor: '#fff',
   },
 });
 

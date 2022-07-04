@@ -5,7 +5,7 @@ import Navigation from './src/components/Navigation';
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={{colors: {background: '#fff'}}}>
       <Navigation />
     </NavigationContainer>
   );
