@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import CustomText from './CustomText';
 
 interface Props {
   title: string;
@@ -9,7 +10,7 @@ interface Props {
 const Header: React.FC<Props> = ({title, action}) => {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>{title}</Text>
+      <CustomText style={styles.title}>{title}</CustomText>
       {action}
     </View>
   );
@@ -27,9 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-    fontSize: 24,
-    fontFamily: 'Splash-Regular',
-    color: '#121315',
+    fontFamily: 'Inter-Bold',
   },
 });
 

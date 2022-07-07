@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
+import CustomText from './CustomText';
 
 const Asset: React.FC = () => {
   return (
@@ -9,8 +10,8 @@ const Asset: React.FC = () => {
         style={styles.icon}
       />
       <View>
-        <Text style={styles.name}>XLM</Text>
-        <Text style={styles.value}>$253,71M</Text>
+        <CustomText style={styles.name}>XLM</CustomText>
+        <CustomText style={styles.value}>$253,71M</CustomText>
       </View>
     </View>
   );
@@ -27,17 +28,14 @@ const styles = StyleSheet.create({
     borderRadius: 32 / 2,
     marginRight: 12,
   },
-
   name: {
-    fontSize: 14,
-    fontWeight: '500',
-    lineHeight: 24,
-    color: '#121315',
+    fontFamily: 'Inter-Medium',
   },
   value: {
     fontSize: 12,
-    fontWeight: '500',
+    fontFamily: 'Inter-Medium',
     lineHeight: 16,
+    color: '##A1A1A8',
   },
 });
 

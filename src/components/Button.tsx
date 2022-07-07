@@ -4,29 +4,19 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
+  View,
 } from 'react-native';
+import DropShadow from 'react-native-drop-shadow';
 
 const Button: React.FC<
   PropsWithChildren<{
     onPress?: ((event: GestureResponderEvent) => void) | undefined;
-    accent?: 'black' | 'grey';
+    accent?: 'black' | 'blue';
     size?: 'small' | 'tiny';
     noOutline?: boolean;
-    prependIcon?: any;
-    appendIcon?: any;
     icon?: any;
   }>
-> = ({
-  children,
-  onPress,
-  accent,
-  size,
-  noOutline = false,
-  prependIcon,
-  appendIcon,
-  icon,
-}) => {
+> = ({children, onPress, accent, size, noOutline = false, icon: Icon}) => {
   const getBgColor = () => {
     if (noOutline) {
       return 'transparent';
@@ -34,8 +24,8 @@ const Button: React.FC<
 
     if (accent === 'black') {
       return '#121315';
-    } else if (accent === 'grey') {
-      return '#EFF0F3';
+    } else if (accent === 'blue') {
+      return '#0077FF';
     }
     return '#fff';
   };
@@ -47,9 +37,16 @@ const Button: React.FC<
     if (accent === 'black') {
       return '#121315';
     }
-    return '#EFF0F3';
+    if (accent === 'blue') {
+      return '#0077FF';
+    }
+    return '#ffff';
   };
   const getPadding = (side: string) => {
+    if (Icon) {
+      return 6;
+    }
+
     if (side === 'top' || side === 'bottom') {
       if (size === 'small') {
         return 4;
@@ -71,7 +68,7 @@ const Button: React.FC<
   };
 
   const getColor = () => {
-    if (accent === 'black') {
+    if (accent === 'black' || accent === 'blue') {
       return '#fff';
     }
     return '#121315';
@@ -90,33 +87,34 @@ const Button: React.FC<
   };
 
   return (
-    <TouchableOpacity
-      onPress={onPress}
+    <DropShadow
       style={{
-        ...styles.btn,
-        backgroundColor: getBgColor(),
-        borderColor: getBorderColor(),
-        paddingTop: getPadding('top'),
-        paddingBottom: getPadding('bottom'),
-        paddingRight: getPadding('right'),
-        paddingLeft: getPadding('left'),
+        shadowColor: '#8d8d94',
+        shadowOffset: {width: 2, height: 4},
+        shadowRadius: 8,
+        shadowOpacity: 0.06,
       }}>
-      {icon ? (
-        <Image
-          source={icon}
-          style={{
-            height: size === 'small' || size === 'tiny' ? 12 : 19,
-            width: size === 'small' || size === 'tiny' ? 12 : 19,
-          }}
-        />
-      ) : (
-        <>
-          {prependIcon && (
-            <Image
-              source={prependIcon}
-              style={{...styles.inlineIcon, marginRight: 12}}
+      <TouchableOpacity
+        onPress={onPress}
+        style={{
+          ...styles.btn,
+          backgroundColor: getBgColor(),
+          borderColor: getBorderColor(),
+          paddingTop: getPadding('top'),
+          paddingBottom: getPadding('bottom'),
+          paddingRight: getPadding('right'),
+          paddingLeft: getPadding('left'),
+        }}>
+        {Icon ? (
+          <View style={styles.iconContainer}>
+            <Icon
+              style={{
+                height: size === 'small' || size === 'tiny' ? 12 : 19,
+                width: size === 'small' || size === 'tiny' ? 12 : 19,
+              }}
             />
-          )}
+          </View>
+        ) : (
           <Text
             style={{
               ...styles.text,
@@ -126,15 +124,9 @@ const Button: React.FC<
             }}>
             {children}
           </Text>
-          {appendIcon && (
-            <Image
-              source={appendIcon}
-              style={{...styles.inlineIcon, marginLeft: 12}}
-            />
-          )}
-        </>
-      )}
-    </TouchableOpacity>
+        )}
+      </TouchableOpacity>
+    </DropShadow>
   );
 };
 
@@ -147,12 +139,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  text: {
-    fontWeight: '500',
+  iconContainer: {
+    height: 20,
+    width: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  inlineIcon: {
-    height: 12,
-    width: 12,
+  text: {
+    fontFamily: 'Inter-Medium',
   },
 });
 

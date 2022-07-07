@@ -1,13 +1,13 @@
-import React, {type PropsWithChildren} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  GestureResponderEvent,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+
+import HomeSvg from '../assets/icons/home.svg';
+import PieSvg from '../assets/icons/pie-chart.svg';
+import SwapSvg from '../assets/icons/swap.svg';
+import WalletSvg from '../assets/icons/wallet.svg';
+import UserSvg from '../assets/icons/user.svg';
+
 import HomeScreen from '../screens/HomeScreen';
 import MarketsScreen from '../screens/MarketsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -16,43 +16,31 @@ import WalletScreen from '../screens/WalletScreen';
 
 const Tab = createBottomTabNavigator();
 
-const TradeButton: React.FC<
-  PropsWithChildren<{
-    onPress: ((event: GestureResponderEvent) => void) | undefined;
-  }>
-> = ({children, onPress}) => {
-  return (
-    <TouchableOpacity style={styles.tradeButton} onPress={onPress}>
-      {children}
-    </TouchableOpacity>
-  );
-};
-
 const navItems = [
   {
-    name: 'Home',
+    name: 'home',
     component: HomeScreen,
-    icon: require('../assets/images/sample.png'),
+    icon: HomeSvg,
   },
   {
-    name: 'Markets',
+    name: 'markets',
     component: MarketsScreen,
-    icon: require('../assets/images/sample.png'),
+    icon: PieSvg,
   },
   {
-    name: 'Trade',
+    name: 'trade',
     component: TradeScreen,
-    icon: require('../assets/images/sample.png'),
+    icon: SwapSvg,
   },
   {
-    name: 'Wallet',
+    name: 'wallet',
     component: WalletScreen,
-    icon: require('../assets/images/sample.png'),
+    icon: WalletSvg,
   },
   {
-    name: 'Profile',
+    name: 'profile',
     component: ProfileScreen,
-    icon: require('../assets/images/sample.png'),
+    icon: UserSvg,
   },
 ];
 
@@ -62,68 +50,24 @@ const Navigation: React.FC = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          height: 68,
-          elevation: 0,
-          borderColor: '#fff',
-          backgroundColor: '#fff',
-        },
+        tabBarStyle: styles.container,
       }}>
       {navItems.map(nav => {
-        if (nav.name !== 'Trade') {
-          return (
-            <Tab.Screen
-              key={nav.name}
-              name={nav.name}
-              component={nav.component}
-              options={{
-                tabBarIcon: ({focused}) => (
-                  <View style={styles.nav}>
-                    <Image
-                      source={nav.icon}
-                      resizeMode="contain"
-                      style={{
-                        marginBottom: 5,
-                        width: 15,
-                        height: 15,
-                      }}
-                    />
-                    <Text
-                      style={{
-                        fontSize: 11,
-                        fontWeight: '500',
-                        lineHeight: 16,
-                        color: focused ? '#0077FF' : '#A1A1A8',
-                      }}>
-                      {nav.name}
-                    </Text>
-                  </View>
-                ),
-              }}
-            />
-          );
-        }
-
         return (
           <Tab.Screen
             key={nav.name}
             name={nav.name}
             component={nav.component}
             options={{
-              tabBarIcon: () => (
+              tabBarIcon: ({focused}) => (
                 <View style={styles.nav}>
-                  <Image
-                    source={nav.icon}
-                    resizeMode="contain"
-                    style={{
-                      marginBottom: 5,
-                      width: 15,
-                      height: 15,
-                    }}
+                  <nav.icon
+                    width={20}
+                    height={20}
+                    color={focused ? '#0077FF' : '#A1A1A8'}
                   />
                 </View>
               ),
-              tabBarButton: props => <TradeButton onPress={props.onPress} />,
             }}
           />
         );
@@ -133,25 +77,20 @@ const Navigation: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    elevation: 0,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 32,
+    paddingRight: 32,
+  },
   nav: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'blue',
-    minWidth: 69,
-    minHeight: 52,
-  },
-  tradeButton: {
-    height: 65,
-    width: 65,
-    backgroundColor: '#0077FF',
-    borderRadius: 65 / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    top: -11,
-    marginLeft: 10,
-    marginRight: 10,
-    borderWidth: 7,
-    borderColor: '#fff',
+    width: 32,
+    height: 32,
   },
 });
 
