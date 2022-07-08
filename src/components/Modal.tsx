@@ -71,7 +71,7 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
 
 const styles = StyleSheet.create({
   overlay: {
-    backgroundColor: 'rgba(0,0,0,0.32)',
+    backgroundColor: 'rgba(18,19,21,0.32)',
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'stretch',

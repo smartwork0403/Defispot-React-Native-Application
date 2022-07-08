@@ -63,11 +63,13 @@ const Select: React.FC<Props> = ({
         {header && (
           <View style={styles.header}>
             <CustomText style={styles.headerTitle}>{header.title}</CustomText>
-            <Pressable onPress={header.onHeaderActionPress}>
-              <CustomText style={styles.headerActionText}>
-                {header.actionLabel}
-              </CustomText>
-            </Pressable>
+            <Button
+              onPress={header.onHeaderActionPress}
+              text
+              noPadding
+              textAccent="blue">
+              {header.actionLabel}
+            </Button>
           </View>
         )}
 
@@ -132,10 +134,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Inter-Medium',
     marginRight: 16,
-  },
-  headerActionText: {
-    color: '#0077FF',
-    fontFamily: 'Inter-Medium',
   },
   list: {
     paddingTop: 12,

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 
-import BellUnreadSvg from '../assets/icons/bell-unread.svg';
-import StarSvg from '../assets/icons/star-filled.svg';
+import MagnifySvg from '../assets/icons/magnify.svg';
+import StarSvg from '../assets/icons/star-outlined.svg';
 
 import AssetsList from '../components/AssetsList';
 import CustomText from '../components/CustomText';
@@ -11,50 +11,71 @@ import MarketsStats from '../components/MarketsStats';
 import Button from '../components/Button';
 import Select from '../components/Select';
 
-import HomeSvg from '../assets/icons/home.svg';
+import ChartSvg from '../assets/icons/chart.svg';
+import ArrowUpSvg from '../assets/icons/arrow-up.svg';
+import ArrowDownSvg from '../assets/icons/arrow-down.svg';
+import CursorTextSvg from '../assets/icons/cursor-text.svg';
+import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
+import TextField from '../components/TextField';
 
 const sortByItems = [
   {
     name: 'volume',
     label: 'volume',
-    icon: HomeSvg,
+    icon: ChartSvg,
   },
   {
     name: 'gainers',
     label: 'Gainers',
-    icon: HomeSvg,
+    icon: ArrowUpSvg,
   },
   {
     name: 'losers',
     label: 'Losers',
-    icon: HomeSvg,
-  },
-  {
-    name: 'funding',
-    label: 'Funding',
-    icon: HomeSvg,
+    icon: ArrowDownSvg,
   },
   {
     name: 'name',
     label: 'Name',
-    icon: HomeSvg,
+    icon: CursorTextSvg,
   },
   {
     name: 'price',
     label: 'Price',
-    icon: HomeSvg,
+    icon: DollarCircleSvg,
   },
 ];
 
 const MarketsScreen: React.FC = () => {
-  const [sortBy, setSortBy] = useState('funding');
+  const [sortBy, setSortBy] = useState('volume');
+  const [isSearchShown, setIsSearchShown] = useState(false);
 
   return (
     <ScrollView>
       <View style={styles.header}>
         <View style={styles.headerTop}>
-          <CustomText style={styles.headerTitle}>Markets</CustomText>
-          <IconButton icon={BellUnreadSvg} />
+          {isSearchShown ? (
+            <>
+              <TextField placeholder="Search..." icon={MagnifySvg} autoFocus />
+              <Button
+                style={styles.searchCancel}
+                onPress={() => setIsSearchShown(false)}
+                noPadding
+                text
+                textAccent="white">
+                Cancel
+              </Button>
+            </>
+          ) : (
+            <>
+              <CustomText style={styles.headerTitle}>Markets</CustomText>
+              <IconButton
+                icon={MagnifySvg}
+                color="#fff"
+                onPress={() => setIsSearchShown(true)}
+              />
+            </>
+          )}
         </View>
 
         <View style={styles.headerBottom}>
@@ -62,34 +83,36 @@ const MarketsScreen: React.FC = () => {
         </View>
       </View>
 
-      <View style={styles.filters}>
-        <View style={styles.filter}>
-          <Button accent="blue" size="small">
-            All
-          </Button>
+      {!isSearchShown && (
+        <View style={styles.filters}>
+          <View style={styles.filter}>
+            <Button accent="black" size="small">
+              All
+            </Button>
+          </View>
+          <View style={styles.filter}>
+            <Button size="small" icon={StarSvg} />
+          </View>
+          <View style={styles.filter}>
+            <Button size="small">Layer 1</Button>
+          </View>
+          <View style={styles.filter}>
+            <Button size="small">DeFi</Button>
+          </View>
+          <Select
+            header={{
+              title: 'Sort by',
+              actionLabel: 'Reset',
+              onHeaderActionPress: () => setSortBy('volume'),
+            }}
+            items={sortByItems}
+            selected={sortBy}
+            onSelect={name => setSortBy(name)}
+            label="Sort by"
+            size="small"
+          />
         </View>
-        <View style={styles.filter}>
-          <Button size="small" icon={StarSvg} />
-        </View>
-        <View style={styles.filter}>
-          <Button size="small">Layer 1</Button>
-        </View>
-        <View style={styles.filter}>
-          <Button size="small">DeFi</Button>
-        </View>
-        <Select
-          header={{
-            title: 'Sort by',
-            actionLabel: 'Reset',
-            onHeaderActionPress: () => setSortBy('funding'),
-          }}
-          items={sortByItems}
-          selected={sortBy}
-          onSelect={name => setSortBy(name)}
-          label="Sort by"
-          size="small"
-        />
-      </View>
+      )}
 
       <AssetsList />
     </ScrollView>
@@ -98,8 +121,7 @@ const MarketsScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   header: {
-    // backgroundColor: 'red',
-    marginBottom: 8,
+    marginBottom: 16,
   },
   headerTop: {
     backgroundColor: '#0077FF',
@@ -122,8 +144,10 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     color: '#FFFFFF',
   },
+  searchCancel: {
+    marginLeft: 16,
+  },
   filters: {
-    paddingTop: 16,
     paddingRight: 24,
     paddingLeft: 24,
     paddingBottom: 16,

@@ -1,12 +1,14 @@
 import React, {type PropsWithChildren} from 'react';
 import {
   GestureResponderEvent,
-  Text,
   TouchableOpacity,
   StyleSheet,
   View,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import CustomText from './CustomText';
 
 const Button: React.FC<
   PropsWithChildren<{
@@ -15,11 +17,32 @@ const Button: React.FC<
     size?: 'small' | 'tiny';
     noOutline?: boolean;
     icon?: any;
+    noPadding?: boolean;
+    text?: boolean;
+    disabled?: boolean;
+    textAccent?: 'white' | 'blue';
+    style?: StyleProp<ViewStyle>;
   }>
-> = ({children, onPress, accent, size, noOutline = false, icon: Icon}) => {
+> = ({
+  children,
+  onPress,
+  accent,
+  size,
+  noOutline = false,
+  icon: Icon,
+  noPadding,
+  text,
+  textAccent,
+  style,
+  disabled,
+}) => {
   const getBgColor = () => {
-    if (noOutline) {
+    if (noOutline || text) {
       return 'transparent';
+    }
+
+    if (disabled) {
+      return '#EFF0F3';
     }
 
     if (accent === 'black') {
@@ -30,8 +53,12 @@ const Button: React.FC<
     return '#fff';
   };
   const getBorderColor = () => {
-    if (noOutline) {
+    if (noOutline || text) {
       return 'transparent';
+    }
+
+    if (disabled) {
+      return '#EFF0F3';
     }
 
     if (accent === 'black') {
@@ -43,6 +70,10 @@ const Button: React.FC<
     return '#ffff';
   };
   const getPadding = (side: string) => {
+    if (noPadding) {
+      return 0;
+    }
+
     if (Icon) {
       return 6;
     }
@@ -68,8 +99,15 @@ const Button: React.FC<
   };
 
   const getColor = () => {
-    if (accent === 'black' || accent === 'blue') {
+    if (disabled) {
+      return '#A1A1A8';
+    }
+
+    if (accent === 'black' || accent === 'blue' || textAccent === 'white') {
       return '#fff';
+    }
+    if (textAccent === 'blue') {
+      return '#0077FF';
     }
     return '#121315';
   };
@@ -95,6 +133,7 @@ const Button: React.FC<
         shadowOpacity: 0.06,
       }}>
       <TouchableOpacity
+        disabled={disabled}
         onPress={onPress}
         style={{
           ...styles.btn,
@@ -104,6 +143,7 @@ const Button: React.FC<
           paddingBottom: getPadding('bottom'),
           paddingRight: getPadding('right'),
           paddingLeft: getPadding('left'),
+          ...style,
         }}>
         {Icon ? (
           <View style={styles.iconContainer}>
@@ -115,7 +155,7 @@ const Button: React.FC<
             />
           </View>
         ) : (
-          <Text
+          <CustomText
             style={{
               ...styles.text,
               color: getColor(),
@@ -123,7 +163,7 @@ const Button: React.FC<
               lineHeight: getLineHeight(),
             }}>
             {children}
-          </Text>
+          </CustomText>
         )}
       </TouchableOpacity>
     </DropShadow>

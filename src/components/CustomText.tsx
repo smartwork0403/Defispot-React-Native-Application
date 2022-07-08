@@ -12,7 +12,7 @@ const CustomText: React.FC<
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Inter-Regular',
     fontSize: 14,
     lineHeight: 24,
     color: '#121315',
