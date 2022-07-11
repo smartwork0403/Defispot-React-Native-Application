@@ -3,10 +3,14 @@ import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import Button from '../components/Button';
 import CustomText from '../components/CustomText';
+import TradeCompleteModal from '../components/TradeCompleteModal';
+import TradeConfirmModal from '../components/TradeConfirmModal';
 import TradeModule from '../components/TradeModule';
 
 const TradeScreen: React.FC = () => {
   const [isDeposit, setIsDeposit] = useState(true);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(true);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(true);
 
   return (
     <View
@@ -109,6 +113,15 @@ const TradeScreen: React.FC = () => {
           </DropShadow>
         </View>
       </View>
+
+      <TradeConfirmModal
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+      />
+      <TradeCompleteModal
+        isOpen={isCompleteModalOpen}
+        onClose={() => setIsCompleteModalOpen(false)}
+      />
     </View>
   );
 };

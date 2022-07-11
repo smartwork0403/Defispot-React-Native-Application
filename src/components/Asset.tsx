@@ -2,24 +2,64 @@ import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import CustomText from './CustomText';
 
-const Asset: React.FC = () => {
+interface Props {
+  name: string;
+  value: string;
+  size?: 'large';
+}
+
+const Asset: React.FC<Props> = ({size, name, value}) => {
   return (
     <View style={styles.asset}>
-      <View style={styles.iconContainer}>
+      <View
+        style={{
+          marginRight: size === 'large' ? 20 : 12,
+        }}>
         <Image
           source={require('../assets/images/sample.png')}
-          style={styles.icon}
+          style={{
+            height: size === 'large' ? 48 : 32,
+            width: size === 'large' ? 48 : 32,
+            borderRadius: size === 'large' ? 48 / 2 : 32 / 2,
+          }}
         />
-        <View style={styles.networkContainer}>
+        <View
+          style={{
+            ...styles.networkContainer,
+            height: size === 'large' ? 30 : 22,
+            width: size === 'large' ? 30 : 22,
+            borderRadius: size === 'large' ? 30 : 22 / 2,
+            bottom: size === 'large' ? -8 : -6,
+            right: size === 'large' ? -8 : -6,
+          }}>
           <Image
             source={require('../assets/images/sample.png')}
-            style={styles.network}
+            style={{
+              height: size === 'large' ? 25 : 18,
+              width: size === 'large' ? 25 : 18,
+              borderRadius: size === 'large' ? 25 / 2 : 18 / 2,
+            }}
           />
         </View>
       </View>
       <View>
-        <CustomText style={styles.name}>XLM</CustomText>
-        <CustomText style={styles.value}>$253,71M</CustomText>
+        <CustomText
+          style={{
+            fontSize: size === 'large' ? 24 : 14,
+            lineHeight: size === 'large' ? 32 : 24,
+            fontFamily: size === 'large' ? 'Inter-SemiBold' : 'Inter-Medium',
+          }}>
+          {name}
+        </CustomText>
+        <CustomText
+          style={{
+            ...styles.value,
+            fontSize: size === 'large' ? 14 : 12,
+            fontFamily: size === 'large' ? 'Inter-Regular' : 'Inter-Medium',
+            lineHeight: size === 'large' ? 24 : 16,
+          }}>
+          {value}
+        </CustomText>
       </View>
     </View>
   );
@@ -30,37 +70,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  iconContainer: {
-    marginRight: 12,
-  },
-  icon: {
-    height: 32,
-    width: 32,
-    borderRadius: 32 / 2,
-  },
   networkContainer: {
-    height: 22,
-    width: 22,
     backgroundColor: '#fff',
-    borderRadius: 22 / 2,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: -5,
-    right: -5,
-  },
-  network: {
-    height: 18,
-    width: 18,
-    borderRadius: 18 / 2,
-  },
-  name: {
-    fontFamily: 'Inter-Medium',
   },
   value: {
-    fontSize: 12,
-    fontFamily: 'Inter-Medium',
-    lineHeight: 16,
     color: '##A1A1A8',
   },
 });

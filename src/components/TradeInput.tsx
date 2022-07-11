@@ -32,6 +32,7 @@ const TradeInput: React.FC = () => {
             onBlur={() => setFocusState(FOCUS_STATE.idle)}
             placeholder="0.00"
             placeholderTextColor="#CFCED2"
+            keyboardType="number-pad"
           />
           <CustomText style={styles.price}>$0.00</CustomText>
         </View>

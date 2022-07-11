@@ -4,7 +4,7 @@ import Button from './Button';
 import CustomText from './CustomText';
 import Modal from './Modal';
 
-import HomeSvg from '../assets/icons/home.svg';
+import CheckSvg from '../assets/icons/check.svg';
 import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
 type Item = {name: string; label: string; icon: any};
@@ -93,7 +93,7 @@ const Select: React.FC<Props> = ({
 
               {previewSelected === item.name && (
                 <View style={styles.itemIcon}>
-                  <HomeSvg width={12} height={12} color="#0077FF" />
+                  <CheckSvg width={12} height={12} color="#0077FF" />
                 </View>
               )}
             </Pressable>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 4,
+    paddingTop: 2,
     paddingBottom: 16,
     paddingRight: 24,
     paddingLeft: 24,
