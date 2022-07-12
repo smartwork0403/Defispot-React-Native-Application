@@ -23,6 +23,7 @@ interface Props {
   header?: {
     title: string;
   };
+  fullHeight?: boolean;
 }
 
 const CustomModal: React.FC<PropsWithChildren<Props>> = ({
@@ -35,6 +36,7 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
   children,
   noPadding,
   header,
+  fullHeight,
 }) => {
   return (
     <View>
@@ -47,7 +49,11 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
           <View>
             {!noHandle && <View style={styles.handle} />}
             <TouchableWithoutFeedback>
-              <View style={styles.container}>
+              <View
+                style={{
+                  ...styles.container,
+                  height: fullHeight ? '100%' : 'auto',
+                }}>
                 <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
                   {header && (
                     <View style={styles.header}>
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
-    paddingTop: 40,
+    paddingTop: 10,
   },
   handle: {
     height: 4,
