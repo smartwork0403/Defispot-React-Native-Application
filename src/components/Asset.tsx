@@ -6,9 +6,10 @@ interface Props {
   name: string;
   value: string;
   size?: 'large';
+  horizontal?: boolean;
 }
 
-const Asset: React.FC<Props> = ({size, name, value}) => {
+const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
   return (
     <View style={styles.asset}>
       <View
@@ -42,12 +43,17 @@ const Asset: React.FC<Props> = ({size, name, value}) => {
           />
         </View>
       </View>
-      <View>
+      <View
+        style={{
+          flexDirection: horizontal ? 'row' : 'column',
+          alignItems: horizontal ? 'center' : 'flex-start',
+        }}>
         <CustomText
           style={{
             fontSize: size === 'large' ? 24 : 14,
             lineHeight: size === 'large' ? 32 : 24,
             fontFamily: size === 'large' ? 'Inter-SemiBold' : 'Inter-Medium',
+            marginRight: horizontal ? 4 : 0,
           }}>
           {name}
         </CustomText>
