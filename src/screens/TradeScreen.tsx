@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import * as Progress from 'react-native-progress';
+
 import Button from '../components/Button';
 import CustomText from '../components/CustomText';
 import Header from '../components/Header';
@@ -51,7 +53,23 @@ const TradeScreen: React.FC = () => {
             </View>
             <View style={styles.detail}>
               <CustomText style={styles.detailTitle}>Margin Usage</CustomText>
-              <CustomText style={styles.detailValue}>0</CustomText>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end',
+                }}>
+                <CustomText style={styles.detailValue}>7,83%</CustomText>
+                <Progress.Circle
+                  progress={0.5}
+                  size={18}
+                  style={{marginLeft: 8}}
+                  color="#0077FF"
+                  unfilledColor="#E0E1E4"
+                  borderColor="transparent"
+                />
+              </View>
             </View>
 
             <Button disabled style={styles.action} accent="black">
