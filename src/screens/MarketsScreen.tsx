@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 
-import MagnifySvg from '../assets/icons/magnify.svg';
 import StarSvg from '../assets/icons/star-outlined.svg';
 
 import AssetsList from '../components/AssetsList';
-import CustomText from '../components/CustomText';
-import IconButton from '../components/IconButton';
 import MarketsStats from '../components/MarketsStats';
 import Button from '../components/Button';
 import Select from '../components/Select';
@@ -16,7 +13,7 @@ import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';
 import CursorTextSvg from '../assets/icons/cursor-text.svg';
 import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
-import TextField from '../components/TextField';
+import Header from '../components/Header';
 
 const sortByItems = [
   {
@@ -52,36 +49,14 @@ const MarketsScreen: React.FC = () => {
 
   return (
     <ScrollView>
-      <View style={styles.header}>
-        <View style={styles.headerTop}>
-          {isSearchShown ? (
-            <>
-              <TextField placeholder="Search..." icon={MagnifySvg} autoFocus />
-              <Button
-                style={styles.searchCancel}
-                onPress={() => setIsSearchShown(false)}
-                noPadding
-                text
-                textAccent="white">
-                Cancel
-              </Button>
-            </>
-          ) : (
-            <>
-              <CustomText style={styles.headerTitle}>Markets</CustomText>
-              <IconButton
-                icon={MagnifySvg}
-                color="#fff"
-                onPress={() => setIsSearchShown(true)}
-              />
-            </>
-          )}
-        </View>
-
-        <View style={styles.headerBottom}>
-          <MarketsStats />
-        </View>
-      </View>
+      <Header
+        title="Markets"
+        searchable={{
+          isShown: isSearchShown,
+          onSearchToggle: isShown => setIsSearchShown(isShown),
+        }}
+        card={<MarketsStats />}
+      />
 
       {!isSearchShown && (
         <View style={styles.filters}>
@@ -120,33 +95,6 @@ const MarketsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    marginBottom: 16,
-  },
-  headerTop: {
-    backgroundColor: '#0077FF',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingTop: 16,
-    paddingBottom: 45,
-    paddingRight: 24,
-    paddingLeft: 24,
-  },
-  headerBottom: {
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: -32,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontFamily: 'Inter-SemiBold',
-    lineHeight: 32,
-    color: '#FFFFFF',
-  },
-  searchCancel: {
-    marginLeft: 16,
-  },
   filters: {
     paddingRight: 24,
     paddingLeft: 24,

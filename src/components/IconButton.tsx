@@ -3,6 +3,8 @@ import {
   GestureResponderEvent,
   TouchableOpacity,
   StyleSheet,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 
 const IconButton: React.FC<{
@@ -10,7 +12,9 @@ const IconButton: React.FC<{
   icon: any;
   size?: 'small';
   color?: string;
-}> = ({onPress, icon: Icon, size, color}) => {
+  iconSize?: {width: number; height: number};
+  style?: StyleProp<ViewStyle>;
+}> = ({onPress, icon: Icon, size, color, iconSize, style}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -18,8 +22,13 @@ const IconButton: React.FC<{
         ...styles.btn,
         height: size === 'small' ? 32 : 40,
         width: size === 'small' ? 32 : 40,
+        ...style,
       }}>
-      <Icon width={20} height={20} color={color} />
+      <Icon
+        width={iconSize?.width ?? 20}
+        height={iconSize?.height ?? 20}
+        color={color}
+      />
     </TouchableOpacity>
   );
 };

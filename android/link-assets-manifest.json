@@ -2,6 +2,46 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/CircularStd-Black.ttf",
+      "sha1": "7f907c9415a0869e14610824202d7ffc6f14e46f"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-BlackItalic.ttf",
+      "sha1": "b229dde7ce428012ef84ffdc2532521472589ed2"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-Bold.ttf",
+      "sha1": "c7746e49df3a3db17021395d089112100905d7d2"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-BoldItalic.ttf",
+      "sha1": "f55cadb1900aa98f9051d888d58e143b05d42b73"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-Book.ttf",
+      "sha1": "9cd8f5bab9e0c59d7f6dbac35beb8d11849ac821"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-BookItalic.ttf",
+      "sha1": "9309236f004d04a01c50d297ddbe911d42d393e4"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-Light Italic.ttf",
+      "sha1": "e84732a77f74ced70bae7fe3f223f6a439e7f435"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-Light.ttf",
+      "sha1": "bebee6f8d2c74d1d76d6fb5c2ecb690fbc94fa5f"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-Medium.ttf",
+      "sha1": "5f8a90c813783e295bb42f8dc317d4f2c6cfbd4f"
+    },
+    {
+      "path": "src/assets/fonts/CircularStd-MediumItalic.ttf",
+      "sha1": "91b78af17a392ba64b522defdff750ad0a91399f"
+    },
+    {
       "path": "src/assets/fonts/Inter-Black.ttf",
       "sha1": "03287c0ecb3eced46937e165843beb5e2f115554"
     },
@@ -36,10 +76,6 @@
     {
       "path": "src/assets/fonts/Inter-Thin.ttf",
       "sha1": "050d767137b9bc5d07fbf974ab22a001c4fb21a9"
-    },
-    {
-      "path": "src/assets/fonts/Splash-Regular.ttf",
-      "sha1": "cc783f67f228130c3f5c9a0eb42735fd5602d124"
     }
   ]
 }

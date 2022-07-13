@@ -17,6 +17,7 @@ const Button: React.FC<
     size?: 'small' | 'tiny';
     noOutline?: boolean;
     icon?: any;
+    prependIcon?: any;
     noPadding?: boolean;
     text?: boolean;
     disabled?: boolean;
@@ -30,6 +31,7 @@ const Button: React.FC<
   size,
   noOutline = false,
   icon: Icon,
+  prependIcon: PrependIcon,
   noPadding,
   text,
   textAccent,
@@ -155,15 +157,22 @@ const Button: React.FC<
             />
           </View>
         ) : (
-          <CustomText
-            style={{
-              ...styles.text,
-              color: getColor(),
-              fontSize: getFontSize(),
-              lineHeight: getLineHeight(),
-            }}>
-            {children}
-          </CustomText>
+          <View style={styles.container}>
+            {PrependIcon && (
+              <View style={styles.prependIcon}>
+                <PrependIcon height={13} width={13} color={getColor()} />
+              </View>
+            )}
+            <CustomText
+              style={{
+                ...styles.text,
+                color: getColor(),
+                fontSize: getFontSize(),
+                lineHeight: getLineHeight(),
+              }}>
+              {children}
+            </CustomText>
+          </View>
         )}
       </TouchableOpacity>
     </DropShadow>
@@ -184,6 +193,17 @@ const styles = StyleSheet.create({
     width: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  prependIcon: {
+    height: 20,
+    width: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 6,
   },
   text: {
     fontFamily: 'Inter-Medium',

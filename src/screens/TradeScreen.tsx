@@ -3,10 +3,15 @@ import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import Button from '../components/Button';
 import CustomText from '../components/CustomText';
+import Header from '../components/Header';
+import TradeCompleteModal from '../components/TradeCompleteModal';
+import TradeConfirmModal from '../components/TradeConfirmModal';
 import TradeModule from '../components/TradeModule';
 
 const TradeScreen: React.FC = () => {
   const [isDeposit, setIsDeposit] = useState(true);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(true);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(true);
 
   return (
     <View
@@ -14,9 +19,7 @@ const TradeScreen: React.FC = () => {
         flex: 1,
       }}>
       <ScrollView>
-        <View style={styles.header}>
-          <CustomText style={styles.headerTitle}>Trade</CustomText>
-        </View>
+        <Header title="Trade" minimal />
 
         <View style={styles.content}>
           <DropShadow
@@ -109,6 +112,15 @@ const TradeScreen: React.FC = () => {
           </DropShadow>
         </View>
       </View>
+
+      <TradeConfirmModal
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+      />
+      <TradeCompleteModal
+        isOpen={isCompleteModalOpen}
+        onClose={() => setIsCompleteModalOpen(false)}
+      />
     </View>
   );
 };
@@ -118,21 +130,6 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     paddingRight: 16,
     paddingLeft: 16,
-  },
-  header: {
-    justifyContent: 'center',
-    backgroundColor: '#0077FF',
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingRight: 24,
-    paddingLeft: 24,
-    marginBottom: 16,
-  },
-  headerTitle: {
-    color: '#fff',
-    textAlign: 'center',
-    fontFamily: 'Inter-Medium',
-    fontSize: 18,
   },
   slippage: {
     backgroundColor: '#fff',

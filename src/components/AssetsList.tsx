@@ -9,7 +9,7 @@ const AssetsList: React.FC = () => {
     <View style={styles.list}>
       {[...Array(20).keys()].map(k => (
         <TouchableOpacity style={styles.item} key={k}>
-          <Asset />
+          <Asset name="XLM" value="$253,71M" />
           <SampleChartSvg style={styles.chart} />
           <View>
             <CustomText style={styles.price}>$3,352</CustomText>

@@ -8,6 +8,9 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Button from './Button';
+import CustomText from './CustomText';
+import CloseSvg from '../assets/icons/close.svg';
+import IconButton from './IconButton';
 
 interface Props {
   noHandle?: boolean;
@@ -17,6 +20,10 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   noPadding?: boolean;
+  header?: {
+    title: string;
+  };
+  fullHeight?: boolean;
 }
 
 const CustomModal: React.FC<PropsWithChildren<Props>> = ({
@@ -28,6 +35,8 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
   onClose,
   children,
   noPadding,
+  header,
+  fullHeight,
 }) => {
   return (
     <View>
@@ -40,12 +49,32 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
           <View>
             {!noHandle && <View style={styles.handle} />}
             <TouchableWithoutFeedback>
-              <View style={styles.container}>
+              <View
+                style={{
+                  ...styles.container,
+                  height: fullHeight ? '100%' : 'auto',
+                }}>
                 <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
+                  {header && (
+                    <View style={styles.header}>
+                      <CustomText style={styles.headerTitle}>
+                        {header.title}
+                      </CustomText>
+                      <IconButton
+                        icon={CloseSvg}
+                        onPress={onClose}
+                        size="small"
+                        color="#A1A1A8"
+                        iconSize={{width: 10, height: 10}}
+                        style={styles.headerClose}
+                      />
+                    </View>
+                  )}
+
                   <View
                     style={{
                       ...styles.content,
-                      paddingTop: noPadding ? 12 : 24,
+                      marginTop: noPadding ? 14 : 24,
                       paddingRight: noPadding ? 0 : 24,
                       paddingLeft: noPadding ? 0 : 24,
                     }}>
@@ -75,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
-    paddingTop: 40,
+    paddingTop: 10,
   },
   handle: {
     height: 4,
@@ -89,6 +118,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 10,
+    paddingRight: 70,
+    paddingLeft: 70,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontFamily: 'Inter-Medium',
+  },
+  headerClose: {
+    position: 'absolute',
+    right: 12,
   },
   content: {
     paddingBottom: 12,
