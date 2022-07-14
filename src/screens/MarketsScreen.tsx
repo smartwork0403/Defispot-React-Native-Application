@@ -95,6 +95,13 @@ const MarketsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
+  },
+
   filters: {
     paddingRight: 24,
     paddingLeft: 24,
