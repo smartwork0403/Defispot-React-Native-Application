@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="163px" viewBox="0 0 100 163" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ethereum-eth-logo</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Deposit-Pool" transform="translate(-761.000000, -651.000000)" fill-rule="nonzero">
+            <g id="ethereum-eth-logo" transform="translate(761.000000, 651.000000)">
+                <polygon id="Path" fill="#FFFAFA" points="49.9853386 0 48.8927419 3.71125872 48.8927419 111.393857 49.9853386 112.483904 99.9694022 82.9378992"></polygon>
+                <polygon id="Path" fill="#FFFAFA" points="49.9853386 0 0 82.9378992 49.9853386 112.483904 49.9853386 60.2177544"></polygon>
+                <polygon id="Path" fill="#FFFFFF" points="49.9853386 121.94755 49.3695577 122.698471 49.3695577 161.056644 49.9853386 162.854265 100 92.4168441"></polygon>
+                <polygon id="Path" fill="#FFFFFF" points="49.9853386 162.854265 49.9853386 121.94755 0 92.4168441"></polygon>
+                <polygon id="Path" fill="#FFFAFA" points="49.9853386 112.483904 99.9694022 82.9378992 49.9853386 60.2177544"></polygon>
+                <polygon id="Path" fill="#FFFAFA" points="0 82.9378992 49.9853386 112.483904 49.9853386 60.2177544"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
