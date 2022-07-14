@@ -37,8 +37,6 @@ const Header: React.FC<Props> = ({
     );
   }
 
-  console.log(searchable);
-
   return (
     <View style={styles.header}>
       {searchable ? (
