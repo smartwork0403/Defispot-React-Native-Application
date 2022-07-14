@@ -58,6 +58,7 @@ const WalletScreen: React.FC = () => {
 const styles = StyleSheet.create({
   headerCardTitle: {
     color: '#A1A1A8',
+    fontFamily: 'CircularStd-Regular',
   },
   headerCardValue: {
     flexDirection: 'row',
