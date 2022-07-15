@@ -1,11 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text} from 'react-native';
+
+import Header from '../components/Header';
 
 const ProfileScreen: React.FC = () => {
   return (
-    <View>
-      <Text>profile screen</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <ScrollView>
+        <Header title="Profile" minimal />
+        <Text>profile screen</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

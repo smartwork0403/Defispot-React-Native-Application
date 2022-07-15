@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 
 import CustomText from '../components/CustomText';
 import Header from '../components/Header';
@@ -13,45 +13,50 @@ import SamplePieChartSvg from '../assets/icons/sample-pie-chart.svg';
 
 const WalletScreen: React.FC = () => {
   return (
-    <ScrollView>
-      <Header
-        title="Wallet"
-        action={{type: 'text', text: 'History'}}
-        card={
-          <>
-            <CustomText style={styles.headerCardTitle}>
-              Total Net USD Value
-            </CustomText>
-            <View style={styles.headerCardValue}>
-              <CustomText style={styles.headerCardValueSign}>$</CustomText>
-              <CustomText style={styles.headerCardValueText}>
-                3,564.00
+    <SafeAreaView style={{flex: 1}}>
+      <ScrollView>
+        <Header
+          title="Wallet"
+          action={{type: 'text', text: 'History'}}
+          card={
+            <>
+              <CustomText style={styles.headerCardTitle}>
+                Total Net USD Value
               </CustomText>
-            </View>
-          </>
-        }
-      />
-      <View style={styles.actions}>
-        <Button prependIcon={ArrowUpSvg} size="small" style={{marginRight: 8}}>
-          Deposit
-        </Button>
-        <Button
-          prependIcon={ArrowDownSvg}
-          size="small"
-          style={{marginRight: 8}}>
-          Withdraw
-        </Button>
-        <Button prependIcon={RefreshSvg} size="small">
-          Convert
-        </Button>
-      </View>
+              <View style={styles.headerCardValue}>
+                <CustomText style={styles.headerCardValueSign}>$</CustomText>
+                <CustomText style={styles.headerCardValueText}>
+                  3,564.00
+                </CustomText>
+              </View>
+            </>
+          }
+        />
+        <View style={styles.actions}>
+          <Button
+            prependIcon={ArrowUpSvg}
+            size="small"
+            style={{marginRight: 8}}>
+            Deposit
+          </Button>
+          <Button
+            prependIcon={ArrowDownSvg}
+            size="small"
+            style={{marginRight: 8}}>
+            Withdraw
+          </Button>
+          <Button prependIcon={RefreshSvg} size="small">
+            Convert
+          </Button>
+        </View>
 
-      <View style={styles.chart}>
-        <SamplePieChartSvg height={152} />
-      </View>
+        <View style={styles.chart}>
+          <SamplePieChartSvg height={152} />
+        </View>
 
-      <WalletsList />
-    </ScrollView>
+        <WalletsList />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

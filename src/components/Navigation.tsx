@@ -15,7 +15,6 @@ import TradeScreen from '../screens/TradeScreen';
 import WalletScreen from '../screens/WalletScreen';
 
 const Tab = createBottomTabNavigator();
-
 const navItems = [
   {
     name: 'home',
@@ -51,6 +50,7 @@ const Navigation: React.FC = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.container,
+        unmountOnBlur: false,
       }}>
       {navItems.map(nav => {
         return (

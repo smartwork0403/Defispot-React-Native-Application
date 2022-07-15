@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 
 import StarSvg from '../assets/icons/star-outlined.svg';
 
@@ -48,49 +48,51 @@ const MarketsScreen: React.FC = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
 
   return (
-    <ScrollView>
-      <Header
-        title="Markets"
-        searchable={{
-          isShown: isSearchShown,
-          onSearchToggle: isShown => setIsSearchShown(isShown),
-        }}
-        card={<MarketsStats />}
-      />
+    <SafeAreaView style={{flex: 1}}>
+      <ScrollView>
+        <Header
+          title="Markets"
+          searchable={{
+            isShown: isSearchShown,
+            onSearchToggle: isShown => setIsSearchShown(isShown),
+          }}
+          card={<MarketsStats />}
+        />
 
-      {!isSearchShown && (
-        <View style={styles.filters}>
-          <View style={styles.filter}>
-            <Button accent="black" size="small">
-              All
-            </Button>
+        {!isSearchShown && (
+          <View style={styles.filters}>
+            <View style={styles.filter}>
+              <Button accent="black" size="small">
+                All
+              </Button>
+            </View>
+            <View style={styles.filter}>
+              <Button size="small" icon={StarSvg} />
+            </View>
+            <View style={styles.filter}>
+              <Button size="small">Layer 1</Button>
+            </View>
+            <View style={styles.filter}>
+              <Button size="small">DeFi</Button>
+            </View>
+            <Select
+              header={{
+                title: 'Sort by',
+                actionLabel: 'Reset',
+                onHeaderActionPress: () => setSortBy('volume'),
+              }}
+              items={sortByItems}
+              selected={sortBy}
+              onSelect={name => setSortBy(name)}
+              label="Sort by"
+              size="small"
+            />
           </View>
-          <View style={styles.filter}>
-            <Button size="small" icon={StarSvg} />
-          </View>
-          <View style={styles.filter}>
-            <Button size="small">Layer 1</Button>
-          </View>
-          <View style={styles.filter}>
-            <Button size="small">DeFi</Button>
-          </View>
-          <Select
-            header={{
-              title: 'Sort by',
-              actionLabel: 'Reset',
-              onHeaderActionPress: () => setSortBy('volume'),
-            }}
-            items={sortByItems}
-            selected={sortBy}
-            onSelect={name => setSortBy(name)}
-            label="Sort by"
-            size="small"
-          />
-        </View>
-      )}
+        )}
 
-      <AssetsList />
-    </ScrollView>
+        <AssetsList />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

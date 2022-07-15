@@ -1,11 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text} from 'react-native';
+
+import Header from '../components/Header';
 
 const HomeScreen: React.FC = () => {
   return (
-    <View>
-      <Text>Home screen</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <ScrollView>
+        <Header title="Home" minimal />
+        <Text>Home screen</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

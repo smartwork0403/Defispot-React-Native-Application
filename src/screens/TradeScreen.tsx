@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
+import {
+  ScrollView,
+  View,
+  StyleSheet,
+  Pressable,
+  SafeAreaView,
+} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import * as Progress from 'react-native-progress';
 
@@ -12,11 +18,11 @@ import TradeModule from '../components/TradeModule';
 
 const TradeScreen: React.FC = () => {
   const [isDeposit, setIsDeposit] = useState(true);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(true);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(true);
 
   return (
-    <View
+    <SafeAreaView
       style={{
         flex: 1,
       }}>
@@ -34,7 +40,11 @@ const TradeScreen: React.FC = () => {
             <View style={styles.slippage}>
               <CustomText>Slippage</CustomText>
               <CustomText style={styles.slippagePercent}>12%</CustomText>
-              <Button text noPadding textAccent="blue">
+              <Button
+                text
+                noPadding
+                textAccent="blue"
+                onPress={() => setIsCompleteModalOpen(true)}>
                 Edit
               </Button>
             </View>
@@ -139,7 +149,7 @@ const TradeScreen: React.FC = () => {
         isOpen={isCompleteModalOpen}
         onClose={() => setIsCompleteModalOpen(false)}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
