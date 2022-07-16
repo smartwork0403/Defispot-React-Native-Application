@@ -7,7 +7,7 @@ import CustomText from './CustomText';
 
 const AssetsList: React.FC = () => {
   return (
-    <View style={styles.list}>
+    <View>
       {[...Array(20).keys()].map(k => (
         <TouchableOpacity style={styles.item} key={k}>
           <Asset name="XLM" value="$253,71M" />
@@ -59,11 +59,6 @@ const AssetsList: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  list: {
-    paddingRight: 14,
-    paddingLeft: 14,
-    paddingBottom: 2,
-  },
   item: {
     paddingTop: 12,
     paddingBottom: 12,

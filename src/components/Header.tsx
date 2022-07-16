@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import {useNavigation} from '@react-navigation/native';
 
 import CustomText from './CustomText';
 import TextField from './TextField';
@@ -40,12 +41,12 @@ const Action: React.FC<{action?: ActionType}> = ({action}) => {
   );
 };
 
-interface Props {
+export interface Props {
   title: string;
   action?: ActionType;
   searchable?: {isShown: boolean; onSearchToggle?: (isShown: boolean) => void};
   minimal?: boolean;
-  back?: {onPressBack: () => void};
+  back?: boolean;
   card?: React.ReactNode;
 }
 
@@ -57,6 +58,8 @@ const Header: React.FC<Props> = ({
   back,
   card: Card,
 }) => {
+  const navigation = useNavigation();
+
   if (minimal) {
     return (
       <View style={styles.minimalHeader}>
@@ -66,7 +69,7 @@ const Header: React.FC<Props> = ({
               icon={NavBackSvg}
               iconSize={{width: 9, height: 16}}
               color="#fff"
-              onPress={back.onPressBack}
+              onPress={() => navigation.goBack()}
             />
           )}
         </View>
@@ -141,7 +144,6 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
     paddingRight: 12,
     paddingLeft: 4,
-    marginBottom: 16,
   },
   minimalHeaderTitleContainer: {
     minHeight: 40,
@@ -154,9 +156,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Medium',
     fontSize: 18,
   },
-  header: {
-    marginBottom: 16,
-  },
+  header: {},
   headerTop: {
     backgroundColor: '#0077FF',
     flexDirection: 'row',

@@ -37,7 +37,7 @@ const Item: React.FC = () => {
 
 const WalletsList: React.FC = () => {
   return (
-    <View style={styles.list}>
+    <View>
       {[...Array(20).keys()].map(k => (
         <Item key={k} />
       ))}
@@ -46,11 +46,6 @@ const WalletsList: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  list: {
-    paddingRight: 16,
-    paddingLeft: 16,
-    paddingBottom: 8,
-  },
   item: {
     marginBottom: 8,
   },
