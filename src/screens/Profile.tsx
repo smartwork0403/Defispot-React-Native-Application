@@ -16,10 +16,7 @@ const ProfileScreen: React.FC = () => {
         minimal: true,
       }}
       contentStyle={{
-        paddingTop: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-        paddingBottom: 0,
+        padding: 0,
       }}>
       <View style={styles.overview}>
         <View style={styles.overviewIconContainer}>

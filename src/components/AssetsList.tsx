@@ -1,15 +1,21 @@
 import React from 'react';
-import {TouchableOpacity, View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Pressable} from 'react-native';
 import {VictoryGroup, VictoryLine} from 'victory-native';
+import {useNavigation} from '@react-navigation/native';
 
 import Asset from './Asset';
 import CustomText from './CustomText';
 
 const AssetsList: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
     <View>
       {[...Array(20).keys()].map(k => (
-        <TouchableOpacity style={styles.item} key={k}>
+        <Pressable
+          style={styles.item}
+          key={k}
+          onPress={() => navigation.navigate('Asset')}>
           <Asset name="XLM" value="$253,71M" />
           <View style={styles.chart}>
             <VictoryGroup padding={{right: 27, left: 0}} width={92} height={16}>
@@ -52,7 +58,7 @@ const AssetsList: React.FC = () => {
               -2.54%
             </CustomText>
           </View>
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </View>
   );

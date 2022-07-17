@@ -15,8 +15,10 @@ import ProfileScreen from '../screens/Profile';
 import TradeScreen from '../screens/Trade';
 import WalletScreen from '../screens/Wallet';
 import NotificationsScreen from '../screens/Notifications';
+import AssetScreen from '../screens/Asset';
 
-const RootStack = createBottomTabNavigator();
+const RootStack = createNativeStackNavigator();
+const RootTabNavigator = createBottomTabNavigator();
 const RestaurantsStack = createNativeStackNavigator();
 
 const HomeScreenStack = () => {
@@ -63,9 +65,9 @@ const navItems = [
   },
 ];
 
-const Navigation: React.FC = () => {
+const MainTabs = () => {
   return (
-    <RootStack.Navigator
+    <RootTabNavigator.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -73,7 +75,7 @@ const Navigation: React.FC = () => {
       }}>
       {navItems.map(nav => {
         return (
-          <RootStack.Screen
+          <RootTabNavigator.Screen
             key={nav.name}
             name={nav.name}
             component={nav.component}
@@ -91,6 +93,19 @@ const Navigation: React.FC = () => {
           />
         );
       })}
+    </RootTabNavigator.Navigator>
+  );
+};
+
+const Navigation: React.FC = () => {
+  return (
+    <RootStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'simple_push',
+      }}>
+      <RootStack.Screen name="Home" component={MainTabs} />
+      <RootStack.Screen name="Asset" component={AssetScreen} />
     </RootStack.Navigator>
   );
 };

@@ -41,10 +41,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
 
 const styles = StyleSheet.create({
   content: {
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingRight: 16,
-    paddingLeft: 16,
+    padding: 16,
   },
 });
 
