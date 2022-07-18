@@ -7,7 +7,7 @@ import MarketsStats from '../components/MarketsStats';
 import Button from '../components/Button';
 import Select from '../components/Select';
 
-import StarSvg from '../assets/icons/star-outlined.svg';
+import StarSvg from '../assets/icons/star-outlined-thick.svg';
 import ChartSvg from '../assets/icons/chart.svg';
 import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';

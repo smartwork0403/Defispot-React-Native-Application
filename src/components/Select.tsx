@@ -7,7 +7,7 @@ import Modal from './Modal';
 import CheckSvg from '../assets/icons/check.svg';
 import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
-type Item = {name: string; label: string; icon: any};
+type Item = {name: string; label: string; icon?: any};
 
 interface Props {
   label: string;
@@ -15,6 +15,7 @@ interface Props {
   size?: 'small' | 'tiny';
   items: Item[];
   selected: string;
+  outlined?: boolean;
   onSelect: (name: string) => void;
   header?: {
     title: string;
@@ -29,6 +30,7 @@ const Select: React.FC<Props> = ({
   accent,
   items,
   selected,
+  outlined = false,
   onSelect,
   header,
 }) => {
@@ -41,11 +43,25 @@ const Select: React.FC<Props> = ({
 
   return (
     <View>
-      <Button onPress={() => setIsOpen(true)} size={size} accent={accent}>
+      <Button
+        onPress={() => setIsOpen(true)}
+        size={size}
+        accent={accent}
+        style={{
+          borderColor: isOpen
+            ? '#0077FF'
+            : outlined
+            ? '#E0E1E4'
+            : 'transparent',
+        }}>
         <View style={styles.btn}>
           <CustomText style={styles.btnText}>{label}</CustomText>
           <View style={styles.btnIcon}>
-            <ChevronDownSvg width={10} color="#121315" />
+            <ChevronDownSvg
+              width={10}
+              color={isOpen ? '#0077FF' : '#121315'}
+              style={{transform: [{rotate: isOpen ? '180deg' : '0deg'}]}}
+            />
           </View>
         </View>
       </Button>

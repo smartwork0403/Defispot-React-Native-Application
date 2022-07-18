@@ -16,6 +16,7 @@ const Button: React.FC<
     accent?: 'black' | 'blue';
     size?: 'small' | 'tiny';
     noOutline?: boolean;
+    outlined?: boolean;
     icon?: any;
     prependIcon?: any;
     noPadding?: boolean;
@@ -30,6 +31,7 @@ const Button: React.FC<
   accent,
   size,
   noOutline = false,
+  outlined = false,
   icon: Icon,
   prependIcon: PrependIcon,
   noPadding,
@@ -61,6 +63,10 @@ const Button: React.FC<
 
     if (disabled) {
       return '#EFF0F3';
+    }
+
+    if (outlined) {
+      return '#E0E1E4';
     }
 
     if (accent === 'black') {
@@ -154,6 +160,7 @@ const Button: React.FC<
                 height: size === 'small' || size === 'tiny' ? 12 : 19,
                 width: size === 'small' || size === 'tiny' ? 12 : 19,
               }}
+              color="#121315"
             />
           </View>
         ) : (

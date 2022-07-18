@@ -16,6 +16,7 @@ interface Props {
   header?: HeaderProps;
   contentStyle?: StyleProp<ViewStyle>;
   customContent?: React.ReactNode;
+  statusBarColor?: string;
 }
 
 const Layout: React.FC<PropsWithChildren<Props>> = ({
@@ -23,10 +24,11 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   header,
   contentStyle,
   customContent: CustomContent,
+  statusBarColor = '#0077FF',
 }) => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <StatusBar backgroundColor="#0077FF" />
+      <StatusBar backgroundColor={statusBarColor} animated />
       {!CustomContent ? (
         <ScrollView>
           {header && <Header {...header} />}
