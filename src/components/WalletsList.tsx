@@ -24,7 +24,7 @@ const Item: React.FC = () => {
 const WalletsList: React.FC = () => {
   return (
     <View>
-      {[...Array(20).keys()].map(k => (
+      {[...Array(2).keys()].map(k => (
         <Item key={k} />
       ))}
     </View>
