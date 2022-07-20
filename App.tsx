@@ -7,7 +7,7 @@ import Navigation from './src/components/Navigation';
 const App = () => {
   return (
     <NavigationContainer
-      theme={{colors: {background: '#F5F5F5'}}}
+      theme={{colors: {background: '#F7F8FA'}}}
       onReady={() => RNBootSplash.hide({fade: true})}>
       <Navigation />
     </NavigationContainer>

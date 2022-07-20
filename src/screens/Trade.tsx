@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
-import * as Progress from 'react-native-progress';
+import {VictoryPie} from 'victory-native';
 
 import Button from '../components/Button';
 import CustomText from '../components/CustomText';
@@ -67,14 +67,20 @@ const TradeScreen: React.FC = () => {
                       alignItems: 'center',
                       justifyContent: 'flex-end',
                     }}>
-                    <CustomText style={styles.detailValue}>7,83%</CustomText>
-                    <Progress.Circle
-                      progress={0.5}
-                      size={18}
-                      style={{marginLeft: 8}}
-                      color="#0077FF"
-                      unfilledColor="#E0E1E4"
-                      borderColor="transparent"
+                    <CustomText style={{...styles.detailValue, marginRight: 8}}>
+                      7,83%
+                    </CustomText>
+                    <VictoryPie
+                      height={16}
+                      width={16}
+                      data={[
+                        {x: 'filled', y: 50},
+                        {x: 'unfilled', y: 50},
+                      ]}
+                      colorScale={['#0077FF', '#E0E1E4']}
+                      labels={() => null}
+                      padding={0}
+                      innerRadius={5}
                     />
                   </View>
                 </View>
