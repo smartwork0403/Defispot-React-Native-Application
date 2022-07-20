@@ -1,6 +1,8 @@
 import {Keystore} from '@xchainjs/xchain-crypto';
 import {Asset} from '../SDKs/multichain-sdk';
 
+import {AsyncStorage} from 'react-native';
+
 const DEFISPOT_ANNOUNCEMENT = 'DEFISPOT_ANNOUNCEMENT';
 
 const DEFISPOT_MULTICHAIN_KEYSTORE = 'DEFISPOT_MULTICHAIN_KEYSTORE';
@@ -11,13 +13,12 @@ const REFERRING_AFFILIATE_CODE = 'REFERRING_AFFILIATE_CODE';
 const BASE_CURRENCY = 'BASE_CURRENCY';
 
 export const saveBaseCurrency = (currency: string) => {
-  localStorage.setItem(BASE_CURRENCY, currency);
+  AsyncStorage.setItem(BASE_CURRENCY, currency);
 };
 
 export const getBaseCurrency = (): string => {
-  return (
-    (localStorage.getItem(BASE_CURRENCY) as string) || Asset.USD().toString()
-  );
+  let base = AsyncStorage.getItem(BASE_CURRENCY);
+  return (base as unknown as string) || Asset.USD().toString();
 };
 
 export const saveKeystore = (keystore: Keystore) => {
@@ -37,17 +38,18 @@ export const getKeystore = (): Keystore | null => {
   return null;
 };
 
-// save xdefi status to localstorage
+// save xdefi status to AsyncStorage
 export const saveXdefiConnected = (connected: boolean) => {
   if (connected) {
-    localStorage.setItem(DEFISPOT_XDEFI_STATUS, 'connected');
+    AsyncStorage.setItem(DEFISPOT_XDEFI_STATUS, 'connected');
   } else {
-    localStorage.removeItem(DEFISPOT_XDEFI_STATUS);
+    AsyncStorage.removeItem(DEFISPOT_XDEFI_STATUS);
   }
 };
 
-export const getXdefiConnected = (): boolean => {
-  return localStorage.getItem(DEFISPOT_XDEFI_STATUS) === 'connected';
+export const getXdefiConnected = async (): Promise<boolean> => {
+  let status = await AsyncStorage.getItem(DEFISPOT_XDEFI_STATUS);
+  return status === 'connected';
 };
 
 export const saveAddress = (address: string) => {
@@ -64,22 +66,22 @@ export const getAddress = (): string | null => {
 };
 
 export const setReadStatus = (read: boolean) => {
-  localStorage.setItem(DEFISPOT_ANNOUNCEMENT, read.toString());
+  AsyncStorage.setItem(DEFISPOT_ANNOUNCEMENT, read.toString());
 };
 
-export const getReadStatus = (): boolean => {
-  const read = localStorage.getItem(DEFISPOT_ANNOUNCEMENT) === 'true';
+export const getReadStatus = async (): Promise<boolean> => {
+  const read = (await AsyncStorage.getItem(DEFISPOT_ANNOUNCEMENT)) === 'true';
   return read;
 };
 
 export const setReferringAffiliateCode = async (affiliateCode: string) => {
   const referralCode = getReferringAffiliateCode();
   if (!referralCode) {
-    localStorage.setItem(REFERRING_AFFILIATE_CODE, affiliateCode);
+    AsyncStorage.setItem(REFERRING_AFFILIATE_CODE, affiliateCode);
   }
 };
 
-export const getReferringAffiliateCode = (): string | null => {
-  const referralCode = localStorage.getItem(REFERRING_AFFILIATE_CODE);
+export const getReferringAffiliateCode = async (): Promise<string | null> => {
+  const referralCode = await AsyncStorage.getItem(REFERRING_AFFILIATE_CODE);
   return referralCode;
 };

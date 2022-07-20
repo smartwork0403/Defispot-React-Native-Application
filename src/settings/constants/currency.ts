@@ -1,4 +1,4 @@
-import { Asset } from 'multichain-sdk'
+import {Asset} from '../../SDKs/multichain-sdk';
 
 export const currencyIndexAssets: Asset[] = [
   Asset.USD(),
@@ -9,4 +9,4 @@ export const currencyIndexAssets: Asset[] = [
   Asset.LTC(),
   Asset.DOGE(),
   Asset.ATOM(),
-]
+];

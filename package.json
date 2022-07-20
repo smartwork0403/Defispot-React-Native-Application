@@ -7,10 +7,12 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "postinstall": "node_modules/.bin/rn-nodeify --install crypto,buffer,http,https,fs,path --yarn "
   },
   "dependencies": {
     "@binance-chain/javascript-sdk": "^4.2.0",
+    "@cosmos-client/core": "^0.46.0-rc7",
     "@ethersproject/bytes": "^5.6.1",
     "@ledgerhq/hw-transport-webusb": "^6.27.1",
     "@react-navigation/bottom-tabs": "^6.3.1",
@@ -19,31 +21,54 @@
     "@trustwallet/wallet-core": "^2.9.7",
     "@walletconnect/client": "^1.7.8",
     "@walletconnect/qrcode-modal": "^1.7.8",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "@xchainjs/xchain-binance": "^5.4.3",
+    "@xchainjs/xchain-bitcoin": "^0.18.4",
     "@xchainjs/xchain-bitcoincash": "^0.13.2",
     "@xchainjs/xchain-client": "^0.11.3",
+    "@xchainjs/xchain-cosmos": "^0.19.0",
     "@xchainjs/xchain-crypto": "^0.2.6",
+    "@xchainjs/xchain-doge": "^0.2.1",
     "@xchainjs/xchain-ethereum": "^0.25.1",
+    "@xchainjs/xchain-litecoin": "^0.8.1",
+    "@xchainjs/xchain-thorchain": "^0.25.3",
     "@xchainjs/xchain-util": "^0.7.1",
-    "axios": "^0.27.2",
+    "assert": "^2.0.0",
+    "axios": "^0.25.0",
+    "bech32-buffer": "^0.2.0",
     "bignumber.js": "^9.0.2",
+    "buffer": "^3.0.3",
     "date-fns": "^2.28.0",
     "ethers": "^5.6.9",
+    "https-browserify": "~0.0.0",
     "js-search": "^2.0.0",
     "moment": "^2.29.4",
+    "os": "^0.1.2",
+    "path-browserify": "^0.0.0",
     "react": "18.0.0",
     "react-ga4": "^1.4.1",
     "react-native": "0.69.1",
     "react-native-bootsplash": "^4.2.3",
     "react-native-collapsible": "^1.6.0",
+    "react-native-crypto": "^2.0.0",
+    "react-native-dotenv": "^3.3.1",
     "react-native-drop-shadow": "^0.0.4",
+    "react-native-http": "github:tradle/react-native-http#834492d",
+    "react-native-level-fs": "^2.0.0",
     "react-native-progress": "^5.0.0",
+    "react-native-randombytes": "^2.0.0",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.14.0",
     "react-native-svg": "^12.3.0",
     "react-native-svg-transformer": "^1.0.0",
     "react-redux": "^8.0.2",
+    "readable-stream": "^4.1.0",
+    "stream": "^0.0.2",
+    "tiny-invariant": "^1.2.0",
     "use-file-picker": "^1.4.2",
-    "victory-native": "^36.5.3"
+    "victory-native": "^36.5.3",
+    "web3-provider": "^1.0.0",
+    "web3-provider-engine": "^16.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -60,6 +85,7 @@
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.70.3",
     "react-test-renderer": "18.0.0",
+    "rn-nodeify": "^6.0.1",
     "typescript": "^4.4.4"
   },
   "resolutions": {
@@ -75,5 +101,19 @@
       "json",
       "node"
     ]
+  },
+  "react-native": {
+    "crypto": "react-native-crypto",
+    "http": "react-native-http",
+    "https": "https-browserify",
+    "fs": "react-native-level-fs",
+    "path": "path-browserify"
+  },
+  "browser": {
+    "crypto": "react-native-crypto",
+    "http": "react-native-http",
+    "https": "https-browserify",
+    "fs": "react-native-level-fs",
+    "path": "path-browserify"
   }
 }

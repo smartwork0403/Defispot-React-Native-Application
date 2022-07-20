@@ -23,14 +23,14 @@ import {
   DOGEChain,
   CosmosChain,
 } from '@xchainjs/xchain-util';
-import {MetaMaskClient, WalletStatus} from 'metamask-sdk';
-import {MidgardV2, InboundAddressesItem} from 'midgard-sdk';
+import {MetaMaskClient, WalletStatus} from '../../metamask-sdk';
+import {MidgardV2, InboundAddressesItem} from '../../midgard-sdk';
 import {
   WalletConnectClient,
   WalletConnectOption,
-} from 'wallet-core/walletconnect';
+} from '../../wallet-core/walletconnect';
 
-import {AssetInfo} from 'redux/server/types';
+import {AssetInfo} from '../../../redux/server/types';
 
 import {XdefiClient} from '../../xdefi-sdk/xdefi';
 import {Swap, Memo, Asset, AssetAmount} from '../entities';

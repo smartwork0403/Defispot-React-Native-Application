@@ -22,7 +22,7 @@ import {
   CosmosChain,
 } from '@xchainjs/xchain-util';
 
-import {ETHERSCAN_API_KEY, NETWORK_TYPE} from 'multichain-sdk/config';
+import {ETHERSCAN_API_KEY, NETWORK_TYPE} from '../../multichain-sdk/config';
 
 import {getAssetType, getAssetName, getNetworkName} from '../constants/chains';
 import {

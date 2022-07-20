@@ -1,6 +1,8 @@
 import {ClientUrl} from '@xchainjs/xchain-bitcoincash';
 import {Network} from '@xchainjs/xchain-client';
 
+import {REACT_APP_API_V1_URL, REACT_APP_API_V2_URL} from '@env';
+
 const safeEnv = (defaultEnv: string, env?: string) => {
   return env || defaultEnv;
 };
@@ -55,8 +57,8 @@ export const {REACT_APP_MOCK_PHRASE} = process.env;
 
 export const config: Config = {
   network: safeEnv('testnet', process.env.REACT_APP_NETWORK) as Network,
-  apiV1Url: process.env.REACT_APP_API_V1_URL,
-  apiV2Url: process.env.REACT_APP_API_V2_URL,
+  apiV1Url: REACT_APP_API_V1_URL,
+  apiV2Url: REACT_APP_API_V2_URL,
   affiliateAddress: IS_TESTNET
     ? process.env.REACT_APP_AFFILIATE_ADDRESS_TESTNET
     : process.env.REACT_APP_AFFILIATE_ADDRESS_MAINNET,

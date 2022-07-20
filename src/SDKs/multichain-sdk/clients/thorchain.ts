@@ -16,8 +16,8 @@ import {
   THORChain,
   Asset as BasicAsset,
 } from '@xchainjs/xchain-util';
-import {THORChainLedger} from 'wallet-core/ledger/thorchain';
-import {WalletConnectClient} from 'wallet-core/walletconnect';
+import {THORChainLedger} from '../../wallet-core/ledger/thorchain';
+import {WalletConnectClient} from '../../wallet-core/walletconnect';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {

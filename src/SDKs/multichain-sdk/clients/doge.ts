@@ -12,9 +12,9 @@ import {
   Chain,
   DOGEChain,
 } from '@xchainjs/xchain-util';
-import {XdefiClient} from 'xdefi-sdk';
+import {XdefiClient} from '../../xdefi-sdk';
 
-import {getBlockcypherUrl, getSochainUrl} from 'settings/config';
+import {getBlockcypherUrl, getSochainUrl} from '../../../settings/config';
 
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';
 import {IClient} from './client';
