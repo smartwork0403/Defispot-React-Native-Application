@@ -377,7 +377,7 @@ DEPENDENCIES:
   - Flipper-Boost-iOSX (= 1.76.0.1.11)
   - Flipper-DoubleConversion (= 3.2.0.1)
   - Flipper-Fmt (= 7.1.7)
-  - Flipper-Folly (= 2.6.10)
+  - Flipper-Folly (~> 2.6)
   - Flipper-Glog (= 0.5.0.5)
   - Flipper-PeerTalk (= 0.0.4)
   - Flipper-RSocket (= 1.4.3)
@@ -575,6 +575,6 @@ SPEC CHECKSUMS:
   Yoga: 7ab6e3ee4ce47d7b789d1cb520163833e515f452
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 227aba6f93fb6be584abe56d8b793218508044ff
+PODFILE CHECKSUM: 41f07204ed9864ddff2bf27eb3845e1ac4d81c32
 
 COCOAPODS: 1.11.3
