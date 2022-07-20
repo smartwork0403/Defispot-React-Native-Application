@@ -9,5 +9,13 @@ module.exports = {
         path: '.env',
       },
     ],
+    [
+      'babel-plugin-rewrite-require',
+      {
+        aliases: {
+          crypto: 'react-native-crypto',
+        },
+      },
+    ],
   ],
 };

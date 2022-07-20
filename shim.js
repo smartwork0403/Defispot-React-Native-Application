@@ -21,4 +21,4 @@ if (typeof localStorage !== 'undefined') {
   localStorage.debug = isDev ? '*' : ''
 }
 
-require('crypto')
+// require('crypto')
