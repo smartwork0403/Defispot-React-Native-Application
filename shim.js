@@ -21,4 +21,10 @@ if (typeof localStorage !== 'undefined') {
   localStorage.debug = isDev ? '*' : ''
 }
 
-// require('crypto')
+require('crypto')
+require('http')
+require('https')
+require('fs')
+require('path')
+
+

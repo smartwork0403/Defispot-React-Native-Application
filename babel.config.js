@@ -14,6 +14,7 @@ module.exports = {
       {
         aliases: {
           crypto: 'react-native-crypto',
+          randombytes: 'react-native-randombytes',
         },
       },
     ],
