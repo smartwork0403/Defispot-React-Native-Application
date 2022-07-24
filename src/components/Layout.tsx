@@ -35,7 +35,10 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
           <View style={{...styles.content, ...contentStyle}}>{children}</View>
         </ScrollView>
       ) : (
-        CustomContent
+        <>
+          {header && <Header {...header} />}
+          {CustomContent}
+        </>
       )}
     </SafeAreaView>
   );

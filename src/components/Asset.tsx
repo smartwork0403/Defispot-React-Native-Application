@@ -11,9 +11,9 @@ import {
 import CustomText from './CustomText';
 
 interface Props {
-  name: string;
-  value: string;
-  size?: 'medium' | 'large';
+  name?: string;
+  value?: string;
+  size?: 'medium' | 'large' | 'small';
   horizontal?: boolean;
 }
 
@@ -24,8 +24,25 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
       style.marginRight = 20;
     } else if (size === 'medium') {
       style.marginRight = 16;
+    } else if (size === 'small') {
+      style.marginRight = 8;
     } else {
       style.marginRight = 12;
+    }
+
+    return style;
+  };
+
+  const getNetworkContainerStyles = () => {
+    const style: StyleProp<ViewStyle> = {};
+    if (size === 'small') {
+      style.height = 16;
+      style.width = 16;
+      style.borderRadius = 16 / 2;
+    } else {
+      style.height = 22;
+      style.width = 22;
+      style.borderRadius = 22 / 2;
     }
 
     return style;
@@ -41,10 +58,29 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
       style.height = 40;
       style.width = 40;
       style.borderRadius = 40 / 2;
+    } else if (size === 'small') {
+      style.height = 24;
+      style.width = 24;
+      style.borderRadius = 24 / 2;
     } else {
       style.height = 32;
       style.width = 32;
       style.borderRadius = 32 / 2;
+    }
+
+    return style;
+  };
+
+  const getNetworkStyles = () => {
+    const style: StyleProp<ImageStyle> = {};
+    if (size === 'small') {
+      style.height = 12;
+      style.width = 12;
+      style.borderRadius = 12 / 2;
+    } else {
+      style.height = 18;
+      style.width = 18;
+      style.borderRadius = 18 / 2;
     }
 
     return style;
@@ -95,10 +131,11 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
           source={require('../assets/images/sample.png')}
           style={getIconStyles()}
         />
-        <View style={styles.networkContainer}>
+        <View
+          style={{...styles.networkContainer, ...getNetworkContainerStyles()}}>
           <Image
             source={require('../assets/images/sample.png')}
-            style={styles.network}
+            style={getNetworkStyles()}
           />
         </View>
       </View>
@@ -107,14 +144,16 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
           flexDirection: horizontal ? 'row' : 'column',
           alignItems: horizontal ? 'center' : 'flex-start',
         }}>
-        <CustomText style={getNameTextStyles()}>{name}</CustomText>
-        <CustomText
-          style={{
-            ...styles.value,
-            ...getValueTextStyles(),
-          }}>
-          {value}
-        </CustomText>
+        {name && <CustomText style={getNameTextStyles()}>{name}</CustomText>}
+        {value && (
+          <CustomText
+            style={{
+              ...styles.value,
+              ...getValueTextStyles(),
+            }}>
+            {value}
+          </CustomText>
+        )}
       </View>
     </View>
   );
@@ -130,16 +169,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    height: 22,
-    width: 22,
-    borderRadius: 22 / 2,
     bottom: -4,
     right: -4,
-  },
-  network: {
-    height: 18,
-    width: 18,
-    borderRadius: 18 / 2,
   },
   value: {
     color: '##A1A1A8',

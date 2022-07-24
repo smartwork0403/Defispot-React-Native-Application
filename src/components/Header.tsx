@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {useNavigation} from '@react-navigation/native';
 
@@ -42,12 +42,18 @@ const Action: React.FC<{action?: ActionType}> = ({action}) => {
 };
 
 export interface Props {
-  title: string;
+  title?: string;
   action?: ActionType;
-  searchable?: {isShown: boolean; onSearchToggle?: (isShown: boolean) => void};
+  searchable?: {
+    isShown?: boolean;
+    onSearchToggle?: (isShown: boolean) => void;
+    persistence?: {actionIcon: any; onActionIconClick: () => void};
+    inputPlaceholder?: string;
+  };
   minimal?: boolean;
   back?: boolean;
   card?: React.ReactNode;
+  cardStyle?: StyleProp<ViewStyle>;
 }
 
 const Header: React.FC<Props> = ({
@@ -57,6 +63,7 @@ const Header: React.FC<Props> = ({
   minimal,
   back,
   card: Card,
+  cardStyle,
 }) => {
   const navigation = useNavigation();
 
@@ -87,9 +94,26 @@ const Header: React.FC<Props> = ({
     <View style={styles.header}>
       {searchable ? (
         <View style={{...styles.headerTop, paddingBottom: 45}}>
-          {searchable.isShown ? (
+          {searchable.persistence ? (
             <>
-              <TextField placeholder="Search..." icon={MagnifySvg} autoFocus />
+              <TextField
+                placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                icon={MagnifySvg}
+              />
+              <IconButton
+                icon={searchable.persistence.actionIcon}
+                color="#fff"
+                onPress={() => searchable.persistence?.onActionIconClick?.()}
+                style={{marginLeft: 16}}
+              />
+            </>
+          ) : searchable.isShown ? (
+            <>
+              <TextField
+                placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                icon={MagnifySvg}
+                autoFocus
+              />
               <Button
                 style={styles.searchCancel}
                 onPress={() => searchable.onSearchToggle?.(false)}
@@ -126,7 +150,7 @@ const Header: React.FC<Props> = ({
               shadowRadius: 8,
               shadowOpacity: 0.06,
             }}>
-            <View style={styles.card}>{Card}</View>
+            <View style={{...styles.card, ...cardStyle}}>{Card}</View>
           </DropShadow>
         </View>
       )}
