@@ -7,10 +7,10 @@ import {
   TxHistoryParams,
   Tx,
   FeeOption,
-} from '@xchainjs/xchain-client';
-import {decryptFromKeystore, Keystore} from '@xchainjs/xchain-crypto';
-import {Client as EthClient, getTokenAddress} from '@xchainjs/xchain-ethereum';
-import {getChainIds, getDefaultClientUrl} from '@xchainjs/xchain-thorchain';
+} from '@thorwallet/xchain-client';
+import {decryptFromKeystore, Keystore} from '@thorwallet/xchain-crypto';
+import {Client as EthClient, getTokenAddress} from '@thorwallet/xchain-ethereum';
+import {getChainIds, getDefaultClientUrl} from '@thorwallet/xchain-thorchain';
 import {
   baseAmount,
   Chain,
@@ -22,7 +22,7 @@ import {
   BCHChain,
   DOGEChain,
   CosmosChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 import {MetaMaskClient, WalletStatus} from '../../metamask-sdk';
 import {MidgardV2, InboundAddressesItem} from '../../midgard-sdk';
 import {

@@ -1,17 +1,17 @@
-import {Client as BncClient, MultiTransfer} from '@xchainjs/xchain-binance';
+import {Client as BncClient, MultiTransfer} from '@thorwallet/xchain-binance';
 import {
   TxHash,
   Balance,
   TxParams as ClientTxParams,
   Network,
-} from '@xchainjs/xchain-client';
+} from '@thorwallet/xchain-client';
 import {
   baseAmount,
   Chain,
   BNBChain,
   assetToString,
   baseToAsset,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 import {BinanceLedger} from '../../wallet-core/ledger/binance';
 import {
   WalletConnectClient,

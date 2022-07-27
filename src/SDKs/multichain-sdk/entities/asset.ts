@@ -1,6 +1,6 @@
 import {EtherscanProvider} from '@ethersproject/providers';
-import {AssetAtom} from '@xchainjs/xchain-cosmos';
-import {getDecimal} from '@xchainjs/xchain-ethereum';
+import {AssetAtom} from '@thorwallet/xchain-cosmos';
+import {getDecimal} from '@thorwallet/xchain-ethereum';
 import {
   BNBChain,
   BTCChain,
@@ -20,7 +20,7 @@ import {
   // AssetUST,
   Asset as AssetObj,
   CosmosChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 
 import {ETHERSCAN_API_KEY, NETWORK_TYPE} from '../../multichain-sdk/config';
 

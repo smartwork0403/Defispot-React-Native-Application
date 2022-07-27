@@ -1,4 +1,4 @@
-import {Keystore} from '@xchainjs/xchain-crypto';
+import {Keystore} from '@thorwallet/xchain-crypto';
 import {Asset as AssetData} from '../../common/models/Asset';
 import {Asset, Wallet, SupportedChain} from '../../SDKs/multichain-sdk';
 

@@ -4,14 +4,14 @@ import {
   Network,
   FeeOption,
   TxParams as ClientTxParams,
-} from '@xchainjs/xchain-client';
-import {Client as DogeClient} from '@xchainjs/xchain-doge';
+} from '@thorwallet/xchain-client';
+import {Client as DogeClient} from '@thorwallet/xchain-doge';
 import {
   assetToString,
   baseAmount,
   Chain,
   DOGEChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 import {XdefiClient} from '../../xdefi-sdk';
 
 import {getBlockcypherUrl, getSochainUrl} from '../../../settings/config';

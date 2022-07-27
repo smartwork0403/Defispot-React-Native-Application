@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {Chain} from '@xchainjs/xchain-util';
+import {Chain} from '@thorwallet/xchain-util';
 import {Asset, SupportedChain} from '../../SDKs/multichain-sdk';
 
 import * as walletActions from '../wallet/actions';

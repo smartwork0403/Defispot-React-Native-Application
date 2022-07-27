@@ -1,4 +1,4 @@
-import {FeeOption, TxHash} from '@xchainjs/xchain-client';
+import {FeeOption, TxHash} from '@thorwallet/xchain-client';
 import {
   BTCChain,
   BNBChain,
@@ -10,7 +10,7 @@ import {
   DOGEChain,
   CosmosChain,
   Chain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 
 import {AssetAmount, Pool, Percent} from '../entities';
 

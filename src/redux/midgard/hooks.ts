@@ -1,7 +1,7 @@
 import {useCallback, useMemo} from 'react';
 
 import {unwrapResult} from '@reduxjs/toolkit';
-import {THORChain} from '@xchainjs/xchain-util';
+import {THORChain} from '@thorwallet/xchain-util';
 import {
   Action,
   ActionListParams,

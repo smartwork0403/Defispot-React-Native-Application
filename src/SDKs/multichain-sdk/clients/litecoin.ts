@@ -4,14 +4,14 @@ import {
   TxParams as ClientTxParams,
   FeeOption,
   Network,
-} from '@xchainjs/xchain-client';
-import {Client as LtcClient} from '@xchainjs/xchain-litecoin';
+} from '@thorwallet/xchain-client';
+import {Client as LtcClient} from '@thorwallet/xchain-litecoin';
 import {
   assetToString,
   baseAmount,
   Chain,
   LTCChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';

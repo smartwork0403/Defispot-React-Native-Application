@@ -4,20 +4,20 @@ import {BigNumber as BN} from '@ethersproject/bignumber';
 import {hexlify} from '@ethersproject/bytes';
 import {toUtf8Bytes} from '@ethersproject/strings';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import {TxHash, Balance, Network, FeeOption} from '@xchainjs/xchain-client';
+import {TxHash, Balance, Network, FeeOption} from '@thorwallet/xchain-client';
 import {
   Client as EthClient,
   ETHAddress,
   getTokenAddress,
   TxOverrides,
-} from '@xchainjs/xchain-ethereum';
+} from '@thorwallet/xchain-ethereum';
 import {
   assetToString,
   baseAmount,
   Chain,
   ETHChain,
   AssetETH,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 import BigNumber from 'bignumber.js';
 import {ethers, Wallet} from 'ethers';
 import {parseUnits} from 'ethers/lib/utils';

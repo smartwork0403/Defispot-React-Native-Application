@@ -1,5 +1,5 @@
-import {ClientUrl} from '@xchainjs/xchain-bitcoincash';
-import {Network} from '@xchainjs/xchain-client';
+import {ClientUrl} from '@thorwallet/xchain-bitcoincash';
+import {Network} from '@thorwallet/xchain-client';
 
 import {REACT_APP_API_V1_URL, REACT_APP_API_V2_URL} from '@env';
 

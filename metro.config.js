@@ -1,5 +1,4 @@
 const {getDefaultConfig} = require('metro-config');
-const Path = require('path');
 
 module.exports = (async () => {
   const {
@@ -18,9 +17,6 @@ module.exports = (async () => {
     resolver: {
       assetExts: assetExts.filter(ext => ext !== 'svg'),
       sourceExts: [...sourceExts, 'svg'],
-      extraNodeModules: {
-        crypto: require('react-native-crypto'),
-      },
     },
   };
 })();

@@ -6,7 +6,7 @@ import {
   LTCChain,
   BCHChain,
   DOGEChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 
 // TODO: Determine if these are even being used
 export const blockReward = {

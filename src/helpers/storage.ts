@@ -1,4 +1,4 @@
-import {Keystore} from '@xchainjs/xchain-crypto';
+import {Keystore} from '@thorwallet/xchain-crypto';
 import {Asset} from '../SDKs/multichain-sdk';
 
 import {AsyncStorage} from 'react-native';

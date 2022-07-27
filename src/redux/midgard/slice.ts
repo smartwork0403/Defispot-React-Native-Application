@@ -1,6 +1,6 @@
 import {createSelector, createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {Chain, THORChain} from '@xchainjs/xchain-util';
+import {Chain, THORChain} from '@thorwallet/xchain-util';
 import BigNumber from 'bignumber.js';
 import {getFormatted} from '../../common/helper/action-helper';
 import {fromUnixTime} from 'date-fns';

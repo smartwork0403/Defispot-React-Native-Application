@@ -1,4 +1,4 @@
-import {Chain, THORChain} from '@xchainjs/xchain-util';
+import {Chain, THORChain} from '@thorwallet/xchain-util';
 import {BigNumber} from 'bignumber.js';
 
 import {ReactComponent as LedgerWalletIcon} from '../../../assets/crypto/wallets/ledger.svg';

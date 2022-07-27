@@ -9,14 +9,16 @@ module.exports = {
         path: '.env',
       },
     ],
-    [
-      'babel-plugin-rewrite-require',
-      {
-        aliases: {
-          crypto: 'react-native-crypto',
-          randombytes: 'react-native-randombytes',
-        },
-      },
-    ],
+    // [
+    //   'babel-plugin-rewrite-require',
+    //   {
+    //     aliases: {
+    //       crypto: 'react-native-crypto',
+    //       randombytes: 'react-native-randombytes',
+    //     },
+    //   },
+    // ],
   ],
 };
+// "postinstall": "node_modules/.bin/rn-nodeify --install crypto,http,https,fs,path --hack"
+// "react-native-http": "github:tradle/react-native-http#834492d",

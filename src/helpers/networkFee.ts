@@ -1,5 +1,5 @@
-import {FeeOption} from '@xchainjs/xchain-client';
-import {Chain} from '@xchainjs/xchain-util';
+import {FeeOption} from '@thorwallet/xchain-client';
+import {Chain} from '@thorwallet/xchain-util';
 import {InboundAddressesItem} from '../SDKs/midgard-sdk';
 
 const multiplier: Record<FeeOption, number> = {

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {Keystore} from '@xchainjs/xchain-crypto';
+import {Keystore} from '@thorwallet/xchain-crypto';
 import {
   BTCChain,
   BNBChain,
@@ -10,7 +10,7 @@ import {
   BCHChain,
   DOGEChain,
   CosmosChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 
 import type {RootState} from '../store';
 import * as walletActions from './actions';
