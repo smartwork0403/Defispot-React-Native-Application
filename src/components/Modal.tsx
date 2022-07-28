@@ -1,16 +1,12 @@
 import React, {type PropsWithChildren} from 'react';
-import {
-  Modal,
-  StyleSheet,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {StyleSheet, View, ScrollView, Pressable} from 'react-native';
+import Modal from 'react-native-modal';
+
 import Button from './Button';
 import CustomText from './CustomText';
-import CloseSvg from '../assets/icons/close.svg';
 import IconButton from './IconButton';
+
+import CloseSvg from '../assets/icons/close.svg';
 
 interface Props {
   noHandle?: boolean;
@@ -41,70 +37,71 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
   return (
     <View>
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isOpen}
-        onRequestClose={onClose}>
-        <TouchableOpacity style={styles.overlay} onPress={onClose}>
-          <View>
-            {!noHandle && <View style={styles.handle} />}
-            <TouchableWithoutFeedback>
+        isVisible={isOpen}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        backdropTransitionOutTiming={0}
+        style={{margin: 0, justifyContent: 'flex-end'}}
+        customBackdrop={
+          <Pressable style={styles.backdrop} onPress={onClose} />
+        }>
+        <View style={styles.wrapper}>
+          {!noHandle && <View style={styles.handle} />}
+
+          <View
+            style={{
+              ...styles.container,
+              height: fullHeight ? '100%' : 'auto',
+            }}>
+            <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
+              {header && (
+                <View style={styles.header}>
+                  <CustomText style={styles.headerTitle}>
+                    {header.title}
+                  </CustomText>
+                  <IconButton
+                    icon={CloseSvg}
+                    onPress={onClose}
+                    size="small"
+                    color="#A1A1A8"
+                    iconSize={{width: 10, height: 10}}
+                    style={styles.headerClose}
+                  />
+                </View>
+              )}
+
               <View
                 style={{
-                  ...styles.container,
-                  height: fullHeight ? '100%' : 'auto',
+                  ...styles.content,
+                  marginTop: noPadding ? 14 : 24,
+                  paddingRight: noPadding ? 0 : 24,
+                  paddingLeft: noPadding ? 0 : 24,
                 }}>
-                <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
-                  {header && (
-                    <View style={styles.header}>
-                      <CustomText style={styles.headerTitle}>
-                        {header.title}
-                      </CustomText>
-                      <IconButton
-                        icon={CloseSvg}
-                        onPress={onClose}
-                        size="small"
-                        color="#A1A1A8"
-                        iconSize={{width: 10, height: 10}}
-                        style={styles.headerClose}
-                      />
-                    </View>
-                  )}
-
-                  <View
-                    style={{
-                      ...styles.content,
-                      marginTop: noPadding ? 14 : 24,
-                      paddingRight: noPadding ? 0 : 24,
-                      paddingLeft: noPadding ? 0 : 24,
-                    }}>
-                    {children}
-                  </View>
-                </ScrollView>
-
-                {stickyAction && (
-                  <View style={styles.actions}>
-                    <Button onPress={onActionPress} accent="black">
-                      {actionLabel}
-                    </Button>
-                  </View>
-                )}
+                {children}
               </View>
-            </TouchableWithoutFeedback>
+            </ScrollView>
+
+            {stickyAction && (
+              <View style={styles.actions}>
+                <Button onPress={onActionPress} accent="black">
+                  {actionLabel}
+                </Button>
+              </View>
+            )}
           </View>
-        </TouchableOpacity>
+        </View>
       </Modal>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  overlay: {
+  backdrop: {
     backgroundColor: 'rgba(18,19,21,0.32)',
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'stretch',
-    paddingTop: 10,
+  },
+  wrapper: {
+    marginTop: 28,
   },
   handle: {
     height: 4,

@@ -1,5 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StyleSheet, View} from 'react-native';
 
 import HomeSvg from '../assets/icons/home.svg';
@@ -8,18 +9,38 @@ import SwapSvg from '../assets/icons/swap.svg';
 import WalletSvg from '../assets/icons/wallet.svg';
 import UserSvg from '../assets/icons/user.svg';
 
-import HomeScreen from '../screens/HomeScreen';
-import MarketsScreen from '../screens/MarketsScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import TradeScreen from '../screens/TradeScreen';
-import WalletScreen from '../screens/WalletScreen';
+import HomeScreen from '../screens/Home';
+import MarketsScreen from '../screens/Markets';
+import ProfileScreen from '../screens/Profile';
+import TradeScreen from '../screens/Trade';
+import WalletScreen from '../screens/Wallet';
+import NotificationsScreen from '../screens/Notifications';
+import AssetScreen from '../screens/Asset';
 
-const Tab = createBottomTabNavigator();
+const RootStack = createNativeStackNavigator();
+const RootTabNavigator = createBottomTabNavigator();
+const RestaurantsStack = createNativeStackNavigator();
+
+const HomeScreenStack = () => {
+  return (
+    <RestaurantsStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'slide_from_right',
+      }}>
+      <RestaurantsStack.Screen name="Home" component={HomeScreen} />
+      <RestaurantsStack.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+      />
+    </RestaurantsStack.Navigator>
+  );
+};
 
 const navItems = [
   {
     name: 'home',
-    component: HomeScreen,
+    component: HomeScreenStack,
     icon: HomeSvg,
   },
   {
@@ -44,9 +65,9 @@ const navItems = [
   },
 ];
 
-const Navigation: React.FC = () => {
+const MainTabs = () => {
   return (
-    <Tab.Navigator
+    <RootTabNavigator.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -54,7 +75,7 @@ const Navigation: React.FC = () => {
       }}>
       {navItems.map(nav => {
         return (
-          <Tab.Screen
+          <RootTabNavigator.Screen
             key={nav.name}
             name={nav.name}
             component={nav.component}
@@ -72,7 +93,20 @@ const Navigation: React.FC = () => {
           />
         );
       })}
-    </Tab.Navigator>
+    </RootTabNavigator.Navigator>
+  );
+};
+
+const Navigation: React.FC = () => {
+  return (
+    <RootStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'simple_push',
+      }}>
+      <RootStack.Screen name="Home" component={MainTabs} />
+      <RootStack.Screen name="Asset" component={AssetScreen} />
+    </RootStack.Navigator>
   );
 };
 

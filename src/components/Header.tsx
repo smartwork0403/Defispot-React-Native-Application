@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import {useNavigation} from '@react-navigation/native';
 
 import CustomText from './CustomText';
 import TextField from './TextField';
@@ -8,18 +9,51 @@ import Button from './Button';
 import IconButton from './IconButton';
 
 import MagnifySvg from '../assets/icons/magnify.svg';
+import NavBackSvg from '../assets/icons/nav-back.svg';
 
-interface Props {
-  title: string;
-  action?: {
-    type: 'text' | 'icon';
-    text?: string;
-    icon?: any;
-    onActionPress?: () => void;
+interface ActionType {
+  type: 'text' | 'icon';
+  text?: string;
+  icon?: any;
+  onActionPress?: () => void;
+}
+
+const Action: React.FC<{action?: ActionType}> = ({action}) => {
+  return (
+    <>
+      {action && action.text && (
+        <Button
+          noPadding
+          text
+          textAccent="white"
+          onPress={action.onActionPress}>
+          {action.text}
+        </Button>
+      )}
+      {action && !action.text && action.icon && (
+        <IconButton
+          icon={action.icon}
+          color="#fff"
+          onPress={action.onActionPress}
+        />
+      )}
+    </>
+  );
+};
+
+export interface Props {
+  title?: string;
+  action?: ActionType;
+  searchable?: {
+    isShown?: boolean;
+    onSearchToggle?: (isShown: boolean) => void;
+    persistence?: {actionIcon: any; onActionIconClick: () => void};
+    inputPlaceholder?: string;
   };
-  searchable?: {isShown: boolean; onSearchToggle?: (isShown: boolean) => void};
   minimal?: boolean;
+  back?: boolean;
   card?: React.ReactNode;
+  cardStyle?: StyleProp<ViewStyle>;
 }
 
 const Header: React.FC<Props> = ({
@@ -27,12 +61,31 @@ const Header: React.FC<Props> = ({
   action,
   searchable,
   minimal,
+  back,
   card: Card,
+  cardStyle,
 }) => {
+  const navigation = useNavigation();
+
   if (minimal) {
     return (
       <View style={styles.minimalHeader}>
-        <CustomText style={styles.minimalHeaderTitle}>Trade</CustomText>
+        <View style={{minWidth: 40}}>
+          {back && (
+            <IconButton
+              icon={NavBackSvg}
+              iconSize={{width: 9, height: 16}}
+              color="#fff"
+              onPress={() => navigation.goBack()}
+            />
+          )}
+        </View>
+        <View style={styles.minimalHeaderTitleContainer}>
+          <CustomText style={styles.minimalHeaderTitle}>{title}</CustomText>
+        </View>
+        <View style={{minWidth: 40}}>
+          <Action action={action} />
+        </View>
       </View>
     );
   }
@@ -41,9 +94,26 @@ const Header: React.FC<Props> = ({
     <View style={styles.header}>
       {searchable ? (
         <View style={{...styles.headerTop, paddingBottom: 45}}>
-          {searchable.isShown ? (
+          {searchable.persistence ? (
             <>
-              <TextField placeholder="Search..." icon={MagnifySvg} autoFocus />
+              <TextField
+                placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                icon={MagnifySvg}
+              />
+              <IconButton
+                icon={searchable.persistence.actionIcon}
+                color="#fff"
+                onPress={() => searchable.persistence?.onActionIconClick?.()}
+                style={{marginLeft: 16}}
+              />
+            </>
+          ) : searchable.isShown ? (
+            <>
+              <TextField
+                placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                icon={MagnifySvg}
+                autoFocus
+              />
               <Button
                 style={styles.searchCancel}
                 onPress={() => searchable.onSearchToggle?.(false)}
@@ -67,24 +137,7 @@ const Header: React.FC<Props> = ({
       ) : (
         <View style={{...styles.headerTop, paddingBottom: Card ? 45 : 16}}>
           <CustomText style={styles.headerTitle}>{title}</CustomText>
-          {action && action.text && (
-            <Button
-              noPadding
-              text
-              textAccent="white"
-              onPress={action.onActionPress}>
-              History
-            </Button>
-          )}
-          {action &&
-            !action.text &&
-            action.icon(
-              <IconButton
-                icon={action.icon}
-                color="#fff"
-                onPress={action.onActionPress}
-              />,
-            )}
+          <Action action={action} />
         </View>
       )}
 
@@ -97,7 +150,7 @@ const Header: React.FC<Props> = ({
               shadowRadius: 8,
               shadowOpacity: 0.06,
             }}>
-            <View style={styles.card}>{Card}</View>
+            <View style={{...styles.card, ...cardStyle}}>{Card}</View>
           </DropShadow>
         </View>
       )}
@@ -107,13 +160,19 @@ const Header: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   minimalHeader: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#0077FF',
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingRight: 24,
-    paddingLeft: 24,
-    marginBottom: 16,
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingRight: 12,
+    paddingLeft: 4,
+  },
+  minimalHeaderTitleContainer: {
+    minHeight: 40,
+    display: 'flex',
+    justifyContent: 'center',
   },
   minimalHeaderTitle: {
     color: '#fff',
@@ -121,9 +180,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Medium',
     fontSize: 18,
   },
-  header: {
-    marginBottom: 16,
-  },
+  header: {},
   headerTop: {
     backgroundColor: '#0077FF',
     flexDirection: 'row',

@@ -1,23 +1,41 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {VictoryPie} from 'victory-native';
 
 import CustomText from '../components/CustomText';
-import Header from '../components/Header';
 import Button from '../components/Button';
 import WalletsList from '../components/WalletsList';
 
 import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';
 import RefreshSvg from '../assets/icons/refresh.svg';
-import SamplePieChartSvg from '../assets/icons/sample-pie-chart.svg';
+import Layout from '../components/Layout';
 
 const WalletScreen: React.FC = () => {
+  const chartData = [
+    {
+      label: 'BTC',
+      value: 20,
+      color: '#0077FF',
+    },
+    {
+      label: 'USD',
+      value: 48,
+      color: '#EFF0F3',
+    },
+    {
+      label: 'FTT',
+      value: 32,
+      color: '#E0E1E4',
+    },
+  ];
+
   return (
-    <ScrollView>
-      <Header
-        title="Wallet"
-        action={{type: 'text', text: 'History'}}
-        card={
+    <Layout
+      header={{
+        title: 'Wallet',
+        action: {type: 'text', text: 'History'},
+        card: (
           <>
             <CustomText style={styles.headerCardTitle}>
               Total Net USD Value
@@ -29,8 +47,9 @@ const WalletScreen: React.FC = () => {
               </CustomText>
             </View>
           </>
-        }
-      />
+        ),
+      }}
+      contentStyle={{paddingBottom: 8}}>
       <View style={styles.actions}>
         <Button prependIcon={ArrowUpSvg} size="small" style={{marginRight: 8}}>
           Deposit
@@ -47,11 +66,39 @@ const WalletScreen: React.FC = () => {
       </View>
 
       <View style={styles.chart}>
-        <SamplePieChartSvg height={152} />
+        <VictoryPie
+          height={152}
+          width={152}
+          data={chartData.map(data => ({
+            x: data.label,
+            y: data.value,
+          }))}
+          colorScale={chartData.map(data => data.color)}
+          labels={() => null}
+          padding={0}
+          innerRadius={42}
+        />
+
+        <View style={styles.legends}>
+          {chartData.map((data, i) => (
+            <View
+              key={data.label}
+              style={{
+                ...styles.legend,
+                marginBottom: i + 1 !== chartData.length ? 6 : 0,
+              }}>
+              <View
+                style={{...styles.legendIcon, backgroundColor: data.color}}
+              />
+              <CustomText style={styles.legendValue}>{data.value}%</CustomText>
+              <CustomText style={styles.legendName}>{data.label}</CustomText>
+            </View>
+          ))}
+        </View>
       </View>
 
       <WalletsList />
-    </ScrollView>
+    </Layout>
   );
 };
 
@@ -80,11 +127,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 24,
-    paddingLeft: 16,
-    paddingRight: 16,
   },
   chart: {
     marginBottom: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  legends: {},
+  legend: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 40,
+  },
+  legendIcon: {
+    height: 8,
+    width: 8,
+    borderRadius: 8 / 2,
+    marginRight: 12,
+  },
+  legendValue: {
+    fontFamily: 'Inter-Medium',
+    marginRight: 5,
+  },
+  legendName: {
+    color: '#8D8D94',
   },
 });
 

@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
-import StarSvg from '../assets/icons/star-outlined.svg';
-
+import Layout from '../components/Layout';
 import AssetsList from '../components/AssetsList';
 import MarketsStats from '../components/MarketsStats';
 import Button from '../components/Button';
 import Select from '../components/Select';
 
+import StarSvg from '../assets/icons/star-outlined-thick.svg';
 import ChartSvg from '../assets/icons/chart.svg';
 import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';
 import CursorTextSvg from '../assets/icons/cursor-text.svg';
 import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
-import Header from '../components/Header';
 
 const sortByItems = [
   {
@@ -48,16 +47,16 @@ const MarketsScreen: React.FC = () => {
   const [isSearchShown, setIsSearchShown] = useState(false);
 
   return (
-    <ScrollView>
-      <Header
-        title="Markets"
-        searchable={{
+    <Layout
+      header={{
+        title: 'Markets',
+        searchable: {
           isShown: isSearchShown,
           onSearchToggle: isShown => setIsSearchShown(isShown),
-        }}
-        card={<MarketsStats />}
-      />
-
+        },
+        card: <MarketsStats />,
+      }}
+      contentStyle={{paddingBottom: 4}}>
       {!isSearchShown && (
         <View style={styles.filters}>
           <View style={styles.filter}>
@@ -90,21 +89,12 @@ const MarketsScreen: React.FC = () => {
       )}
 
       <AssetsList />
-    </ScrollView>
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red',
-  },
-
   filters: {
-    paddingRight: 24,
-    paddingLeft: 24,
     paddingBottom: 16,
     flexDirection: 'row',
     justifyContent: 'flex-start',
