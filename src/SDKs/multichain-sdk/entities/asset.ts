@@ -7,14 +7,12 @@ import {
   THORChain,
   ETHChain,
   LTCChain,
-  DOGEChain,
   Chain,
   AssetBNB,
   AssetBTC,
   AssetETH,
   AssetLTC,
   AssetBCH,
-  AssetDOGE,
   AssetRuneNative,
   BCHChain,
   // AssetUST,
@@ -69,14 +67,14 @@ export interface IAsset {
  * - THOR.CHAIN.SYMBOL (URL)
  */
 const AssetUST: AssetObj = {
-  chain: Chain.Terra,
+  chain: 'THOR',
   symbol: 'UST',
   ticker: 'UST',
   synth: false,
 };
 
 const AssetBUSD: AssetObj = {
-  chain: Chain.Binance,
+  chain: 'BNB',
   symbol: 'BUSD-BD1',
   ticker: 'BUSD',
   synth: false,
@@ -207,16 +205,32 @@ export class Asset implements IAsset {
   public static async getDecimalByAsset(asset: Asset): Promise<number> {
     const {chain, symbol, ticker, synth} = asset;
 
-    if (synth) return THORCHAIN_DECIMAL;
+    if (synth) {
+      return THORCHAIN_DECIMAL;
+    }
 
-    if (chain === BNBChain) return BNB_DECIMAL;
-    if (chain === BTCChain) return BTC_DECIMAL;
-    if (chain === THORChain) return THORCHAIN_DECIMAL;
-    if (chain === LTCChain) return LTC_DECIMAL;
-    if (chain === BCHChain) return BCH_DECIMAL;
-    if (chain === DOGEChain) return DOGE_DECIMAL;
+    if (chain === BNBChain) {
+      return BNB_DECIMAL;
+    }
+    if (chain === BTCChain) {
+      return BTC_DECIMAL;
+    }
+    if (chain === THORChain) {
+      return THORCHAIN_DECIMAL;
+    }
+    if (chain === LTCChain) {
+      return LTC_DECIMAL;
+    }
+    if (chain === BCHChain) {
+      return BCH_DECIMAL;
+    }
+    if (chain === DOGEChain) {
+      return DOGE_DECIMAL;
+    }
     // TODO: different cosmos assets may have diffent exponent
-    if (chain === CosmosChain) return ATOM_DECIMAL;
+    if (chain === CosmosChain) {
+      return ATOM_DECIMAL;
+    }
     if (chain === ETHChain) {
       if (symbol === 'ETH' && ticker === 'ETH') {
         return ETH_DECIMAL;
@@ -232,13 +246,27 @@ export class Asset implements IAsset {
   }
 
   public static getDecimalByChain(chain: Chain): number {
-    if (chain === BNBChain) return BNB_DECIMAL;
-    if (chain === BTCChain) return BTC_DECIMAL;
-    if (chain === THORChain) return THORCHAIN_DECIMAL;
-    if (chain === LTCChain) return LTC_DECIMAL;
-    if (chain === BCHChain) return BCH_DECIMAL;
-    if (chain === DOGEChain) return DOGE_DECIMAL;
-    if (chain === CosmosChain) return ATOM_DECIMAL;
+    if (chain === BNBChain) {
+      return BNB_DECIMAL;
+    }
+    if (chain === BTCChain) {
+      return BTC_DECIMAL;
+    }
+    if (chain === THORChain) {
+      return THORCHAIN_DECIMAL;
+    }
+    if (chain === LTCChain) {
+      return LTC_DECIMAL;
+    }
+    if (chain === BCHChain) {
+      return BCH_DECIMAL;
+    }
+    if (chain === DOGEChain) {
+      return DOGE_DECIMAL;
+    }
+    if (chain === CosmosChain) {
+      return ATOM_DECIMAL;
+    }
     if (chain === ETHChain) {
       return ETH_DECIMAL;
     }
@@ -264,7 +292,9 @@ export class Asset implements IAsset {
    * L1 chain for non-synth assets
    */
   get L1Chain(): Chain {
-    if (this.synth) return THORChain;
+    if (this.synth) {
+      return THORChain;
+    }
 
     return this.chain;
   }
@@ -409,17 +439,29 @@ export class Asset implements IAsset {
   }
 
   sortsBefore(asset: Asset): number {
-    if (this.eq(asset)) return 0;
-
-    if (this.synth) return 1;
-
-    if (this.chain !== asset.chain) {
-      if (this.chain < asset.chain) return -1;
-      if (this.chain > asset.chain) return 1;
+    if (this.eq(asset)) {
+      return 0;
     }
 
-    if (this.symbol < asset.symbol) return -1;
-    if (this.symbol > asset.symbol) return 1;
+    if (this.synth) {
+      return 1;
+    }
+
+    if (this.chain !== asset.chain) {
+      if (this.chain < asset.chain) {
+        return -1;
+      }
+      if (this.chain > asset.chain) {
+        return 1;
+      }
+    }
+
+    if (this.symbol < asset.symbol) {
+      return -1;
+    }
+    if (this.symbol > asset.symbol) {
+      return 1;
+    }
 
     return 1;
   }
