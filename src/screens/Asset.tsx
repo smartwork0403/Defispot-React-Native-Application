@@ -220,7 +220,10 @@ const AssetScreen: React.FC = () => {
           </ScrollView>
 
           <View style={styles.stickyActions}>
-            <Button outlined prependIcon={PlusSvg} style={{marginRight: 16}}>
+            <Button
+              outlined
+              prependIcon={{icon: PlusSvg}}
+              style={{marginRight: 16}}>
               Add Liquidity
             </Button>
             <Button accent="black" style={{marginRight: 16}}>

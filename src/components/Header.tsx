@@ -99,6 +99,7 @@ const Header: React.FC<Props> = ({
               <TextField
                 placeholder={searchable.inputPlaceholder ?? 'Search...'}
                 icon={MagnifySvg}
+                style={{backgroundColor: '#F7F8FA'}}
               />
               <IconButton
                 icon={searchable.persistence.actionIcon}
@@ -113,6 +114,7 @@ const Header: React.FC<Props> = ({
                 placeholder={searchable.inputPlaceholder ?? 'Search...'}
                 icon={MagnifySvg}
                 autoFocus
+                style={{backgroundColor: '#F7F8FA'}}
               />
               <Button
                 style={styles.searchCancel}

@@ -2,13 +2,15 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  Image,
   StyleProp,
   ViewStyle,
   ImageStyle,
   TextStyle,
 } from 'react-native';
 import CustomText from './CustomText';
+
+import BTCLogoSvg from '../assets/crypto-logos/btc.svg';
+import AVAXLogoSvg from '../assets/crypto-logos/avax.svg';
 
 interface Props {
   name?: string;
@@ -127,16 +129,10 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
   return (
     <View style={styles.asset}>
       <View style={getIconContainerStyles()}>
-        <Image
-          source={require('../assets/images/sample.png')}
-          style={getIconStyles()}
-        />
+        <BTCLogoSvg style={getIconStyles()} />
         <View
           style={{...styles.networkContainer, ...getNetworkContainerStyles()}}>
-          <Image
-            source={require('../assets/images/sample.png')}
-            style={getNetworkStyles()}
-          />
+          <AVAXLogoSvg style={getNetworkStyles()} />
         </View>
       </View>
       <View

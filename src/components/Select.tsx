@@ -70,11 +70,13 @@ const Select: React.FC<Props> = ({
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         noPadding
-        stickyAction
-        actionLabel="Apply"
-        onActionPress={() => {
-          onSelect(previewSelected);
-          setIsOpen(false);
+        stickyAction={{
+          label: 'Apply',
+          accent: 'black',
+          onPress: () => {
+            onSelect(previewSelected);
+            setIsOpen(false);
+          },
         }}>
         {header && (
           <View style={styles.header}>

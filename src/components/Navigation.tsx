@@ -16,6 +16,7 @@ import TradeScreen from '../screens/Trade';
 import WalletScreen from '../screens/Wallet';
 import NotificationsScreen from '../screens/Notifications';
 import AssetScreen from '../screens/Asset';
+import HistoryScreen from '../screens/History';
 
 const RootStack = createNativeStackNavigator();
 const RootTabNavigator = createBottomTabNavigator();
@@ -106,6 +107,7 @@ const Navigation: React.FC = () => {
       }}>
       <RootStack.Screen name="Home" component={MainTabs} />
       <RootStack.Screen name="Asset" component={AssetScreen} />
+      <RootStack.Screen name="History" component={HistoryScreen} />
     </RootStack.Navigator>
   );
 };

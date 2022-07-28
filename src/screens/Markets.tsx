@@ -60,18 +60,29 @@ const MarketsScreen: React.FC = () => {
       {!isSearchShown && (
         <View style={styles.filters}>
           <View style={styles.filter}>
-            <Button accent="black" size="small">
+            <Button
+              accent="black"
+              size="small"
+              shadowStyle={styles.filterShadowStyle}>
               All
             </Button>
           </View>
           <View style={styles.filter}>
-            <Button size="small" icon={StarSvg} />
+            <Button
+              size="small"
+              icon={StarSvg}
+              shadowStyle={styles.filterShadowStyle}
+            />
           </View>
           <View style={styles.filter}>
-            <Button size="small">Layer 1</Button>
+            <Button size="small" shadowStyle={styles.filterShadowStyle}>
+              Layer 1
+            </Button>
           </View>
           <View style={styles.filter}>
-            <Button size="small">DeFi</Button>
+            <Button size="small" shadowStyle={styles.filterShadowStyle}>
+              DeFi
+            </Button>
           </View>
           <Select
             header={{
@@ -102,6 +113,12 @@ const styles = StyleSheet.create({
   },
   filter: {
     marginRight: 12,
+  },
+  filterShadowStyle: {
+    shadowColor: '#8d8d94',
+    shadowOffset: {width: 2, height: 4},
+    shadowRadius: 8,
+    shadowOpacity: 0.06,
   },
 });
 

@@ -15,8 +15,7 @@ const TradeCompleteModal: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
-      stickyAction
-      actionLabel="Done">
+      stickyAction={{label: 'Done', accent: 'black', onPress: onClose}}>
       <View style={styles.header}>
         <View style={styles.headerIcon}>
           <CheckSvg width={21} height={16} color="#fff" />

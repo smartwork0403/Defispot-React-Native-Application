@@ -17,10 +17,9 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
-      stickyAction
+      stickyAction={{label: 'Confirm Trade', accent: 'black'}}
       noHandle
       fullHeight
-      actionLabel="Confirm Trade"
       header={{title: 'Confirm'}}>
       <View style={styles.trade}>
         <Asset name="123" value="LINK" size="large" />
