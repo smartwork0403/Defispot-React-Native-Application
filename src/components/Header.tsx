@@ -81,7 +81,9 @@ const Header: React.FC<Props> = ({
           )}
         </View>
         <View style={styles.minimalHeaderTitleContainer}>
-          <CustomText style={styles.minimalHeaderTitle}>{title}</CustomText>
+          <CustomText weight="medium" style={styles.minimalHeaderTitle}>
+            {title}
+          </CustomText>
         </View>
         <View style={{minWidth: 40}}>
           <Action action={action} />
@@ -127,7 +129,9 @@ const Header: React.FC<Props> = ({
             </>
           ) : (
             <>
-              <CustomText style={styles.headerTitle}>{title}</CustomText>
+              <CustomText weight="semi-bold" style={styles.headerTitle}>
+                {title}
+              </CustomText>
               <IconButton
                 icon={MagnifySvg}
                 color="#fff"
@@ -152,7 +156,7 @@ const Header: React.FC<Props> = ({
               shadowRadius: 8,
               shadowOpacity: 0.06,
             }}>
-            <View style={{...styles.card, ...cardStyle}}>{Card}</View>
+            <View style={[styles.card, cardStyle]}>{Card}</View>
           </DropShadow>
         </View>
       )}
@@ -179,7 +183,6 @@ const styles = StyleSheet.create({
   minimalHeaderTitle: {
     color: '#fff',
     textAlign: 'center',
-    fontFamily: 'Inter-Medium',
     fontSize: 18,
   },
   header: {},
@@ -194,7 +197,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'Inter-SemiBold',
     lineHeight: 32,
     color: '#FFFFFF',
   },

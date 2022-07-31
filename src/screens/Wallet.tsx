@@ -1,6 +1,9 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {VictoryPie} from 'victory-native';
+import {useNavigation} from '@react-navigation/native';
+import type {RootStackParamList} from '../components/Navigation';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import CustomText from '../components/CustomText';
 import Button from '../components/Button';
@@ -11,7 +14,6 @@ import NoWalletConnected from '../components/NoWalletConnected';
 import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';
 import RefreshSvg from '../assets/icons/refresh.svg';
-import {useNavigation} from '@react-navigation/native';
 
 const NoWallet: React.FC = () => {
   return (
@@ -46,7 +48,8 @@ const noWalletStyles = StyleSheet.create({
 });
 
 const WalletScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const noData = false;
 
   const chartData = [
@@ -149,7 +152,7 @@ const WalletScreen: React.FC = () => {
                   <View
                     style={{...styles.legendIcon, backgroundColor: data.color}}
                   />
-                  <CustomText style={styles.legendValue}>
+                  <CustomText weight="medium" style={styles.legendValue}>
                     {data.value}%
                   </CustomText>
                   <CustomText style={styles.legendName}>
@@ -217,7 +220,6 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   legendValue: {
-    fontFamily: 'Inter-Medium',
     marginRight: 5,
   },
   legendName: {

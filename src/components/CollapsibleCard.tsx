@@ -9,17 +9,18 @@ const CollapsibleCard: React.FC<{
   style?: StyleProp<ViewStyle>;
   top?: React.ReactNode;
   bottom?: React.ReactNode;
-}> = ({style, top, bottom}) => {
-  const topRef = useRef(null);
+  startArrowAngel?: 'down' | 'right';
+  finishArrowAngel?: 'up' | 'right';
+}> = ({style, top, bottom, startArrowAngel, finishArrowAngel}) => {
+  const topRef = useRef<Animatable.View & View>(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
-    <View style={{...style}}>
+    <View style={[style]}>
       <Pressable
         onPress={() => {
           setIsCollapsed(!isCollapsed);
           if (isCollapsed) {
-            // @ts-ignore
             topRef?.current?.transitionTo(
               {
                 borderBottomLeftRadius: 0,
@@ -29,7 +30,6 @@ const CollapsibleCard: React.FC<{
               330,
             );
           } else {
-            // @ts-ignore
             topRef?.current?.transitionTo(
               {
                 borderBottomLeftRadius: 8,
@@ -43,7 +43,11 @@ const CollapsibleCard: React.FC<{
         <Animatable.View ref={topRef} style={styles.top}>
           {top && top}
 
-          <CollapsibleArrow rotate={!isCollapsed} />
+          <CollapsibleArrow
+            rotate={!isCollapsed}
+            startArrowAngel={startArrowAngel}
+            finishArrowAngel={finishArrowAngel}
+          />
         </Animatable.View>
       </Pressable>
 

@@ -58,7 +58,7 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
             <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
               {header && (
                 <View style={styles.header}>
-                  <CustomText style={styles.headerTitle}>
+                  <CustomText weight="medium" style={styles.headerTitle}>
                     {header.title}
                   </CustomText>
                   <IconButton
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontFamily: 'Inter-Medium',
   },
   headerClose: {
     position: 'absolute',

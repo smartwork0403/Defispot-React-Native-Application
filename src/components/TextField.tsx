@@ -28,13 +28,13 @@ const TextField: React.FC<Props> = ({
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <DropShadow style={{...shadowStyle, flex: 1}}>
+    <DropShadow style={[shadowStyle, {flex: 1}]}>
       <View
-        style={{
-          ...styles.container,
-          borderColor: isFocused ? '#0077FF' : 'transparent',
-          ...style,
-        }}>
+        style={[
+          styles.container,
+          {borderColor: isFocused ? '#0077FF' : 'transparent'},
+          style,
+        ]}>
         {Icon && (
           <Icon style={styles.icon} color={isFocused ? '#0077FF' : '#A1A1A8'} />
         )}

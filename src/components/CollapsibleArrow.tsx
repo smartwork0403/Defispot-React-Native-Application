@@ -1,15 +1,15 @@
 import React, {useEffect, useRef} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
 const CollapsibleArrow: React.FC<{
   startArrowAngel?: 'down' | 'right';
-  finishArrowAnger?: 'up' | 'right';
+  finishArrowAngel?: 'up' | 'right';
   rotate?: boolean;
-}> = ({startArrowAngel = 'down', finishArrowAnger = 'up', rotate}) => {
-  const ref = useRef(null);
+}> = ({startArrowAngel = 'down', finishArrowAngel = 'up', rotate}) => {
+  const ref = useRef<Animatable.View & View>(null);
 
   const getStartAngel = () => {
     if (startArrowAngel === 'down') {
@@ -20,7 +20,7 @@ const CollapsibleArrow: React.FC<{
   };
 
   const getFinishAngel = () => {
-    if (finishArrowAnger === 'up') {
+    if (finishArrowAngel === 'up') {
       if (startArrowAngel === 'right') {
         return '-180deg';
       }
@@ -33,7 +33,6 @@ const CollapsibleArrow: React.FC<{
 
   useEffect(() => {
     if (rotate) {
-      // @ts-ignore
       ref?.current?.transitionTo(
         {
           transform: [
@@ -45,7 +44,6 @@ const CollapsibleArrow: React.FC<{
         330,
       );
     } else {
-      // @ts-ignore
       ref?.current?.transitionTo(
         {
           transform: [

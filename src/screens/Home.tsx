@@ -4,6 +4,8 @@ import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Table, TableWrapper, Cell} from 'react-native-table-component';
+import type {HomeStackParamList} from '../components/Navigation';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
@@ -41,7 +43,8 @@ const switchItems = [
 ];
 
 const HomeScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const windowWidth = Dimensions.get('window').width;
 
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
@@ -133,7 +136,7 @@ const HomeScreen: React.FC = () => {
               />
 
               <View style={styles.carouselIndex}>
-                <CustomText style={styles.carouselIndexText}>
+                <CustomText weight="medium" style={styles.carouselIndexText}>
                   {currentCarouselIndex + 1}/{carouselItems.length}
                 </CustomText>
               </View>
@@ -157,7 +160,7 @@ const HomeScreen: React.FC = () => {
               style={{marginRight: 8}}
               color="#A1A1A8"
             />
-            <CustomText style={styles.stakingSpecialText}>
+            <CustomText weight="medium" style={styles.stakingSpecialText}>
               #Defspot Staking Special
             </CustomText>
             <UnorderedListSVG height={11} width={11} color="#A1A1A8" />
@@ -168,7 +171,9 @@ const HomeScreen: React.FC = () => {
               {stakingHeaderItems.map(item => (
                 <View style={styles.headerItem} key={item.name}>
                   <View style={styles.headerItemTop}>
-                    <CustomText style={styles.headerItemTopName}>
+                    <CustomText
+                      weight="medium"
+                      style={styles.headerItemTopName}>
                       {item.name}
                     </CustomText>
                     {item.upward ? (
@@ -188,6 +193,7 @@ const HomeScreen: React.FC = () => {
                     )}
 
                     <CustomText
+                      weight="medium"
                       style={{
                         ...styles.headerItemTopPercent,
                         color: item.upward ? '#00B674' : '#EF4444',
@@ -195,7 +201,9 @@ const HomeScreen: React.FC = () => {
                       {item.percent}%
                     </CustomText>
                   </View>
-                  <CustomText style={styles.headerItemBottomValue}>
+                  <CustomText
+                    weight="medium"
+                    style={styles.headerItemBottomValue}>
                     {item.value}
                   </CustomText>
                 </View>
@@ -214,7 +222,7 @@ const HomeScreen: React.FC = () => {
                   }}
                   onPress={() => setCurrentSwitch(item.name)}
                   key={item.name}>
-                  <CustomText style={styles.switchText}>
+                  <CustomText weight="medium" style={styles.switchText}>
                     {item.label}
                   </CustomText>
                 </Pressable>
@@ -227,7 +235,9 @@ const HomeScreen: React.FC = () => {
                 <TableWrapper style={styles.tableHeader}>
                   <Cell
                     data={
-                      <CustomText style={styles.tableHeaderText}>
+                      <CustomText
+                        weight="medium"
+                        style={styles.tableHeaderText}>
                         Name
                       </CustomText>
                     }
@@ -235,7 +245,9 @@ const HomeScreen: React.FC = () => {
                   />
                   <Cell
                     data={
-                      <CustomText style={styles.tableHeaderText}>
+                      <CustomText
+                        weight="medium"
+                        style={styles.tableHeaderText}>
                         Last Price
                       </CustomText>
                     }
@@ -243,6 +255,7 @@ const HomeScreen: React.FC = () => {
                   <Cell
                     data={
                       <CustomText
+                        weight="medium"
                         style={{
                           ...styles.tableHeaderText,
                           textAlign: 'right',
@@ -267,15 +280,14 @@ const HomeScreen: React.FC = () => {
                     />
                     <Cell
                       data={
-                        <CustomText style={styles.tableItemPrice}>
-                          {row.lastPrice}
-                        </CustomText>
+                        <CustomText weight="medium">{row.lastPrice}</CustomText>
                       }
                     />
                     <Cell
                       data={
                         <View style={styles.tableItemChangeContainer}>
                           <CustomText
+                            weight="medium"
                             style={{
                               ...styles.tableItemChange,
                               color: row.upward ? '#007A4E' : '#BC1010',
@@ -320,7 +332,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
   },
   stakingSpecial: {
     flexDirection: 'row',
@@ -334,7 +345,6 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
     paddingRight: 16,
     color: '#A1A1A8',
   },
@@ -361,17 +371,14 @@ const styles = StyleSheet.create({
   headerItemTopName: {
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
     color: '#A1A1A8',
   },
   headerItemTopPercent: {
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
   },
   headerItemBottomValue: {
     fontSize: 18,
-    fontFamily: 'Inter-Medium',
   },
   divider: {
     height: 1,
@@ -397,7 +404,6 @@ const styles = StyleSheet.create({
   switchText: {
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
   },
   table: {
     paddingRight: 16,
@@ -412,7 +418,6 @@ const styles = StyleSheet.create({
   tableHeaderText: {
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
     color: '#A1A1A8',
   },
   tableRow: {
@@ -422,9 +427,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  tableItemPrice: {
-    fontFamily: 'Inter-Medium',
   },
   tableItemChangeContainer: {
     flexDirection: 'row',
@@ -438,7 +440,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
     backgroundColor: 'red',
   },
 });

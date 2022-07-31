@@ -19,7 +19,9 @@ const NoWalletConnected: React.FC<{
         </View>
       )}
 
-      <CustomText style={styles.title}>No Wallet Connected</CustomText>
+      <CustomText weight="semi-bold" style={styles.title}>
+        No Wallet Connected
+      </CustomText>
       <CustomText style={styles.subtitle}>
         Get started by connecting your wallet.
       </CustomText>
@@ -45,7 +47,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 32,
-    fontFamily: 'Inter-SemiBold',
     marginBottom: 12,
   },
   subtitle: {

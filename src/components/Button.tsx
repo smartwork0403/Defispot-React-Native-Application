@@ -139,16 +139,18 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
       <TouchableOpacity
         disabled={disabled}
         onPress={onPress}
-        style={{
-          ...styles.btn,
-          backgroundColor: getBgColor(),
-          borderColor: getBorderColor(),
-          paddingTop: getPadding('top'),
-          paddingBottom: getPadding('bottom'),
-          paddingRight: getPadding('right'),
-          paddingLeft: getPadding('left'),
-          ...style,
-        }}>
+        style={[
+          styles.btn,
+          {
+            backgroundColor: getBgColor(),
+            borderColor: getBorderColor(),
+            paddingTop: getPadding('top'),
+            paddingBottom: getPadding('bottom'),
+            paddingRight: getPadding('right'),
+            paddingLeft: getPadding('left'),
+          },
+          style,
+        ]}>
         {Icon ? (
           <View style={styles.iconContainer}>
             <Icon
@@ -171,8 +173,8 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
               </View>
             )}
             <CustomText
+              weight="medium"
               style={{
-                ...styles.text,
                 color: getColor(),
                 fontSize: getFontSize(),
                 lineHeight: getLineHeight(),
@@ -211,9 +213,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 6,
-  },
-  text: {
-    fontFamily: 'Inter-Medium',
   },
 });
 

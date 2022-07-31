@@ -81,7 +81,9 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
       }}>
       <View style={styles.container}>
         <View style={styles.item}>
-          <CustomText style={{...styles.itemTitle, marginBottom: 8}}>
+          <CustomText
+            weight="medium"
+            style={{...styles.itemTitle, marginBottom: 8}}>
             From/To
           </CustomText>
 
@@ -91,7 +93,7 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
                 <FlowerShapeSvg height={16} width={16} color="#007A4E" />
               </View>
 
-              <CustomText style={styles.itemFromToValue}>
+              <CustomText weight="medium" style={styles.itemFromToValue}>
                 55d898...93842fb
               </CustomText>
 
@@ -105,14 +107,18 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
             </View>
           ) : (
             <View style={styles.copied}>
-              <CustomText style={styles.copiedText}>Copied</CustomText>
+              <CustomText weight="medium" style={styles.copiedText}>
+                Copied
+              </CustomText>
             </View>
           )}
         </View>
 
         {items.map(item => (
           <View style={styles.item} key={item.title}>
-            <CustomText style={styles.itemTitle}>{item.title}</CustomText>
+            <CustomText weight="medium" style={styles.itemTitle}>
+              {item.title}
+            </CustomText>
             <CustomText>{item.value}</CustomText>
           </View>
         ))}
@@ -120,18 +126,24 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
         <View style={styles.divider} />
 
         <View style={styles.horizontalItem}>
-          <CustomText style={{...styles.itemTitle, marginRight: 'auto'}}>
+          <CustomText
+            weight="medium"
+            style={{...styles.itemTitle, marginRight: 'auto'}}>
             Sent
           </CustomText>
           <BTCLogoSvg height={20} width={20} />
-          <CustomText style={styles.horizontalItemValue}>0.0010 ETH</CustomText>
+          <CustomText weight="medium" style={styles.horizontalItemValue}>
+            0.0010 ETH
+          </CustomText>
         </View>
 
         <View style={styles.horizontalItem}>
-          <CustomText style={{...styles.itemTitle, marginRight: 'auto'}}>
+          <CustomText
+            weight="medium"
+            style={{...styles.itemTitle, marginRight: 'auto'}}>
             Date
           </CustomText>
-          <CustomText style={styles.horizontalItemValue}>
+          <CustomText weight="medium" style={styles.horizontalItemValue}>
             30 Mar 2022, 12:01
           </CustomText>
         </View>
@@ -152,7 +164,6 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     color: '#8D8D94',
-    fontFamily: 'Inter-Medium',
   },
   itemFromTo: {
     flexDirection: 'row',
@@ -170,7 +181,6 @@ const styles = StyleSheet.create({
   itemFromToValue: {
     marginRight: 'auto',
     paddingRight: 8,
-    fontFamily: 'Inter-Medium',
   },
   copied: {
     borderRadius: 24,
@@ -179,7 +189,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   copiedText: {
-    fontFamily: 'Inter-Medium',
     color: '#005FCC',
     padding: 4,
   },
@@ -197,7 +206,6 @@ const styles = StyleSheet.create({
   },
   horizontalItemValue: {
     marginLeft: 4,
-    fontFamily: 'Inter-Medium',
   },
 });
 

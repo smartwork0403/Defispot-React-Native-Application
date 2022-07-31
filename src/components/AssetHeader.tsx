@@ -22,8 +22,12 @@ const AssetHeader: React.FC = () => {
       />
       <Asset name="LINK" value="Chainlink" size="medium" />
       <View style={styles.info}>
-        <CustomText style={styles.infoValue}>$3,352.00</CustomText>
-        <CustomText style={styles.infoPercent}>12.54%</CustomText>
+        <CustomText weight="medium" style={styles.infoValue}>
+          $3,352.00
+        </CustomText>
+        <CustomText weight="medium" style={styles.infoPercent}>
+          12.54%
+        </CustomText>
       </View>
     </View>
   );
@@ -48,11 +52,9 @@ const styles = StyleSheet.create({
   },
   infoValue: {
     textAlign: 'right',
-    fontFamily: 'Inter-Medium',
   },
   infoPercent: {
     textAlign: 'right',
-    fontFamily: 'Inter-Medium',
     fontSize: 12,
     lineHeight: 16,
     color: '#00B674',

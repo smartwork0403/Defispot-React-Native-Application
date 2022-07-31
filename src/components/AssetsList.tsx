@@ -2,12 +2,15 @@ import React from 'react';
 import {View, StyleSheet, Pressable} from 'react-native';
 import {VictoryGroup, VictoryLine} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
+import type {RootStackParamList} from './Navigation';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import Asset from './Asset';
 import CustomText from './CustomText';
 
 const AssetsList: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <View>
@@ -49,8 +52,11 @@ const AssetsList: React.FC = () => {
             </VictoryGroup>
           </View>
           <View>
-            <CustomText style={styles.price}>$3,352</CustomText>
+            <CustomText weight="medium" style={styles.price}>
+              $3,352
+            </CustomText>
             <CustomText
+              weight="medium"
               style={{
                 ...styles.changes,
                 color: '#EF4444' /* color: '#00B674' */,
@@ -84,11 +90,9 @@ const styles = StyleSheet.create({
     height: 16,
   },
   price: {
-    fontFamily: 'Inter-Medium',
     textAlign: 'right',
   },
   changes: {
-    fontFamily: 'Inter-Medium',
     fontSize: 12,
     lineHeight: 16,
     textAlign: 'right',

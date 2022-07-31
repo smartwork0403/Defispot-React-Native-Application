@@ -19,7 +19,9 @@ const Item: React.FC = () => {
       top={
         <>
           <Asset name="USD" value="25.0%" horizontal />
-          <CustomText style={styles.itemValue}>25.000</CustomText>
+          <CustomText weight="medium" style={styles.itemValue}>
+            25.000
+          </CustomText>
         </>
       }
       bottom={
@@ -60,7 +62,6 @@ const styles = StyleSheet.create({
   },
   itemValue: {
     marginLeft: 'auto',
-    fontFamily: 'Inter-Medium',
   },
   actions: {
     flexDirection: 'row',

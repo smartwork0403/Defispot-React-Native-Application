@@ -44,13 +44,13 @@ const HistoryItem: React.FC<{
         </View>
 
         <View style={historyItemStyle.infoContainer}>
-          <CustomText style={historyItemStyle.infoTitle}>
+          <CustomText weight="medium">
             {type === 'sent' ? 'Sent' : 'Exchange'}
           </CustomText>
           <CustomText style={historyItemStyle.infoTime}>{time}</CustomText>
         </View>
 
-        <CollapsibleArrow startArrowAngel="right" finishArrowAnger="right" />
+        <CollapsibleArrow startArrowAngel="right" finishArrowAngel="right" />
       </Pressable>
 
       <TransactionDetails
@@ -101,9 +101,6 @@ const historyItemStyle = StyleSheet.create({
   },
   infoContainer: {
     marginRight: 'auto',
-  },
-  infoTitle: {
-    fontFamily: 'Inter-Medium',
   },
   infoTime: {
     color: '#A1A1A8',
@@ -240,7 +237,9 @@ const History: React.FC = () => {
             {historyLists.length !== 0 ? (
               historyLists.map(list => (
                 <View style={styles.list} key={list.time}>
-                  <CustomText style={styles.listTitle}>{list.time}</CustomText>
+                  <CustomText weight="medium" style={styles.listTitle}>
+                    {list.time}
+                  </CustomText>
                   {list.items.map(item => (
                     <HistoryItem
                       type={item.type}
@@ -307,7 +306,6 @@ const styles = StyleSheet.create({
     color: '#A1A1A8',
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
   },
 });
 

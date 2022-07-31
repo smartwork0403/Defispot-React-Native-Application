@@ -56,8 +56,12 @@ const Notification: React.FC<{
 
       <View style={{flex: 1}}>
         <View style={styles.header}>
-          <CustomText style={styles.headerTitle}>{title}</CustomText>
-          <CustomText style={styles.headerTime}>{time}</CustomText>
+          <CustomText weight="medium" style={styles.headerTitle}>
+            {title}
+          </CustomText>
+          <CustomText weight="medium" style={styles.headerTime}>
+            {time}
+          </CustomText>
         </View>
         <CustomText style={styles.message}>{message}</CustomText>
       </View>
@@ -161,12 +165,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    fontFamily: 'Inter-Medium',
     marginRight: 4,
   },
   headerTime: {
     color: '#A1A1A8',
-    fontFamily: 'Inter-Medium',
     fontSize: 12,
     lineHeight: 16,
     marginLeft: 'auto',
