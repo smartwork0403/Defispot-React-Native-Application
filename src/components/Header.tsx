@@ -81,7 +81,9 @@ const Header: React.FC<Props> = ({
           )}
         </View>
         <View style={styles.minimalHeaderTitleContainer}>
-          <CustomText style={styles.minimalHeaderTitle}>{title}</CustomText>
+          <CustomText weight="medium" style={styles.minimalHeaderTitle}>
+            {title}
+          </CustomText>
         </View>
         <View style={{minWidth: 40}}>
           <Action action={action} />
@@ -99,6 +101,7 @@ const Header: React.FC<Props> = ({
               <TextField
                 placeholder={searchable.inputPlaceholder ?? 'Search...'}
                 icon={MagnifySvg}
+                style={{backgroundColor: '#F7F8FA'}}
               />
               <IconButton
                 icon={searchable.persistence.actionIcon}
@@ -113,6 +116,7 @@ const Header: React.FC<Props> = ({
                 placeholder={searchable.inputPlaceholder ?? 'Search...'}
                 icon={MagnifySvg}
                 autoFocus
+                style={{backgroundColor: '#F7F8FA'}}
               />
               <Button
                 style={styles.searchCancel}
@@ -125,7 +129,9 @@ const Header: React.FC<Props> = ({
             </>
           ) : (
             <>
-              <CustomText style={styles.headerTitle}>{title}</CustomText>
+              <CustomText weight="semi-bold" style={styles.headerTitle}>
+                {title}
+              </CustomText>
               <IconButton
                 icon={MagnifySvg}
                 color="#fff"
@@ -150,7 +156,7 @@ const Header: React.FC<Props> = ({
               shadowRadius: 8,
               shadowOpacity: 0.06,
             }}>
-            <View style={{...styles.card, ...cardStyle}}>{Card}</View>
+            <View style={[styles.card, cardStyle]}>{Card}</View>
           </DropShadow>
         </View>
       )}
@@ -177,7 +183,6 @@ const styles = StyleSheet.create({
   minimalHeaderTitle: {
     color: '#fff',
     textAlign: 'center',
-    fontFamily: 'Inter-Medium',
     fontSize: 18,
   },
   header: {},
@@ -192,7 +197,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontFamily: 'Inter-SemiBold',
     lineHeight: 32,
     color: '#FFFFFF',
   },

@@ -42,14 +42,20 @@ const TradeInput: React.FC = () => {
             source={require('../assets/images/sample.png')}
             style={styles.assetPickerIcon}
           />
-          <CustomText style={styles.assetPickerText}>LINK</CustomText>
+          <CustomText weight="medium" style={styles.assetPickerText}>
+            LINK
+          </CustomText>
           <ChevronDownSvg width={10} color="#A1A1A8" />
         </Pressable>
       </View>
 
       <View style={styles.bottom}>
-        <CustomText style={styles.bottomTextTitle}>Balance:</CustomText>
-        <CustomText style={styles.bottomTextValue}>256</CustomText>
+        <CustomText weight="medium" style={styles.bottomTextTitle}>
+          Balance:
+        </CustomText>
+        <CustomText weight="medium" style={styles.bottomTextValue}>
+          256
+        </CustomText>
       </View>
     </View>
   );
@@ -101,7 +107,6 @@ const styles = StyleSheet.create({
     borderRadius: 20 / 2,
   },
   assetPickerText: {
-    fontFamily: 'Inter-Medium',
     marginRight: 17,
   },
   bottom: {
@@ -113,13 +118,11 @@ const styles = StyleSheet.create({
   },
   bottomTextTitle: {
     fontSize: 12,
-    fontFamily: 'Inter-Medium',
     lineHeight: 16,
     color: '#8D8D94',
   },
   bottomTextValue: {
     fontSize: 12,
-    fontFamily: 'Inter-Medium',
     lineHeight: 16,
     color: '#0077FF',
   },

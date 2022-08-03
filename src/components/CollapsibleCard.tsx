@@ -1,42 +1,54 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Pressable, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import * as Animatable from 'react-native-animatable';
 
-import ChevronDownSvg from '../assets/icons/chevron-down.svg';
+import CollapsibleArrow from './CollapsibleArrow';
 
 const CollapsibleCard: React.FC<{
   style?: StyleProp<ViewStyle>;
   top?: React.ReactNode;
   bottom?: React.ReactNode;
-  initArrowAngel: 'down' | 'right';
-}> = ({style, top, bottom, initArrowAngel = 'down'}) => {
+  startArrowAngel?: 'down' | 'right';
+  finishArrowAngel?: 'up' | 'right';
+}> = ({style, top, bottom, startArrowAngel, finishArrowAngel}) => {
+  const topRef = useRef<Animatable.View & View>(null);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   return (
-    <View style={{...style}}>
+    <View style={[style]}>
       <Pressable
-        style={styles.top}
-        onPress={() => setIsCollapsed(!isCollapsed)}>
-        {top && top}
+        onPress={() => {
+          setIsCollapsed(!isCollapsed);
+          if (isCollapsed) {
+            topRef?.current?.transitionTo(
+              {
+                borderBottomLeftRadius: 0,
+                borderBottomRightRadius: 0,
+                borderBottomColor: '#fff',
+              },
+              330,
+            );
+          } else {
+            topRef?.current?.transitionTo(
+              {
+                borderBottomLeftRadius: 8,
+                borderBottomRightRadius: 8,
+                borderBottomColor: '#EFF0F3',
+              },
+              330,
+            );
+          }
+        }}>
+        <Animatable.View ref={topRef} style={styles.top}>
+          {top && top}
 
-        <View style={styles.topButton}>
-          <ChevronDownSvg
-            height={4}
-            width={7}
-            color="#121315"
-            style={{
-              transform: [
-                {
-                  rotate: isCollapsed
-                    ? initArrowAngel === 'down'
-                      ? '0deg'
-                      : '-90deg'
-                    : '180deg',
-                },
-              ],
-            }}
+          <CollapsibleArrow
+            rotate={!isCollapsed}
+            startArrowAngel={startArrowAngel}
+            finishArrowAngel={finishArrowAngel}
           />
-        </View>
+        </Animatable.View>
       </Pressable>
 
       <Collapsible style={styles.bottom} collapsed={isCollapsed}>
@@ -52,21 +64,24 @@ const styles = StyleSheet.create({
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
     borderWidth: 1,
     borderColor: '#EFF0F3',
+    borderBottomColor: '#EFF0F3',
   },
-  topButton: {
-    marginLeft: 12,
-    height: 24,
-    width: 24,
-    borderRadius: 24 / 2,
-    backgroundColor: '#EFF0F3',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  bottom: {
+    backgroundColor: '#fff',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    padding: 16,
+    paddingTop: 0,
+    borderWidth: 1,
+    borderColor: '#EFF0F3',
+    borderTopWidth: 0,
   },
-  bottom: {backgroundColor: 'red'},
 });
 
 export default CollapsibleCard;

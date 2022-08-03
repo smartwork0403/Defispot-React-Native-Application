@@ -16,24 +16,33 @@ import TradeScreen from '../screens/Trade';
 import WalletScreen from '../screens/Wallet';
 import NotificationsScreen from '../screens/Notifications';
 import AssetScreen from '../screens/Asset';
+import HistoryScreen from '../screens/History';
 
-const RootStack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  Asset: undefined;
+  History: undefined;
+};
+
+export type HomeStackParamList = {
+  Home: undefined;
+  Notifications: undefined;
+};
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootTabNavigator = createBottomTabNavigator();
-const RestaurantsStack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 
 const HomeScreenStack = () => {
   return (
-    <RestaurantsStack.Navigator
+    <HomeStack.Navigator
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
       }}>
-      <RestaurantsStack.Screen name="Home" component={HomeScreen} />
-      <RestaurantsStack.Screen
-        name="Notifications"
-        component={NotificationsScreen}
-      />
-    </RestaurantsStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Notifications" component={NotificationsScreen} />
+    </HomeStack.Navigator>
   );
 };
 
@@ -106,6 +115,7 @@ const Navigation: React.FC = () => {
       }}>
       <RootStack.Screen name="Home" component={MainTabs} />
       <RootStack.Screen name="Asset" component={AssetScreen} />
+      <RootStack.Screen name="History" component={HistoryScreen} />
     </RootStack.Navigator>
   );
 };

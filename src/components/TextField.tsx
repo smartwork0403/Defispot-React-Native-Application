@@ -1,5 +1,6 @@
-import React from 'react';
-import {TextInput, View, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {TextInput, View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
+import DropShadow from 'react-native-drop-shadow';
 
 interface Props {
   onChangeText?: ((text: string) => void) | undefined;
@@ -7,6 +8,10 @@ interface Props {
   icon?: any;
   placeholder?: string;
   autoFocus?: boolean;
+  shadowStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 const TextField: React.FC<Props> = ({
@@ -15,19 +20,42 @@ const TextField: React.FC<Props> = ({
   icon: Icon,
   placeholder,
   autoFocus,
+  shadowStyle,
+  style,
+  onFocus,
+  onBlur,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <View style={styles.container}>
-      {Icon && <Icon style={styles.icon} color="#A1A1A8" />}
-      <TextInput
-        onChangeText={onChangeText}
-        value={value}
-        style={styles.input}
-        placeholder={placeholder}
-        autoFocus={autoFocus}
-        placeholderTextColor="#A1A1A8"
-      />
-    </View>
+    <DropShadow style={[shadowStyle, {flex: 1}]}>
+      <View
+        style={[
+          styles.container,
+          {borderColor: isFocused ? '#0077FF' : 'transparent'},
+          style,
+        ]}>
+        {Icon && (
+          <Icon style={styles.icon} color={isFocused ? '#0077FF' : '#A1A1A8'} />
+        )}
+        <TextInput
+          onChangeText={onChangeText}
+          value={value}
+          style={styles.input}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          placeholderTextColor="#A1A1A8"
+          onFocus={() => {
+            onFocus?.();
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            onBlur?.();
+            setIsFocused(false);
+          }}
+        />
+      </View>
+    </DropShadow>
   );
 };
 
@@ -39,10 +67,11 @@ const styles = StyleSheet.create({
     paddingBottom: 7,
     paddingRight: 12,
     paddingLeft: 13,
-    backgroundColor: '#F7F8FA',
+    backgroundColor: '#fff',
     borderRadius: 24,
     flex: 1,
     display: 'flex',
+    borderWidth: 1,
   },
   icon: {
     height: 15,

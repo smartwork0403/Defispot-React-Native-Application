@@ -33,7 +33,7 @@ const Static: React.FC<{
   style?: StyleProp<ViewStyle>;
 }> = ({title, value, valueColor, valueExtra, style}) => {
   return (
-    <View style={{...styles.static, ...style}}>
+    <View style={[styles.static, style]}>
       <View style={styles.staticHeader}>
         <CustomText style={styles.staticHeaderTitle}>{title}</CustomText>
         <InformationSvg height={12} width={12} color="#CFCED2" />
@@ -41,6 +41,7 @@ const Static: React.FC<{
 
       <View style={styles.staticFooter}>
         <CustomText
+          weight="medium"
           style={{
             ...styles.staticFooterTitle,
             color: valueColor
@@ -67,6 +68,7 @@ const Static: React.FC<{
               />
             )}
             <CustomText
+              weight="medium"
               style={{
                 ...styles.staticFooterValue,
                 color: valueExtra.color
@@ -117,7 +119,9 @@ const AssetScreen: React.FC = () => {
             <AssetChart />
 
             <View style={styles.content}>
-              <CustomText style={styles.title}>Statistics</CustomText>
+              <CustomText weight="medium" style={styles.title}>
+                Statistics
+              </CustomText>
               <View style={styles.statics}>
                 <Static
                   title="Market Cap"
@@ -171,9 +175,11 @@ const AssetScreen: React.FC = () => {
                 />
               </View>
 
-              <CustomText style={styles.title}>Details</CustomText>
+              <CustomText weight="medium" style={styles.title}>
+                Details
+              </CustomText>
               <View style={styles.details}>
-                <CustomText style={styles.detailsTitle}>
+                <CustomText weight="medium" style={styles.detailsTitle}>
                   About Stellar Lumens
                 </CustomText>
                 <CustomText style={styles.detailsText}>
@@ -197,7 +203,7 @@ const AssetScreen: React.FC = () => {
                   <Pressable
                     style={styles.showMore}
                     onPress={() => setIsShowMore(true)}>
-                    <CustomText style={styles.showMoreText}>
+                    <CustomText weight="medium" style={styles.showMoreText}>
                       Show More
                     </CustomText>
                   </Pressable>
@@ -210,7 +216,7 @@ const AssetScreen: React.FC = () => {
                     <View style={styles.detailsLinkIconContainer}>
                       <link.icon height={12} width={12} color="#0077FF" />
                     </View>
-                    <CustomText style={styles.detailsLinkText}>
+                    <CustomText weight="medium" style={styles.detailsLinkText}>
                       {link.label}
                     </CustomText>
                   </Pressable>
@@ -220,7 +226,10 @@ const AssetScreen: React.FC = () => {
           </ScrollView>
 
           <View style={styles.stickyActions}>
-            <Button outlined prependIcon={PlusSvg} style={{marginRight: 16}}>
+            <Button
+              outlined
+              prependIcon={{icon: PlusSvg}}
+              style={{marginRight: 16}}>
               Add Liquidity
             </Button>
             <Button accent="black" style={{marginRight: 16}}>
@@ -245,7 +254,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontFamily: 'Inter-Medium',
     marginBottom: 16,
   },
   statics: {
@@ -281,7 +289,6 @@ const styles = StyleSheet.create({
   },
   staticFooterTitle: {
     fontSize: 16,
-    fontFamily: 'Inter-Medium',
   },
   staticFooterValueContainer: {
     flexDirection: 'row',
@@ -292,7 +299,6 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#A1A1A8',
     marginLeft: 9,
-    fontFamily: 'Inter-Medium',
   },
   details: {
     backgroundColor: '#fff',
@@ -302,7 +308,6 @@ const styles = StyleSheet.create({
   },
   detailsTitle: {
     fontSize: 16,
-    fontFamily: 'Inter-Medium',
     marginBottom: 8,
   },
   detailsText: {
@@ -311,7 +316,6 @@ const styles = StyleSheet.create({
   showMore: {marginTop: 8},
   showMoreText: {
     color: '#0077FF',
-    fontFamily: 'Inter-Medium',
   },
   detailsDivider: {
     height: 1,
@@ -332,7 +336,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   detailsLinkText: {
-    fontFamily: 'Inter-Medium',
     color: '#0077FF',
   },
   stickyActions: {

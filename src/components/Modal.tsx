@@ -2,17 +2,21 @@ import React, {type PropsWithChildren} from 'react';
 import {StyleSheet, View, ScrollView, Pressable} from 'react-native';
 import Modal from 'react-native-modal';
 
+import {Props as ActionProps} from './Button';
+
 import Button from './Button';
 import CustomText from './CustomText';
 import IconButton from './IconButton';
 
 import CloseSvg from '../assets/icons/close.svg';
 
+interface StickyAction extends ActionProps {
+  label: string;
+}
+
 interface Props {
   noHandle?: boolean;
-  stickyAction?: boolean;
-  actionLabel?: string;
-  onActionPress?: () => void;
+  stickyAction?: StickyAction;
   isOpen: boolean;
   onClose: () => void;
   noPadding?: boolean;
@@ -25,8 +29,6 @@ interface Props {
 const CustomModal: React.FC<PropsWithChildren<Props>> = ({
   noHandle = false,
   stickyAction,
-  actionLabel,
-  onActionPress,
   isOpen,
   onClose,
   children,
@@ -56,7 +58,7 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
             <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
               {header && (
                 <View style={styles.header}>
-                  <CustomText style={styles.headerTitle}>
+                  <CustomText weight="medium" style={styles.headerTitle}>
                     {header.title}
                   </CustomText>
                   <IconButton
@@ -83,8 +85,8 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
 
             {stickyAction && (
               <View style={styles.actions}>
-                <Button onPress={onActionPress} accent="black">
-                  {actionLabel}
+                <Button accent={stickyAction.accent} {...stickyAction}>
+                  {stickyAction.label}
                 </Button>
               </View>
             )}
@@ -127,7 +129,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontFamily: 'Inter-Medium',
   },
   headerClose: {
     position: 'absolute',

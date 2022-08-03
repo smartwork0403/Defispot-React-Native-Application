@@ -32,7 +32,9 @@ const TradeScreen: React.FC = () => {
                 }}>
                 <View style={styles.slippage}>
                   <CustomText>Slippage</CustomText>
-                  <CustomText style={styles.slippagePercent}>12%</CustomText>
+                  <CustomText weight="medium" style={styles.slippagePercent}>
+                    12%
+                  </CustomText>
                   <Button
                     text
                     noPadding
@@ -48,13 +50,13 @@ const TradeScreen: React.FC = () => {
               <View style={styles.details}>
                 <View style={styles.detail}>
                   <CustomText style={styles.detailTitle}>Equity</CustomText>
-                  <CustomText style={styles.detailValue}>$0,00</CustomText>
+                  <CustomText weight="medium">$0,00</CustomText>
                 </View>
                 <View style={styles.detail}>
                   <CustomText style={styles.detailTitle}>
                     Buying Power
                   </CustomText>
-                  <CustomText style={styles.detailValue}>$99,99</CustomText>
+                  <CustomText weight="medium">$99,99</CustomText>
                 </View>
                 <View style={styles.detail}>
                   <CustomText style={styles.detailTitle}>
@@ -67,7 +69,7 @@ const TradeScreen: React.FC = () => {
                       alignItems: 'center',
                       justifyContent: 'flex-end',
                     }}>
-                    <CustomText style={{...styles.detailValue, marginRight: 8}}>
+                    <CustomText weight="medium" style={{marginRight: 8}}>
                       7,83%
                     </CustomText>
                     <VictoryPie
@@ -109,6 +111,7 @@ const TradeScreen: React.FC = () => {
                     backgroundColor: isDeposit ? '#fff' : '#EFF0F3',
                   }}>
                   <CustomText
+                    weight="medium"
                     style={{
                       ...styles.switchText,
                       color: isDeposit ? '#121315' : '#A1A1A8',
@@ -133,6 +136,7 @@ const TradeScreen: React.FC = () => {
                     backgroundColor: !isDeposit ? '#fff' : '#EFF0F3',
                   }}>
                   <CustomText
+                    weight="medium"
                     style={{
                       ...styles.switchText,
                       color: !isDeposit ? '#121315' : '#A1A1A8',
@@ -179,7 +183,6 @@ const styles = StyleSheet.create({
   slippagePercent: {
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
     paddingTop: 4,
     paddingBottom: 4,
     paddingRight: 8,
@@ -201,9 +204,6 @@ const styles = StyleSheet.create({
   detailTitle: {
     color: '#8D8D94',
     marginRight: 16,
-  },
-  detailValue: {
-    fontFamily: 'Inter-Medium',
   },
   action: {
     marginTop: 8,
@@ -230,7 +230,6 @@ const styles = StyleSheet.create({
   },
   switchText: {
     textAlign: 'center',
-    fontFamily: 'Inter-Medium',
   },
 });
 

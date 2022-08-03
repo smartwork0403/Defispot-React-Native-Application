@@ -55,7 +55,7 @@ const Select: React.FC<Props> = ({
             : 'transparent',
         }}>
         <View style={styles.btn}>
-          <CustomText style={styles.btnText}>{label}</CustomText>
+          <CustomText weight="medium">{label}</CustomText>
           <View style={styles.btnIcon}>
             <ChevronDownSvg
               width={10}
@@ -70,15 +70,19 @@ const Select: React.FC<Props> = ({
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         noPadding
-        stickyAction
-        actionLabel="Apply"
-        onActionPress={() => {
-          onSelect(previewSelected);
-          setIsOpen(false);
+        stickyAction={{
+          label: 'Apply',
+          accent: 'black',
+          onPress: () => {
+            onSelect(previewSelected);
+            setIsOpen(false);
+          },
         }}>
         {header && (
           <View style={styles.header}>
-            <CustomText style={styles.headerTitle}>{header.title}</CustomText>
+            <CustomText weight="medium" style={styles.headerTitle}>
+              {header.title}
+            </CustomText>
             <Button
               onPress={header.onHeaderActionPress}
               text
@@ -105,7 +109,9 @@ const Select: React.FC<Props> = ({
                 </View>
               )}
 
-              <CustomText style={styles.itemText}>{item.label}</CustomText>
+              <CustomText weight="medium" style={styles.itemText}>
+                {item.label}
+              </CustomText>
 
               {previewSelected === item.name && (
                 <View style={styles.itemIcon}>
@@ -124,9 +130,6 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  btnText: {
-    fontFamily: 'Inter-Medium',
   },
   btnIcon: {
     height: 20,
@@ -148,7 +151,6 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontFamily: 'Inter-Medium',
     marginRight: 16,
   },
   list: {
@@ -171,7 +173,6 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   itemText: {
-    fontFamily: 'Inter-Medium',
     marginRight: 'auto',
   },
 });

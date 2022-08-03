@@ -32,7 +32,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
       {!CustomContent ? (
         <ScrollView>
           {header && <Header {...header} />}
-          <View style={{...styles.content, ...contentStyle}}>{children}</View>
+          <View style={[styles.content, contentStyle]}>{children}</View>
         </ScrollView>
       ) : (
         <>

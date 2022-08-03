@@ -15,37 +15,38 @@ const TradeCompleteModal: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
-      stickyAction
-      actionLabel="Done">
+      stickyAction={{label: 'Done', accent: 'black', onPress: onClose}}>
       <View style={styles.header}>
         <View style={styles.headerIcon}>
           <CheckSvg width={21} height={16} color="#fff" />
         </View>
-        <CustomText style={styles.headerTitle}>Complete!</CustomText>
+        <CustomText weight="semi-bold" style={styles.headerTitle}>
+          Complete!
+        </CustomText>
       </View>
 
       <View style={styles.details}>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Deposit Amount</CustomText>
-          <CustomText style={styles.detailValue}>13.81 LINK</CustomText>
+          <CustomText weight="medium">13.81 LINK</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Received Amount</CustomText>
-          <CustomText style={styles.detailValue}>0.9932423 AVAX</CustomText>
+          <CustomText weight="medium">0.9932423 AVAX</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Exchange Rate</CustomText>
-          <CustomText style={styles.detailValue}>TX Hash</CustomText>
+          <CustomText weight="medium">TX Hash</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>TX Hash</CustomText>
-          <CustomText style={{...styles.detailValue, color: '#0077FF'}}>
+          <CustomText weight="medium" style={{color: '#0077FF'}}>
             55d898...93842fb
           </CustomText>
         </View>
         <View style={{...styles.detail, marginBottom: 12}}>
           <CustomText style={styles.detailTitle}>TX Fee</CustomText>
-          <CustomText style={styles.detailValue}>0.80 LINK</CustomText>
+          <CustomText weight="medium">0.80 LINK</CustomText>
         </View>
       </View>
     </Modal>
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerTitle: {
-    fontFamily: 'Inter-SemiBold',
     fontSize: 24,
     lineHeight: 32,
   },
@@ -88,9 +88,6 @@ const styles = StyleSheet.create({
   detailTitle: {
     color: '#8D8D94',
     marginRight: 16,
-  },
-  detailValue: {
-    fontFamily: 'Inter-Medium',
   },
 });
 

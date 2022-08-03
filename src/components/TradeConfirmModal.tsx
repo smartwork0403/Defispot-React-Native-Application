@@ -17,14 +17,15 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
-      stickyAction
+      stickyAction={{label: 'Confirm Trade', accent: 'black'}}
       noHandle
       fullHeight
-      actionLabel="Confirm Trade"
       header={{title: 'Confirm'}}>
       <View style={styles.trade}>
         <Asset name="123" value="LINK" size="large" />
-        <CustomText style={styles.tradeType}>Native</CustomText>
+        <CustomText weight="medium" style={styles.tradeType}>
+          Native
+        </CustomText>
       </View>
       <View style={styles.switcher}>
         <View style={styles.switchBtnContainer}>
@@ -43,35 +44,35 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
       </View>
       <View style={styles.trade}>
         <Asset name="50" value="AVAX" size="large" />
-        <CustomText style={styles.tradeType}>Native</CustomText>
+        <CustomText weight="medium" style={styles.tradeType}>
+          Native
+        </CustomText>
       </View>
 
       <View style={styles.details}>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Est. Time</CustomText>
-          <CustomText style={styles.detailValue}>{'<10m'}</CustomText>
+          <CustomText weight="medium">{'<10m'}</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Fee</CustomText>
-          <CustomText style={styles.detailValue}>$2.02</CustomText>
+          <CustomText weight="medium">$2.02</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Slippage</CustomText>
-          <CustomText style={styles.detailValue}>0.00101</CustomText>
+          <CustomText weight="medium">0.00101</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Min Received</CustomText>
-          <CustomText style={styles.detailValue}>0.00101</CustomText>
+          <CustomText weight="medium">0.00101</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Exchange Fee</CustomText>
-          <CustomText style={styles.detailValue}>$0.12</CustomText>
+          <CustomText weight="medium">$0.12</CustomText>
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Recipient</CustomText>
-          <CustomText style={{...styles.detailValue, color: '#0077FF'}}>
-            tho...5w3
-          </CustomText>
+          <CustomText style={{color: '#0077FF'}}>tho...5w3</CustomText>
         </View>
       </View>
     </Modal>
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
     borderRadius: 24,
-    fontFamily: 'Inter-Medium',
     fontSize: 12,
     lineHeight: 16,
     marginLeft: 16,
@@ -150,9 +150,6 @@ const styles = StyleSheet.create({
   detailTitle: {
     color: '#8D8D94',
     marginRight: 16,
-  },
-  detailValue: {
-    fontFamily: 'Inter-Medium',
   },
 });
 

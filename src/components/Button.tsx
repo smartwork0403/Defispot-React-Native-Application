@@ -10,22 +10,23 @@ import {
 import DropShadow from 'react-native-drop-shadow';
 import CustomText from './CustomText';
 
-const Button: React.FC<
-  PropsWithChildren<{
-    onPress?: ((event: GestureResponderEvent) => void) | undefined;
-    accent?: 'black' | 'blue';
-    size?: 'small' | 'tiny';
-    noOutline?: boolean;
-    outlined?: boolean;
-    icon?: any;
-    prependIcon?: any;
-    noPadding?: boolean;
-    text?: boolean;
-    disabled?: boolean;
-    textAccent?: 'white' | 'blue';
-    style?: StyleProp<ViewStyle>;
-  }>
-> = ({
+export interface Props {
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  accent?: 'black' | 'blue';
+  size?: 'small' | 'tiny';
+  noOutline?: boolean;
+  outlined?: boolean;
+  icon?: any;
+  prependIcon?: {icon: any; width?: number; height?: number};
+  noPadding?: boolean;
+  text?: boolean;
+  disabled?: boolean;
+  textAccent?: 'white' | 'blue';
+  style?: StyleProp<ViewStyle>;
+  shadowStyle?: StyleProp<ViewStyle>;
+}
+
+const Button: React.FC<PropsWithChildren<Props>> = ({
   children,
   onPress,
   accent,
@@ -33,12 +34,13 @@ const Button: React.FC<
   noOutline = false,
   outlined = false,
   icon: Icon,
-  prependIcon: PrependIcon,
+  prependIcon,
   noPadding,
   text,
   textAccent,
   style,
   disabled,
+  shadowStyle,
 }) => {
   const getBgColor = () => {
     if (noOutline || text) {
@@ -133,26 +135,22 @@ const Button: React.FC<
   };
 
   return (
-    <DropShadow
-      style={{
-        shadowColor: '#8d8d94',
-        shadowOffset: {width: 2, height: 4},
-        shadowRadius: 8,
-        shadowOpacity: 0.06,
-      }}>
+    <DropShadow style={shadowStyle}>
       <TouchableOpacity
         disabled={disabled}
         onPress={onPress}
-        style={{
-          ...styles.btn,
-          backgroundColor: getBgColor(),
-          borderColor: getBorderColor(),
-          paddingTop: getPadding('top'),
-          paddingBottom: getPadding('bottom'),
-          paddingRight: getPadding('right'),
-          paddingLeft: getPadding('left'),
-          ...style,
-        }}>
+        style={[
+          styles.btn,
+          {
+            backgroundColor: getBgColor(),
+            borderColor: getBorderColor(),
+            paddingTop: getPadding('top'),
+            paddingBottom: getPadding('bottom'),
+            paddingRight: getPadding('right'),
+            paddingLeft: getPadding('left'),
+          },
+          style,
+        ]}>
         {Icon ? (
           <View style={styles.iconContainer}>
             <Icon
@@ -165,14 +163,18 @@ const Button: React.FC<
           </View>
         ) : (
           <View style={styles.container}>
-            {PrependIcon && (
+            {prependIcon && prependIcon.icon && (
               <View style={styles.prependIcon}>
-                <PrependIcon height={13} width={13} color={getColor()} />
+                <prependIcon.icon
+                  height={prependIcon.height ?? 13}
+                  width={prependIcon.width ?? 13}
+                  color={getColor()}
+                />
               </View>
             )}
             <CustomText
+              weight="medium"
               style={{
-                ...styles.text,
                 color: getColor(),
                 fontSize: getFontSize(),
                 lineHeight: getLineHeight(),
@@ -211,9 +213,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 6,
-  },
-  text: {
-    fontFamily: 'Inter-Medium',
   },
 });
 

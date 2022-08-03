@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, Pressable, StyleSheet, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import {
   VictoryAxis,
   VictoryCandlestick,
@@ -155,34 +155,44 @@ const AssetChart: React.FC = () => {
             <CustomText style={styles.lineChartDataLabel}>
               Viewing data for
             </CustomText>
-            <CustomText style={styles.lineChartDataValue}>
-              28.06.22, 2:00 PM
-            </CustomText>
+            <CustomText weight="medium">28.06.22, 2:00 PM</CustomText>
           </View>
 
           <View style={styles.lineChartInfoContainer}>
             <View style={styles.lineChartInfo}>
-              <CustomText style={styles.lineChartInfoLabel}>O</CustomText>
-              <CustomText style={styles.lineChartInfoValue}>50,5</CustomText>
+              <CustomText style={styles.lineChartInfoLabel} weight="medium">
+                O
+              </CustomText>
+              <CustomText weight="medium" style={styles.lineChartInfoValue}>
+                50,5
+              </CustomText>
             </View>
             <View style={styles.lineChartInfoDivider} />
             <View style={styles.lineChartInfo}>
-              <CustomText style={styles.lineChartInfoLabel}>H</CustomText>
+              <CustomText style={styles.lineChartInfoLabel} weight="medium">
+                H
+              </CustomText>
               <CustomText style={styles.lineChartInfoValue}>51,0</CustomText>
             </View>
             <View style={styles.lineChartInfoDivider} />
             <View style={styles.lineChartInfo}>
-              <CustomText style={styles.lineChartInfoLabel}>L</CustomText>
+              <CustomText style={styles.lineChartInfoLabel} weight="medium">
+                L
+              </CustomText>
               <CustomText style={styles.lineChartInfoValue}>50,1</CustomText>
             </View>
             <View style={styles.lineChartInfoDivider} />
             <View style={styles.lineChartInfo}>
-              <CustomText style={styles.lineChartInfoLabel}>C</CustomText>
+              <CustomText style={styles.lineChartInfoLabel} weight="medium">
+                C
+              </CustomText>
               <CustomText style={styles.lineChartInfoValue}>50,6</CustomText>
             </View>
             <View style={styles.lineChartInfoDivider} />
             <View style={styles.lineChartInfo}>
-              <CustomText style={styles.lineChartInfoLabel}>V</CustomText>
+              <CustomText style={styles.lineChartInfoLabel} weight="medium">
+                V
+              </CustomText>
               <CustomText style={styles.lineChartInfoValue}>684</CustomText>
             </View>
           </View>
@@ -298,9 +308,6 @@ const styles = StyleSheet.create({
     color: '#A1A1A8',
     marginRight: 5,
   },
-  lineChartDataValue: {
-    fontFamily: 'Inter-Medium',
-  },
   lineChartInfoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -314,7 +321,6 @@ const styles = StyleSheet.create({
   lineChartInfoLabel: {
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
     marginRight: 4,
     color: '#A1A1A8',
   },
@@ -322,7 +328,6 @@ const styles = StyleSheet.create({
     color: '#00B674',
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: 'Inter-Medium',
   },
   lineChartInfoDivider: {
     height: 8,

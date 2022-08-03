@@ -18,12 +18,11 @@ const IconButton: React.FC<{
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{
-        ...styles.btn,
-        height: size === 'small' ? 32 : 40,
-        width: size === 'small' ? 32 : 40,
-        ...style,
-      }}>
+      style={[
+        styles.btn,
+        {height: size === 'small' ? 32 : 40, width: size === 'small' ? 32 : 40},
+        style,
+      ]}>
       <Icon
         width={iconSize?.width ?? 20}
         height={iconSize?.height ?? 20}

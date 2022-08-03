@@ -27,75 +27,87 @@ const ProfileScreen: React.FC = () => {
           <CustomText style={styles.overviewEmail}>
             kevin@fintory.com
           </CustomText>
-          <CustomText style={styles.overviewName}>Kevin Dukkon</CustomText>
+          <CustomText weight="medium" style={styles.overviewName}>
+            Kevin Dukkon
+          </CustomText>
         </View>
       </View>
 
       <View style={styles.content}>
         <View style={styles.setting}>
-          <CustomText style={styles.settingTitle}>Account</CustomText>
+          <CustomText weight="medium" style={styles.settingTitle}>
+            Account
+          </CustomText>
           <CollapsibleCard
             style={styles.item}
             top={
               <View style={styles.itemTopContainer}>
-                <CustomText style={styles.itemTitle}>
+                <CustomText weight="medium" style={styles.itemTitle}>
                   Native currency
                 </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
 
           <CollapsibleCard
             style={styles.item}
             top={
               <View style={styles.itemTopContainer}>
-                <CustomText style={styles.itemTitle}>Country</CustomText>
+                <CustomText weight="medium" style={styles.itemTitle}>
+                  Country
+                </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
 
           <CollapsibleCard
             style={styles.item}
             top={
               <View style={styles.itemTopContainer}>
-                <CustomText style={styles.itemTitle}>Privacy</CustomText>
+                <CustomText weight="medium" style={styles.itemTitle}>
+                  Privacy
+                </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
 
           <CollapsibleCard
             style={styles.item}
             top={
               <View style={styles.itemTopContainer}>
-                <CustomText style={styles.itemTitle}>Phone numbers</CustomText>
+                <CustomText weight="medium" style={styles.itemTitle}>
+                  Phone numbers
+                </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
 
           <CollapsibleCard
             style={styles.item}
             top={
               <View style={styles.itemTopContainer}>
-                <CustomText style={styles.itemTitle}>
+                <CustomText weight="medium" style={styles.itemTitle}>
                   Notifications settings
                 </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
         </View>
 
         <View style={styles.setting}>
-          <CustomText style={styles.settingTitle}>General</CustomText>
+          <CustomText weight="medium" style={styles.settingTitle}>
+            General
+          </CustomText>
           <CollapsibleCard
             style={styles.item}
             top={
@@ -103,11 +115,13 @@ const ProfileScreen: React.FC = () => {
                 <View style={styles.itemTopIconContainer}>
                   <MessageSvg height={13} width={15} color="#A1A1A8" />
                 </View>
-                <CustomText style={styles.itemTitle}>Support</CustomText>
+                <CustomText weight="medium" style={styles.itemTitle}>
+                  Support
+                </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
 
           <CollapsibleCard
@@ -117,11 +131,13 @@ const ProfileScreen: React.FC = () => {
                 <View style={styles.itemTopIconContainer}>
                   <MessageSvg height={13} width={15} color="#A1A1A8" />
                 </View>
-                <CustomText style={styles.itemTitle}>App Se</CustomText>
+                <CustomText weight="medium" style={styles.itemTitle}>
+                  App Se
+                </CustomText>
               </View>
             }
             bottom={<CustomText>collapsed content</CustomText>}
-            initArrowAngel="right"
+            startArrowAngel="right"
           />
         </View>
       </View>
@@ -149,7 +165,6 @@ const styles = StyleSheet.create({
     color: '#62626D',
   },
   overviewName: {
-    fontFamily: 'Inter-Medium',
     fontSize: 18,
   },
   content: {
@@ -160,7 +175,6 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   settingTitle: {
-    fontFamily: 'Inter-Medium',
     fontSize: 18,
     marginBottom: 16,
   },
@@ -180,7 +194,6 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   itemTitle: {
-    fontFamily: 'Inter-Medium',
     paddingLeft: 4,
   },
 });
