@@ -1,5 +1,6 @@
 import React, {type PropsWithChildren} from 'react';
 import {Text, StyleSheet, StyleProp, TextStyle} from 'react-native';
+import {fonts, colors} from '../styles';
 
 const CustomText: React.FC<
   PropsWithChildren<{
@@ -9,13 +10,13 @@ const CustomText: React.FC<
 > = ({children, style, weight}) => {
   const getFontFamily = () => {
     if (weight === 'medium') {
-      return 'Inter-Medium';
+      return fonts.interMedium;
     } else if (weight === 'semi-bold') {
-      return 'Inter-SemiBold';
+      return fonts.interSemiBold;
     } else if (weight === 'bold') {
-      return 'Inter-Bold';
+      return fonts.interBold;
     }
-    return 'Inter-Regular';
+    return fonts.inter;
   };
 
   return (
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     lineHeight: 24,
-    color: '#121315',
+    color: colors.neutral900,
   },
 });
 

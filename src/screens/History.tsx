@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {colors} from '../styles';
 
 import CustomText from '../components/CustomText';
 import Layout from '../components/Layout';
@@ -32,9 +33,13 @@ const HistoryItem: React.FC<{
         <View style={historyItemStyle.iconContainer}>
           <View style={historyItemStyle.iconType}>
             {type === 'sent' ? (
-              <ArrowUpRightSvg width={14} height={14} color="#CFCED2" />
+              <ArrowUpRightSvg
+                width={14}
+                height={14}
+                color={colors.neutral300}
+              />
             ) : type === 'exchange' ? (
-              <SwapSvg width={20} height={20} color="#CFCED2" />
+              <SwapSvg width={20} height={20} color={colors.neutral300} />
             ) : null}
           </View>
 
@@ -68,10 +73,10 @@ const historyItemStyle = StyleSheet.create({
     paddingRight: 16,
     paddingBottom: 16,
     borderRadius: 8,
-    borderColor: '#EFF0F3',
+    borderColor: colors.neutral100,
     borderWidth: 1,
     marginBottom: 8,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -80,7 +85,7 @@ const historyItemStyle = StyleSheet.create({
     flexShrink: 0,
   },
   iconType: {
-    borderColor: '#E0E1E4',
+    borderColor: colors.neutral200,
     borderWidth: 1,
     height: 40,
     width: 40,
@@ -92,7 +97,7 @@ const historyItemStyle = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 20 / 2,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -103,7 +108,7 @@ const historyItemStyle = StyleSheet.create({
     marginRight: 'auto',
   },
   infoTime: {
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
 });
 
@@ -275,7 +280,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   searchShadowStyle: {
-    shadowColor: '#cfced2',
+    shadowColor: colors.neutral300,
     shadowOffset: {width: 2, height: 4},
     shadowRadius: 24,
     shadowOpacity: 0.06,
@@ -285,7 +290,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   filterShadowStyle: {
-    shadowColor: '#8d8d94',
+    shadowColor: colors.neutral500,
     shadowOffset: {width: 2, height: 4},
     shadowRadius: 8,
     shadowOpacity: 0.06,
@@ -295,7 +300,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingRight: 16,
     paddingLeft: 16,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
   },
   list: {
     marginBottom: 8,
@@ -303,7 +308,7 @@ const styles = StyleSheet.create({
   },
   listTitle: {
     marginBottom: 8,
-    color: '#A1A1A8',
+    color: colors.neutral400,
     fontSize: 12,
     lineHeight: 16,
   },

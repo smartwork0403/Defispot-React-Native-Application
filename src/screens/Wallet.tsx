@@ -2,9 +2,10 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {VictoryPie} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
-import type {RootStackParamList} from '../components/Navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {colors, fonts} from '../styles';
 
+import type {RootStackParamList} from '../components/Navigation';
 import CustomText from '../components/CustomText';
 import Button from '../components/Button';
 import WalletsList from '../components/WalletsList';
@@ -42,7 +43,7 @@ const noWalletStyles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#F7F8FA',
+    backgroundColor: colors.neutral50,
     opacity: 0.91,
   },
 });
@@ -56,17 +57,17 @@ const WalletScreen: React.FC = () => {
     {
       label: 'BTC',
       value: 20,
-      color: '#0077FF',
+      color: colors.blue,
     },
     {
       label: 'USD',
       value: 48,
-      color: '#EFF0F3',
+      color: colors.neutral100,
     },
     {
       label: 'FTT',
       value: 32,
-      color: '#E0E1E4',
+      color: colors.neutral200,
     },
   ];
 
@@ -172,22 +173,22 @@ const WalletScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   headerCardTitle: {
-    color: '#A1A1A8',
-    fontFamily: 'CircularStd-Regular',
+    color: colors.neutral400,
+    fontFamily: fonts.circularStd,
   },
   headerCardValue: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   headerCardValueSign: {
-    color: '#CFCED2',
+    color: colors.neutral300,
     marginRight: 4,
-    fontFamily: 'CircularStd-Medium',
+    fontFamily: fonts.circularStdMedium,
     fontSize: 32,
     lineHeight: 40,
   },
   headerCardValueText: {
-    fontFamily: 'CircularStd-Medium',
+    fontFamily: fonts.circularStdMedium,
     fontSize: 40,
     lineHeight: 48,
   },
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   actionShadowStyle: {
-    shadowColor: '#8d8d94',
+    shadowColor: colors.neutral500,
     shadowOffset: {width: 2, height: 4},
     shadowRadius: 8,
     shadowOpacity: 0.06,
@@ -223,7 +224,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   legendName: {
-    color: '#8D8D94',
+    color: colors.neutral500,
   },
 });
 

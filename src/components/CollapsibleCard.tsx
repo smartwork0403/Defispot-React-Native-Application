@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Pressable, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import * as Animatable from 'react-native-animatable';
+import {colors} from '../styles';
 
 import CollapsibleArrow from './CollapsibleArrow';
 
@@ -25,7 +26,7 @@ const CollapsibleCard: React.FC<{
               {
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0,
-                borderBottomColor: '#fff',
+                borderBottomColor: colors.neutral0,
               },
               330,
             );
@@ -34,7 +35,7 @@ const CollapsibleCard: React.FC<{
               {
                 borderBottomLeftRadius: 8,
                 borderBottomRightRadius: 8,
-                borderBottomColor: '#EFF0F3',
+                borderBottomColor: colors.neutral100,
               },
               330,
             );
@@ -60,7 +61,7 @@ const CollapsibleCard: React.FC<{
 
 const styles = StyleSheet.create({
   top: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -69,17 +70,17 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
     borderWidth: 1,
-    borderColor: '#EFF0F3',
-    borderBottomColor: '#EFF0F3',
+    borderColor: colors.neutral100,
+    borderBottomColor: colors.neutral100,
   },
   bottom: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
     padding: 16,
     paddingTop: 0,
     borderWidth: 1,
-    borderColor: '#EFF0F3',
+    borderColor: colors.neutral100,
     borderTopWidth: 0,
   },
 });

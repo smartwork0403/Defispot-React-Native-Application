@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {colors} from '../styles';
 
 import Layout from '../components/Layout';
 import AssetsList from '../components/AssetsList';
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   filterShadowStyle: {
-    shadowColor: '#8d8d94',
+    shadowColor: colors.neutral500,
     shadowOffset: {width: 2, height: 4},
     shadowRadius: 8,
     shadowOpacity: 0.06,

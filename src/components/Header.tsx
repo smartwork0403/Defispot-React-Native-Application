@@ -3,6 +3,8 @@ import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {useNavigation} from '@react-navigation/native';
 
+import {colors} from '../styles';
+
 import CustomText from './CustomText';
 import TextField from './TextField';
 import Button from './Button';
@@ -33,7 +35,7 @@ const Action: React.FC<{action?: ActionType}> = ({action}) => {
       {action && !action.text && action.icon && (
         <IconButton
           icon={action.icon}
-          color="#fff"
+          color={colors.neutral0}
           onPress={action.onActionPress}
         />
       )}
@@ -75,7 +77,7 @@ const Header: React.FC<Props> = ({
             <IconButton
               icon={NavBackSvg}
               iconSize={{width: 9, height: 16}}
-              color="#fff"
+              color={colors.neutral0}
               onPress={() => navigation.goBack()}
             />
           )}
@@ -101,11 +103,11 @@ const Header: React.FC<Props> = ({
               <TextField
                 placeholder={searchable.inputPlaceholder ?? 'Search...'}
                 icon={MagnifySvg}
-                style={{backgroundColor: '#F7F8FA'}}
+                style={{backgroundColor: colors.neutral50}}
               />
               <IconButton
                 icon={searchable.persistence.actionIcon}
-                color="#fff"
+                color={colors.neutral0}
                 onPress={() => searchable.persistence?.onActionIconClick?.()}
                 style={{marginLeft: 16}}
               />
@@ -116,7 +118,7 @@ const Header: React.FC<Props> = ({
                 placeholder={searchable.inputPlaceholder ?? 'Search...'}
                 icon={MagnifySvg}
                 autoFocus
-                style={{backgroundColor: '#F7F8FA'}}
+                style={{backgroundColor: colors.neutral50}}
               />
               <Button
                 style={styles.searchCancel}
@@ -134,7 +136,7 @@ const Header: React.FC<Props> = ({
               </CustomText>
               <IconButton
                 icon={MagnifySvg}
-                color="#fff"
+                color={colors.neutral0}
                 onPress={() => searchable.onSearchToggle?.(true)}
               />
             </>
@@ -151,7 +153,7 @@ const Header: React.FC<Props> = ({
         <View style={styles.headerBottom}>
           <DropShadow
             style={{
-              shadowColor: '#8d8d94',
+              shadowColor: colors.neutral500,
               shadowOffset: {width: 2, height: 4},
               shadowRadius: 8,
               shadowOpacity: 0.06,
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0077FF',
+    backgroundColor: colors.blue,
     paddingTop: 4,
     paddingBottom: 4,
     paddingRight: 12,
@@ -181,13 +183,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   minimalHeaderTitle: {
-    color: '#fff',
+    color: colors.neutral0,
     textAlign: 'center',
     fontSize: 18,
   },
   header: {},
   headerTop: {
-    backgroundColor: '#0077FF',
+    backgroundColor: colors.blue,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -198,7 +200,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     lineHeight: 32,
-    color: '#FFFFFF',
+    color: colors.neutral0,
   },
   searchCancel: {
     marginLeft: 16,
@@ -209,7 +211,7 @@ const styles = StyleSheet.create({
     marginTop: -32,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     paddingLeft: 16,
     paddingRight: 16,
     paddingTop: 12,

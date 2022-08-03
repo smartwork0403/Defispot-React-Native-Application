@@ -4,9 +4,10 @@ import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Table, TableWrapper, Cell} from 'react-native-table-component';
-import type {HomeStackParamList} from '../components/Navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {colors} from '../styles';
 
+import type {HomeStackParamList} from '../components/Navigation';
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
 
@@ -158,12 +159,16 @@ const HomeScreen: React.FC = () => {
               height={12}
               width={12}
               style={{marginRight: 8}}
-              color="#A1A1A8"
+              color={colors.neutral400}
             />
             <CustomText weight="medium" style={styles.stakingSpecialText}>
               #Defspot Staking Special
             </CustomText>
-            <UnorderedListSVG height={11} width={11} color="#A1A1A8" />
+            <UnorderedListSVG
+              height={11}
+              width={11}
+              color={colors.neutral400}
+            />
           </View>
 
           <View style={styles.content}>
@@ -181,14 +186,14 @@ const HomeScreen: React.FC = () => {
                         height={10}
                         width={7}
                         style={{marginLeft: 9, marginRight: 9}}
-                        color="#00B674"
+                        color={colors.green}
                       />
                     ) : (
                       <ArrowDownSVG
                         height={10}
                         width={7}
                         style={{marginLeft: 9, marginRight: 9}}
-                        color="#EF4444"
+                        color={colors.red}
                       />
                     )}
 
@@ -196,7 +201,7 @@ const HomeScreen: React.FC = () => {
                       weight="medium"
                       style={{
                         ...styles.headerItemTopPercent,
-                        color: item.upward ? '#00B674' : '#EF4444',
+                        color: item.upward ? colors.green : colors.red,
                       }}>
                       {item.percent}%
                     </CustomText>
@@ -218,7 +223,9 @@ const HomeScreen: React.FC = () => {
                   style={{
                     ...styles.switch,
                     backgroundColor:
-                      currentSwitch === item.name ? '#EFF0F3' : 'transparent',
+                      currentSwitch === item.name
+                        ? colors.neutral100
+                        : 'transparent',
                   }}
                   onPress={() => setCurrentSwitch(item.name)}
                   key={item.name}>
@@ -290,10 +297,12 @@ const HomeScreen: React.FC = () => {
                             weight="medium"
                             style={{
                               ...styles.tableItemChange,
-                              color: row.upward ? '#007A4E' : '#BC1010',
+                              color: row.upward
+                                ? colors.greenDark
+                                : colors.redDark,
                               backgroundColor: row.upward
-                                ? '#EBFFF8'
-                                : '#FDECEC',
+                                ? colors.greenLight
+                                : colors.redLight,
                             }}>
                             {row.upward ? '+' : '-'}
                             {row.change}%
@@ -329,7 +338,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(18, 19, 21, 0.64)',
   },
   carouselIndexText: {
-    color: '#fff',
+    color: colors.neutral0,
     fontSize: 12,
     lineHeight: 16,
   },
@@ -346,10 +355,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     paddingRight: 16,
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
   content: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingTop: 8,
@@ -371,7 +380,7 @@ const styles = StyleSheet.create({
   headerItemTopName: {
     fontSize: 12,
     lineHeight: 16,
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
   headerItemTopPercent: {
     fontSize: 12,
@@ -382,7 +391,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     marginBottom: 20,
     marginLeft: 16,
     marginRight: 16,
@@ -418,7 +427,7 @@ const styles = StyleSheet.create({
   tableHeaderText: {
     fontSize: 12,
     lineHeight: 16,
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
   tableRow: {
     flexDirection: 'row',

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {VictoryPie} from 'victory-native';
+import {colors} from '../styles';
 
 import Button from '../components/Button';
 import CustomText from '../components/CustomText';
@@ -25,7 +26,7 @@ const TradeScreen: React.FC = () => {
             <View style={styles.content}>
               <DropShadow
                 style={{
-                  shadowColor: '#8d8d94',
+                  shadowColor: colors.neutral500,
                   shadowOffset: {width: 2, height: 4},
                   shadowRadius: 8,
                   shadowOpacity: 0.06,
@@ -79,7 +80,7 @@ const TradeScreen: React.FC = () => {
                         {x: 'filled', y: 50},
                         {x: 'unfilled', y: 50},
                       ]}
-                      colorScale={['#0077FF', '#E0E1E4']}
+                      colorScale={[colors.blue, colors.neutral200]}
                       labels={() => null}
                       padding={0}
                       innerRadius={5}
@@ -98,7 +99,7 @@ const TradeScreen: React.FC = () => {
             <View style={styles.switch}>
               <DropShadow
                 style={{
-                  shadowColor: '#8d8d94',
+                  shadowColor: colors.neutral500,
                   shadowOffset: {width: 2, height: 4},
                   shadowRadius: 8,
                   shadowOpacity: isDeposit ? 0.08 : 0,
@@ -108,13 +109,15 @@ const TradeScreen: React.FC = () => {
                   onPress={() => setIsDeposit(true)}
                   style={{
                     ...styles.switchBtn,
-                    backgroundColor: isDeposit ? '#fff' : '#EFF0F3',
+                    backgroundColor: isDeposit
+                      ? colors.neutral0
+                      : colors.neutral100,
                   }}>
                   <CustomText
                     weight="medium"
                     style={{
                       ...styles.switchText,
-                      color: isDeposit ? '#121315' : '#A1A1A8',
+                      color: isDeposit ? colors.neutral900 : colors.neutral400,
                     }}>
                     Deposit
                   </CustomText>
@@ -123,7 +126,7 @@ const TradeScreen: React.FC = () => {
 
               <DropShadow
                 style={{
-                  shadowColor: '#8d8d94',
+                  shadowColor: colors.neutral500,
                   shadowOffset: {width: 2, height: 4},
                   shadowRadius: 8,
                   shadowOpacity: isDeposit ? 0 : 0.08,
@@ -133,13 +136,15 @@ const TradeScreen: React.FC = () => {
                   onPress={() => setIsDeposit(false)}
                   style={{
                     ...styles.switchBtn,
-                    backgroundColor: !isDeposit ? '#fff' : '#EFF0F3',
+                    backgroundColor: !isDeposit
+                      ? colors.neutral0
+                      : colors.neutral100,
                   }}>
                   <CustomText
                     weight="medium"
                     style={{
                       ...styles.switchText,
-                      color: !isDeposit ? '#121315' : '#A1A1A8',
+                      color: !isDeposit ? colors.neutral900 : colors.neutral400,
                     }}>
                     Withdraw
                   </CustomText>
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   slippage: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     borderRadius: 24,
     flexDirection: 'row',
     alignItems: 'center',
@@ -188,7 +193,7 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     paddingLeft: 8,
     marginLeft: 4,
-    backgroundColor: '#F7F8FA',
+    backgroundColor: colors.neutral50,
     marginRight: 'auto',
     borderRadius: 24,
   },
@@ -202,14 +207,14 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   detailTitle: {
-    color: '#8D8D94',
+    color: colors.neutral500,
     marginRight: 16,
   },
   action: {
     marginTop: 8,
   },
   switchContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     paddingTop: 12,
     paddingBottom: 12,
     paddingRight: 16,
@@ -217,7 +222,7 @@ const styles = StyleSheet.create({
   },
   switch: {
     flexDirection: 'row',
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     padding: 4,
     borderRadius: 24,
   },

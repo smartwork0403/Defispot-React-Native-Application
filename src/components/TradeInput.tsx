@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TextInput, Pressable, Image} from 'react-native';
+
+import {colors, fonts} from '../styles';
+
 import CustomText from './CustomText';
+
 import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
 const FOCUS_STATE = {
@@ -14,12 +18,12 @@ const TradeInput: React.FC = () => {
 
   const getBorderColor = () => {
     if (focusState === FOCUS_STATE.focused) {
-      return '#0077FF';
+      return colors.blue;
     } else if (focusState === FOCUS_STATE.error) {
-      return '#EF4444';
+      return colors.red;
     }
 
-    return '#EFF0F3';
+    return colors.neutral100;
   };
 
   return (
@@ -31,7 +35,7 @@ const TradeInput: React.FC = () => {
             onFocus={() => setFocusState(FOCUS_STATE.focused)}
             onBlur={() => setFocusState(FOCUS_STATE.idle)}
             placeholder="0.00"
-            placeholderTextColor="#CFCED2"
+            placeholderTextColor={colors.neutral300}
             keyboardType="number-pad"
           />
           <CustomText style={styles.price}>$0.00</CustomText>
@@ -45,7 +49,7 @@ const TradeInput: React.FC = () => {
           <CustomText weight="medium" style={styles.assetPickerText}>
             LINK
           </CustomText>
-          <ChevronDownSvg width={10} color="#A1A1A8" />
+          <ChevronDownSvg width={10} color={colors.neutral400} />
         </Pressable>
       </View>
 
@@ -65,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderRadius: 12,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
   },
   top: {
     paddingTop: 16,
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: '#EFF0F3',
+    borderBottomColor: colors.neutral100,
     borderBottomWidth: 1,
   },
   inputContainer: {
@@ -84,11 +88,11 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 24,
     lineHeight: 32,
-    fontFamily: 'Inter-SemiBold',
-    color: '#121315',
+    fontFamily: fonts.interSemiBold,
+    color: colors.neutral900,
   },
   price: {
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
   assetPicker: {
     alignItems: 'center',
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 17,
     borderRadius: 24,
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     flexDirection: 'row',
   },
   assetPickerIcon: {
@@ -119,12 +123,12 @@ const styles = StyleSheet.create({
   bottomTextTitle: {
     fontSize: 12,
     lineHeight: 16,
-    color: '#8D8D94',
+    color: colors.neutral500,
   },
   bottomTextValue: {
     fontSize: 12,
     lineHeight: 16,
-    color: '#0077FF',
+    color: colors.blue,
   },
 });
 

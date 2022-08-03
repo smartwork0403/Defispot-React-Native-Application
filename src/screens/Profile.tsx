@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {colors} from '../styles';
 
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
@@ -20,7 +21,7 @@ const ProfileScreen: React.FC = () => {
       }}>
       <View style={styles.overview}>
         <View style={styles.overviewIconContainer}>
-          <FlowerShapeSvg height={24} width={24} color="#005FCC" />
+          <FlowerShapeSvg height={24} width={24} color={colors.blueDark} />
         </View>
 
         <View>
@@ -113,7 +114,11 @@ const ProfileScreen: React.FC = () => {
             top={
               <View style={styles.itemTopContainer}>
                 <View style={styles.itemTopIconContainer}>
-                  <MessageSvg height={13} width={15} color="#A1A1A8" />
+                  <MessageSvg
+                    height={13}
+                    width={15}
+                    color={colors.neutral400}
+                  />
                 </View>
                 <CustomText weight="medium" style={styles.itemTitle}>
                   Support
@@ -129,7 +134,11 @@ const ProfileScreen: React.FC = () => {
             top={
               <View style={styles.itemTopContainer}>
                 <View style={styles.itemTopIconContainer}>
-                  <MessageSvg height={13} width={15} color="#A1A1A8" />
+                  <MessageSvg
+                    height={13}
+                    width={15}
+                    color={colors.neutral400}
+                  />
                 </View>
                 <CustomText weight="medium" style={styles.itemTitle}>
                   App Se
@@ -147,7 +156,7 @@ const ProfileScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   overview: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -156,13 +165,13 @@ const styles = StyleSheet.create({
     height: 48,
     width: 48,
     borderRadius: 48 / 2,
-    backgroundColor: '#EBF4FF',
+    backgroundColor: colors.blueLight,
     marginRight: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
   overviewEmail: {
-    color: '#62626D',
+    color: colors.neutral600,
   },
   overviewName: {
     fontSize: 18,

@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StyleSheet, View} from 'react-native';
+import {colors} from '../styles';
 
 import HomeSvg from '../assets/icons/home.svg';
 import PieSvg from '../assets/icons/pie-chart.svg';
@@ -94,7 +95,7 @@ const MainTabs = () => {
                   <nav.icon
                     width={20}
                     height={20}
-                    color={focused ? '#0077FF' : '#A1A1A8'}
+                    color={focused ? colors.blue : colors.neutral400}
                   />
                 </View>
               ),
@@ -123,8 +124,8 @@ const Navigation: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     elevation: 0,
-    borderColor: '#fff',
-    backgroundColor: '#fff',
+    borderColor: colors.neutral0,
+    backgroundColor: colors.neutral0,
     paddingTop: 12,
     paddingBottom: 12,
     paddingLeft: 32,

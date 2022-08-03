@@ -1,8 +1,9 @@
 import React, {type PropsWithChildren} from 'react';
 import {StyleSheet, View, ScrollView, Pressable} from 'react-native';
 import Modal from 'react-native-modal';
+import {colors} from '../styles';
 
-import {Props as ActionProps} from './Button';
+import type {Props as ActionProps} from './Button';
 
 import Button from './Button';
 import CustomText from './CustomText';
@@ -65,7 +66,7 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
                     icon={CloseSvg}
                     onPress={onClose}
                     size="small"
-                    color="#A1A1A8"
+                    color={colors.neutral400}
                     iconSize={{width: 10, height: 10}}
                     style={styles.headerClose}
                   />
@@ -109,12 +110,12 @@ const styles = StyleSheet.create({
     height: 4,
     width: 48,
     borderRadius: 4,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     marginBottom: 12,
     alignSelf: 'center',
   },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
   },

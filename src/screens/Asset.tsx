@@ -7,6 +7,7 @@ import {
   ViewStyle,
   Pressable,
 } from 'react-native';
+import {colors} from '../styles';
 
 import Layout from '../components/Layout';
 import AssetHeader from '../components/AssetHeader';
@@ -36,7 +37,7 @@ const Static: React.FC<{
     <View style={[styles.static, style]}>
       <View style={styles.staticHeader}>
         <CustomText style={styles.staticHeaderTitle}>{title}</CustomText>
-        <InformationSvg height={12} width={12} color="#CFCED2" />
+        <InformationSvg height={12} width={12} color={colors.neutral300} />
       </View>
 
       <View style={styles.staticFooter}>
@@ -46,9 +47,9 @@ const Static: React.FC<{
             ...styles.staticFooterTitle,
             color: valueColor
               ? valueColor === 'green'
-                ? '#00B674'
-                : '#EF4444'
-              : '#121315',
+                ? colors.green
+                : colors.red
+              : colors.neutral900,
           }}>
           {value}
         </CustomText>
@@ -61,9 +62,9 @@ const Static: React.FC<{
                 color={
                   valueExtra.color
                     ? valueExtra.color === 'green'
-                      ? '#00B674'
-                      : '#EF4444'
-                    : '#A1A1A8'
+                      ? colors.green
+                      : colors.red
+                    : colors.neutral400
                 }
               />
             )}
@@ -73,9 +74,9 @@ const Static: React.FC<{
                 ...styles.staticFooterValue,
                 color: valueExtra.color
                   ? valueExtra.color === 'green'
-                    ? '#00B674'
-                    : '#EF4444'
-                  : '#A1A1A8',
+                    ? colors.green
+                    : colors.red
+                  : colors.neutral400,
               }}>
               {valueExtra.text}
             </CustomText>
@@ -110,7 +111,7 @@ const AssetScreen: React.FC = () => {
 
   return (
     <Layout
-      statusBarColor="#fff"
+      statusBarColor={colors.neutral0}
       customContent={
         <>
           <AssetHeader />
@@ -128,8 +129,8 @@ const AssetScreen: React.FC = () => {
                   value="$4.5B"
                   style={{
                     width: '50%',
-                    borderRightColor: '#EFF0F3',
-                    borderBottomColor: '#EFF0F3',
+                    borderRightColor: colors.neutral100,
+                    borderBottomColor: colors.neutral100,
                     borderRightWidth: 1,
                     borderBottomWidth: 1,
                   }}
@@ -140,7 +141,7 @@ const AssetScreen: React.FC = () => {
                   valueExtra={{hasIcon: true, color: 'green', text: '6.8%'}}
                   style={{
                     width: '50%',
-                    borderBottomColor: '#EFF0F3',
+                    borderBottomColor: colors.neutral100,
                     borderBottomWidth: 1,
                   }}
                 />
@@ -149,8 +150,8 @@ const AssetScreen: React.FC = () => {
                   value="$0,94"
                   style={{
                     width: '50%',
-                    borderRightColor: '#EFF0F3',
-                    borderBottomColor: '#EFF0F3',
+                    borderRightColor: colors.neutral100,
+                    borderBottomColor: colors.neutral100,
                     borderRightWidth: 1,
                     borderBottomWidth: 1,
                   }}
@@ -161,7 +162,7 @@ const AssetScreen: React.FC = () => {
                   valueColor="red"
                   style={{
                     width: '50%',
-                    borderBottomColor: '#EFF0F3',
+                    borderBottomColor: colors.neutral100,
                     borderBottomWidth: 1,
                   }}
                 />
@@ -214,7 +215,7 @@ const AssetScreen: React.FC = () => {
                 {detailLinks.map(link => (
                   <Pressable style={styles.detailsLink} key={link.label}>
                     <View style={styles.detailsLinkIconContainer}>
-                      <link.icon height={12} width={12} color="#0077FF" />
+                      <link.icon height={12} width={12} color={colors.blue} />
                     </View>
                     <CustomText weight="medium" style={styles.detailsLinkText}>
                       {link.label}
@@ -237,10 +238,10 @@ const AssetScreen: React.FC = () => {
             </Button>
             <IconButton
               icon={StartOutlinedSvg}
-              color="#A1A1A8"
+              color={colors.neutral400}
               style={{marginRight: 8}}
             />
-            <IconButton icon={ShareSvg} color="#A1A1A8" />
+            <IconButton icon={ShareSvg} color={colors.neutral400} />
           </View>
         </>
       }
@@ -258,9 +259,9 @@ const styles = StyleSheet.create({
   },
   statics: {
     borderWidth: 1,
-    borderColor: '#EFF0F3',
+    borderColor: colors.neutral100,
     borderRadius: 8,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     marginBottom: 16,
     flexWrap: 'wrap',
     flexDirection: 'row',
@@ -279,7 +280,7 @@ const styles = StyleSheet.create({
   staticHeaderTitle: {
     fontSize: 12,
     lineHeight: 16,
-    color: '#A1A1A8',
+    color: colors.neutral400,
     marginRight: 8,
   },
   staticFooter: {
@@ -297,11 +298,11 @@ const styles = StyleSheet.create({
   staticFooterValue: {
     fontSize: 12,
     lineHeight: 16,
-    color: '#A1A1A8',
+    color: colors.neutral400,
     marginLeft: 9,
   },
   details: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     padding: 24,
     paddingBottom: 12,
     borderRadius: 8,
@@ -311,15 +312,15 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   detailsText: {
-    color: '#62626D',
+    color: colors.neutral600,
   },
   showMore: {marginTop: 8},
   showMoreText: {
-    color: '#0077FF',
+    color: colors.blue,
   },
   detailsDivider: {
     height: 1,
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     marginTop: 16,
     marginBottom: 16,
   },
@@ -336,14 +337,14 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   detailsLinkText: {
-    color: '#0077FF',
+    color: colors.blue,
   },
   stickyActions: {
     paddingTop: 10,
     paddingBottom: 10,
     paddingRight: 12,
     paddingLeft: 16,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     flexDirection: 'row',
     alignItems: 'center',
   },

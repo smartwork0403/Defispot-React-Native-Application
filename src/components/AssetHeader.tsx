@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {colors} from '../styles';
 
 import IconButton from './IconButton';
 
@@ -16,7 +17,7 @@ const AssetHeader: React.FC = () => {
       <IconButton
         icon={NavBackSvg}
         iconSize={{width: 9, height: 16}}
-        color="#A1A1A8"
+        color={colors.neutral400}
         onPress={() => navigation.goBack()}
         style={{marginRight: 12}}
       />
@@ -41,8 +42,8 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    borderBottomColor: '#EFF0F3',
+    backgroundColor: colors.neutral0,
+    borderBottomColor: colors.neutral100,
     borderBottomWidth: 1,
   },
   info: {
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontSize: 12,
     lineHeight: 16,
-    color: '#00B674',
+    color: colors.green,
   },
 });
 
