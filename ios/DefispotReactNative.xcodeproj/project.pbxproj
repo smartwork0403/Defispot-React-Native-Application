@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* DefispotReactNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DefispotReactNativeTests.m */; };
 		0E5E135F64054B3CB6CA597F /* CircularStd-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE0A89846D3B4689A0313C50 /* CircularStd-Book.ttf */; };
+		0FD49EDA4AD2AD45E39CF19E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839C580210D5533703197FE /* ExpoModulesProvider.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1D8122EA0DD3472FB5885729 /* CircularStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17B583830E7A4C66B7C15EC1 /* CircularStd-Bold.ttf */; };
 		2C8F79562AD84FC8A6A25370 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6D8B427649047A9A83CBC30 /* Inter-Medium.ttf */; };
-		64534FD424D10E31DA337596 /* libPods-DefispotReactNative-DefispotReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ABDA8AD80F269A5A2943182 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */; };
+		5CC8BF691B1DE71BD460C26A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E72D76883633A746451711 /* ExpoModulesProvider.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		826F07ADE2624A248B0DEC60 /* CircularStd-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17620D820BF54D49BD41FE25 /* CircularStd-Regular.ttf */; };
-		828B407B9654A03617659ED3 /* libPods-DefispotReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C40B4DCE39D45F9734CF5B3B /* libPods-DefispotReactNative.a */; };
 		8EE1E536DF9445C9A4B384D2 /* CircularStd-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE30D2EC1D8D491A999A36AB /* CircularStd-BlackItalic.ttf */; };
 		9F831DEC833C4BB6BAE1EF5A /* CircularStd-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15FF8C31513F4C01B4B18F16 /* CircularStd-Black.ttf */; };
+		A7E5DBC2F3F774DD5ACDB8EB /* libPods-DefispotReactNative-DefispotReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6944AFE12A66B1297C2645 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */; };
 		AED806BE6D6D4E1B91F0E52D /* CircularStd-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA851F66ED404A0EA938C3F8 /* CircularStd-BookItalic.ttf */; };
 		C79762C05DBE4C0A8FB3D64E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD22296A5554AFC9C5CD76C /* Inter-SemiBold.ttf */; };
 		C7EA14B24F81415EB0E6FB19 /* CircularStd-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D8524DBF383491380792B11 /* CircularStd-Light.ttf */; };
 		CCD6B62ABCEC43BC8E991128 /* CircularStd-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCDBDEE0142241B89374EB1B /* CircularStd-Medium.ttf */; };
+		E0A3357C223414FF77A9ADC8 /* libPods-DefispotReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B63002A67871183A171C18D /* libPods-DefispotReactNative.a */; };
 		E5889ED71615403F86DFA56F /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 946C2441E77A44D1898237BE /* Inter-Regular.ttf */; };
 		E5C102125C0D4DA3845E80B2 /* CircularStd-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A84FE0608F043BF95EB49AD /* CircularStd-BoldItalic.ttf */; };
 		F91BD69A3CFF4ACE8711F119 /* CircularStd-Light Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0859641C66E436F95C397C9 /* CircularStd-Light Italic.ttf */; };
@@ -43,34 +45,36 @@
 		00E356EE1AD99517003FC87E /* DefispotReactNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DefispotReactNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* DefispotReactNativeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefispotReactNativeTests.m; sourceTree = "<group>"; };
+		02F90A9756FA5AC28D3C76E7 /* Pods-DefispotReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.debug.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* DefispotReactNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefispotReactNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = DefispotReactNative/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = DefispotReactNative/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DefispotReactNative/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DefispotReactNative/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DefispotReactNative/main.m; sourceTree = "<group>"; };
-		15FF8C31513F4C01B4B18F16 /* CircularStd-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Black.ttf"; path = "../src/assets/fonts/CircularStd-Black.ttf"; sourceTree = "<group>"; };
-		17620D820BF54D49BD41FE25 /* CircularStd-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Regular.ttf"; path = "../src/assets/fonts/CircularStd-Regular.ttf"; sourceTree = "<group>"; };
-		17B583830E7A4C66B7C15EC1 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.ttf"; path = "../src/assets/fonts/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
-		3D8524DBF383491380792B11 /* CircularStd-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Light.ttf"; path = "../src/assets/fonts/CircularStd-Light.ttf"; sourceTree = "<group>"; };
-		4F923AC64B79A120A39437F1 /* Pods-DefispotReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.release.xcconfig"; sourceTree = "<group>"; };
+		15FF8C31513F4C01B4B18F16 /* CircularStd-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Black.ttf"; path = "../src/assets/fonts/CircularStd-Black.ttf"; sourceTree = "<group>"; };
+		17620D820BF54D49BD41FE25 /* CircularStd-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Regular.ttf"; path = "../src/assets/fonts/CircularStd-Regular.ttf"; sourceTree = "<group>"; };
+		17B583830E7A4C66B7C15EC1 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.ttf"; path = "../src/assets/fonts/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
+		3D8524DBF383491380792B11 /* CircularStd-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Light.ttf"; path = "../src/assets/fonts/CircularStd-Light.ttf"; sourceTree = "<group>"; };
+		4B63002A67871183A171C18D /* libPods-DefispotReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EE6C4D2C814DD49CA0CB76 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../src/assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
+		7E6944AFE12A66B1297C2645 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative-DefispotReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DefispotReactNative/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8A84FE0608F043BF95EB49AD /* CircularStd-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BoldItalic.ttf"; path = "../src/assets/fonts/CircularStd-BoldItalic.ttf"; sourceTree = "<group>"; };
-		8ABDA8AD80F269A5A2943182 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative-DefispotReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A84FE0608F043BF95EB49AD /* CircularStd-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BoldItalic.ttf"; path = "../src/assets/fonts/CircularStd-BoldItalic.ttf"; sourceTree = "<group>"; };
 		946C2441E77A44D1898237BE /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../src/assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
-		9D26F847933EFBD53EFD76CB /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
-		B0859641C66E436F95C397C9 /* CircularStd-Light Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Light Italic.ttf"; path = "../src/assets/fonts/CircularStd-Light Italic.ttf"; sourceTree = "<group>"; };
+		ADA47C0E98C722A1AAD34ADC /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
+		B0859641C66E436F95C397C9 /* CircularStd-Light Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Light Italic.ttf"; path = "../src/assets/fonts/CircularStd-Light Italic.ttf"; sourceTree = "<group>"; };
+		B38D5FBF362E90A115A82F6F /* Pods-DefispotReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.release.xcconfig"; sourceTree = "<group>"; };
 		B6D8B427649047A9A83CBC30 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../src/assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
-		B865B660AF93CD35F9472274 /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C1F9E05C640C9AA5E222EE05 /* Pods-DefispotReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.debug.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.debug.xcconfig"; sourceTree = "<group>"; };
-		C40B4DCE39D45F9734CF5B3B /* libPods-DefispotReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA851F66ED404A0EA938C3F8 /* CircularStd-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BookItalic.ttf"; path = "../src/assets/fonts/CircularStd-BookItalic.ttf"; sourceTree = "<group>"; };
-		DE0A89846D3B4689A0313C50 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../src/assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
+		B6E72D76883633A746451711 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-DefispotReactNative/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		CA851F66ED404A0EA938C3F8 /* CircularStd-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BookItalic.ttf"; path = "../src/assets/fonts/CircularStd-BookItalic.ttf"; sourceTree = "<group>"; };
+		DE0A89846D3B4689A0313C50 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../src/assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F777CCF034142354D320F2CE /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F839C580210D5533703197FE /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		FCD22296A5554AFC9C5CD76C /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../src/assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
-		FCDBDEE0142241B89374EB1B /* CircularStd-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Medium.ttf"; path = "../src/assets/fonts/CircularStd-Medium.ttf"; sourceTree = "<group>"; };
-		FE30D2EC1D8D491A999A36AB /* CircularStd-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BlackItalic.ttf"; path = "../src/assets/fonts/CircularStd-BlackItalic.ttf"; sourceTree = "<group>"; };
+		FCDBDEE0142241B89374EB1B /* CircularStd-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Medium.ttf"; path = "../src/assets/fonts/CircularStd-Medium.ttf"; sourceTree = "<group>"; };
+		FE30D2EC1D8D491A999A36AB /* CircularStd-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BlackItalic.ttf"; path = "../src/assets/fonts/CircularStd-BlackItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64534FD424D10E31DA337596 /* libPods-DefispotReactNative-DefispotReactNativeTests.a in Frameworks */,
+				A7E5DBC2F3F774DD5ACDB8EB /* libPods-DefispotReactNative-DefispotReactNativeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				828B407B9654A03617659ED3 /* libPods-DefispotReactNative.a in Frameworks */,
+				E0A3357C223414FF77A9ADC8 /* libPods-DefispotReactNative.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,12 +127,28 @@
 			name = DefispotReactNative;
 			sourceTree = "<group>";
 		};
+		170F76322B63A7486B0E4EB3 /* DefispotReactNativeTests */ = {
+			isa = PBXGroup;
+			children = (
+				F839C580210D5533703197FE /* ExpoModulesProvider.swift */,
+			);
+			name = DefispotReactNativeTests;
+			sourceTree = "<group>";
+		};
+		1924B58C8CF2533486A41320 /* DefispotReactNative */ = {
+			isa = PBXGroup;
+			children = (
+				B6E72D76883633A746451711 /* ExpoModulesProvider.swift */,
+			);
+			name = DefispotReactNative;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C40B4DCE39D45F9734CF5B3B /* libPods-DefispotReactNative.a */,
-				8ABDA8AD80F269A5A2943182 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */,
+				4B63002A67871183A171C18D /* libPods-DefispotReactNative.a */,
+				7E6944AFE12A66B1297C2645 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,6 +170,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				9DDA18CE2EB544B595951F87 /* Resources */,
+				FE92C8066792DCFD608A57EF /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -189,12 +210,21 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C1F9E05C640C9AA5E222EE05 /* Pods-DefispotReactNative.debug.xcconfig */,
-				B865B660AF93CD35F9472274 /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */,
-				9D26F847933EFBD53EFD76CB /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */,
-				4F923AC64B79A120A39437F1 /* Pods-DefispotReactNative.release.xcconfig */,
+				02F90A9756FA5AC28D3C76E7 /* Pods-DefispotReactNative.debug.xcconfig */,
+				B38D5FBF362E90A115A82F6F /* Pods-DefispotReactNative.release.xcconfig */,
+				F777CCF034142354D320F2CE /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */,
+				ADA47C0E98C722A1AAD34ADC /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE92C8066792DCFD608A57EF /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				1924B58C8CF2533486A41320 /* DefispotReactNative */,
+				170F76322B63A7486B0E4EB3 /* DefispotReactNativeTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,12 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "DefispotReactNativeTests" */;
 			buildPhases = (
-				0A6EF0F914DB8AADDB81C7AA /* [CP] Check Pods Manifest.lock */,
+				A3BE79E07E800E249E2EE7AA /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				916D79608200281C9D237604 /* [CP] Copy Pods Resources */,
-				3B4BD9A308D61AED604894EF /* [CP] Embed Pods Frameworks */,
+				78DB13CB3B4825C2AC77ED8C /* [CP] Embed Pods Frameworks */,
+				0A86BB45F27B50F7A37E9A4A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,14 +255,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DefispotReactNative" */;
 			buildPhases = (
-				457D8502F1174500FF2EBA4E /* [CP] Check Pods Manifest.lock */,
+				88651665354E209F9C4B4571 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				8396A7F77A8602D37DF6A904 /* [CP] Copy Pods Resources */,
-				6CAE217C811CAFCBE4DD754F /* [CP] Embed Pods Frameworks */,
+				C659065AAE47C46E41506523 /* [CP] Embed Pods Frameworks */,
+				B8B8D1B1B9A5E182DCCC91B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -328,29 +358,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		0A6EF0F914DB8AADDB81C7AA /* [CP] Check Pods Manifest.lock */ = {
+		0A86BB45F27B50F7A37E9A4A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DefispotReactNative-DefispotReactNativeTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3B4BD9A308D61AED604894EF /* [CP] Embed Pods Frameworks */ = {
+		78DB13CB3B4825C2AC77ED8C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,7 +392,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		457D8502F1174500FF2EBA4E /* [CP] Check Pods Manifest.lock */ = {
+		88651665354E209F9C4B4571 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,24 +414,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6CAE217C811CAFCBE4DD754F /* [CP] Embed Pods Frameworks */ = {
+		A3BE79E07E800E249E2EE7AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DefispotReactNative-DefispotReactNativeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8396A7F77A8602D37DF6A904 /* [CP] Copy Pods Resources */ = {
+		B8B8D1B1B9A5E182DCCC91B0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -423,21 +453,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		916D79608200281C9D237604 /* [CP] Copy Pods Resources */ = {
+		C659065AAE47C46E41506523 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -467,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* DefispotReactNativeTests.m in Sources */,
+				0FD49EDA4AD2AD45E39CF19E /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +507,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				5CC8BF691B1DE71BD460C26A /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +524,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B865B660AF93CD35F9472274 /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */;
+			baseConfigurationReference = F777CCF034142354D320F2CE /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = RQF6Q34X58;
@@ -507,11 +539,16 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DefispotReactNative.app/DefispotReactNative";
@@ -520,7 +557,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D26F847933EFBD53EFD76CB /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */;
+			baseConfigurationReference = ADA47C0E98C722A1AAD34ADC /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -532,11 +569,16 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DefispotReactNative.app/DefispotReactNative";
@@ -545,7 +587,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1F9E05C640C9AA5E222EE05 /* Pods-DefispotReactNative.debug.xcconfig */;
+			baseConfigurationReference = 02F90A9756FA5AC28D3C76E7 /* Pods-DefispotReactNative.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -558,11 +600,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = DefispotReactNative;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -573,7 +620,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F923AC64B79A120A39437F1 /* Pods-DefispotReactNative.release.xcconfig */;
+			baseConfigurationReference = B38D5FBF362E90A115A82F6F /* Pods-DefispotReactNative.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -585,11 +632,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = DefispotReactNative;
 				SWIFT_VERSION = 5.0;
