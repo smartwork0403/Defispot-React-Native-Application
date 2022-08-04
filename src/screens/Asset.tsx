@@ -7,7 +7,7 @@ import {
   ViewStyle,
   Pressable,
 } from 'react-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import Layout from '../components/Layout';
 import AssetHeader from '../components/AssetHeader';
@@ -116,7 +116,7 @@ const AssetScreen: React.FC = () => {
         <>
           <AssetHeader />
 
-          <ScrollView>
+          <ScrollView style={globalStyles.wrapper}>
             <AssetChart />
 
             <View style={styles.content}>
@@ -347,6 +347,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.neutral0,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

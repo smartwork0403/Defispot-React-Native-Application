@@ -105,6 +105,10 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     marginTop: 28,
+    maxWidth: 600,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
   },
   handle: {
     height: 4,

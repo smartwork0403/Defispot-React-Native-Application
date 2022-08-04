@@ -1,3 +1,9 @@
+import {StyleSheet} from 'react-native';
+
+export const config = {
+  MAX_CONTENT_WIDTH: 700,
+};
+
 export const colors = {
   blue: '#0077FF',
   blueLight: '#EBF4FF',
@@ -32,3 +38,12 @@ export const fonts = {
   circularStdMedium: 'CircularStd-Medium',
   circularStdBold: 'CircularStd-Bold',
 };
+
+export const globalStyles = StyleSheet.create({
+  wrapper: {
+    maxWidth: config.MAX_CONTENT_WIDTH,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
+  },
+});

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {VictoryPie} from 'victory-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import Button from '../components/Button';
 import CustomText from '../components/CustomText';
@@ -23,7 +23,7 @@ const TradeScreen: React.FC = () => {
         <>
           <ScrollView>
             <Header title="Trade" minimal />
-            <View style={styles.content}>
+            <View style={{...styles.content, ...globalStyles.wrapper}}>
               <DropShadow
                 style={{
                   shadowColor: colors.neutral500,
@@ -96,7 +96,7 @@ const TradeScreen: React.FC = () => {
           </ScrollView>
 
           <View style={styles.switchContainer}>
-            <View style={styles.switch}>
+            <View style={{...styles.switch, ...globalStyles.wrapper}}>
               <DropShadow
                 style={{
                   shadowColor: colors.neutral500,
