@@ -1,0 +1,10 @@
+2022-08-03 19:39:30.444 xcodebuild[15515:13688674] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-08-03 19:39:30.444 xcodebuild[15515:13688674] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+** BUILD FAILED **
+
+
+The following build commands failed:
+	EmitSwiftModule normal x86_64 (in target 'DefispotReactNative' from project 'DefispotReactNative')
+	CompileSwift normal x86_64 /Users/mohammadforoughi/Projects/temp/Defispot-Mobile-Application/ios/Pods/Target\ Support\ Files/Pods-DefispotReactNative/ExpoModulesProvider.swift (in target 'DefispotReactNative' from project 'DefispotReactNative')
+	CompileSwiftSources normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'DefispotReactNative' from project 'DefispotReactNative')
+(3 failures)

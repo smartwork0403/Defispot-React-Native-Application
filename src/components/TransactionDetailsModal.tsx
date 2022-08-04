@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import Clipboard from '@react-native-clipboard/clipboard';
-import Share from 'react-native-share';
+// import Clipboard from '@react-native-clipboard/clipboard';
+// import Share from 'react-native-share';
 
 import Modal from './Modal';
 import CustomText from './CustomText';
@@ -45,7 +45,9 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   const handleCopyFromTo = (address: string) => {
-    Clipboard.setString(address);
+    // Clipboard.setString(address);
+
+    console.log(address);
     setShowCopiedMessage(true);
 
     setTimeout(() => {
@@ -55,11 +57,11 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
 
   const handleShare = async () => {
     try {
-      const res = await Share.open({
-        title: 'Transaction Details',
-        message: 'Shareable content will go here.',
-      });
-      console.log(res);
+      // const res = await Share.open({
+      //   title: 'Transaction Details',
+      //   message: 'Shareable content will go here.',
+      // });
+      console.log('res');
     } catch (err) {
       err && console.log(err);
     }
