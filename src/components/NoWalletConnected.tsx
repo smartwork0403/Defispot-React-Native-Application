@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {colors} from '../styles';
 
 import Button from './Button';
 import CustomText from './CustomText';
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   subtitle: {
-    color: '#8D8D94',
+    color: colors.neutral500,
     marginBottom: 24,
   },
 });

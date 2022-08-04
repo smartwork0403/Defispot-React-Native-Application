@@ -8,6 +8,8 @@ import {
   ViewStyle,
 } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import {colors} from '../styles';
+
 import CustomText from './CustomText';
 
 export interface Props {
@@ -48,15 +50,15 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
     }
 
     if (disabled) {
-      return '#EFF0F3';
+      return colors.neutral100;
     }
 
     if (accent === 'black') {
-      return '#121315';
+      return colors.neutral900;
     } else if (accent === 'blue') {
-      return '#0077FF';
+      return colors.blue;
     }
-    return '#fff';
+    return colors.neutral0;
   };
   const getBorderColor = () => {
     if (noOutline || text) {
@@ -64,20 +66,20 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
     }
 
     if (disabled) {
-      return '#EFF0F3';
+      return colors.neutral100;
     }
 
     if (outlined) {
-      return '#E0E1E4';
+      return colors.neutral200;
     }
 
     if (accent === 'black') {
-      return '#121315';
+      return colors.neutral900;
     }
     if (accent === 'blue') {
-      return '#0077FF';
+      return colors.blue;
     }
-    return '#ffff';
+    return colors.neutral0;
   };
   const getPadding = (side: string) => {
     if (noPadding) {
@@ -110,16 +112,16 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
 
   const getColor = () => {
     if (disabled) {
-      return '#A1A1A8';
+      return colors.neutral400;
     }
 
     if (accent === 'black' || accent === 'blue' || textAccent === 'white') {
-      return '#fff';
+      return colors.neutral0;
     }
     if (textAccent === 'blue') {
-      return '#0077FF';
+      return colors.blue;
     }
-    return '#121315';
+    return colors.neutral900;
   };
   const getFontSize = () => {
     if (size === 'tiny') {
@@ -158,7 +160,7 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
                 height: size === 'small' || size === 'tiny' ? 12 : 19,
                 width: size === 'small' || size === 'tiny' ? 12 : 19,
               }}
-              color="#121315"
+              color={colors.neutral900}
             />
           </View>
         ) : (

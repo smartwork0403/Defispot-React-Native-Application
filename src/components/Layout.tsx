@@ -8,6 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import {colors} from '../styles';
 
 import Header from './Header';
 import {Props as HeaderProps} from './Header';
@@ -24,7 +25,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   header,
   contentStyle,
   customContent: CustomContent,
-  statusBarColor = '#0077FF',
+  statusBarColor = colors.blue,
 }) => {
   return (
     <SafeAreaView style={{flex: 1}}>

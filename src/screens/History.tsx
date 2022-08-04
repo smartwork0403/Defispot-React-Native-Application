@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {colors} from '../styles';
 
 import CustomText from '../components/CustomText';
 import Layout from '../components/Layout';
@@ -8,6 +9,7 @@ import Button from '../components/Button';
 import CollapsibleArrow from '../components/CollapsibleArrow';
 import NoWalletConnected from '../components/NoWalletConnected';
 import TransactionDetails from '../components/TransactionDetailsModal';
+import Header from '../components/Header';
 
 import MagnifySvg from '../assets/icons/magnify.svg';
 import DownloadSvg from '../assets/icons/download.svg';
@@ -32,9 +34,13 @@ const HistoryItem: React.FC<{
         <View style={historyItemStyle.iconContainer}>
           <View style={historyItemStyle.iconType}>
             {type === 'sent' ? (
-              <ArrowUpRightSvg width={14} height={14} color="#CFCED2" />
+              <ArrowUpRightSvg
+                width={14}
+                height={14}
+                color={colors.neutral300}
+              />
             ) : type === 'exchange' ? (
-              <SwapSvg width={20} height={20} color="#CFCED2" />
+              <SwapSvg width={20} height={20} color={colors.neutral300} />
             ) : null}
           </View>
 
@@ -68,10 +74,10 @@ const historyItemStyle = StyleSheet.create({
     paddingRight: 16,
     paddingBottom: 16,
     borderRadius: 8,
-    borderColor: '#EFF0F3',
+    borderColor: colors.neutral100,
     borderWidth: 1,
     marginBottom: 8,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -80,7 +86,7 @@ const historyItemStyle = StyleSheet.create({
     flexShrink: 0,
   },
   iconType: {
-    borderColor: '#E0E1E4',
+    borderColor: colors.neutral200,
     borderWidth: 1,
     height: 40,
     width: 40,
@@ -92,7 +98,7 @@ const historyItemStyle = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 20 / 2,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -103,7 +109,7 @@ const historyItemStyle = StyleSheet.create({
     marginRight: 'auto',
   },
   infoTime: {
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
 });
 
@@ -189,69 +195,67 @@ const History: React.FC = () => {
 
   return (
     <Layout
-      header={{
-        title: 'History',
-        minimal: true,
-        back: true,
-      }}
       customContent={
         <>
-          <ScrollView style={styles.container}>
-            <View style={styles.searchContainer}>
-              <TextField
-                placeholder="Filter by protocol, token, event, etc..."
-                icon={MagnifySvg}
-                shadowStyle={styles.searchShadowStyle}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-              />
-            </View>
+          <ScrollView>
+            <Header title="Trade" minimal back />
+            <View style={styles.container}>
+              <View style={styles.searchContainer}>
+                <TextField
+                  placeholder="Filter by protocol, token, event, etc..."
+                  icon={MagnifySvg}
+                  shadowStyle={styles.searchShadowStyle}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                />
+              </View>
 
-            {shouldFiltersBeShown() && (
-              <ScrollView
-                style={styles.filters}
-                horizontal
-                showsHorizontalScrollIndicator={false}>
-                {filters.map((filter, i) => (
-                  <Button
-                    key={filter.label}
-                    onPress={() => setSelectedFilter(filter.name)}
-                    outlined={filter.name === selectedFilter}
-                    size="small"
-                    style={{
-                      paddingLeft: filter.icon ? 6 : 12,
-                      marginRight: filters.length === i + 1 ? 0 : 12,
-                    }}
-                    prependIcon={{
-                      icon: filter.icon ?? null,
-                      width: 20,
-                      height: 20,
-                    }}
-                    shadowStyle={styles.filterShadowStyle}>
-                    {filter.label}
-                  </Button>
-                ))}
-              </ScrollView>
-            )}
-
-            {historyLists.length !== 0 ? (
-              historyLists.map(list => (
-                <View style={styles.list} key={list.time}>
-                  <CustomText weight="medium" style={styles.listTitle}>
-                    {list.time}
-                  </CustomText>
-                  {list.items.map(item => (
-                    <HistoryItem
-                      type={item.type}
-                      time={item.time}
-                      key={item.time}
-                    />
+              {shouldFiltersBeShown() && (
+                <ScrollView
+                  style={styles.filters}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}>
+                  {filters.map((filter, i) => (
+                    <Button
+                      key={filter.label}
+                      onPress={() => setSelectedFilter(filter.name)}
+                      outlined={filter.name === selectedFilter}
+                      size="small"
+                      style={{
+                        paddingLeft: filter.icon ? 6 : 12,
+                        marginRight: filters.length === i + 1 ? 0 : 12,
+                      }}
+                      prependIcon={{
+                        icon: filter.icon ?? null,
+                        width: 20,
+                        height: 20,
+                      }}
+                      shadowStyle={styles.filterShadowStyle}>
+                      {filter.label}
+                    </Button>
                   ))}
-                </View>
-              ))
-            ) : (
-              <NoWalletConnected shapes />
-            )}
+                </ScrollView>
+              )}
+
+              {historyLists.length !== 0 ? (
+                historyLists.map(list => (
+                  <View style={styles.list} key={list.time}>
+                    <CustomText weight="medium" style={styles.listTitle}>
+                      {list.time}
+                    </CustomText>
+                    {list.items.map(item => (
+                      <HistoryItem
+                        type={item.type}
+                        time={item.time}
+                        key={item.time}
+                      />
+                    ))}
+                  </View>
+                ))
+              ) : (
+                <NoWalletConnected shapes />
+              )}
+            </View>
           </ScrollView>
 
           {historyLists.length !== 0 && (
@@ -275,7 +279,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   searchShadowStyle: {
-    shadowColor: '#cfced2',
+    shadowColor: colors.neutral300,
     shadowOffset: {width: 2, height: 4},
     shadowRadius: 24,
     shadowOpacity: 0.06,
@@ -285,7 +289,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   filterShadowStyle: {
-    shadowColor: '#8d8d94',
+    shadowColor: colors.neutral500,
     shadowOffset: {width: 2, height: 4},
     shadowRadius: 8,
     shadowOpacity: 0.06,
@@ -295,15 +299,14 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingRight: 16,
     paddingLeft: 16,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
   },
   list: {
-    marginBottom: 8,
-    paddingBottom: 8,
+    marginBottom: 16,
   },
   listTitle: {
     marginBottom: 8,
-    color: '#A1A1A8',
+    color: colors.neutral400,
     fontSize: 12,
     lineHeight: 16,
   },

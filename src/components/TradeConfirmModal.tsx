@@ -1,10 +1,14 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+
+import {colors} from '../styles';
+
 import Asset from './Asset';
 import CustomText from './CustomText';
 import Modal from './Modal';
-import SwapSvg from '../assets/icons/swap.svg';
 import DropShadow from 'react-native-drop-shadow';
+
+import SwapSvg from '../assets/icons/swap.svg';
 
 interface Props {
   isOpen: boolean;
@@ -31,7 +35,7 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
         <View style={styles.switchBtnContainer}>
           <DropShadow
             style={{
-              shadowColor: '#8d8d94',
+              shadowColor: colors.neutral500,
               shadowOffset: {width: 2, height: 4},
               shadowRadius: 8,
               shadowOpacity: 0.06,
@@ -72,7 +76,7 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Recipient</CustomText>
-          <CustomText style={{color: '#0077FF'}}>tho...5w3</CustomText>
+          <CustomText style={{color: colors.blue}}>tho...5w3</CustomText>
         </View>
       </View>
     </Modal>
@@ -81,8 +85,8 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
 
 const styles = StyleSheet.create({
   trade: {
-    borderBottomColor: '#EFF0F3',
-    borderTopColor: '#EFF0F3',
+    borderBottomColor: colors.neutral100,
+    borderTopColor: colors.neutral100,
     borderBottomWidth: 1,
     borderTopWidth: 1,
     paddingTop: 24,
@@ -102,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     marginLeft: 16,
-    backgroundColor: '#F7F8FA',
+    backgroundColor: colors.neutral50,
   },
   switcher: {
     alignItems: 'center',
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   switchBtnContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     height: 68,
     width: 68,
     borderRadius: 68 / 2,
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
     height: 56,
     width: 56,
     borderRadius: 56 / 2,
-    backgroundColor: '#121315',
+    backgroundColor: colors.neutral900,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
   switchIcon: {
     height: 20,
     width: 20,
-    color: '#fff',
+    color: colors.neutral0,
     transform: [{rotate: '90deg'}],
   },
   details: {
@@ -148,7 +152,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   detailTitle: {
-    color: '#8D8D94',
+    color: colors.neutral500,
     marginRight: 16,
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
+import {colors} from '../styles';
 
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
@@ -23,9 +24,13 @@ const Notification: React.FC<{
         <View style={styles.iconContainer}>
           <View style={styles.iconType}>
             {type === 'send' ? (
-              <ArrowUpRightSvg width={14} height={14} color="#CFCED2" />
+              <ArrowUpRightSvg
+                width={14}
+                height={14}
+                color={colors.neutral300}
+              />
             ) : type === 'exchange' ? (
-              <SwapSvg width={20} height={20} color="#CFCED2" />
+              <SwapSvg width={20} height={20} color={colors.neutral300} />
             ) : null}
           </View>
 
@@ -40,17 +45,21 @@ const Notification: React.FC<{
 
       {type === 'success' && (
         <View style={styles.iconInfoContainer}>
-          <CheckCircleSvg height={20} width={20} color="#00B674" />
+          <CheckCircleSvg height={20} width={20} color={colors.green} />
         </View>
       )}
       {type === 'error' && (
         <View style={styles.iconInfoContainer}>
-          <InformationCircleSvg height={20} width={20} color="#EF4444" />
+          <InformationCircleSvg height={20} width={20} color={colors.red} />
         </View>
       )}
       {type === 'info' && (
         <View style={styles.iconInfoContainer}>
-          <InformationReverseCircleSvg height={20} width={20} color="#0077FF" />
+          <InformationReverseCircleSvg
+            height={20}
+            width={20}
+            color={colors.blue}
+          />
         </View>
       )}
 
@@ -122,10 +131,10 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingBottom: 16,
     borderRadius: 8,
-    borderColor: '#EFF0F3',
+    borderColor: colors.neutral100,
     borderWidth: 1,
     marginBottom: 12,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
@@ -134,7 +143,7 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   iconType: {
-    borderColor: '#E0E1E4',
+    borderColor: colors.neutral200,
     borderWidth: 1,
     height: 40,
     width: 40,
@@ -146,7 +155,7 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 20 / 2,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -168,13 +177,13 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   headerTime: {
-    color: '#A1A1A8',
+    color: colors.neutral400,
     fontSize: 12,
     lineHeight: 16,
     marginLeft: 'auto',
   },
   message: {
-    color: '#62626D',
+    color: colors.neutral600,
   },
 });
 

@@ -4,6 +4,7 @@ import {VictoryGroup, VictoryLine} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
 import type {RootStackParamList} from './Navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {colors} from '../styles';
 
 import Asset from './Asset';
 import CustomText from './CustomText';
@@ -24,7 +25,7 @@ const AssetsList: React.FC = () => {
             <VictoryGroup padding={{right: 27, left: 0}} width={92} height={16}>
               <VictoryLine
                 style={{
-                  data: {stroke: '#00B674'},
+                  data: {stroke: colors.green},
                 }}
                 data={[
                   {x: 1, y: 7},
@@ -59,7 +60,7 @@ const AssetsList: React.FC = () => {
               weight="medium"
               style={{
                 ...styles.changes,
-                color: '#EF4444' /* color: '#00B674' */,
+                color: colors.red /* color: colors.green */,
               }}>
               -2.54%
             </CustomText>
@@ -77,9 +78,9 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
     borderRadius: 8,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     flexDirection: 'row',
-    borderColor: '#EFF0F3',
+    borderColor: colors.neutral100,
     borderWidth: 1,
     justifyContent: 'space-between',
     alignItems: 'center',

@@ -1,8 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+
+import {colors} from '../styles';
+
 import Modal from './Modal';
-import CheckSvg from '../assets/icons/check.svg';
 import CustomText from './CustomText';
+
+import CheckSvg from '../assets/icons/check.svg';
 
 interface Props {
   isOpen: boolean;
@@ -18,7 +22,7 @@ const TradeCompleteModal: React.FC<Props> = ({isOpen, onClose}) => {
       stickyAction={{label: 'Done', accent: 'black', onPress: onClose}}>
       <View style={styles.header}>
         <View style={styles.headerIcon}>
-          <CheckSvg width={21} height={16} color="#fff" />
+          <CheckSvg width={21} height={16} color={colors.neutral0} />
         </View>
         <CustomText weight="semi-bold" style={styles.headerTitle}>
           Complete!
@@ -40,7 +44,7 @@ const TradeCompleteModal: React.FC<Props> = ({isOpen, onClose}) => {
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>TX Hash</CustomText>
-          <CustomText weight="medium" style={{color: '#0077FF'}}>
+          <CustomText weight="medium" style={{color: colors.blue}}>
             55d898...93842fb
           </CustomText>
         </View>
@@ -65,7 +69,7 @@ const styles = StyleSheet.create({
     height: 64,
     width: 64,
     borderRadius: 64 / 2,
-    backgroundColor: '#00B674',
+    backgroundColor: colors.green,
     marginBottom: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   detailTitle: {
-    color: '#8D8D94',
+    color: colors.neutral500,
     marginRight: 16,
   },
 });

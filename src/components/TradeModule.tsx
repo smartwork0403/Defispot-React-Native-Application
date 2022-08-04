@@ -1,6 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Pressable} from 'react-native';
+
+import {colors} from '../styles';
+
 import TradeInput from './TradeInput';
+
 import SwapSvg from '../assets/icons/swap.svg';
 
 const TradeModule: React.FC = () => {
@@ -26,7 +30,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   switchBtnContainer: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.neutral50,
     height: 60,
     width: 60,
     borderRadius: 60 / 2,
@@ -40,7 +44,7 @@ const styles = StyleSheet.create({
     height: 48,
     width: 48,
     borderRadius: 48 / 2,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
   switchIcon: {
     height: 20,
     width: 20,
-    color: '#0077FF',
+    color: colors.blue,
     transform: [{rotate: '90deg'}],
   },
 });

@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Pressable, StyleSheet, View} from 'react-native';
+import {colors} from '../styles';
+
 import Button from './Button';
 import CustomText from './CustomText';
 import Modal from './Modal';
@@ -49,9 +51,9 @@ const Select: React.FC<Props> = ({
         accent={accent}
         style={{
           borderColor: isOpen
-            ? '#0077FF'
+            ? colors.blue
             : outlined
-            ? '#E0E1E4'
+            ? colors.neutral200
             : 'transparent',
         }}>
         <View style={styles.btn}>
@@ -59,7 +61,7 @@ const Select: React.FC<Props> = ({
           <View style={styles.btnIcon}>
             <ChevronDownSvg
               width={10}
-              color={isOpen ? '#0077FF' : '#121315'}
+              color={isOpen ? colors.blue : colors.neutral900}
               style={{transform: [{rotate: isOpen ? '180deg' : '0deg'}]}}
             />
           </View>
@@ -100,12 +102,14 @@ const Select: React.FC<Props> = ({
               style={{
                 ...styles.item,
                 backgroundColor:
-                  previewSelected === item.name ? '#F7F8FA' : '#fff',
+                  previewSelected === item.name
+                    ? colors.neutral50
+                    : colors.neutral0,
               }}
               key={item.name}>
               {item.icon && (
                 <View style={styles.itemIcon}>
-                  <item.icon width={12} height={12} color="#A1A1A8" />
+                  <item.icon width={12} height={12} color={colors.neutral400} />
                 </View>
               )}
 
@@ -115,7 +119,7 @@ const Select: React.FC<Props> = ({
 
               {previewSelected === item.name && (
                 <View style={styles.itemIcon}>
-                  <CheckSvg width={12} height={12} color="#0077FF" />
+                  <CheckSvg width={12} height={12} color={colors.blue} />
                 </View>
               )}
             </Pressable>
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingRight: 24,
     paddingLeft: 24,
-    borderBottomColor: '#EFF0F3',
+    borderBottomColor: colors.neutral100,
     borderBottomWidth: 1,
   },
   headerTitle: {

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 // import Clipboard from '@react-native-clipboard/clipboard';
 // import Share from 'react-native-share';
+import {colors} from '../styles';
 
 import Modal from './Modal';
 import CustomText from './CustomText';
@@ -92,7 +93,11 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
           {!showCopiedMessage ? (
             <View style={styles.itemFromTo}>
               <View style={styles.itemFromToIconContainer}>
-                <FlowerShapeSvg height={16} width={16} color="#007A4E" />
+                <FlowerShapeSvg
+                  height={16}
+                  width={16}
+                  color={colors.greenDark}
+                />
               </View>
 
               <CustomText weight="medium" style={styles.itemFromToValue}>
@@ -102,7 +107,7 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
               <IconButton
                 icon={CopySvg}
                 size="small"
-                color="#A1A1A8"
+                color={colors.neutral400}
                 iconSize={{width: 16, height: 16}}
                 onPress={() => handleCopyFromTo('55d898...93842fb')}
               />
@@ -165,7 +170,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   itemTitle: {
-    color: '#8D8D94',
+    color: colors.neutral500,
   },
   itemFromTo: {
     flexDirection: 'row',
@@ -175,7 +180,7 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
     borderRadius: 32 / 2,
-    backgroundColor: '#EBFFF8',
+    backgroundColor: colors.greenLight,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
@@ -186,18 +191,18 @@ const styles = StyleSheet.create({
   },
   copied: {
     borderRadius: 24,
-    backgroundColor: '#EBF4FF',
+    backgroundColor: colors.blueLight,
     alignItems: 'center',
     textAlign: 'center',
   },
   copiedText: {
-    color: '#005FCC',
+    color: colors.blueDark,
     padding: 4,
   },
   divider: {
     height: 1,
     width: '100%',
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     marginTop: 8,
     marginBottom: 24,
   },

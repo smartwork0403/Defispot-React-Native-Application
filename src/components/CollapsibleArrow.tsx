@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import {colors} from '../styles';
 
 import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
@@ -65,7 +66,7 @@ const CollapsibleArrow: React.FC<{
         transform: [{rotate: startArrowAngel === 'right' ? '-90deg' : '0deg'}],
       }}
       ref={ref}>
-      <ChevronDownSvg height={4} width={7} color="#121315" />
+      <ChevronDownSvg height={4} width={7} color={colors.neutral900} />
     </Animatable.View>
   );
 };
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     borderRadius: 24 / 2,
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

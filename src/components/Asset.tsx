@@ -7,6 +7,8 @@ import {
   ImageStyle,
   TextStyle,
 } from 'react-native';
+import {colors, fonts} from '../styles';
+
 import CustomText from './CustomText';
 
 import BTCLogoSvg from '../assets/crypto-logos/btc.svg';
@@ -93,12 +95,12 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
     if (size === 'large') {
       style.fontSize = 24;
       style.lineHeight = 32;
-      style.fontFamily = 'Inter-SemiBold';
+      style.fontFamily = fonts.interSemiBold;
     } else if (size === 'medium') {
       style.fontSize = 18;
-      style.fontFamily = 'Inter-Medium';
+      style.fontFamily = fonts.interMedium;
     } else {
-      style.fontFamily = 'Inter-Medium';
+      style.fontFamily = fonts.interMedium;
     }
 
     if (horizontal) {
@@ -112,15 +114,15 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
     const style: StyleProp<TextStyle> = {};
     if (size === 'large') {
       style.fontSize = 14;
-      style.fontFamily = 'Inter-Regular';
+      style.fontFamily = fonts.inter;
     } else if (size === 'medium') {
       style.fontSize = 11;
       style.lineHeight = 16;
-      style.fontFamily = 'Inter-Medium';
+      style.fontFamily = fonts.interMedium;
     } else {
       style.fontSize = 12;
       style.lineHeight = 16;
-      style.fontFamily = 'Inter-Medium';
+      style.fontFamily = fonts.interMedium;
     }
 
     return style;
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   networkContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
     right: -4,
   },
   value: {
-    color: '##A1A1A8',
+    color: colors.neutral400,
   },
 });
 

@@ -6,6 +6,7 @@ import {
   VictoryChart,
   VictoryLine,
 } from 'victory-native';
+import {colors, fonts} from '../styles';
 
 import Select from './Select';
 
@@ -59,23 +60,23 @@ const AssetChart: React.FC = () => {
           <View
             style={{
               ...styles.headerSwitchIconContainer,
-              backgroundColor: isChartActive ? '#fff' : 'transparent',
+              backgroundColor: isChartActive ? colors.neutral0 : 'transparent',
             }}>
             <ChartSvg
               height={15}
               width={15}
-              color={isChartActive ? '#121315' : '#8D8D94'}
+              color={isChartActive ? colors.neutral900 : colors.neutral500}
             />
           </View>
           <View
             style={{
               ...styles.headerSwitchIconContainer,
-              backgroundColor: isChartActive ? 'transparent' : '#fff',
+              backgroundColor: isChartActive ? 'transparent' : colors.neutral0,
             }}>
             <PieSvg
               height={15}
               width={15}
-              color={isChartActive ? '#8D8D94' : '#121315'}
+              color={isChartActive ? colors.neutral500 : colors.neutral900}
             />
           </View>
         </Pressable>
@@ -109,13 +110,13 @@ const AssetChart: React.FC = () => {
               tickLabels: {
                 fontSize: 11,
                 padding: 24,
-                fill: '#A1A1A8',
-                fontFamily: 'Inter-Medium',
+                fill: colors.neutral400,
+                fontFamily: fonts.interMedium,
               },
             }}
           />
           <VictoryCandlestick
-            candleColors={{positive: '#00B674', negative: '#EF4444'}}
+            candleColors={{positive: colors.green, negative: colors.red}}
             style={{data: {stroke: 'transparent', strokeWidth: 1}}}
             data={[
               {x: new Date(2016, 6, 1), open: 5, close: 10, high: 15, low: 0},
@@ -208,8 +209,8 @@ const AssetChart: React.FC = () => {
                 tickLabels: {
                   fontSize: 11,
                   padding: 24,
-                  fill: '#A1A1A8',
-                  fontFamily: 'Inter-Medium',
+                  fill: colors.neutral400,
+                  fontFamily: fonts.interMedium,
                 },
               }}
             />
@@ -220,13 +221,13 @@ const AssetChart: React.FC = () => {
                 tickLabels: {
                   fontSize: 11,
                   padding: 12,
-                  fill: '#A1A1A8',
-                  fontFamily: 'Inter-Medium',
+                  fill: colors.neutral400,
+                  fontFamily: fonts.interMedium,
                 },
               }}
             />
             <VictoryLine
-              style={{data: {stroke: '#00B674'}}}
+              style={{data: {stroke: colors.green}}}
               data={[
                 {x: 1, y: null},
                 {x: 2, y: null},
@@ -241,7 +242,7 @@ const AssetChart: React.FC = () => {
               ]}
             />
             <VictoryLine
-              style={{data: {stroke: '#EF4444'}}}
+              style={{data: {stroke: colors.red}}}
               data={[
                 {x: 1, y: 1},
                 {x: 2, y: 5},
@@ -276,7 +277,7 @@ const AssetChart: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
   },
   header: {
     flexDirection: 'row',
@@ -285,7 +286,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   headerSwitch: {
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
     borderRadius: 24,
     padding: 4,
     flexDirection: 'row',
@@ -305,7 +306,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   lineChartDataLabel: {
-    color: '#A1A1A8',
+    color: colors.neutral400,
     marginRight: 5,
   },
   lineChartInfoContainer: {
@@ -322,17 +323,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     marginRight: 4,
-    color: '#A1A1A8',
+    color: colors.neutral400,
   },
   lineChartInfoValue: {
-    color: '#00B674',
+    color: colors.green,
     fontSize: 12,
     lineHeight: 16,
   },
   lineChartInfoDivider: {
     height: 8,
     width: 1,
-    backgroundColor: '#E0E1E4',
+    backgroundColor: colors.neutral200,
     marginLeft: 16,
     marginRight: 16,
   },

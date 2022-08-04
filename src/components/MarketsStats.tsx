@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {colors} from '../styles';
+
 import CustomText from './CustomText';
 
 const MarketsStats: React.FC = () => {
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
   statsTitle: {
     fontSize: 11,
     lineHeight: 16,
-    color: '#8D8D94',
+    color: colors.neutral500,
     textAlign: 'center',
   },
   statsValue: {
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 24,
     width: 1,
-    backgroundColor: '#EFF0F3',
+    backgroundColor: colors.neutral100,
   },
 });
 

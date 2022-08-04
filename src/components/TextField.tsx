@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {TextInput, View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
+import {colors, fonts} from '../styles';
 
 interface Props {
   onChangeText?: ((text: string) => void) | undefined;
@@ -32,11 +33,14 @@ const TextField: React.FC<Props> = ({
       <View
         style={[
           styles.container,
-          {borderColor: isFocused ? '#0077FF' : 'transparent'},
+          {borderColor: isFocused ? colors.blue : 'transparent'},
           style,
         ]}>
         {Icon && (
-          <Icon style={styles.icon} color={isFocused ? '#0077FF' : '#A1A1A8'} />
+          <Icon
+            style={styles.icon}
+            color={isFocused ? colors.blue : colors.neutral400}
+          />
         )}
         <TextInput
           onChangeText={onChangeText}
@@ -44,7 +48,7 @@ const TextField: React.FC<Props> = ({
           style={styles.input}
           placeholder={placeholder}
           autoFocus={autoFocus}
-          placeholderTextColor="#A1A1A8"
+          placeholderTextColor={colors.neutral400}
           onFocus={() => {
             onFocus?.();
             setIsFocused(true);
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     paddingBottom: 7,
     paddingRight: 12,
     paddingLeft: 13,
-    backgroundColor: '#fff',
+    backgroundColor: colors.neutral0,
     borderRadius: 24,
     flex: 1,
     display: 'flex',
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
     padding: 0,
     flexGrow: 1,
     flexShrink: 1,
-    fontFamily: 'Inter-Regular',
+    fontFamily: fonts.inter,
   },
 });
 
