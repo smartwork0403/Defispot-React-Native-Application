@@ -15,7 +15,7 @@ import TradeModule from '../components/TradeModule';
 const TradeScreen: React.FC = () => {
   const [isDeposit, setIsDeposit] = useState(true);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
-  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(true);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
 
   return (
     <Layout

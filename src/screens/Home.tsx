@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Table, TableWrapper, Cell} from 'react-native-table-component';
@@ -17,6 +24,7 @@ import UnorderedListSVG from '../assets/icons/unordered-list.svg';
 import ArrowUpSVG from '../assets/icons/arrow-up.svg';
 import ArrowDownSVG from '../assets/icons/arrow-down.svg';
 import Asset from '../components/Asset';
+import Header from '../components/Header';
 
 const carouselItems = [
   require('../assets/images/banner.png'),
@@ -101,59 +109,61 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Layout
-      header={{
-        searchable: {
-          persistence: {
-            actionIcon: BellUnreadSvg,
-            onActionIconClick: () => navigation.navigate('Notifications'),
-          },
-          inputPlaceholder: 'Search market...',
-        },
-        card: (
-          <GestureHandlerRootView>
-            <View style={styles.carouselContainer}>
-              <Carousel
-                width={windowWidth - 32}
-                height={170}
-                loop
-                autoPlay
-                autoPlayInterval={5000}
-                data={carouselItems}
-                renderItem={({item}) => (
-                  <Image
-                    source={item}
-                    style={{
-                      backgroundColor: 'green',
-                      flex: 1,
-                      width: '100%',
-                      height: '100%',
-                    }}
-                  />
-                )}
-                panGestureHandlerProps={{
-                  activeOffsetX: [-10, 10],
-                }}
-                onScrollEnd={index => setCurrentCarouselIndex(index)}
-              />
-
-              <View style={styles.carouselIndex}>
-                <CustomText weight="medium" style={styles.carouselIndexText}>
-                  {currentCarouselIndex + 1}/{carouselItems.length}
-                </CustomText>
-              </View>
-            </View>
-          </GestureHandlerRootView>
-        ),
-        cardStyle: {
-          paddingLeft: 0,
-          paddingRight: 0,
-          paddingBottom: 0,
-          paddingTop: 0,
-          overflow: 'hidden',
-        },
-      }}
       customContent={
-        <>
+        <ScrollView>
+          <Header
+            searchable={{
+              persistence: {
+                actionIcon: BellUnreadSvg,
+                onActionIconClick: () => navigation.navigate('Notifications'),
+              },
+              inputPlaceholder: 'Search market...',
+            }}
+            card={
+              <GestureHandlerRootView>
+                <View style={styles.carouselContainer}>
+                  <Carousel
+                    width={windowWidth - 32}
+                    height={170}
+                    loop
+                    autoPlay
+                    autoPlayInterval={5000}
+                    data={carouselItems}
+                    renderItem={({item}) => (
+                      <Image
+                        source={item}
+                        style={{
+                          backgroundColor: 'green',
+                          flex: 1,
+                          width: '100%',
+                          height: '100%',
+                        }}
+                      />
+                    )}
+                    panGestureHandlerProps={{
+                      activeOffsetX: [-10, 10],
+                    }}
+                    onScrollEnd={index => setCurrentCarouselIndex(index)}
+                  />
+
+                  <View style={styles.carouselIndex}>
+                    <CustomText
+                      weight="medium"
+                      style={styles.carouselIndexText}>
+                      {currentCarouselIndex + 1}/{carouselItems.length}
+                    </CustomText>
+                  </View>
+                </View>
+              </GestureHandlerRootView>
+            }
+            cardStyle={{
+              paddingLeft: 0,
+              paddingRight: 0,
+              paddingBottom: 0,
+              paddingTop: 0,
+              overflow: 'hidden',
+            }}
+          />
           <View style={styles.stakingSpecial}>
             <AnnouncementSVG
               height={12}
@@ -315,7 +325,7 @@ const HomeScreen: React.FC = () => {
               </Table>
             </View>
           </View>
-        </>
+        </ScrollView>
       }
     />
   );

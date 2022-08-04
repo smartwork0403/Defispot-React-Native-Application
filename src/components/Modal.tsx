@@ -56,23 +56,23 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
               ...styles.container,
               height: fullHeight ? '100%' : 'auto',
             }}>
-            <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
-              {header && (
-                <View style={styles.header}>
-                  <CustomText weight="medium" style={styles.headerTitle}>
-                    {header.title}
-                  </CustomText>
-                  <IconButton
-                    icon={CloseSvg}
-                    onPress={onClose}
-                    size="small"
-                    color={colors.neutral400}
-                    iconSize={{width: 10, height: 10}}
-                    style={styles.headerClose}
-                  />
-                </View>
-              )}
+            {header && (
+              <View style={styles.header}>
+                <CustomText weight="medium" style={styles.headerTitle}>
+                  {header.title}
+                </CustomText>
+                <IconButton
+                  icon={CloseSvg}
+                  onPress={onClose}
+                  size="small"
+                  color={colors.neutral400}
+                  iconSize={{width: 10, height: 10}}
+                  style={styles.headerClose}
+                />
+              </View>
+            )}
 
+            <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
               <View
                 style={{
                   ...styles.content,

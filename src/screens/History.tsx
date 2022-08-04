@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import CollapsibleArrow from '../components/CollapsibleArrow';
 import NoWalletConnected from '../components/NoWalletConnected';
 import TransactionDetails from '../components/TransactionDetailsModal';
+import Header from '../components/Header';
 
 import MagnifySvg from '../assets/icons/magnify.svg';
 import DownloadSvg from '../assets/icons/download.svg';
@@ -194,69 +195,67 @@ const History: React.FC = () => {
 
   return (
     <Layout
-      header={{
-        title: 'History',
-        minimal: true,
-        back: true,
-      }}
       customContent={
         <>
-          <ScrollView style={styles.container}>
-            <View style={styles.searchContainer}>
-              <TextField
-                placeholder="Filter by protocol, token, event, etc..."
-                icon={MagnifySvg}
-                shadowStyle={styles.searchShadowStyle}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-              />
-            </View>
+          <ScrollView>
+            <Header title="Trade" minimal back />
+            <View style={styles.container}>
+              <View style={styles.searchContainer}>
+                <TextField
+                  placeholder="Filter by protocol, token, event, etc..."
+                  icon={MagnifySvg}
+                  shadowStyle={styles.searchShadowStyle}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                />
+              </View>
 
-            {shouldFiltersBeShown() && (
-              <ScrollView
-                style={styles.filters}
-                horizontal
-                showsHorizontalScrollIndicator={false}>
-                {filters.map((filter, i) => (
-                  <Button
-                    key={filter.label}
-                    onPress={() => setSelectedFilter(filter.name)}
-                    outlined={filter.name === selectedFilter}
-                    size="small"
-                    style={{
-                      paddingLeft: filter.icon ? 6 : 12,
-                      marginRight: filters.length === i + 1 ? 0 : 12,
-                    }}
-                    prependIcon={{
-                      icon: filter.icon ?? null,
-                      width: 20,
-                      height: 20,
-                    }}
-                    shadowStyle={styles.filterShadowStyle}>
-                    {filter.label}
-                  </Button>
-                ))}
-              </ScrollView>
-            )}
-
-            {historyLists.length !== 0 ? (
-              historyLists.map(list => (
-                <View style={styles.list} key={list.time}>
-                  <CustomText weight="medium" style={styles.listTitle}>
-                    {list.time}
-                  </CustomText>
-                  {list.items.map(item => (
-                    <HistoryItem
-                      type={item.type}
-                      time={item.time}
-                      key={item.time}
-                    />
+              {shouldFiltersBeShown() && (
+                <ScrollView
+                  style={styles.filters}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}>
+                  {filters.map((filter, i) => (
+                    <Button
+                      key={filter.label}
+                      onPress={() => setSelectedFilter(filter.name)}
+                      outlined={filter.name === selectedFilter}
+                      size="small"
+                      style={{
+                        paddingLeft: filter.icon ? 6 : 12,
+                        marginRight: filters.length === i + 1 ? 0 : 12,
+                      }}
+                      prependIcon={{
+                        icon: filter.icon ?? null,
+                        width: 20,
+                        height: 20,
+                      }}
+                      shadowStyle={styles.filterShadowStyle}>
+                      {filter.label}
+                    </Button>
                   ))}
-                </View>
-              ))
-            ) : (
-              <NoWalletConnected shapes />
-            )}
+                </ScrollView>
+              )}
+
+              {historyLists.length !== 0 ? (
+                historyLists.map(list => (
+                  <View style={styles.list} key={list.time}>
+                    <CustomText weight="medium" style={styles.listTitle}>
+                      {list.time}
+                    </CustomText>
+                    {list.items.map(item => (
+                      <HistoryItem
+                        type={item.type}
+                        time={item.time}
+                        key={item.time}
+                      />
+                    ))}
+                  </View>
+                ))
+              ) : (
+                <NoWalletConnected shapes />
+              )}
+            </View>
           </ScrollView>
 
           {historyLists.length !== 0 && (
@@ -303,8 +302,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.neutral0,
   },
   list: {
-    marginBottom: 8,
-    paddingBottom: 8,
+    marginBottom: 16,
   },
   listTitle: {
     marginBottom: 8,
