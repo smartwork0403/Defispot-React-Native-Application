@@ -9,7 +9,7 @@ import {
   generatePhrase,
   Keystore,
   validatePhrase,
-} from '@xchainjs/xchain-crypto';
+} from '@thorwallet/xchain-crypto';
 import {useFilePicker} from 'use-file-picker';
 
 import {actions as AppActions} from '../redux/app/app-slice';

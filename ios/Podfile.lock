@@ -394,6 +394,7 @@ PODS:
     - React-perflogger (= 0.69.1)
   - RNBootSplash (4.2.3):
     - React-Core
+<<<<<<< HEAD
   - RNCClipboard (1.10.0):
     - React-Core
   - RNGestureHandler (2.5.0):
@@ -426,6 +427,11 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - RNScreens (3.15.0):
+=======
+  - RNOS (1.2.6):
+    - React
+  - RNScreens (3.14.0):
+>>>>>>> codebase
     - React-Core
     - React-RCTImage
   - RNShare (7.7.0):
@@ -510,9 +516,13 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
+<<<<<<< HEAD
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+=======
+  - RNOS (from `../node_modules/react-native-os`)
+>>>>>>> codebase
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -634,12 +644,17 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNBootSplash:
     :path: "../node_modules/react-native-bootsplash"
+<<<<<<< HEAD
   RNCClipboard:
     :path: "../node_modules/@react-native-clipboard/clipboard"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+=======
+  RNOS:
+    :path: "../node_modules/react-native-os"
+>>>>>>> codebase
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNShare:
@@ -712,16 +727,25 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 27f468c5576eaf05ffb7a907528e44c75a3fcbae
   ReactCommon: e30ec17dfb1d4c4f3419eac254350d6abca6d5a2
   RNBootSplash: e8a36a88f8c868769ec998c5afe3082032e82fc2
+<<<<<<< HEAD
   RNCClipboard: f1736c75ab85b627a4d57587edb4b60999c4dd80
   RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
   RNReanimated: 2cf7451318bb9cc430abeec8d67693f9cf4e039c
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
   RNShare: ab582e93876d9df333a531390c658c31b50a767d
+=======
+  RNOS: 6f2f9a70895bbbfbdad7196abd952e7b01d45027
+  RNScreens: 4830eb40e0793b38849965cd27f4f3a7d7bc65c1
+>>>>>>> codebase
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 7ab6e3ee4ce47d7b789d1cb520163833e515f452
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
+<<<<<<< HEAD
 PODFILE CHECKSUM: 59d397e3086478fa86c0304d58dc777c09e80e5e
+=======
+PODFILE CHECKSUM: a9c42144bb9a9da08d62770f4e23f2937b44be6c
+>>>>>>> codebase
 
 COCOAPODS: 1.11.3

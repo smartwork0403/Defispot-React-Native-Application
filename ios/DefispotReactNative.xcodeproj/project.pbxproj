@@ -21,6 +21,9 @@
 		8EE1E536DF9445C9A4B384D2 /* CircularStd-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE30D2EC1D8D491A999A36AB /* CircularStd-BlackItalic.ttf */; };
 		9F831DEC833C4BB6BAE1EF5A /* CircularStd-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15FF8C31513F4C01B4B18F16 /* CircularStd-Black.ttf */; };
 		A7E5DBC2F3F774DD5ACDB8EB /* libPods-DefispotReactNative-DefispotReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6944AFE12A66B1297C2645 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */; };
+		828B407B9654A03617659ED3 /* libPods-DefispotReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C40B4DCE39D45F9734CF5B3B /* libPods-DefispotReactNative.a */; };
+		8EE1E536DF9445C9A4B384D2 /* CircularStd-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE30D2EC1D8D491A999A36AB /* CircularStd-BlackItalic.ttf */; };
+		9F831DEC833C4BB6BAE1EF5A /* CircularStd-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15FF8C31513F4C01B4B18F16 /* CircularStd-Black.ttf */; };
 		AED806BE6D6D4E1B91F0E52D /* CircularStd-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA851F66ED404A0EA938C3F8 /* CircularStd-BookItalic.ttf */; };
 		C79762C05DBE4C0A8FB3D64E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD22296A5554AFC9C5CD76C /* Inter-SemiBold.ttf */; };
 		C7EA14B24F81415EB0E6FB19 /* CircularStd-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D8524DBF383491380792B11 /* CircularStd-Light.ttf */; };
@@ -57,6 +60,7 @@
 		17B583830E7A4C66B7C15EC1 /* CircularStd-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Bold.ttf"; path = "../src/assets/fonts/CircularStd-Bold.ttf"; sourceTree = "<group>"; };
 		3D8524DBF383491380792B11 /* CircularStd-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Light.ttf"; path = "../src/assets/fonts/CircularStd-Light.ttf"; sourceTree = "<group>"; };
 		4B63002A67871183A171C18D /* libPods-DefispotReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F923AC64B79A120A39437F1 /* Pods-DefispotReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.release.xcconfig"; sourceTree = "<group>"; };
 		59EE6C4D2C814DD49CA0CB76 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../src/assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		7E6944AFE12A66B1297C2645 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative-DefispotReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DefispotReactNative/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,6 +71,14 @@
 		B38D5FBF362E90A115A82F6F /* Pods-DefispotReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.release.xcconfig"; sourceTree = "<group>"; };
 		B6D8B427649047A9A83CBC30 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../src/assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
 		B6E72D76883633A746451711 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-DefispotReactNative/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		8ABDA8AD80F269A5A2943182 /* libPods-DefispotReactNative-DefispotReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative-DefispotReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		946C2441E77A44D1898237BE /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../src/assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		9D26F847933EFBD53EFD76CB /* Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
+		B0859641C66E436F95C397C9 /* CircularStd-Light Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Light Italic.ttf"; path = "../src/assets/fonts/CircularStd-Light Italic.ttf"; sourceTree = "<group>"; };
+		B6D8B427649047A9A83CBC30 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../src/assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		B865B660AF93CD35F9472274 /* Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative-DefispotReactNativeTests/Pods-DefispotReactNative-DefispotReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C1F9E05C640C9AA5E222EE05 /* Pods-DefispotReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DefispotReactNative.debug.xcconfig"; path = "Target Support Files/Pods-DefispotReactNative/Pods-DefispotReactNative.debug.xcconfig"; sourceTree = "<group>"; };
+		C40B4DCE39D45F9734CF5B3B /* libPods-DefispotReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DefispotReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA851F66ED404A0EA938C3F8 /* CircularStd-BookItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-BookItalic.ttf"; path = "../src/assets/fonts/CircularStd-BookItalic.ttf"; sourceTree = "<group>"; };
 		DE0A89846D3B4689A0313C50 /* CircularStd-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularStd-Book.ttf"; path = "../src/assets/fonts/CircularStd-Book.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -595,6 +607,51 @@
 				DEVELOPMENT_TEAM = RQF6Q34X58;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = arm64;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Fmt\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-PeerTalk\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-RSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/FlipperKit\"",
+					"\"${PODS_ROOT}/Headers/Public/RCT-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
+					"\"${PODS_ROOT}/Headers/Public/RNBootSplash\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
+					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Codegen\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTAnimation\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
+					"\"${PODS_ROOT}/Headers/Public/React-bridging\"",
+					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
+					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
+					"\"${PODS_ROOT}/Headers/Public/React-logger\"",
+					"\"${PODS_ROOT}/Headers/Public/React-perflogger\"",
+					"\"${PODS_ROOT}/Headers/Public/React-runtimeexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
+					"\"${PODS_ROOT}/Headers/Public/SocketRocket\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/YogaKit\"",
+					"\"${PODS_ROOT}/Headers/Public/fmt\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/libevent\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
+					"\"$(PODS_ROOT)/DoubleConversion\"",
+					"\"$(PODS_ROOT)/boost\"",
+					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
+					"\"$(PODS_TARGET_SRCROOT)/include/\"",
+				);
 				INFOPLIST_FILE = DefispotReactNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -627,6 +684,51 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RQF6Q34X58;
 				EXCLUDED_ARCHS = arm64;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CocoaAsyncSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Fmt\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-PeerTalk\"",
+					"\"${PODS_ROOT}/Headers/Public/Flipper-RSocket\"",
+					"\"${PODS_ROOT}/Headers/Public/FlipperKit\"",
+					"\"${PODS_ROOT}/Headers/Public/RCT-Folly\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
+					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
+					"\"${PODS_ROOT}/Headers/Public/RNBootSplash\"",
+					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
+					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Codegen\"",
+					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTAnimation\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
+					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
+					"\"${PODS_ROOT}/Headers/Public/React-bridging\"",
+					"\"${PODS_ROOT}/Headers/Public/React-callinvoker\"",
+					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
+					"\"${PODS_ROOT}/Headers/Public/React-logger\"",
+					"\"${PODS_ROOT}/Headers/Public/React-perflogger\"",
+					"\"${PODS_ROOT}/Headers/Public/React-runtimeexecutor\"",
+					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
+					"\"${PODS_ROOT}/Headers/Public/SocketRocket\"",
+					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
+					"\"${PODS_ROOT}/Headers/Public/YogaKit\"",
+					"\"${PODS_ROOT}/Headers/Public/fmt\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/libevent\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
+					"\"$(PODS_ROOT)/DoubleConversion\"",
+					"\"$(PODS_ROOT)/boost\"",
+					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
+					"\"$(PODS_TARGET_SRCROOT)/include/\"",
+				);
 				INFOPLIST_FILE = DefispotReactNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

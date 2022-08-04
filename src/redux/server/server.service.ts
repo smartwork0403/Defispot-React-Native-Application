@@ -1,4 +1,4 @@
-import {Asset as AssetObj, Chain} from '@xchainjs/xchain-util';
+import {Asset as AssetObj, Chain} from '@thorwallet/xchain-util';
 import {Asset} from '../../SDKs/multichain-sdk';
 
 import {httpClientV2} from '../../helpers/http-client.helper';

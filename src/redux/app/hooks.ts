@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 
-import {FeeOption} from '@xchainjs/xchain-client';
+import {FeeOption} from '@thorwallet/xchain-client';
 import {Asset} from '../../SDKs/multichain-sdk';
 
 // import {NotificationProps} from 'components/Notifications/Notifications';

@@ -1,4 +1,4 @@
-import {AssetETH, Asset, Chain} from '@xchainjs/xchain-util';
+import {AssetETH, Asset, Chain} from '@thorwallet/xchain-util';
 
 // toxic tether https://ropsten.etherscan.io/token/0xa3910454bf2cb59b8b3a401589a3bacc5ca42306
 export const AssetUSDTERC20: Asset = {

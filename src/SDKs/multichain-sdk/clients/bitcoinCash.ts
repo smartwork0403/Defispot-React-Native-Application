@@ -3,24 +3,24 @@ import {
   AddressParams,
   Client as BchClient,
   ErrorResponse,
-} from '@xchainjs/xchain-bitcoincash';
+} from '@thorwallet/xchain-bitcoincash';
 import {
   TxHash,
   Balance,
   Network,
   TxParams as ClientTxParams,
   FeeOption,
-} from '@xchainjs/xchain-client';
+} from '@thorwallet/xchain-client';
 import {
   baseAmount,
   Chain,
   BCHChain,
   assetToString,
   AssetBCH,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 import axios from 'axios';
 
-import {HASKOIN_API_URL} from 'settings/config';
+import {HASKOIN_API_URL} from '../../../settings/config';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';

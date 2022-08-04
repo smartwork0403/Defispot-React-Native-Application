@@ -7,10 +7,13 @@ import {
   TxHistoryParams,
   Tx,
   FeeOption,
-} from '@xchainjs/xchain-client';
-import {decryptFromKeystore, Keystore} from '@xchainjs/xchain-crypto';
-import {Client as EthClient, getTokenAddress} from '@xchainjs/xchain-ethereum';
-import {getChainIds, getDefaultClientUrl} from '@xchainjs/xchain-thorchain';
+} from '@thorwallet/xchain-client';
+import {decryptFromKeystore, Keystore} from '@thorwallet/xchain-crypto';
+import {
+  Client as EthClient,
+  getTokenAddress,
+} from '@thorwallet/xchain-ethereum';
+import {getChainIds, getDefaultClientUrl} from '@thorwallet/xchain-thorchain';
 import {
   baseAmount,
   Chain,
@@ -20,17 +23,16 @@ import {
   ETHChain,
   LTCChain,
   BCHChain,
-  DOGEChain,
   CosmosChain,
-} from '@xchainjs/xchain-util';
-import {MetaMaskClient, WalletStatus} from 'metamask-sdk';
-import {MidgardV2, InboundAddressesItem} from 'midgard-sdk';
+} from '@thorwallet/xchain-util';
+import {MetaMaskClient, WalletStatus} from '../../metamask-sdk';
+import {MidgardV2, InboundAddressesItem} from '../../midgard-sdk';
 import {
   WalletConnectClient,
   WalletConnectOption,
-} from 'wallet-core/walletconnect';
+} from '../../wallet-core/walletconnect';
 
-import {AssetInfo} from 'redux/server/types';
+import {AssetInfo} from '../../../redux/server/types';
 
 import {XdefiClient} from '../../xdefi-sdk/xdefi';
 import {Swap, Memo, Asset, AssetAmount} from '../entities';
@@ -40,7 +42,6 @@ import {BnbChain} from './binance';
 import {BtcChain} from './bitcoin';
 import {BchChain} from './bitcoinCash';
 import {GaiaChain} from './cosmos';
-import {DogeChain} from './doge';
 import {EthChain} from './ethereum';
 import {LtcChain} from './litecoin';
 import {ThorChain} from './thorchain';
@@ -62,13 +63,7 @@ import {
 
 // AUDIT:Minor Could we refactor this file so it becomes smaller and easy to read? We could separate the interfaces and types into different files
 
-type NonETHChainClient =
-  | BnbChain
-  | BtcChain
-  | LtcChain
-  | ThorChain
-  | DogeChain
-  | GaiaChain;
+type NonETHChainClient = BnbChain | BtcChain | LtcChain | ThorChain | GaiaChain;
 
 const THORCHAIN_POOL_ADDRESS = '';
 
@@ -83,7 +78,6 @@ export interface IMultiChain {
   eth: EthChain;
   ltc: LtcChain;
   bch: BchChain;
-  doge: DogeChain;
   cosmos: GaiaChain;
   feeOption: FeeOption;
 
@@ -160,8 +154,6 @@ export class MultiChain implements IMultiChain {
 
   public ltc: LtcChain;
 
-  public doge: DogeChain;
-
   public cosmos: GaiaChain;
 
   public feeOption: FeeOption = FeeOption.Fast;
@@ -202,16 +194,22 @@ export class MultiChain implements IMultiChain {
 
       if (chain === BNBChain) {
         await this.bnb.connectLedger(addressIndex);
-        ledgerAddress = this.bnb.getClient().getAddress().toLowerCase();
+        ledgerAddress = (await this.bnb.getClient().getAddress()).toLowerCase();
       }
       if (chain === THORChain) {
         await this.thor.connectLedger(addressIndex);
-        ledgerAddress = this.thor.getClient().getAddress().toLowerCase();
+        ledgerAddress = (
+          await this.thor.getClient().getAddress()
+        ).toLowerCase();
       }
 
-      if (!ledgerAddress) throw Error('Ledger not connected');
+      if (!ledgerAddress) {
+        throw Error('Ledger not connected');
+      }
 
-      if (!this.wallet) this.initWallets();
+      if (!this.wallet) {
+        this.initWallets();
+      }
 
       if (this.wallet) {
         this.wallet = {
@@ -238,9 +236,13 @@ export class MultiChain implements IMultiChain {
     }
 
     await this.eth.connectMetaMask(this.metamaskClient);
-    const metamaskAddress = this.eth.getClient().getAddress().toLowerCase();
+    const metamaskAddress = (
+      await this.eth.getClient().getAddress()
+    ).toLowerCase();
 
-    if (!this.wallet) this.initWallets();
+    if (!this.wallet) {
+      this.initWallets();
+    }
 
     if (this.wallet) {
       this.wallet = {
@@ -261,17 +263,23 @@ export class MultiChain implements IMultiChain {
       await this.trustwalletClient.connect();
     }
 
-    if (!this.wallet) this.initWallets();
+    if (!this.wallet) {
+      this.initWallets();
+    }
 
     await this.bnb.connectTrustWallet(this.trustwalletClient);
     await this.eth.connectTrustWallet(this.trustwalletClient);
     await this.thor.connectTrustWallet(this.trustwalletClient);
 
-    const bnbAddress = this.bnb.getClient().getAddress().toLowerCase();
-    const ethAddress = this.eth.getClient().getAddress().toLowerCase();
-    const thorAddress = this.thor.getClient().getAddress().toLowerCase();
+    const bnbAddress = (await this.bnb.getClient().getAddress()).toLowerCase();
+    const ethAddress = (await this.eth.getClient().getAddress()).toLowerCase();
+    const thorAddress = (
+      await this.thor.getClient().getAddress()
+    ).toLowerCase();
 
-    if (!this.wallet) this.initWallets();
+    if (!this.wallet) {
+      this.initWallets();
+    }
 
     if (this.wallet) {
       this.wallet = {
@@ -309,14 +317,15 @@ export class MultiChain implements IMultiChain {
 
   // patch client methods to use xdefi request and address
   connectAllClientsToXDefi = async () => {
-    if (!this.xdefiClient) throw Error('xdefi client not found');
+    if (!this.xdefiClient) {
+      throw Error('xdefi client not found');
+    }
     await this.thor.connectXdefiWallet(this.xdefiClient);
     await this.btc.connectXdefiWallet(this.xdefiClient);
     await this.bch.connectXdefiWallet(this.xdefiClient);
     await this.ltc.connectXdefiWallet(this.xdefiClient);
     await this.bnb.connectXdefiWallet(this.xdefiClient);
     await this.eth.connectXdefiWallet(this.xdefiClient);
-    await this.doge.connectXdefiWallet(this.xdefiClient);
   };
 
   initWallets = () => {
@@ -327,7 +336,6 @@ export class MultiChain implements IMultiChain {
       [LTCChain]: null,
       [ETHChain]: null,
       [THORChain]: null,
-      [DOGEChain]: null,
       [CosmosChain]: null,
     };
   };
@@ -336,16 +344,14 @@ export class MultiChain implements IMultiChain {
   resetWallets = () => {
     this.initWallets();
 
-    this.chains.forEach((chain: SupportedChain) => {
+    this.chains.forEach(async (chain: SupportedChain) => {
       const chainClient = this.getChainClient(chain);
 
       if (chainClient) {
         const {walletType} = chainClient;
         if (walletType && this.wallet) {
           const address = removeAddressPrefix(
-            chain !== Chain.Doge
-              ? chainClient.getClient().getAddress().toLowerCase()
-              : chainClient.getClient().getAddress(),
+            (await chainClient.getClient().getAddress()).toLowerCase(),
           );
 
           this.wallet[chain] = {
@@ -374,7 +380,6 @@ export class MultiChain implements IMultiChain {
     this.eth = new EthChain({network: this.network});
     this.ltc = new LtcChain({network: this.network});
     this.bch = new BchChain({network: this.network});
-    this.doge = new DogeChain({network: this.network});
     this.cosmos = new GaiaChain({network: this.network});
   };
 
@@ -387,7 +392,6 @@ export class MultiChain implements IMultiChain {
     this.bch.connectKeystore(phrase);
     await this.thor.connectKeystore(phrase);
     this.eth.connectKeystore(phrase);
-    this.doge.connectKeystore(phrase);
     this.cosmos.connectKeystore(phrase);
     this.resetWallets();
   };
@@ -437,32 +441,48 @@ export class MultiChain implements IMultiChain {
   };
 
   getChainClient = (chain: Chain) => {
-    if (chain === THORChain) return this.thor;
-    if (chain === BNBChain) return this.bnb;
-    if (chain === BTCChain) return this.btc;
-    if (chain === ETHChain) return this.eth;
-    if (chain === LTCChain) return this.ltc;
-    if (chain === BCHChain) return this.bch;
-    if (chain === DOGEChain) return this.doge;
-    if (chain === CosmosChain) return this.cosmos;
+    if (chain === THORChain) {
+      return this.thor;
+    }
+    if (chain === BNBChain) {
+      return this.bnb;
+    }
+    if (chain === BTCChain) {
+      return this.btc;
+    }
+    if (chain === ETHChain) {
+      return this.eth;
+    }
+    if (chain === LTCChain) {
+      return this.ltc;
+    }
+    if (chain === BCHChain) {
+      return this.bch;
+    }
+
+    if (chain === CosmosChain) {
+      return this.cosmos;
+    }
     return null;
   };
 
   getWalletByChain = async (chain: Chain): Promise<ChainWallet | null> => {
     const chainClient = this.getChainClient(chain);
 
-    if (!chainClient) throw new Error('invalid chain');
+    if (!chainClient) {
+      throw new Error('invalid chain');
+    }
 
     try {
       const {walletType} = chainClient;
 
-      if (!walletType) return null;
+      if (!walletType) {
+        return null;
+      }
       const balance = (await chainClient?.loadBalance()) ?? [];
       // filter doge because addresses are case-sensitive
       const address = removeAddressPrefix(
-        chain !== DOGEChain
-          ? chainClient.getClient().getAddress().toLowerCase()
-          : chainClient.getClient().getAddress(),
+        (await chainClient.getClient().getAddress()).toLowerCase(),
       );
 
       if (this.wallet && chain in this.wallet) {
@@ -526,14 +546,18 @@ export class MultiChain implements IMultiChain {
     chain: Chain;
   }): boolean => {
     const chainClient = this.getChainClient(chain);
-    if (!chainClient) return false;
+    if (!chainClient) {
+      return false;
+    }
 
     return chainClient.getClient().validateAddress(address);
   };
 
   getExplorerUrl = (chain: Chain): string => {
     const chainClient = this.getChainClient(chain);
-    if (!chainClient) return '#';
+    if (!chainClient) {
+      return '#';
+    }
 
     return chainClient.getClient().getExplorerUrl();
   };
@@ -551,7 +575,9 @@ export class MultiChain implements IMultiChain {
     }
 
     const chainClient = this.getChainClient(chain);
-    if (!chainClient) return '#';
+    if (!chainClient) {
+      return '#';
+    }
 
     return chainClient.getClient().getExplorerAddressUrl(address);
   };
@@ -559,7 +585,9 @@ export class MultiChain implements IMultiChain {
   getExplorerTxUrl = (chain: Chain, txHash: string): string => {
     const chainClient = this.getChainClient(chain);
 
-    if (!chainClient) return '#';
+    if (!chainClient) {
+      return '#';
+    }
 
     // add 0x suffix for eth chain
     if (chain === ETHChain) {
@@ -588,16 +616,20 @@ export class MultiChain implements IMultiChain {
     params?: TxHistoryParams,
   ): Promise<TxsPage> => {
     const chainClient = this.getChainClient(chain);
-    if (!chainClient || !params) throw new Error('invalid chain');
+    if (!chainClient || !params) {
+      throw new Error('invalid chain');
+    }
 
     return chainClient.getClient().getTransactions(params);
   };
 
-  getTransactionData = (chain: Chain, txHash: string): Promise<Tx> => {
+  getTransactionData = async (chain: Chain, txHash: string): Promise<Tx> => {
     const chainClient = this.getChainClient(chain);
-    if (!chainClient) throw new Error('invalid chain');
+    if (!chainClient) {
+      throw new Error('invalid chain');
+    }
 
-    const address = chainClient.getClient().getAddress();
+    const address = await chainClient.getClient().getAddress();
 
     return chainClient.getClient().getTransactionData(txHash, address);
   };
@@ -608,7 +640,9 @@ export class MultiChain implements IMultiChain {
 
   getFees = (chain: Chain, tx?: TxParams): Promise<Fees> => {
     const chainClient = this.getChainClient(chain);
-    if (!chainClient) throw new Error('invalid chain');
+    if (!chainClient) {
+      throw new Error('invalid chain');
+    }
 
     if (chain === 'ETH' && tx) {
       const {assetAmount, recipient} = tx;
@@ -635,7 +669,9 @@ export class MultiChain implements IMultiChain {
 
   isAssetApproved = async (asset: Asset): Promise<boolean> => {
     // non-erc20, eth, synth assets
-    if (asset.chain !== ETHChain || asset.isETH() || asset.synth) return true;
+    if (asset.chain !== ETHChain || asset.isETH() || asset.synth) {
+      return true;
+    }
 
     const {router: spenderAddress} = await this.getInboundDataByChain(ETHChain);
 
@@ -654,7 +690,9 @@ export class MultiChain implements IMultiChain {
   };
 
   approveAsset = async (asset: Asset): Promise<TxHash | null> => {
-    if (asset.chain !== ETHChain || asset.isETH()) return null;
+    if (asset.chain !== ETHChain || asset.isETH()) {
+      return null;
+    }
 
     const {router: spenderAddress} = await this.getInboundDataByChain(ETHChain);
 

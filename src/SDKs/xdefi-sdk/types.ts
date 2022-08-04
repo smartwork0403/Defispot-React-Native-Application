@@ -1,4 +1,4 @@
-import {CosmosChain} from '@xchainjs/xchain-util';
+import {CosmosChain} from '@thorwallet/xchain-util';
 
 import {
   BTCChain,

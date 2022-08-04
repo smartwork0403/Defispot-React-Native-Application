@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {FeeOption} from '@xchainjs/xchain-client';
+import {FeeOption} from '@thorwallet/xchain-client';
 import {AppStateModel} from '../../models/AppStateModel';
 import {Asset} from '../../SDKs/multichain-sdk';
 

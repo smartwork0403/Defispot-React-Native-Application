@@ -1,4 +1,4 @@
-import {MULTICHAIN_DECIMAL} from 'multichain-sdk/constants';
+import {MULTICHAIN_DECIMAL} from '../../multichain-sdk/constants';
 
 import {Amount} from './amount';
 import {Percent} from './percent';

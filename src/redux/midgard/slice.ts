@@ -1,9 +1,9 @@
-import {createSelector, createSlice} from '@reduxjs/toolkit';;
-import type {PayloadAction} from '@reduxjs/toolkit';;
-import {Chain, THORChain} from '@xchainjs/xchain-util';;
+import {createSelector, createSlice} from '@reduxjs/toolkit';
+import type {PayloadAction} from '@reduxjs/toolkit';
+import {Chain, THORChain} from '@thorwallet/xchain-util';
 import BigNumber from 'bignumber.js';
-import {getFormatted} from '../../common/helper/action-helper';;
-import {fromUnixTime} from 'date-fns';;
+import {getFormatted} from '../../common/helper/action-helper';
+import {fromUnixTime} from 'date-fns';
 import {
   Action,
   ActionStatusEnum,
@@ -12,12 +12,12 @@ import {
   Transaction,
 } from '../../SDKs/midgard-sdk';
 import * as moment from 'moment';
-import {Asset, Pool, SUPPORTED_CHAINS} from '../../SDKs/multichain-sdk';;
+import {Asset, Pool, SUPPORTED_CHAINS} from '../../SDKs/multichain-sdk';
 
-import {getAssetCurrentPriceData} from '../../redux/server/server.actions';;
-import {actions as walletActions} from '../../redux/wallet/slice';;
+import {getAssetCurrentPriceData} from '../../redux/server/server.actions';
+import {actions as walletActions} from '../../redux/wallet/slice';
 
-import type {RootState} from '../store';;
+import type {RootState} from '../store';
 import * as midgardActions from './actions';
 import {
   AssetApproval,
@@ -29,7 +29,7 @@ import {
   TxTracker,
   TxTrackerStatus,
 } from './types';
-import {getChainMemberDetails, isPendingLP} from './utils';;
+import {getChainMemberDetails, isPendingLP} from './utils';
 
 const initialState: State = {
   assets: [],
@@ -97,7 +97,7 @@ const slice = createSlice({
       state,
       action: PayloadAction<{uuid: string; txTracker: Partial<TxTracker>}>,
     ) {
-      const {uuid, txTracker} = action.payload;;
+      const {uuid, txTracker} = action.payload;
 
       state.txTrackers = state.txTrackers.map((tracker: TxTracker) => {
         if (tracker.uuid === uuid) {
@@ -133,8 +133,10 @@ const slice = createSlice({
       state,
       {payload}: PayloadAction<{txTracker: TxTracker; action?: Action}>,
     ) {
-      const {txTracker, action} = payload;;
-      if (!action) {return};
+      const {txTracker, action} = payload;
+      if (!action) {
+        return;
+      }
 
       const existingTracker = state.newTxTrackers.find(
         tx => tx.uuid === txTracker.uuid,
@@ -168,7 +170,7 @@ const slice = createSlice({
               poolDetail.asset,
               oldPools,
             );
-            res.push({marketCap, pool});;
+            res.push({marketCap, pool});
             const assetFound = state.assets.find(asset => {
               return (
                 asset.ticker.toUpperCase() ===
@@ -190,7 +192,7 @@ const slice = createSlice({
       })
       .addCase(getAssetCurrentPriceData.fulfilled, (state, {payload}) => {
         const updatedPools = state.pools.map(data => {
-          const {asset} = data.pool;;
+          const {asset} = data.pool;
           const chain = asset.chain === Chain.Terra ? 'LUNA' : asset.chain;
           let ticker: string;
           if (asset.ticker === 'UST') {
@@ -225,7 +227,7 @@ const slice = createSlice({
         payload.pools.forEach(payloadPool => {
           const foundIndex = state.memberDetails.pools.findIndex(
             memberPool => payloadPool.pool === memberPool.pool,
-          );;
+          );
 
           if (foundIndex !== -1) {
             // Note: We need to grab the latest data, since multiple addresses can contain the same pool,
@@ -235,12 +237,12 @@ const slice = createSlice({
               +payloadPool.dateLastAdded >
               +state.memberDetails.pools[foundIndex].dateLastAdded
             ) {
-              state.memberDetails.pools[foundIndex] = payloadPool;;
+              state.memberDetails.pools[foundIndex] = payloadPool;
             }
-          } else state.memberDetails.pools.push(payloadPool);;
-        });;
+          } else state.memberDetails.pools.push(payloadPool);
+        });
 
-        state.memberDetailsLoading = false;;
+        state.memberDetailsLoading = false;
       })
       .addCase(midgardActions.getMemberDetail.rejected, state => {
         state.memberDetailsLoading = false;
@@ -316,7 +318,7 @@ const slice = createSlice({
             arg: {chain},
           } = action.meta;
 
-          const {pools: memPools} = action.payload;;
+          const {pools: memPools} = action.payload;
 
           const fetchedChainMemberDetails = getChainMemberDetails({
             chain,
@@ -371,10 +373,10 @@ const slice = createSlice({
             arg: {chain},
           } = action.meta;
 
-          const {runeMemberData, assetMemberData} = action.payload;;
+          const {runeMemberData, assetMemberData} = action.payload;
 
-          const {pools: runeMemberDetails} = runeMemberData;;
-          const {pools: assetMemberDetails} = assetMemberData;;
+          const {pools: runeMemberDetails} = runeMemberData;
+          const {pools: assetMemberDetails} = assetMemberData;
 
           // add rune asymm
           const fetchedChainMemberDetails1 = getChainMemberDetails({
@@ -476,8 +478,12 @@ const slice = createSlice({
       })
       .addCase(midgardActions.getSwapHistory.fulfilled, (state, action) => {
         state.swapHistoryLoading = false;
-        if (action.meta.arg.pool) {state.swapHistory = action.payload};
-        else {state.swapGlobalHistory = action.payload};
+        if (action.meta.arg.pool) {
+          state.swapHistory = action.payload;
+        } else {
+          //@ts-ignore
+          state.swapGlobalHistory = actions.payload;
+        }
       })
       .addCase(midgardActions.getSwapHistory.rejected, state => {
         state.swapHistoryLoading = true;
@@ -490,8 +496,12 @@ const slice = createSlice({
         midgardActions.getLiquidityHistory.fulfilled,
         (state, action) => {
           state.liquidityHistoryLoading = false;
-          if (action.meta.arg.pool) {state.liquidityHistory = action.payload};
-          else {state.liquidityGlobalHistory = action.payload};
+          if (action.meta.arg.pool) {
+            state.liquidityHistory = action.payload;
+          } else {
+          //@ts-ignore
+            state.liquidityGlobalHistory = actions.payload;
+          }
         },
       )
       .addCase(midgardActions.getLiquidityHistory.rejected, state => {
@@ -521,7 +531,7 @@ const slice = createSlice({
       })
       // poll Tx
       .addCase(midgardActions.pollTx.fulfilled, (state, action) => {
-        const {arg: txTracker} = action.meta;;
+        const {arg: txTracker} = action.meta;
         const txData = action.payload?.actions?.[0];
 
         if (txData) {
@@ -550,15 +560,15 @@ const slice = createSlice({
       })
       // poll Upgrade Tx
       .addCase(midgardActions.pollUpgradeTx.fulfilled, (state, action) => {
-        const {arg: txTracker} = action.meta;;
-        const {actions} = action.payload;;
+        const {arg: txTracker} = action.meta;
+        const {actions} = action.payload;
         const txData = actions?.[0];
         const {
           submitTx: {submitDate},
         } = txTracker;
 
         if (submitDate && txData) {
-          const {date} = txData;;
+          const {date} = txData;
 
           if (
             moment.unix(Number(date) / 1000000000).isAfter(moment(submitDate))
@@ -589,8 +599,8 @@ const slice = createSlice({
       })
       // poll Approve Tx
       .addCase(midgardActions.pollApprove.fulfilled, (state, action) => {
-        const {asset, approved} = action.payload;;
-        const {arg: txTracker} = action.meta;;
+        const {asset, approved} = action.payload;
+        const {arg: txTracker} = action.meta;
 
         if (asset) {
           state.txTrackers = state.txTrackers.map((tracker: TxTracker) => {
@@ -653,7 +663,7 @@ const slice = createSlice({
         state.pendingLPLoading = false;
       })
       .addCase(midgardActions.getTopPositions.fulfilled, (state, {payload}) => {
-        state.lpPositions = payload;;
+        state.lpPositions = payload;
       })
       .addCase(midgardActions.approveAssetPoll.pending, (state, {meta}) => {
         state.assetApprovals.push({
@@ -663,13 +673,13 @@ const slice = createSlice({
         });
       })
       .addCase(midgardActions.approveAssetPoll.rejected, (state, {payload}) => {
-        if (!payload) return;;
+        if (!payload) return;
 
-        const index = state.assetApprovals.findIndex(a => a.asset === payload);;
+        const index = state.assetApprovals.findIndex(a => a.asset === payload);
 
         if (index !== -1) {
-          state.assetApprovals[index].inProgress = false;;
-          state.assetApprovals[index].isApproved = false;;
+          state.assetApprovals[index].inProgress = false;
+          state.assetApprovals[index].isApproved = false;
         }
       })
       .addCase(
@@ -704,7 +714,7 @@ const slice = createSlice({
   },
 });
 
-export const {reducer, actions} = slice;;
+export const {reducer, actions} = slice;
 export const selectState = (state: RootState) => state.midgard;
 
 export const selectPoolsMarketCap = createSelector(
@@ -737,7 +747,7 @@ export const selectAvailablePools = createSelector(
 export const selectAvailablePoolAssets = createSelector(
   selectAvailablePools,
   pools => {
-    const assets = pools.map(pool => pool.asset);;
+    const assets = pools.map(pool => pool.asset);
     assets.push(Asset.RUNE());
     return assets;
   },
@@ -747,7 +757,9 @@ export const selectFilteredPoolAssets = createSelector(
   selectAvailablePoolAssets,
   (_, searchString: string) => searchString,
   (assets, searchString) => {
-    if (!searchString) {return assets};
+    if (!searchString) {
+      return assets;
+    }
 
     return assets.filter(
       asset =>
@@ -761,7 +773,9 @@ export const selectAvailableThorchainAssetAmounts = createSelector(
   (state: RootState) => state.wallet.wallet,
   selectAvailablePoolAssets,
   (wallet, assets: Asset[]) => {
-    if (!wallet) {return []};
+    if (!wallet) {
+      return [];
+    }
 
     return SUPPORTED_CHAINS.map(chain => wallet[chain]?.balance)
       .flat()
@@ -817,17 +831,18 @@ export const selectFilteredTxActions = createSelector(
       );
     }
 
-    if (searchValue)
-      {filtered = filtered.filter(
-        (txAction) =>
+    if (searchValue) {
+      filtered = filtered.filter(
+        txAction =>
           filterAddressAndTx(txAction.in, searchValue) ||
           filterAddressAndTx(txAction.out, searchValue),
-      )};
+      );
+    }
 
     count = filtered.length;
     filtered = filtered.slice(offset).slice(0, limit);
 
-    return {actions: filtered, count};;
+    return {actions: filtered, count};
   },
 );
 
@@ -852,8 +867,8 @@ export const selectActionGroups = createSelector(
       return {
         date,
         actions: txActions.filter(action => getFormatted(action.date) === date),
-      } as ActionGroup;;
-    });;
+      } as ActionGroup;
+    });
 
     return actionGroups;
   },
@@ -884,7 +899,7 @@ export const selectFilteredActionGroups = createSelector(
       });
 
       // Grab only the groups that contain coincidences with search value
-      filtered = filtered.filter(ag => ag.actions.length > 0);;
+      filtered = filtered.filter(ag => ag.actions.length > 0);
     }
 
     if (searchValue) {
@@ -900,7 +915,7 @@ export const selectFilteredActionGroups = createSelector(
       });
 
       // Grab only the groups that contain coincidences with search value
-      filtered = filtered.filter(ag => ag.actions.length > 0);;
+      filtered = filtered.filter(ag => ag.actions.length > 0);
     }
 
     const count = filtered.length;
@@ -908,7 +923,7 @@ export const selectFilteredActionGroups = createSelector(
     // Paginate result
     filtered = filtered.slice(offset).slice(0, limit);
 
-    return {actionGroups: filtered, count};;
+    return {actionGroups: filtered, count};
   },
 );
 
@@ -927,9 +942,11 @@ export const selectMemberPoolsByAssetName = createSelector(
   selectMemberPools,
   (_, assetName: string) => assetName,
   (memberDetails: MemberPool[], assetName) => {
-    if (assetName === 'all') {return memberDetails};
+    if (assetName === 'all') {
+      return memberDetails;
+    }
 
-    return memberDetails.filter(p => p.pool === assetName);;
+    return memberDetails.filter(p => p.pool === assetName);
   },
 );
 
@@ -986,7 +1003,7 @@ export const selectApprovalAsset = (
   state: RootState,
   asset: string,
 ): AssetApproval | undefined =>
-  state.midgard.assetApprovals.find(ap => ap.asset === asset);;
+  state.midgard.assetApprovals.find(ap => ap.asset === asset);
 
 export const selectTopPositions = (state: RootState, limit = 5) => {
   const positons = [...state.midgard.lpPositions];

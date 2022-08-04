@@ -1,4 +1,4 @@
-import {COSMOS_DECIMAL} from '@xchainjs/xchain-cosmos';
+import {COSMOS_DECIMAL} from '@thorwallet/xchain-cosmos';
 import {
   BTCChain,
   LTCChain,
@@ -7,7 +7,7 @@ import {
   BNBChain,
   DOGEChain,
   CosmosChain,
-} from '@xchainjs/xchain-util';
+} from '@thorwallet/xchain-util';
 
 import {ETH_DECIMAL, BTC_DECIMAL, BNB_DECIMAL} from '../constants';
 import {LTC_DECIMAL, BCH_DECIMAL, DOGE_DECIMAL} from '../constants/decimals';

@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 // import RNBootSplash from 'react-native-bootsplash';
 import {colors} from './src/styles';
+import RNBootSplash from 'react-native-bootsplash';
+import {Provider as ReduxProvider} from 'react-redux';
+import {store as reduxStore} from './src/redux/store';
 
 import Navigation from './src/components/Navigation';
 import * as Font from 'expo-font';
@@ -34,7 +37,9 @@ const App = () => {
   }
   return (
     <NavigationContainer theme={{colors: {background: colors.neutral50}}}>
-      <Navigation />
+      <ReduxProvider store={reduxStore}>
+        <Navigation />
+      </ReduxProvider>
     </NavigationContainer>
   );
 };

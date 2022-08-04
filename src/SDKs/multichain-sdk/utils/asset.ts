@@ -1,5 +1,5 @@
-import {ETHAddress, getTokenAddress} from '@xchainjs/xchain-ethereum';
-import {Chain, THORChain, BNBChain, ETHChain} from '@xchainjs/xchain-util';
+import {ETHAddress, getTokenAddress} from '@thorwallet/xchain-ethereum';
+import {Chain, THORChain, BNBChain, ETHChain} from '@thorwallet/xchain-util';
 import {ethers} from 'ethers';
 
 import {Amount, Asset, Pool, Price} from '../entities';

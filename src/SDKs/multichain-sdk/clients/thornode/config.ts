@@ -1,4 +1,4 @@
-import {Network} from '@xchainjs/xchain-client';
+import {Network} from '@thorwallet/xchain-client';
 
 import {
   MIDGARD_CHAOSNET_URL,
@@ -7,7 +7,7 @@ import {
   THORNODE_MAINNET_URL,
   THORNODE_STAGENET_URL,
   THORNODE_TESTNET_URL,
-} from 'midgard-sdk/config';
+} from '../../../midgard-sdk/config';
 
 export const thornodeAPI = (url: string, network = Network.Testnet) =>
   `${

@@ -14,6 +14,10 @@ import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';
 import CursorTextSvg from '../assets/icons/cursor-text.svg';
 import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
+// import Header from '../components/Header';
+import {useAppSelector} from '../redux/hooks';
+import {selectAvailablePoolsMarketCap} from '../redux/midgard/slice';
+import {useEffect} from 'react';
 
 const sortByItems = [
   {
@@ -46,6 +50,11 @@ const sortByItems = [
 const MarketsScreen: React.FC = () => {
   const [sortBy, setSortBy] = useState('volume');
   const [isSearchShown, setIsSearchShown] = useState(false);
+  const pools = useAppSelector(selectAvailablePoolsMarketCap);
+
+  useEffect(() => {
+    console.log(pools);
+  }, [pools]);
 
   return (
     <Layout

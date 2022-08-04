@@ -1,4 +1,4 @@
-import { FeeOption } from '@xchainjs/xchain-client'
+import { FeeOption } from '@thorwallet/xchain-client'
 
 export interface DataModel {
   baseCurrency: string

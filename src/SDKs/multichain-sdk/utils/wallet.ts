@@ -1,10 +1,10 @@
-import {Chain, THORChain} from '@xchainjs/xchain-util';
+import {Chain, THORChain} from '@thorwallet/xchain-util';
 import {BigNumber} from 'bignumber.js';
 
-import {ReactComponent as LedgerWalletIcon} from 'assets/crypto/wallets/ledger.svg';
-import {ReactComponent as MetamaskIcon} from 'assets/crypto/wallets/metamask.svg';
-import {ReactComponent as XdefiIcon} from 'assets/crypto/wallets/xdefi.svg';
-import {ReactComponent as WalletNoConnected} from 'assets/icons/sidebar/WalletNoConnected.svg';
+import {ReactComponent as LedgerWalletIcon} from '../../../assets/crypto/wallets/ledger.svg';
+import {ReactComponent as MetamaskIcon} from '../../../assets/crypto/wallets/metamask.svg';
+import {ReactComponent as XdefiIcon} from '../../../assets/crypto/wallets/xdefi.svg';
+import {ReactComponent as WalletNoConnected} from '../../../assets/icons/sidebar/WalletNoConnected.svg';
 
 import {Wallet, SupportedChain, WalletOption} from '../clients/types';
 import {Asset, AssetAmount, Pool, Amount} from '../entities';
