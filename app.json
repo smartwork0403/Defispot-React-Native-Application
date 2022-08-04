@@ -1,3 +1,16 @@
 {
-  "name": "DefispotReactNative"
+  "expo": {
+    "name": "DefispotReactNative",
+    "icon": "./icons/ios_icon.png",
+    "version": "1.0.0",
+    "slug": "defispot",
+    "ios": {
+      "bundleIdentifier": "com.defispot.defispot",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.defispot.defispot",
+      "versionCode": 1
+    }
+  }
 }
