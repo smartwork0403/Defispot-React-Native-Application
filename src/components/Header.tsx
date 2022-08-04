@@ -3,7 +3,7 @@ import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import {useNavigation} from '@react-navigation/native';
 
-import {colors} from '../styles';
+import {colors, config, globalStyles} from '../styles';
 
 import CustomText from './CustomText';
 import TextField from './TextField';
@@ -71,24 +71,26 @@ const Header: React.FC<Props> = ({
 
   if (minimal) {
     return (
-      <View style={styles.minimalHeader}>
-        <View style={{minWidth: 40}}>
-          {back && (
-            <IconButton
-              icon={NavBackSvg}
-              iconSize={{width: 9, height: 16}}
-              color={colors.neutral0}
-              onPress={() => navigation.goBack()}
-            />
-          )}
-        </View>
-        <View style={styles.minimalHeaderTitleContainer}>
-          <CustomText weight="medium" style={styles.minimalHeaderTitle}>
-            {title}
-          </CustomText>
-        </View>
-        <View style={{minWidth: 40}}>
-          <Action action={action} />
+      <View style={{backgroundColor: colors.blue, alignItems: 'center'}}>
+        <View style={styles.minimalHeader}>
+          <View style={{minWidth: 40}}>
+            {back && (
+              <IconButton
+                icon={NavBackSvg}
+                iconSize={{width: 9, height: 16}}
+                color={colors.neutral0}
+                onPress={() => navigation.goBack()}
+              />
+            )}
+          </View>
+          <View style={styles.minimalHeaderTitleContainer}>
+            <CustomText weight="medium" style={styles.minimalHeaderTitle}>
+              {title}
+            </CustomText>
+          </View>
+          <View style={{minWidth: 40}}>
+            <Action action={action} />
+          </View>
         </View>
       </View>
     );
@@ -97,55 +99,79 @@ const Header: React.FC<Props> = ({
   return (
     <View style={styles.header}>
       {searchable ? (
-        <View style={{...styles.headerTop, paddingBottom: 45}}>
-          {searchable.persistence ? (
-            <>
-              <TextField
-                placeholder={searchable.inputPlaceholder ?? 'Search...'}
-                icon={MagnifySvg}
-                style={{backgroundColor: colors.neutral50}}
-              />
-              <IconButton
-                icon={searchable.persistence.actionIcon}
-                color={colors.neutral0}
-                onPress={() => searchable.persistence?.onActionIconClick?.()}
-                style={{marginLeft: 16}}
-              />
-            </>
-          ) : searchable.isShown ? (
-            <>
-              <TextField
-                placeholder={searchable.inputPlaceholder ?? 'Search...'}
-                icon={MagnifySvg}
-                autoFocus
-                style={{backgroundColor: colors.neutral50}}
-              />
-              <Button
-                style={styles.searchCancel}
-                onPress={() => searchable.onSearchToggle?.(false)}
-                noPadding
-                text
-                textAccent="white">
-                Cancel
-              </Button>
-            </>
-          ) : (
-            <>
-              <CustomText weight="semi-bold" style={styles.headerTitle}>
-                {title}
-              </CustomText>
-              <IconButton
-                icon={MagnifySvg}
-                color={colors.neutral0}
-                onPress={() => searchable.onSearchToggle?.(true)}
-              />
-            </>
-          )}
+        <View
+          style={{
+            backgroundColor: colors.blue,
+            alignItems: 'center',
+          }}>
+          <View
+            style={{
+              ...styles.headerTop,
+              paddingBottom: 45,
+              width: '100%',
+              maxWidth: config.MAX_CONTENT_WIDTH,
+            }}>
+            {searchable.persistence ? (
+              <>
+                <TextField
+                  placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                  icon={MagnifySvg}
+                  style={{backgroundColor: colors.neutral50}}
+                />
+                <IconButton
+                  icon={searchable.persistence.actionIcon}
+                  color={colors.neutral0}
+                  onPress={() => searchable.persistence?.onActionIconClick?.()}
+                  style={{marginLeft: 16}}
+                />
+              </>
+            ) : searchable.isShown ? (
+              <>
+                <TextField
+                  placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                  icon={MagnifySvg}
+                  autoFocus
+                  style={{backgroundColor: colors.neutral50}}
+                />
+                <Button
+                  style={styles.searchCancel}
+                  onPress={() => searchable.onSearchToggle?.(false)}
+                  noPadding
+                  text
+                  textAccent="white">
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <>
+                <CustomText weight="semi-bold" style={styles.headerTitle}>
+                  {title}
+                </CustomText>
+                <IconButton
+                  icon={MagnifySvg}
+                  color={colors.neutral0}
+                  onPress={() => searchable.onSearchToggle?.(true)}
+                />
+              </>
+            )}
+          </View>
         </View>
       ) : (
-        <View style={{...styles.headerTop, paddingBottom: Card ? 45 : 16}}>
-          <CustomText style={styles.headerTitle}>{title}</CustomText>
-          <Action action={action} />
+        <View
+          style={{
+            backgroundColor: colors.blue,
+            alignItems: 'center',
+          }}>
+          <View
+            style={{
+              ...styles.headerTop,
+              paddingBottom: Card ? 45 : 16,
+              width: '100%',
+              maxWidth: config.MAX_CONTENT_WIDTH,
+            }}>
+            <CustomText style={styles.headerTitle}>{title}</CustomText>
+            <Action action={action} />
+          </View>
         </View>
       )}
 
@@ -171,11 +197,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.blue,
     paddingTop: 4,
     paddingBottom: 4,
     paddingRight: 12,
     paddingLeft: 4,
+    maxWidth: config.MAX_CONTENT_WIDTH,
+    width: '100%',
   },
   minimalHeaderTitleContainer: {
     minHeight: 40,
@@ -217,6 +244,8 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     borderRadius: 8,
+    ...globalStyles.wrapper,
+    maxWidth: config.MAX_CONTENT_WIDTH - 32,
   },
 });
 

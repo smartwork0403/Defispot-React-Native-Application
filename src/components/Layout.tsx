@@ -8,7 +8,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import Header from './Header';
 import {Props as HeaderProps} from './Header';
@@ -46,8 +46,15 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    maxWidth: 900,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
+  },
   content: {
     padding: 16,
+    ...globalStyles.wrapper,
   },
 });
 

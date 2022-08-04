@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import CustomText from '../components/CustomText';
 import Layout from '../components/Layout';
@@ -199,7 +199,7 @@ const History: React.FC = () => {
         <>
           <ScrollView>
             <Header title="Trade" minimal back />
-            <View style={styles.container}>
+            <View style={{...styles.container, ...globalStyles.wrapper}}>
               <View style={styles.searchContainer}>
                 <TextField
                   placeholder="Filter by protocol, token, event, etc..."
@@ -260,7 +260,10 @@ const History: React.FC = () => {
 
           {historyLists.length !== 0 && (
             <View style={styles.stickyActionContainer}>
-              <Button outlined prependIcon={{icon: DownloadSvg}}>
+              <Button
+                outlined
+                prependIcon={{icon: DownloadSvg}}
+                style={globalStyles.wrapper}>
                 Download CSV
               </Button>
             </View>
