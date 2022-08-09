@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Pressable} from 'react-native';
+import {View, StyleSheet, Pressable, StyleProp, ViewStyle} from 'react-native';
 import {VictoryGroup, VictoryLine} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
 import type {RootStackParamList} from './Navigation';
@@ -9,12 +9,14 @@ import {colors} from '../styles';
 import Asset from './Asset';
 import CustomText from './CustomText';
 
-const AssetsList: React.FC = () => {
+const AssetsList: React.FC<{
+  style?: StyleProp<ViewStyle>;
+}> = ({style}) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
-    <View>
+    <View style={style}>
       {[...Array(20).keys()].map(k => (
         <Pressable
           style={styles.item}

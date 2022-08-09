@@ -175,8 +175,10 @@ const Header: React.FC<Props> = ({
       )}
 
       {Card && (
-        <View style={{...styles.headerBottom, ...globalStyles.shadow}}>
-          <View style={[styles.card, cardStyle]}>{Card}</View>
+        <View style={styles.headerBottom}>
+          <View style={[styles.card, globalStyles.shadow, cardStyle]}>
+            {Card}
+          </View>
         </View>
       )}
     </View>

@@ -4,9 +4,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StyleSheet, View} from 'react-native';
 import {colors} from '../styles';
 
+import CustomText from './CustomText';
+
 import HomeSvg from '../assets/icons/home.svg';
-import PieSvg from '../assets/icons/pie-chart.svg';
-import SwapSvg from '../assets/icons/swap.svg';
+import ChartSvg from '../assets/icons/chart-filled.svg';
+import TradeSvg from '../assets/icons/trade.svg';
 import WalletSvg from '../assets/icons/wallet.svg';
 import UserSvg from '../assets/icons/user.svg';
 
@@ -50,26 +52,31 @@ const HomeScreenStack = () => {
 const navItems = [
   {
     name: 'home',
+    label: 'Home',
     component: HomeScreenStack,
     icon: HomeSvg,
   },
   {
     name: 'markets',
+    label: 'Markets',
     component: MarketsScreen,
-    icon: PieSvg,
+    icon: ChartSvg,
   },
   {
     name: 'trade',
+    label: 'Trade',
     component: TradeScreen,
-    icon: SwapSvg,
+    icon: TradeSvg,
   },
   {
     name: 'wallet',
+    label: 'Wallet',
     component: WalletScreen,
     icon: WalletSvg,
   },
   {
     name: 'profile',
+    label: 'Profile',
     component: ProfileScreen,
     icon: UserSvg,
   },
@@ -97,6 +104,14 @@ const MainTabs = () => {
                     height={20}
                     color={focused ? colors.blue : colors.neutral400}
                   />
+                  <CustomText
+                    style={{
+                      ...styles.navLabel,
+                      color: focused ? colors.blue : colors.neutral400,
+                    }}
+                    weight="medium">
+                    {nav.label}
+                  </CustomText>
                 </View>
               ),
             }}
@@ -126,16 +141,21 @@ const styles = StyleSheet.create({
     elevation: 0,
     borderColor: colors.neutral0,
     backgroundColor: colors.neutral0,
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingLeft: 32,
-    paddingRight: 32,
+    paddingLeft: 15,
+    paddingRight: 15,
+    height: 56 + 13,
+    paddingBottom: 13,
   },
   nav: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 32,
-    height: 32,
+    paddingTop: 10,
+    paddingBottom: 4,
+  },
+  navLabel: {
+    marginTop: 6,
+    fontSize: 11,
+    lineHeight: 16,
   },
 });
 

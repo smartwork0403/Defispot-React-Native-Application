@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {Pressable, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {colors} from '../styles';
 
 import Button from './Button';
@@ -14,6 +14,7 @@ type Item = {name: string; label: string; icon?: any};
 interface Props {
   label: string;
   accent?: 'black' | 'blue';
+  shadowStyle?: StyleProp<ViewStyle>;
   size?: 'small' | 'tiny';
   items: Item[];
   selected: string;
@@ -30,6 +31,7 @@ const Select: React.FC<Props> = ({
   label,
   size,
   accent,
+  shadowStyle,
   items,
   selected,
   outlined = false,
@@ -49,6 +51,7 @@ const Select: React.FC<Props> = ({
         onPress={() => setIsOpen(true)}
         size={size}
         accent={accent}
+        shadowStyle={shadowStyle}
         style={{
           borderColor: isOpen
             ? colors.blue
@@ -74,7 +77,7 @@ const Select: React.FC<Props> = ({
         noPadding
         stickyAction={{
           label: 'Apply',
-          accent: 'black',
+          accent: 'blue',
           onPress: () => {
             onSelect(previewSelected);
             setIsOpen(false);

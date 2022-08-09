@@ -55,7 +55,7 @@ const MarketsScreen: React.FC = () => {
           isShown: isSearchShown,
           onSearchToggle: isShown => setIsSearchShown(isShown),
         },
-        card: <MarketsStats />,
+        card: !isSearchShown ? <MarketsStats /> : null,
       }}
       contentStyle={{paddingBottom: 4}}>
       {!isSearchShown && (
@@ -96,11 +96,12 @@ const MarketsScreen: React.FC = () => {
             onSelect={name => setSortBy(name)}
             label="Sort by"
             size="small"
+            shadowStyle={globalStyles.shadow}
           />
         </View>
       )}
 
-      <AssetsList />
+      <AssetsList style={{marginTop: isSearchShown ? -46 : 0}} />
     </Layout>
   );
 };

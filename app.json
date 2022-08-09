@@ -15,7 +15,8 @@
     },
     "android": {
       "package": "com.defispot.defispot",
-      "versionCode": 1
+      "versionCode": 1,
+      "softwareKeyboardLayoutMode": "pan"
     }
   }
 }
