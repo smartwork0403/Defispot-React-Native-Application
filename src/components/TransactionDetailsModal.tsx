@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-// import Clipboard from '@react-native-clipboard/clipboard';
-// import Share from 'react-native-share';
+import * as Clipboard from 'expo-clipboard';
+import * as Sharing from 'expo-sharing';
 import {colors} from '../styles';
 
 import Modal from './Modal';
@@ -46,7 +46,7 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   const handleCopyFromTo = (address: string) => {
-    // Clipboard.setString(address);
+    Clipboard.setStringAsync(address);
 
     console.log(address);
     setShowCopiedMessage(true);
@@ -58,11 +58,10 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
 
   const handleShare = async () => {
     try {
-      // const res = await Share.open({
-      //   title: 'Transaction Details',
-      //   message: 'Shareable content will go here.',
-      // });
-      console.log('res');
+      const res = await Sharing.shareAsync('', {
+        dialogTitle: 'Transaction Details',
+      });
+      console.log('res', res);
     } catch (err) {
       err && console.log(err);
     }
