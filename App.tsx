@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-// import RNBootSplash from 'react-native-bootsplash';
 import {colors} from './src/styles';
 
 import Navigation from './src/components/Navigation';

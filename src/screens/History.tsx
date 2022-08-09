@@ -199,44 +199,57 @@ const History: React.FC = () => {
         <>
           <ScrollView>
             <Header title="Trade" minimal back />
-            <View style={{...styles.container, ...globalStyles.wrapper}}>
-              <View style={styles.searchContainer}>
-                <TextField
-                  placeholder="Filter by protocol, token, event, etc..."
-                  icon={MagnifySvg}
-                  onFocus={() => setIsSearchFocused(true)}
-                  shadowStyle={globalStyles.shadow}
-                  onBlur={() => setIsSearchFocused(false)}
-                />
-              </View>
+            <View
+              style={{
+                ...styles.container,
+                ...globalStyles.wrapper,
+                paddingBottom: 0,
+              }}>
+              <TextField
+                placeholder="Filter by protocol, token, event, etc..."
+                icon={MagnifySvg}
+                onFocus={() => setIsSearchFocused(true)}
+                shadowStyle={globalStyles.shadow}
+                onBlur={() => setIsSearchFocused(false)}
+              />
+            </View>
 
-              {shouldFiltersBeShown() && (
-                <ScrollView
-                  style={styles.filters}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}>
-                  {filters.map((filter, i) => (
-                    <Button
-                      key={filter.label}
-                      onPress={() => setSelectedFilter(filter.name)}
-                      outlined={filter.name === selectedFilter}
-                      size="small"
-                      style={{
-                        paddingLeft: filter.icon ? 6 : 12,
-                        marginRight: filters.length === i + 1 ? 0 : 12,
-                      }}
-                      prependIcon={{
-                        icon: filter.icon ?? null,
-                        width: 20,
-                        height: 20,
-                      }}
-                      shadowStyle={globalStyles.shadow}>
-                      {filter.label}
-                    </Button>
-                  ))}
-                </ScrollView>
-              )}
+            {shouldFiltersBeShown() && (
+              <ScrollView
+                style={styles.filters}
+                horizontal
+                showsHorizontalScrollIndicator={false}>
+                {filters.map((filter, i) => (
+                  <Button
+                    key={filter.label}
+                    onPress={() => setSelectedFilter(filter.name)}
+                    outlined={filter.name === selectedFilter}
+                    size="small"
+                    style={{
+                      marginTop: 16,
+                      marginBottom: 16,
+                      paddingLeft: filter.icon ? 6 : 12,
+                      marginRight: filters.length === i + 1 ? 16 : 12,
+                      marginLeft: i === 0 ? 16 : 0,
+                    }}
+                    prependIcon={{
+                      icon: filter.icon ?? null,
+                      width: 20,
+                      height: 20,
+                    }}
+                    shadowStyle={globalStyles.shadow}>
+                    {filter.label}
+                  </Button>
+                ))}
+              </ScrollView>
+            )}
 
+            <View
+              style={{
+                ...styles.container,
+                ...globalStyles.wrapper,
+                paddingTop: shouldFiltersBeShown() ? 0 : 16,
+              }}>
               {historyLists.length !== 0 ? (
                 historyLists.map(list => (
                   <View style={styles.list} key={list.time}>
@@ -278,12 +291,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
-  searchContainer: {
-    marginBottom: 16,
-  },
   filters: {
     flexDirection: 'row',
-    marginBottom: 16,
   },
   stickyActionContainer: {
     paddingTop: 10,

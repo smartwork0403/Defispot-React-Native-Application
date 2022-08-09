@@ -4,6 +4,11 @@
     "icon": "./icons/ios_icon.png",
     "version": "1.0.0",
     "slug": "defispot",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#0077FF"
+    },
     "ios": {
       "bundleIdentifier": "com.defispot.defispot",
       "buildNumber": "1.0.0"
