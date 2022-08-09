@@ -204,8 +204,8 @@ const History: React.FC = () => {
                 <TextField
                   placeholder="Filter by protocol, token, event, etc..."
                   icon={MagnifySvg}
-                  shadowStyle={styles.searchShadowStyle}
                   onFocus={() => setIsSearchFocused(true)}
+                  shadowStyle={globalStyles.shadow}
                   onBlur={() => setIsSearchFocused(false)}
                 />
               </View>
@@ -230,7 +230,7 @@ const History: React.FC = () => {
                         width: 20,
                         height: 20,
                       }}
-                      shadowStyle={styles.filterShadowStyle}>
+                      shadowStyle={globalStyles.shadow}>
                       {filter.label}
                     </Button>
                   ))}
@@ -281,21 +281,9 @@ const styles = StyleSheet.create({
   searchContainer: {
     marginBottom: 16,
   },
-  searchShadowStyle: {
-    shadowColor: colors.neutral300,
-    shadowOffset: {width: 2, height: 4},
-    shadowRadius: 24,
-    shadowOpacity: 0.06,
-  },
   filters: {
     flexDirection: 'row',
     marginBottom: 16,
-  },
-  filterShadowStyle: {
-    shadowColor: colors.neutral500,
-    shadowOffset: {width: 2, height: 4},
-    shadowRadius: 8,
-    shadowOpacity: 0.06,
   },
   stickyActionContainer: {
     paddingTop: 10,

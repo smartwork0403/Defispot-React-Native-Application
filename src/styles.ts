@@ -46,4 +46,16 @@ export const globalStyles = StyleSheet.create({
     marginRight: 'auto',
     width: '100%',
   },
+
+  shadow: {
+    shadowColor: colors.neutral500,
+    shadowOffset: {
+      width: 2,
+      height: 4,
+    },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+
+    elevation: 8,
+  },
 });

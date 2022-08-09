@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {TextInput, View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
-import DropShadow from 'react-native-drop-shadow';
 import {colors, fonts} from '../styles';
 
 interface Props {
@@ -29,37 +28,36 @@ const TextField: React.FC<Props> = ({
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <DropShadow style={[shadowStyle, {flex: 1}]}>
-      <View
-        style={[
-          styles.container,
-          {borderColor: isFocused ? colors.blue : 'transparent'},
-          style,
-        ]}>
-        {Icon && (
-          <Icon
-            style={styles.icon}
-            color={isFocused ? colors.blue : colors.neutral400}
-          />
-        )}
-        <TextInput
-          onChangeText={onChangeText}
-          value={value}
-          style={styles.input}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          placeholderTextColor={colors.neutral400}
-          onFocus={() => {
-            onFocus?.();
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            onBlur?.();
-            setIsFocused(false);
-          }}
+    <View
+      style={[
+        styles.container,
+        {borderColor: isFocused ? colors.blue : 'transparent'},
+        style,
+        shadowStyle,
+      ]}>
+      {Icon && (
+        <Icon
+          style={styles.icon}
+          color={isFocused ? colors.blue : colors.neutral400}
         />
-      </View>
-    </DropShadow>
+      )}
+      <TextInput
+        onChangeText={onChangeText}
+        value={value}
+        style={styles.input}
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        placeholderTextColor={colors.neutral400}
+        onFocus={() => {
+          onFocus?.();
+          setIsFocused(true);
+        }}
+        onBlur={() => {
+          onBlur?.();
+          setIsFocused(false);
+        }}
+      />
+    </View>
   );
 };
 

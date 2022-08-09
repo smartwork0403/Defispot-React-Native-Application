@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet, Pressable} from 'react-native';
-import DropShadow from 'react-native-drop-shadow';
 import {VictoryPie} from 'victory-native';
 import {colors, globalStyles} from '../styles';
 
@@ -24,27 +23,19 @@ const TradeScreen: React.FC = () => {
           <ScrollView>
             <Header title="Trade" minimal />
             <View style={{...styles.content, ...globalStyles.wrapper}}>
-              <DropShadow
-                style={{
-                  shadowColor: colors.neutral500,
-                  shadowOffset: {width: 2, height: 4},
-                  shadowRadius: 8,
-                  shadowOpacity: 0.06,
-                }}>
-                <View style={styles.slippage}>
-                  <CustomText>Slippage</CustomText>
-                  <CustomText weight="medium" style={styles.slippagePercent}>
-                    12%
-                  </CustomText>
-                  <Button
-                    text
-                    noPadding
-                    textAccent="blue"
-                    onPress={() => setIsCompleteModalOpen(true)}>
-                    Edit
-                  </Button>
-                </View>
-              </DropShadow>
+              <View style={{...styles.slippage, ...globalStyles.shadow}}>
+                <CustomText>Slippage</CustomText>
+                <CustomText weight="medium" style={styles.slippagePercent}>
+                  12%
+                </CustomText>
+                <Button
+                  text
+                  noPadding
+                  textAccent="blue"
+                  onPress={() => setIsCompleteModalOpen(true)}>
+                  Edit
+                </Button>
+              </View>
 
               <TradeModule />
 
@@ -97,59 +88,43 @@ const TradeScreen: React.FC = () => {
 
           <View style={styles.switchContainer}>
             <View style={{...styles.switch, ...globalStyles.wrapper}}>
-              <DropShadow
+              <Pressable
+                onPress={() => setIsDeposit(true)}
                 style={{
-                  shadowColor: colors.neutral500,
-                  shadowOffset: {width: 2, height: 4},
-                  shadowRadius: 8,
-                  shadowOpacity: isDeposit ? 0.08 : 0,
-                  flexGrow: 1,
+                  ...styles.switchBtn,
+                  backgroundColor: isDeposit
+                    ? colors.neutral0
+                    : colors.neutral100,
+                  ...(isDeposit ? globalStyles.shadow : []),
                 }}>
-                <Pressable
-                  onPress={() => setIsDeposit(true)}
+                <CustomText
+                  weight="medium"
                   style={{
-                    ...styles.switchBtn,
-                    backgroundColor: isDeposit
-                      ? colors.neutral0
-                      : colors.neutral100,
+                    ...styles.switchText,
+                    color: isDeposit ? colors.neutral900 : colors.neutral400,
                   }}>
-                  <CustomText
-                    weight="medium"
-                    style={{
-                      ...styles.switchText,
-                      color: isDeposit ? colors.neutral900 : colors.neutral400,
-                    }}>
-                    Deposit
-                  </CustomText>
-                </Pressable>
-              </DropShadow>
+                  Deposit
+                </CustomText>
+              </Pressable>
 
-              <DropShadow
+              <Pressable
+                onPress={() => setIsDeposit(false)}
                 style={{
-                  shadowColor: colors.neutral500,
-                  shadowOffset: {width: 2, height: 4},
-                  shadowRadius: 8,
-                  shadowOpacity: isDeposit ? 0 : 0.08,
-                  flexGrow: 1,
+                  ...styles.switchBtn,
+                  backgroundColor: !isDeposit
+                    ? colors.neutral0
+                    : colors.neutral100,
+                  ...(!isDeposit ? globalStyles.shadow : []),
                 }}>
-                <Pressable
-                  onPress={() => setIsDeposit(false)}
+                <CustomText
+                  weight="medium"
                   style={{
-                    ...styles.switchBtn,
-                    backgroundColor: !isDeposit
-                      ? colors.neutral0
-                      : colors.neutral100,
+                    ...styles.switchText,
+                    color: !isDeposit ? colors.neutral900 : colors.neutral400,
                   }}>
-                  <CustomText
-                    weight="medium"
-                    style={{
-                      ...styles.switchText,
-                      color: !isDeposit ? colors.neutral900 : colors.neutral400,
-                    }}>
-                    Withdraw
-                  </CustomText>
-                </Pressable>
-              </DropShadow>
+                  Withdraw
+                </CustomText>
+              </Pressable>
             </View>
           </View>
 
@@ -232,6 +207,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingLeft: 16,
     borderRadius: 24,
+    flexGrow: 1,
   },
   switchText: {
     textAlign: 'center',

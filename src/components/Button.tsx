@@ -7,7 +7,6 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import DropShadow from 'react-native-drop-shadow';
 import {colors} from '../styles';
 
 import CustomText from './CustomText';
@@ -137,56 +136,55 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
   };
 
   return (
-    <DropShadow style={shadowStyle}>
-      <TouchableOpacity
-        disabled={disabled}
-        onPress={onPress}
-        style={[
-          styles.btn,
-          {
-            backgroundColor: getBgColor(),
-            borderColor: getBorderColor(),
-            paddingTop: getPadding('top'),
-            paddingBottom: getPadding('bottom'),
-            paddingRight: getPadding('right'),
-            paddingLeft: getPadding('left'),
-          },
-          style,
-        ]}>
-        {Icon ? (
-          <View style={styles.iconContainer}>
-            <Icon
-              style={{
-                height: size === 'small' || size === 'tiny' ? 12 : 19,
-                width: size === 'small' || size === 'tiny' ? 12 : 19,
-              }}
-              color={colors.neutral900}
-            />
-          </View>
-        ) : (
-          <View style={styles.container}>
-            {prependIcon && prependIcon.icon && (
-              <View style={styles.prependIcon}>
-                <prependIcon.icon
-                  height={prependIcon.height ?? 13}
-                  width={prependIcon.width ?? 13}
-                  color={getColor()}
-                />
-              </View>
-            )}
-            <CustomText
-              weight="medium"
-              style={{
-                color: getColor(),
-                fontSize: getFontSize(),
-                lineHeight: getLineHeight(),
-              }}>
-              {children}
-            </CustomText>
-          </View>
-        )}
-      </TouchableOpacity>
-    </DropShadow>
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      style={[
+        styles.btn,
+        {
+          backgroundColor: getBgColor(),
+          borderColor: getBorderColor(),
+          paddingTop: getPadding('top'),
+          paddingBottom: getPadding('bottom'),
+          paddingRight: getPadding('right'),
+          paddingLeft: getPadding('left'),
+        },
+        style,
+        shadowStyle,
+      ]}>
+      {Icon ? (
+        <View style={styles.iconContainer}>
+          <Icon
+            style={{
+              height: size === 'small' || size === 'tiny' ? 12 : 19,
+              width: size === 'small' || size === 'tiny' ? 12 : 19,
+            }}
+            color={colors.neutral900}
+          />
+        </View>
+      ) : (
+        <View style={styles.container}>
+          {prependIcon && prependIcon.icon && (
+            <View style={styles.prependIcon}>
+              <prependIcon.icon
+                height={prependIcon.height ?? 13}
+                width={prependIcon.width ?? 13}
+                color={getColor()}
+              />
+            </View>
+          )}
+          <CustomText
+            weight="medium"
+            style={{
+              color: getColor(),
+              fontSize: getFontSize(),
+              lineHeight: getLineHeight(),
+            }}>
+            {children}
+          </CustomText>
+        </View>
+      )}
+    </TouchableOpacity>
   );
 };
 

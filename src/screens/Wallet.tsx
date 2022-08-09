@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {VictoryPie} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {colors, fonts} from '../styles';
+import {colors, fonts, globalStyles} from '../styles';
 
 import type {RootStackParamList} from '../components/Navigation';
 import CustomText from '../components/CustomText';
@@ -109,21 +109,21 @@ const WalletScreen: React.FC = () => {
             <Button
               prependIcon={{icon: ArrowUpSvg}}
               size="small"
-              shadowStyle={styles.actionShadowStyle}
+              shadowStyle={globalStyles.shadow}
               style={{marginRight: 8}}>
               Deposit
             </Button>
             <Button
               prependIcon={{icon: ArrowDownSvg}}
               size="small"
-              shadowStyle={styles.actionShadowStyle}
+              shadowStyle={globalStyles.shadow}
               style={{marginRight: 8}}>
               Withdraw
             </Button>
             <Button
               prependIcon={{icon: RefreshSvg}}
               size="small"
-              shadowStyle={styles.actionShadowStyle}>
+              shadowStyle={globalStyles.shadow}>
               Convert
             </Button>
           </View>
@@ -196,12 +196,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 24,
-  },
-  actionShadowStyle: {
-    shadowColor: colors.neutral500,
-    shadowOffset: {width: 2, height: 4},
-    shadowRadius: 8,
-    shadowOpacity: 0.06,
   },
   chart: {
     marginBottom: 24,

@@ -1,12 +1,11 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import Asset from './Asset';
 import CustomText from './CustomText';
 import Modal from './Modal';
-import DropShadow from 'react-native-drop-shadow';
 
 import SwapSvg from '../assets/icons/swap.svg';
 
@@ -33,17 +32,9 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
       </View>
       <View style={styles.switcher}>
         <View style={styles.switchBtnContainer}>
-          <DropShadow
-            style={{
-              shadowColor: colors.neutral500,
-              shadowOffset: {width: 2, height: 4},
-              shadowRadius: 8,
-              shadowOpacity: 0.06,
-            }}>
-            <View style={styles.switchBtn}>
-              <SwapSvg style={styles.switchIcon} />
-            </View>
-          </DropShadow>
+          <View style={{...styles.switchBtn, ...globalStyles.shadow}}>
+            <SwapSvg style={styles.switchIcon} />
+          </View>
         </View>
       </View>
       <View style={styles.trade}>

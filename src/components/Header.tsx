@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
-import DropShadow from 'react-native-drop-shadow';
 import {useNavigation} from '@react-navigation/native';
 
 import {colors, config, globalStyles} from '../styles';
@@ -176,16 +175,8 @@ const Header: React.FC<Props> = ({
       )}
 
       {Card && (
-        <View style={styles.headerBottom}>
-          <DropShadow
-            style={{
-              shadowColor: colors.neutral500,
-              shadowOffset: {width: 2, height: 4},
-              shadowRadius: 8,
-              shadowOpacity: 0.06,
-            }}>
-            <View style={[styles.card, cardStyle]}>{Card}</View>
-          </DropShadow>
+        <View style={{...styles.headerBottom, ...globalStyles.shadow}}>
+          <View style={[styles.card, cardStyle]}>{Card}</View>
         </View>
       )}
     </View>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {colors} from '../styles';
+import {globalStyles} from '../styles';
 
 import Layout from '../components/Layout';
 import AssetsList from '../components/AssetsList';
@@ -64,7 +64,7 @@ const MarketsScreen: React.FC = () => {
             <Button
               accent="black"
               size="small"
-              shadowStyle={styles.filterShadowStyle}>
+              shadowStyle={globalStyles.shadow}>
               All
             </Button>
           </View>
@@ -72,16 +72,16 @@ const MarketsScreen: React.FC = () => {
             <Button
               size="small"
               icon={StarSvg}
-              shadowStyle={styles.filterShadowStyle}
+              shadowStyle={globalStyles.shadow}
             />
           </View>
           <View style={styles.filter}>
-            <Button size="small" shadowStyle={styles.filterShadowStyle}>
+            <Button size="small" shadowStyle={globalStyles.shadow}>
               Layer 1
             </Button>
           </View>
           <View style={styles.filter}>
-            <Button size="small" shadowStyle={styles.filterShadowStyle}>
+            <Button size="small" shadowStyle={globalStyles.shadow}>
               DeFi
             </Button>
           </View>
@@ -114,12 +114,6 @@ const styles = StyleSheet.create({
   },
   filter: {
     marginRight: 12,
-  },
-  filterShadowStyle: {
-    shadowColor: colors.neutral500,
-    shadowOffset: {width: 2, height: 4},
-    shadowRadius: 8,
-    shadowOpacity: 0.06,
   },
 });
 
