@@ -144,9 +144,9 @@ export class Asset implements IAsset {
   //   return new Asset(AssetBCH.chain, AssetBCH.symbol)
   // }
 
-  public static DOGE(): Asset {
-    return new Asset(AssetDOGE.chain, AssetDOGE.symbol);
-  }
+  // public static DOGE(): Asset {
+  //   return new Asset(AssetDOGE.chain, AssetDOGE.symbol);
+  // }
 
   public static ATOM(): Asset {
     return new Asset(AssetAtom.chain, AssetAtom.symbol);
@@ -224,9 +224,9 @@ export class Asset implements IAsset {
     if (chain === BCHChain) {
       return BCH_DECIMAL;
     }
-    if (chain === DOGEChain) {
-      return DOGE_DECIMAL;
-    }
+    // if (chain === DOGEChain) {
+    //   return DOGE_DECIMAL;
+    // }
     // TODO: different cosmos assets may have diffent exponent
     if (chain === CosmosChain) {
       return ATOM_DECIMAL;
@@ -261,9 +261,9 @@ export class Asset implements IAsset {
     if (chain === BCHChain) {
       return BCH_DECIMAL;
     }
-    if (chain === DOGEChain) {
-      return DOGE_DECIMAL;
-    }
+    // if (chain === DOGEChain) {
+    //   return DOGE_DECIMAL;
+    // }
     if (chain === CosmosChain) {
       return ATOM_DECIMAL;
     }
@@ -389,7 +389,7 @@ export class Asset implements IAsset {
       this.eq(Asset.BNB()) ||
       this.eq(Asset.BCH()) ||
       this.eq(Asset.LTC()) ||
-      this.eq(Asset.DOGE()) ||
+      // this.eq(Asset.DOGE()) ||
       this.eq(Asset.ATOM())
     );
   };
@@ -414,9 +414,9 @@ export class Asset implements IAsset {
     return this.eq(Asset.ETH());
   }
 
-  isDOGE(): boolean {
-    return this.eq(Asset.DOGE());
-  }
+  // isDOGE(): boolean {
+  //   return this.eq(Asset.DOGE());
+  // }
 
   isAtom(): boolean {
     return this.eq(Asset.ATOM());
@@ -431,7 +431,7 @@ export class Asset implements IAsset {
       this.eq(Asset.BTC()) ||
       this.eq(Asset.ETH()) ||
       this.eq(Asset.BNB()) ||
-      this.eq(Asset.DOGE()) ||
+      // this.eq(Asset.DOGE()) ||
       this.eq(Asset.LTC()) ||
       this.eq(Asset.BCH()) ||
       this.eq(Asset.ATOM())

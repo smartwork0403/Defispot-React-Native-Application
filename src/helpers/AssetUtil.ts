@@ -96,8 +96,8 @@ export const getChainIconUrl = (chain: DefispotChain): string => {
       return getAssetIconUrl(Asset.BCH());
     case Chain.Ethereum:
       return getAssetIconUrl(Asset.ETH());
-    case Chain.Doge:
-      return getAssetIconUrl(Asset.DOGE());
+    // case Chain.Doge:
+    //   return getAssetIconUrl(Asset.DOGE());
     case Chain.Litecoin:
       return getAssetIconUrl(Asset.LTC());
     case Chain.THORChain:

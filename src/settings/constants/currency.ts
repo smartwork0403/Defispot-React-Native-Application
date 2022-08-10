@@ -7,6 +7,6 @@ export const currencyIndexAssets: Asset[] = [
   Asset.ETH(),
   Asset.BNB(),
   Asset.LTC(),
-  Asset.DOGE(),
+  // Asset.DOGE(),
   Asset.ATOM(),
 ];

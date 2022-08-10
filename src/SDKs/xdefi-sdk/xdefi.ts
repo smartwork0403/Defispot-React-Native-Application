@@ -85,7 +85,7 @@ export class XdefiClient implements IXdefiClient {
         this.bch = window.xfi.bitcoincash;
         this.ltc = window.xfi.litecoin;
         this.thor = window.xfi.thorchain;
-        this.doge = window.xfi.dogecoin;
+        // this.doge = window.xfi.dogecoin;
       }
     }
   }
@@ -108,7 +108,7 @@ export class XdefiClient implements IXdefiClient {
         this.bnb = window.xfi.binance;
         this.bch = window.xfi.bitcoincash;
         this.ltc = window.xfi.litecoin;
-        this.doge = window.xfi.dogecoin;
+        // this.doge = window.xfi.dogecoin;
         this.thor = window.xfi.thorchain;
       }
     }
@@ -122,7 +122,7 @@ export class XdefiClient implements IXdefiClient {
       if (chain === ETHChain) this.eth = window.xfi.ethereum;
       if (chain === BCHChain) this.bch = window.xfi.bitcoincash;
       if (chain === LTCChain) this.ltc = window.xfi.litecoin;
-      if (chain === DOGEChain) this.doge = window.xfi.dogecoin;
+      // if (chain === DOGEChain) this.doge = window.xfi.dogecoin;
 
       this.thor = window.xfi.thorchain;
     }

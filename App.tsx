@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 // import RNBootSplash from 'react-native-bootsplash';
+import * as Random from 'expo-random';
+
 import {colors} from './src/styles';
-import RNBootSplash from 'react-native-bootsplash';
+// import RNBootSplash from 'react-native-bootsplash';
 import {Provider as ReduxProvider} from 'react-redux';
 import {store as reduxStore} from './src/redux/store';
 

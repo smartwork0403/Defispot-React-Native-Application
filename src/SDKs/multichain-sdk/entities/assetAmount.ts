@@ -72,12 +72,12 @@ export class AssetAmount extends Amount implements IAssetAmount {
       );
     }
     // 10 doge
-    if (chain === DOGEChain) {
-      return new AssetAmount(
-        Asset.DOGE(),
-        Amount.fromBaseAmount(100000000, Asset.DOGE().decimal),
-      );
-    }
+    // if (chain === DOGEChain) {
+    //   return new AssetAmount(
+    //     Asset.DOGE(),
+    //     Amount.fromBaseAmount(100000000, Asset.DOGE().decimal),
+    //   );
+    // }
     // 10001 satoshi
     if (chain === BTCChain) {
       return new AssetAmount(
@@ -170,12 +170,12 @@ export class AssetAmount extends Amount implements IAssetAmount {
       );
     }
 
-    if (chain === DOGEChain) {
-      return new AssetAmount(
-        Asset.DOGE(),
-        Amount.fromAssetAmount(DOGE_THRESHOLD_AMOUNT, Asset.DOGE().decimal),
-      );
-    }
+    // if (chain === DOGEChain) {
+    //   return new AssetAmount(
+    //     Asset.DOGE(),
+    //     Amount.fromAssetAmount(DOGE_THRESHOLD_AMOUNT, Asset.DOGE().decimal),
+    //   );
+    // }
 
     if (chain === CosmosChain) {
       return new AssetAmount(

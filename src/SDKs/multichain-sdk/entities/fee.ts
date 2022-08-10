@@ -45,12 +45,12 @@ export class NetworkFee {
         Amount.fromBaseAmount(250 * gasRate, LTC_DECIMAL).mul(multiplier),
       );
     }
-    if (chain === DOGEChain) {
-      return new AssetAmount(
-        Asset.DOGE(),
-        Amount.fromBaseAmount(250 * gasRate, DOGE_DECIMAL).mul(multiplier),
-      );
-    }
+    // if (chain === DOGEChain) {
+    //   return new AssetAmount(
+    //     Asset.DOGE(),
+    //     Amount.fromBaseAmount(250 * gasRate, DOGE_DECIMAL).mul(multiplier),
+    //   );
+    // }
 
     if (chain === BCHChain) {
       return new AssetAmount(
