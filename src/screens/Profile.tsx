@@ -8,10 +8,12 @@ import CollapsibleCard from '../components/CollapsibleCard';
 
 import FlowerShapeSvg from '../assets/icons/flower-shape.svg';
 import MessageSvg from '../assets/icons/message.svg';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const ProfileScreen: React.FC = () => {
   return (
     <Layout
+      preventScrollView
       header={{
         title: 'Profile',
         minimal: true,
@@ -19,137 +21,139 @@ const ProfileScreen: React.FC = () => {
       contentStyle={{
         padding: 0,
       }}>
-      <View style={styles.overview}>
-        <View style={styles.overviewIconContainer}>
-          <FlowerShapeSvg height={24} width={24} color={colors.blueDark} />
+      <ScrollView>
+        <View style={styles.overview}>
+          <View style={styles.overviewIconContainer}>
+            <FlowerShapeSvg height={24} width={24} color={colors.blueDark} />
+          </View>
+
+          <View>
+            <CustomText style={styles.overviewEmail}>
+              kevin@fintory.com
+            </CustomText>
+            <CustomText weight="medium" style={styles.overviewName}>
+              Kevin Dukkon
+            </CustomText>
+          </View>
         </View>
 
-        <View>
-          <CustomText style={styles.overviewEmail}>
-            kevin@fintory.com
-          </CustomText>
-          <CustomText weight="medium" style={styles.overviewName}>
-            Kevin Dukkon
-          </CustomText>
-        </View>
-      </View>
-
-      <View style={styles.content}>
-        <View style={styles.setting}>
-          <CustomText weight="medium" style={styles.settingTitle}>
-            Account
-          </CustomText>
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  Native currency
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
-
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  Country
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
-
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  Privacy
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
-
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  Phone numbers
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
-
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  Notifications settings
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
-        </View>
-
-        <View style={styles.setting}>
-          <CustomText weight="medium" style={styles.settingTitle}>
-            General
-          </CustomText>
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <View style={styles.itemTopIconContainer}>
-                  <MessageSvg
-                    height={13}
-                    width={15}
-                    color={colors.neutral400}
-                  />
+        <View style={styles.content}>
+          <View style={styles.setting}>
+            <CustomText weight="medium" style={styles.settingTitle}>
+              Account
+            </CustomText>
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    Native currency
+                  </CustomText>
                 </View>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  Support
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
 
-          <CollapsibleCard
-            style={styles.item}
-            top={
-              <View style={styles.itemTopContainer}>
-                <View style={styles.itemTopIconContainer}>
-                  <MessageSvg
-                    height={13}
-                    width={15}
-                    color={colors.neutral400}
-                  />
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    Country
+                  </CustomText>
                 </View>
-                <CustomText weight="medium" style={styles.itemTitle}>
-                  App Se
-                </CustomText>
-              </View>
-            }
-            bottom={<CustomText>collapsed content</CustomText>}
-            startArrowAngel="right"
-          />
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
+
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    Privacy
+                  </CustomText>
+                </View>
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
+
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    Phone numbers
+                  </CustomText>
+                </View>
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
+
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    Notifications settings
+                  </CustomText>
+                </View>
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
+          </View>
+
+          <View style={styles.setting}>
+            <CustomText weight="medium" style={styles.settingTitle}>
+              General
+            </CustomText>
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <View style={styles.itemTopIconContainer}>
+                    <MessageSvg
+                      height={13}
+                      width={15}
+                      color={colors.neutral400}
+                    />
+                  </View>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    Support
+                  </CustomText>
+                </View>
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
+
+            <CollapsibleCard
+              style={styles.item}
+              top={
+                <View style={styles.itemTopContainer}>
+                  <View style={styles.itemTopIconContainer}>
+                    <MessageSvg
+                      height={13}
+                      width={15}
+                      color={colors.neutral400}
+                    />
+                  </View>
+                  <CustomText weight="medium" style={styles.itemTitle}>
+                    App Se
+                  </CustomText>
+                </View>
+              }
+              bottom={<CustomText>collapsed content</CustomText>}
+              startArrowAngel="right"
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </Layout>
   );
 };

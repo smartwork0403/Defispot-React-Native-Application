@@ -18,6 +18,7 @@ interface Props {
   contentStyle?: StyleProp<ViewStyle>;
   customContent?: React.ReactNode;
   statusBarColor?: string;
+  preventScrollView?: boolean;
 }
 
 const Layout: React.FC<PropsWithChildren<Props>> = ({
@@ -25,14 +26,22 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   header,
   contentStyle,
   customContent: CustomContent,
+  preventScrollView,
 }) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       {!CustomContent ? (
-        <ScrollView>
-          {header && <Header {...header} />}
-          <View style={[styles.content, contentStyle]}>{children}</View>
-        </ScrollView>
+        preventScrollView ? (
+          <View>
+            {header && <Header {...header} />}
+            <View style={[styles.content, contentStyle]}>{children}</View>
+          </View>
+        ) : (
+          <ScrollView>
+            {header && <Header {...header} />}
+            <View style={[styles.content, contentStyle]}>{children}</View>
+          </ScrollView>
+        )
       ) : (
         <>
           {header && <Header {...header} />}
