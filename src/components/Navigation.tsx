@@ -20,6 +20,7 @@ import WalletScreen from '../screens/Wallet';
 import NotificationsScreen from '../screens/Notifications';
 import AssetScreen from '../screens/Asset';
 import HistoryScreen from '../screens/History';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -83,12 +84,22 @@ const navItems = [
 ];
 
 const MainTabs = () => {
+  const insets = useSafeAreaInsets();
+
   return (
     <RootTabNavigator.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: styles.container,
+        tabBarStyle: {
+          elevation: 0,
+          borderColor: colors.neutral0,
+          backgroundColor: colors.neutral0,
+          paddingLeft: 15,
+          paddingRight: 15,
+          height: 56 + insets.bottom,
+          paddingBottom: 13,
+        },
       }}>
       {navItems.map(nav => {
         return (
@@ -98,7 +109,7 @@ const MainTabs = () => {
             component={nav.component}
             options={{
               tabBarIcon: ({focused}) => (
-                <View style={styles.nav}>
+                <View style={[styles.nav, {paddingBottom: insets.bottom}]}>
                   <nav.icon
                     width={20}
                     height={20}

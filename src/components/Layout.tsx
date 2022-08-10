@@ -1,14 +1,14 @@
-import React, {type PropsWithChildren} from 'react';
+import React, {useEffect, type PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleProp,
   StyleSheet,
   View,
   ViewStyle,
 } from 'react-native';
-import {colors, globalStyles} from '../styles';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {globalStyles} from '../styles';
 
 import Header from './Header';
 import {Props as HeaderProps} from './Header';
@@ -25,11 +25,9 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   header,
   contentStyle,
   customContent: CustomContent,
-  statusBarColor = colors.blue,
 }) => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <StatusBar backgroundColor={statusBarColor} animated />
       {!CustomContent ? (
         <ScrollView>
           {header && <Header {...header} />}
