@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209 209">
+  <g id="Group_5" data-name="Group 5" transform="translate(-2191.5 140.5)">
+    <g id="Group_4" data-name="Group 4">
+      <g id="Group_3" data-name="Group 3">
+        <g id="Group_2" data-name="Group 2">
+          <g id="Group_1" data-name="Group 1">
+            <circle id="Ellipse_1" data-name="Ellipse 1" cx="104" cy="104" r="104" transform="translate(2192 -140)"
+              fill="#fff" stroke="#eff0f3" stroke-width="1" opacity="0.64" />
+            <circle id="Ellipse_2" data-name="Ellipse 2" cx="84" cy="84" r="84" transform="translate(2212 -120)"
+              fill="#fff" stroke="#eff0f3" stroke-width="1" />
+            <circle id="Ellipse_3" data-name="Ellipse 3" cx="64" cy="64" r="64" transform="translate(2232 -100)"
+              fill="#e0e1e4" />
+            <path id="Path_1" data-name="Path 1" d="M147.167,131.167V107A24.361,24.361,0,0,0,135.5,86.166m-36.667,30v15"
+              transform="translate(2173 -143)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="5" />
+            <path id="Path_2" data-name="Path 2" d="M98.833,107.833C98,92,110.113,82.834,123,82.834"
+              transform="translate(2173 -143)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="5" />
+            <path id="Path_3" data-name="Path 3" d="M123,96.166c5.983,0,10.833,4.167,10.833,11.667"
+              transform="translate(2173 -143)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="5" />
+            <path id="Path_4" data-name="Path 4" d="M133.833,116.167v5" transform="translate(2173 -143)" fill="none"
+              stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5" />
+            <path id="Path_5" data-name="Path 5" d="M112.167,119.5v5a9,9,0,0,1-3.334,6.667"
+              transform="translate(2173 -143)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="5" />
+            <path id="Path_6" data-name="Path 6" d="M122.167,109.5v11.667c0,5.833,2.666,10,10,10"
+              transform="translate(2173 -143)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="5" />
+            <path id="Path_7" data-name="Path 7" d="M113.387,102a10.781,10.781,0,0,0-1.22,5v4.167"
+              transform="translate(2173 -143)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="5" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

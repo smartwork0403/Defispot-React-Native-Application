@@ -6,26 +6,49 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
+import {colors} from '../styles';
 
 const IconButton: React.FC<{
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   icon: any;
-  size?: 'small';
+  size?: 'small' | 'large'; // small = 32 / default = 36 / large = 40
   color?: string;
   iconSize?: {width: number; height: number};
   style?: StyleProp<ViewStyle>;
-}> = ({onPress, icon: Icon, size, color, iconSize, style}) => {
+  outlined?: boolean;
+}> = ({onPress, icon: Icon, size, color, iconSize, style, outlined}) => {
+  const getStyles = () => {
+    const customStyles: StyleProp<ViewStyle> = {};
+
+    if (size === 'small') {
+      customStyles.height = 32;
+      customStyles.width = 32;
+      customStyles.borderRadius = 32 / 2;
+    } else if (size === 'large') {
+      customStyles.height = 40;
+      customStyles.width = 40;
+      customStyles.borderRadius = 40 / 2;
+    } else {
+      customStyles.height = 36;
+      customStyles.width = 36;
+      customStyles.borderRadius = 36 / 2;
+    }
+
+    if (outlined) {
+      customStyles.borderWidth = 1;
+      customStyles.borderColor = colors.neutral100;
+    }
+
+    return customStyles;
+  };
+
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[
-        styles.btn,
-        {height: size === 'small' ? 32 : 40, width: size === 'small' ? 32 : 40},
-        style,
-      ]}>
+      style={[styles.btn, getStyles(), style]}>
       <Icon
-        width={iconSize?.width ?? 20}
-        height={iconSize?.height ?? 20}
+        width={iconSize?.width ?? 19.33}
+        height={iconSize?.height ?? 19.33}
         color={color}
       />
     </TouchableOpacity>

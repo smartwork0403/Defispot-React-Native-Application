@@ -18,6 +18,9 @@ const App = () => {
       'Inter-Medium': require('./src/assets/fonts/Inter-Medium.ttf'),
       'Inter-Regular': require('./src/assets/fonts/Inter-Regular.ttf'),
       'Inter-SemiBold': require('./src/assets/fonts/Inter-SemiBold.ttf'),
+      'Aeonik-Regular': require('./src/assets/fonts/Aeonik-Regular.ttf'),
+      'Aeonik-Medium': require('./src/assets/fonts/Aeonik-Medium.ttf'),
+      'Aeonik-Bold': require('./src/assets/fonts/Aeonik-Bold.ttf'),
     });
   };
   if (!fontloaded) {

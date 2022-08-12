@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   copied: {
-    borderRadius: 24,
+    borderRadius: 100,
     backgroundColor: colors.blueLight,
     alignItems: 'center',
     textAlign: 'center',

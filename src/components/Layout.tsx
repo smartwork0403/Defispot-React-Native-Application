@@ -15,30 +15,56 @@ import {Props as HeaderProps} from './Header';
 
 interface Props {
   header?: HeaderProps;
+  stickyHeader?: boolean;
+  accent?: 'white';
+  footer?: React.ReactNode;
+  customStickyHeader?: React.ReactNode;
   contentStyle?: StyleProp<ViewStyle>;
-  customContent?: React.ReactNode;
+  backgroundColor?: string;
   statusBarColor?: string;
 }
 
 const Layout: React.FC<PropsWithChildren<Props>> = ({
   children,
   header,
+  stickyHeader,
+  accent,
+  footer,
+  customStickyHeader,
   contentStyle,
-  customContent: CustomContent,
-  statusBarColor = colors.blue,
+  backgroundColor,
+  statusBarColor,
 }) => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar backgroundColor={statusBarColor} animated />
-      {!CustomContent ? (
-        <ScrollView>
-          {header && <Header {...header} />}
-          <View style={[styles.content, contentStyle]}>{children}</View>
-        </ScrollView>
+    <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>
+      <StatusBar
+        backgroundColor={
+          statusBarColor
+            ? statusBarColor
+            : accent === 'white'
+            ? colors.neutral0
+            : colors.blue
+        }
+        barStyle={accent === 'white' ? 'dark-content' : 'default'}
+        animated
+      />
+
+      {stickyHeader ? (
+        <>
+          {header && <Header {...header} accent={accent} />}
+          {!header && customStickyHeader ? customStickyHeader : null}
+          <ScrollView bounces={false}>
+            <View style={[styles.content, contentStyle]}>{children}</View>
+          </ScrollView>
+          {footer && footer}
+        </>
       ) : (
         <>
-          {header && <Header {...header} />}
-          {CustomContent}
+          <ScrollView bounces={false}>
+            {header && <Header {...header} accent={accent} />}
+            <View style={[styles.content, contentStyle]}>{children}</View>
+          </ScrollView>
+          {footer && footer}
         </>
       )}
     </SafeAreaView>
@@ -46,12 +72,6 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    maxWidth: 900,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '100%',
-  },
   content: {
     padding: 16,
     ...globalStyles.wrapper,

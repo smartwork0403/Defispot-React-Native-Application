@@ -6,25 +6,22 @@ import {
   View,
   StyleProp,
   ViewStyle,
+  TextStyle,
 } from 'react-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import CustomText from './CustomText';
 
 export interface Props {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
-  accent?: 'black' | 'blue';
-  size?: 'small' | 'tiny';
-  noOutline?: boolean;
+  accent?: 'black' | 'white' | 'red';
+  size?: 'large' | 'small' | 'tiny';
+  prependIcon?: {icon: any; width?: number; height?: number; color?: string};
   outlined?: boolean;
-  icon?: any;
-  prependIcon?: {icon: any; width?: number; height?: number};
-  noPadding?: boolean;
   text?: boolean;
   disabled?: boolean;
-  textAccent?: 'white' | 'blue';
+  shadow?: boolean;
   style?: StyleProp<ViewStyle>;
-  shadowStyle?: StyleProp<ViewStyle>;
 }
 
 const Button: React.FC<PropsWithChildren<Props>> = ({
@@ -32,158 +29,168 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
   onPress,
   accent,
   size,
-  noOutline = false,
-  outlined = false,
-  icon: Icon,
   prependIcon,
-  noPadding,
+  outlined,
   text,
-  textAccent,
-  style,
   disabled,
-  shadowStyle,
+  shadow,
+  style,
 }) => {
-  const getBgColor = () => {
-    if (noOutline || text) {
-      return 'transparent';
-    }
+  const getStyles = () => {
+    let customStyles: StyleProp<ViewStyle> = {};
 
-    if (disabled) {
-      return colors.neutral100;
+    if (size === 'large') {
+      // height = 44
+      customStyles.paddingTop = 10;
+      customStyles.paddingBottom = 10;
+      customStyles.paddingLeft = 24;
+      customStyles.paddingRight = 24;
+    } else if (size === 'tiny' || size === 'small') {
+      // small height = 32
+      // tiny height = 24
+      customStyles.paddingTop = 4;
+      customStyles.paddingBottom = 4;
+      customStyles.paddingLeft = 12;
+      customStyles.paddingRight = 12;
+    } else {
+      // default - height = 40
+      customStyles.paddingTop = 8;
+      customStyles.paddingBottom = 8;
+      customStyles.paddingLeft = 24;
+      customStyles.paddingRight = 24;
     }
 
     if (accent === 'black') {
-      return colors.neutral900;
-    } else if (accent === 'blue') {
-      return colors.blue;
-    }
-    return colors.neutral0;
-  };
-  const getBorderColor = () => {
-    if (noOutline || text) {
-      return 'transparent';
-    }
+      customStyles.backgroundColor = colors.neutral900;
+      customStyles.borderColor = colors.neutral900;
+    } else if (accent === 'red') {
+      customStyles.backgroundColor = colors.red;
+      customStyles.borderColor = colors.red;
+    } else if (accent === 'white') {
+      customStyles.backgroundColor = colors.neutral0;
+      customStyles.borderColor = colors.neutral0;
 
-    if (disabled) {
-      return colors.neutral100;
+      if (outlined) {
+        customStyles.borderColor = colors.neutral200;
+      }
+    } else {
+      // default
+      customStyles.backgroundColor = colors.blue;
+      customStyles.borderColor = colors.blue;
     }
 
     if (outlined) {
-      return colors.neutral200;
+      customStyles.backgroundColor = colors.neutral0;
     }
 
-    if (accent === 'black') {
-      return colors.neutral900;
-    }
-    if (accent === 'blue') {
-      return colors.blue;
-    }
-    return colors.neutral0;
-  };
-  const getPadding = (side: string) => {
-    if (noPadding) {
-      return 0;
+    if (text) {
+      customStyles.paddingTop = 0;
+      customStyles.paddingBottom = 0;
+      customStyles.paddingLeft = 0;
+      customStyles.paddingRight = 0;
+      customStyles.backgroundColor = 'transparent';
+      customStyles.borderColor = 'transparent';
+      customStyles.borderRadius = 0;
     }
 
-    if (Icon) {
-      return 6;
-    }
-
-    if (side === 'top' || side === 'bottom') {
-      if (size === 'small') {
-        return 4;
-      }
-      if (size === 'tiny') {
-        return 2;
-      }
-
-      return 10;
-    }
-
-    if (side === 'right' || side === 'left') {
-      if (size === 'small' || size === 'tiny') {
-        return 12;
-      }
-
-      return 16;
-    }
-  };
-
-  const getColor = () => {
+    // ! order is important for this
     if (disabled) {
-      return colors.neutral400;
+      customStyles.backgroundColor = colors.neutral100;
+      customStyles.borderColor = colors.neutral100;
     }
 
-    if (accent === 'black' || accent === 'blue' || textAccent === 'white') {
-      return colors.neutral0;
+    if (shadow) {
+      customStyles = Object.assign(customStyles, globalStyles.shadow);
     }
-    if (textAccent === 'blue') {
+
+    return customStyles;
+  };
+
+  const getTextStyles = () => {
+    const customStyles: StyleProp<TextStyle> = {};
+
+    if (size === 'tiny') {
+      customStyles.fontSize = 12;
+      customStyles.lineHeight = 16;
+    }
+
+    if (!outlined) {
+      customStyles.color = colors.neutral0;
+
+      if (accent === 'white') {
+        customStyles.color = colors.neutral900;
+      }
+    } else {
+      if (accent === 'black') {
+        customStyles.color = colors.neutral900;
+      } else if (accent === 'red') {
+        customStyles.color = colors.red;
+      } else if (accent === 'white') {
+        customStyles.color = colors.neutral900;
+      } else {
+        // default
+        customStyles.color = colors.blue;
+      }
+    }
+
+    if (text) {
+      if (accent === 'black') {
+        customStyles.color = colors.neutral900;
+      } else if (accent === 'red') {
+        customStyles.color = colors.red;
+      } else if (accent === 'white') {
+        customStyles.color = colors.neutral0;
+      } else {
+        // default
+        customStyles.color = colors.blue;
+      }
+    }
+
+    // ! order is important for this
+    if (disabled) {
+      customStyles.color = colors.neutral400;
+    }
+
+    return customStyles;
+  };
+
+  const getIconColor = () => {
+    if (!outlined) {
+      if (accent === 'white') {
+        return colors.neutral900;
+      }
+
+      return colors.neutral0;
+    } else {
+      if (accent === 'black') {
+        return colors.neutral900;
+      } else if (accent === 'red') {
+        return colors.red;
+      } else if (accent === 'white') {
+        return colors.neutral900;
+      }
+      // default
       return colors.blue;
     }
-    return colors.neutral900;
-  };
-  const getFontSize = () => {
-    if (size === 'tiny') {
-      return 12;
-    }
-    return 14;
-  };
-  const getLineHeight = () => {
-    if (size === 'tiny') {
-      return 16;
-    }
-    return 24;
   };
 
   return (
     <TouchableOpacity
       disabled={disabled}
       onPress={onPress}
-      style={[
-        styles.btn,
-        {
-          backgroundColor: getBgColor(),
-          borderColor: getBorderColor(),
-          paddingTop: getPadding('top'),
-          paddingBottom: getPadding('bottom'),
-          paddingRight: getPadding('right'),
-          paddingLeft: getPadding('left'),
-        },
-        style,
-        shadowStyle,
-      ]}>
-      {Icon ? (
-        <View style={styles.iconContainer}>
-          <Icon
-            style={{
-              height: size === 'small' || size === 'tiny' ? 12 : 19,
-              width: size === 'small' || size === 'tiny' ? 12 : 19,
-            }}
-            color={colors.neutral900}
+      style={[styles.btn, getStyles(), style]}>
+      {prependIcon && prependIcon.icon && (
+        <View style={styles.prependIcon}>
+          <prependIcon.icon
+            height={prependIcon.height ?? 14}
+            width={prependIcon.width ?? 14}
+            color={prependIcon.color ?? getIconColor()}
           />
         </View>
-      ) : (
-        <View style={styles.container}>
-          {prependIcon && prependIcon.icon && (
-            <View style={styles.prependIcon}>
-              <prependIcon.icon
-                height={prependIcon.height ?? 13}
-                width={prependIcon.width ?? 13}
-                color={getColor()}
-              />
-            </View>
-          )}
-          <CustomText
-            weight="medium"
-            style={{
-              color: getColor(),
-              fontSize: getFontSize(),
-              lineHeight: getLineHeight(),
-            }}>
-            {children}
-          </CustomText>
-        </View>
       )}
+      <CustomText weight="medium" style={[getTextStyles()]}>
+        {children}
+      </CustomText>
     </TouchableOpacity>
   );
 };
@@ -191,21 +198,11 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
 const styles = StyleSheet.create({
   btn: {
     borderWidth: 1,
-    borderRadius: 24,
+    borderRadius: 100,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-  },
-  iconContainer: {
-    height: 20,
-    width: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   prependIcon: {
     height: 20,

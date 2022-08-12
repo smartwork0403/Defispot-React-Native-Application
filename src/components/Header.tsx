@@ -1,8 +1,8 @@
-import React from 'react';
-import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
+import React, {useRef} from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {colors, config, globalStyles} from '../styles';
+import {colors, config} from '../styles';
 
 import CustomText from './CustomText';
 import TextField from './TextField';
@@ -19,14 +19,20 @@ interface ActionType {
   onActionPress?: () => void;
 }
 
-const Action: React.FC<{action?: ActionType}> = ({action}) => {
+const Action: React.FC<{action?: ActionType; accent?: 'white'}> = ({
+  action,
+  accent,
+}) => {
+  const accentItemsColor =
+    accent === 'white' ? colors.neutral900 : colors.neutral0;
+
   return (
     <>
       {action && action.text && (
         <Button
           noPadding
           text
-          textAccent="white"
+          textAccent={accent === 'white' ? 'blue' : 'white'}
           onPress={action.onActionPress}>
           {action.text}
         </Button>
@@ -34,8 +40,9 @@ const Action: React.FC<{action?: ActionType}> = ({action}) => {
       {action && !action.text && action.icon && (
         <IconButton
           icon={action.icon}
-          color={colors.neutral0}
+          color={accentItemsColor}
           onPress={action.onActionPress}
+          size="large"
         />
       )}
     </>
@@ -48,13 +55,22 @@ export interface Props {
   searchable?: {
     isShown?: boolean;
     onSearchToggle?: (isShown: boolean) => void;
-    persistence?: {actionIcon: any; onActionIconClick: () => void};
     inputPlaceholder?: string;
+    action?: {
+      icon: any;
+      onActionPress: () => void;
+    };
   };
-  minimal?: boolean;
-  back?: boolean;
-  card?: React.ReactNode;
-  cardStyle?: StyleProp<ViewStyle>;
+  minimal?: {
+    title?: string;
+    back?: boolean;
+    action?: {
+      icon?: any;
+      onActionPress?: () => void;
+    };
+  };
+  accent?: 'white';
+  extended?: boolean;
 }
 
 const Header: React.FC<Props> = ({
@@ -62,183 +78,201 @@ const Header: React.FC<Props> = ({
   action,
   searchable,
   minimal,
-  back,
-  card: Card,
-  cardStyle,
+  accent,
+  extended = false,
 }) => {
   const navigation = useNavigation();
+  const searchableActionInputRef = useRef<TextInput>(null);
+
+  const accentBgColor = accent === 'white' ? colors.neutral0 : colors.blue;
+  const accentItemsColor =
+    accent === 'white' ? colors.neutral900 : colors.neutral0;
 
   if (minimal) {
     return (
-      <View style={{backgroundColor: colors.blue, alignItems: 'center'}}>
-        <View style={styles.minimalHeader}>
+      <View style={{backgroundColor: accentBgColor, alignItems: 'center'}}>
+        <View style={minimalStyles.header}>
           <View style={{minWidth: 40}}>
-            {back && (
+            {minimal.back && (
               <IconButton
                 icon={NavBackSvg}
                 iconSize={{width: 9, height: 16}}
-                color={colors.neutral0}
+                color={accentItemsColor}
                 onPress={() => navigation.goBack()}
+                size="large"
               />
             )}
           </View>
-          <View style={styles.minimalHeaderTitleContainer}>
-            <CustomText weight="medium" style={styles.minimalHeaderTitle}>
-              {title}
+          <View style={minimalStyles.titleContainer}>
+            <CustomText
+              weight="medium"
+              style={[minimalStyles.title, {color: accentItemsColor}]}>
+              {minimal.title}
             </CustomText>
           </View>
           <View style={{minWidth: 40}}>
-            <Action action={action} />
+            {minimal.action && (
+              <IconButton
+                icon={minimal.action.icon}
+                color={accentItemsColor}
+                onPress={minimal.action.onActionPress}
+                size="large"
+              />
+            )}
           </View>
         </View>
       </View>
     );
   }
 
-  return (
-    <View style={styles.header}>
-      {searchable ? (
+  if (searchable) {
+    return (
+      <View style={{position: 'relative'}}>
         <View
           style={{
-            backgroundColor: colors.blue,
+            backgroundColor: accentBgColor,
             alignItems: 'center',
           }}>
           <View
-            style={{
-              ...styles.headerTop,
-              paddingBottom: 45,
-              width: '100%',
-              maxWidth: config.MAX_CONTENT_WIDTH,
-            }}>
-            {searchable.persistence ? (
+            style={[
+              styles.header,
+              {
+                width: '100%',
+                maxWidth: config.MAX_CONTENT_WIDTH,
+              },
+            ]}>
+            {searchable.isShown ? (
               <>
                 <TextField
-                  placeholder={searchable.inputPlaceholder ?? 'Search...'}
-                  icon={MagnifySvg}
-                  style={{backgroundColor: colors.neutral50}}
-                />
-                <IconButton
-                  icon={searchable.persistence.actionIcon}
-                  color={colors.neutral0}
-                  onPress={() => searchable.persistence?.onActionIconClick?.()}
-                  style={{marginLeft: 16}}
-                />
-              </>
-            ) : searchable.isShown ? (
-              <>
-                <TextField
-                  placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                  placeholder={searchable?.inputPlaceholder ?? 'Search...'}
                   icon={MagnifySvg}
                   autoFocus
                   style={{backgroundColor: colors.neutral50}}
                 />
                 <Button
-                  style={styles.searchCancel}
-                  onPress={() => searchable.onSearchToggle?.(false)}
+                  style={{marginLeft: 16}}
+                  onPress={() => {
+                    searchable?.onSearchToggle?.(false);
+                    // TODO: this dose not work cause of conditional rendering items, (at this time there is no <TextInput /> in the page)
+                    searchableActionInputRef.current?.blur();
+                  }}
                   noPadding
                   text
-                  textAccent="white">
+                  textAccent={accent === 'white' ? 'blue' : 'white'}>
                   Cancel
                 </Button>
               </>
+            ) : searchable.action ? (
+              <>
+                <TextField
+                  placeholder={searchable.inputPlaceholder ?? 'Search...'}
+                  icon={MagnifySvg}
+                  style={{backgroundColor: colors.neutral50}}
+                  onFocus={() => searchable.onSearchToggle?.(true)}
+                  ref={searchableActionInputRef}
+                />
+                <IconButton
+                  icon={searchable.action.icon}
+                  color={accentItemsColor}
+                  onPress={() => searchable.action?.onActionPress?.()}
+                  style={{marginLeft: 18}}
+                  size="small"
+                />
+              </>
             ) : (
               <>
-                <CustomText weight="semi-bold" style={styles.headerTitle}>
+                <CustomText
+                  weight="semi-bold"
+                  style={[styles.headerTitle, {color: accentItemsColor}]}>
                   {title}
                 </CustomText>
                 <IconButton
                   icon={MagnifySvg}
-                  color={colors.neutral0}
+                  color={accentItemsColor}
                   onPress={() => searchable.onSearchToggle?.(true)}
                 />
               </>
             )}
           </View>
         </View>
-      ) : (
-        <View
-          style={{
-            backgroundColor: colors.blue,
-            alignItems: 'center',
-          }}>
-          <View
-            style={{
-              ...styles.headerTop,
-              paddingBottom: Card ? 45 : 16,
-              width: '100%',
-              maxWidth: config.MAX_CONTENT_WIDTH,
-            }}>
-            <CustomText style={styles.headerTitle}>{title}</CustomText>
-            <Action action={action} />
-          </View>
-        </View>
-      )}
 
-      {Card && (
-        <View style={styles.headerBottom}>
-          <View style={[styles.card, globalStyles.shadow, cardStyle]}>
-            {Card}
-          </View>
-        </View>
+        {extended && (
+          <View style={[styles.extended, {backgroundColor: accentBgColor}]} />
+        )}
+      </View>
+    );
+  }
+
+  return (
+    <View
+      style={{
+        backgroundColor: accentBgColor,
+        alignItems: 'center',
+        position: 'relative',
+      }}>
+      <View
+        style={[
+          styles.header,
+          {
+            width: '100%',
+            maxWidth: config.MAX_CONTENT_WIDTH,
+          },
+        ]}>
+        <CustomText
+          style={[styles.headerTitle, {color: accentItemsColor}]}
+          weight="semi-bold">
+          {title}
+        </CustomText>
+        <Action action={action} accent={accent} />
+      </View>
+
+      {extended && (
+        <View style={[styles.extended, {backgroundColor: accentBgColor}]} />
       )}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  minimalHeader: {
+const minimalStyles = StyleSheet.create({
+  header: {
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 4,
-    paddingBottom: 4,
     paddingRight: 12,
     paddingLeft: 4,
     maxWidth: config.MAX_CONTENT_WIDTH,
     width: '100%',
+    minHeight: 48,
   },
-  minimalHeaderTitleContainer: {
+  titleContainer: {
     minHeight: 40,
     display: 'flex',
     justifyContent: 'center',
   },
-  minimalHeaderTitle: {
-    color: colors.neutral0,
+  title: {
     textAlign: 'center',
     fontSize: 18,
   },
-  header: {},
-  headerTop: {
-    backgroundColor: colors.blue,
+});
+
+const styles = StyleSheet.create({
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 16,
-    paddingRight: 24,
-    paddingLeft: 24,
+    paddingRight: 12,
+    paddingLeft: 16,
+    minHeight: 64,
   },
   headerTitle: {
     fontSize: 24,
     lineHeight: 32,
-    color: colors.neutral0,
   },
-  searchCancel: {
-    marginLeft: 16,
-  },
-  headerBottom: {
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: -32,
-  },
-  card: {
-    backgroundColor: colors.neutral0,
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingTop: 12,
-    paddingBottom: 12,
-    borderRadius: 8,
-    ...globalStyles.wrapper,
-    maxWidth: config.MAX_CONTENT_WIDTH - 32,
+  extended: {
+    height: 32,
+    width: '100%',
+    position: 'absolute',
+    top: '100%',
   },
 });
 

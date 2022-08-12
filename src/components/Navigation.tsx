@@ -6,11 +6,11 @@ import {colors} from '../styles';
 
 import CustomText from './CustomText';
 
-import HomeSvg from '../assets/icons/home.svg';
-import ChartSvg from '../assets/icons/chart-filled.svg';
-import TradeSvg from '../assets/icons/trade.svg';
-import WalletSvg from '../assets/icons/wallet.svg';
-import UserSvg from '../assets/icons/user.svg';
+import HomeSvg from '../assets/icons/navigation/home.svg';
+import ChartSvg from '../assets/icons/navigation/chart-filled.svg';
+import TradeSvg from '../assets/icons/navigation/trade.svg';
+import WalletSvg from '../assets/icons/navigation/wallet.svg';
+import UserSvg from '../assets/icons/navigation/user.svg';
 
 import HomeScreen from '../screens/Home';
 import MarketsScreen from '../screens/Markets';
@@ -20,11 +20,19 @@ import WalletScreen from '../screens/Wallet';
 import NotificationsScreen from '../screens/Notifications';
 import AssetScreen from '../screens/Asset';
 import HistoryScreen from '../screens/History';
+import ImportCreateWalletScreen from '../screens/ImportCreateWallet';
+import SignInEmailScreen from '../screens/SignInEmail';
+import WelcomeScreen from '../screens/Welcome';
+import GetStartedScreen from '../screens/GetStarted';
 
 export type RootStackParamList = {
   Home: undefined;
   Asset: undefined;
   History: undefined;
+  ImportCreateWallet: undefined;
+  SignInEmail: undefined;
+  Welcome: undefined;
+  GetStarted: undefined;
 };
 
 export type HomeStackParamList = {
@@ -129,6 +137,14 @@ const Navigation: React.FC = () => {
         headerShown: false,
         animation: 'simple_push',
       }}>
+      <RootStack.Screen name="Welcome" component={WelcomeScreen} />
+      <RootStack.Screen name="GetStarted" component={GetStartedScreen} />
+      <RootStack.Screen
+        name="ImportCreateWallet"
+        component={ImportCreateWalletScreen}
+      />
+      <RootStack.Screen name="SignInEmail" component={SignInEmailScreen} />
+
       <RootStack.Screen name="Home" component={MainTabs} />
       <RootStack.Screen name="Asset" component={AssetScreen} />
       <RootStack.Screen name="History" component={HistoryScreen} />

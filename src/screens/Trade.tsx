@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   slippage: {
     backgroundColor: colors.neutral0,
-    borderRadius: 24,
+    borderRadius: 100,
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 8,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     backgroundColor: colors.neutral50,
     marginRight: 'auto',
-    borderRadius: 24,
+    borderRadius: 100,
   },
   details: {
     marginTop: 16,
@@ -199,14 +199,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.neutral100,
     padding: 4,
-    borderRadius: 24,
+    borderRadius: 100,
   },
   switchBtn: {
     paddingTop: 4,
     paddingBottom: 4,
     paddingRight: 16,
     paddingLeft: 16,
-    borderRadius: 24,
+    borderRadius: 100,
     flexGrow: 1,
   },
   switchText: {

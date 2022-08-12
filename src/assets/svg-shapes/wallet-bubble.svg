@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 209 209">
+  <g id="Group_1" data-name="Group 1" transform="translate(-2202.5 183.5)">
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="104" cy="104" r="104" transform="translate(2203 -183)" fill="#fff"
+      stroke="#eff0f3" stroke-width="1" opacity="0.64" />
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="84" cy="84" r="84" transform="translate(2223 -163)" fill="#fff"
+      stroke="#eff0f3" stroke-width="1" />
+    <circle id="Ellipse_3" data-name="Ellipse 3" cx="64" cy="64" r="64" transform="translate(2243 -143)"
+      fill="#e0e1e4" />
+    <path id="Path_1" data-name="Path 1"
+      d="M147.167,94.5v30a6.667,6.667,0,0,1-6.667,6.667h-35a6.667,6.667,0,0,1-6.666-6.667v-35"
+      transform="translate(2184 -186)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="5" />
+    <path id="Path_2" data-name="Path 2" d="M138,110.333a1.666,1.666,0,1,1-1.667-1.666A1.667,1.667,0,0,1,138,110.333Z"
+      transform="translate(2184 -186)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="5" />
+    <path id="Path_3" data-name="Path 3"
+      d="M140.5,94.5H104.667a5.833,5.833,0,1,1,0-11.667h29.166A6.667,6.667,0,0,1,140.5,89.5Zm0,0h6.667"
+      transform="translate(2184 -186)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="5" />
+  </g>
+</svg>

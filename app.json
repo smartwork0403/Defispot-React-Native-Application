@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "slug": "defispot",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./src/assets/images/splash-blue.png",
       "resizeMode": "cover",
       "backgroundColor": "#0077FF"
     },
