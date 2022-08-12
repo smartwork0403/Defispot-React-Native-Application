@@ -1,5 +1,5 @@
-import {Network} from '@thorwallet/xchain-client';
-import {Chain} from '@thorwallet/xchain-util';
+import {Network} from '@xchainjs/xchain-client';
+import {Chain} from '@xchainjs/xchain-util';
 
 import {Amount, AmountType, Asset, Memo} from '.';
 

@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 
-import {FeeOption} from '@thorwallet/xchain-client';
+import {FeeOption} from '@xchainjs/xchain-client';
 import {Asset} from '../../SDKs/multichain-sdk';
 
 // import {NotificationProps} from 'components/Notifications/Notifications';
@@ -16,9 +16,11 @@ import {multichain} from '../../services/multichain';
 export const useApp = () => {
   const dispatch = useAppDispatch();
   const appState = useAppSelector(selectAppState);
-
+  console.log(appState, 'AppStateeeeeeeeeee');
+  
   const baseCurrencyAsset =
-    Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
+  Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
+  console.log(baseCurrencyAsset, 'AppStateeeeeeeeeee');
 
   const setBaseCurrency = useCallback(
     (baseAsset: Asset) => {

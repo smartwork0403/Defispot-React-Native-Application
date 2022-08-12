@@ -1,7 +1,7 @@
 import {useCallback, useMemo} from 'react';
 
-import {Keystore} from '@thorwallet/xchain-crypto';
-import {ETHChain} from '@thorwallet/xchain-util';
+import {Keystore} from '@xchainjs/xchain-crypto';
+import {ETHChain} from '@xchainjs/xchain-util';
 import {hasConnectedWallet, SupportedChain} from '../SDKs/multichain-sdk';
 
 import {useAppDispatch, useAppSelector} from '../redux/hooks';

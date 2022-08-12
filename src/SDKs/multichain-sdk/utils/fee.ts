@@ -1,4 +1,4 @@
-import {FeeOption} from '@thorwallet/xchain-client';
+import {FeeOption} from '@xchainjs/xchain-client';
 import {InboundAddressesItem} from '../../midgard-sdk';
 
 const multiplier: Record<FeeOption, number> = {

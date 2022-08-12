@@ -1,11 +1,10 @@
 import {calculateGraphData} from '../common/helper/calculateGraphData';
 import {setThorchainChartData} from './wallet/slice';
+import {REACT_APP_API_V1_URL} from '@env';
 
 export const initThorchainChartData = async () => {
   try {
-    const res = await fetch(
-      `${process.env.REACT_APP_API_V1_URL}/get/graph/data`,
-    );
+    const res = await fetch(`${REACT_APP_API_V1_URL}/get/graph/data`);
 
     const {
       graph: {data},

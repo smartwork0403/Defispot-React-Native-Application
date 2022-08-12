@@ -1,6 +1,6 @@
-import {TxHash, Balance, Network} from '@thorwallet/xchain-client';
-import {Client as CosmosClient, ClientUrls} from '@thorwallet/xchain-cosmos';
-import {baseAmount, Chain, CosmosChain} from '@thorwallet/xchain-util';
+import {TxHash, Balance, Network} from '@xchainjs/xchain-client';
+import {Client as CosmosClient, ClientUrls} from '@xchainjs/xchain-cosmos';
+import {baseAmount, Chain, CosmosChain} from '@xchainjs/xchain-util';
 
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';
 import {IClient} from './client';

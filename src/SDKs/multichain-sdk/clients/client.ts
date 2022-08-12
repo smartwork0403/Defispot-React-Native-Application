@@ -1,5 +1,5 @@
-import {TxHash} from '@thorwallet/xchain-client';
-import {Chain} from '@thorwallet/xchain-util';
+import {TxHash} from '@xchainjs/xchain-client';
+import {Chain} from '@xchainjs/xchain-util';
 
 import {Asset, AssetAmount} from '../entities';
 import {TxParams} from './types';

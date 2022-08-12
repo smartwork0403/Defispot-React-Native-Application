@@ -1,5 +1,5 @@
 import {hexlify} from '@ethersproject/bytes';
-import {Network} from '@thorwallet/xchain-client';
+import {Network} from '@xchainjs/xchain-client';
 
 import {WalletStatus} from './types';
 

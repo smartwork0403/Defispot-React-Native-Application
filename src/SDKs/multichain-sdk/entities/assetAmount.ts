@@ -8,7 +8,7 @@ import {
   DOGEChain,
   Chain,
   CosmosChain,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 import BigNumber from 'bignumber.js';
 import invariant from 'tiny-invariant';
 

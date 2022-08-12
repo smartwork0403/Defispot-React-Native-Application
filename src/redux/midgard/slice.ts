@@ -1,6 +1,6 @@
 import {createSelector, createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {Chain, THORChain} from '@thorwallet/xchain-util';
+import {Chain, THORChain} from '@xchainjs/xchain-util';
 import BigNumber from 'bignumber.js';
 import {getFormatted} from '../../common/helper/action-helper';
 import {fromUnixTime} from 'date-fns';
@@ -239,7 +239,9 @@ const slice = createSlice({
             ) {
               state.memberDetails.pools[foundIndex] = payloadPool;
             }
-          } else state.memberDetails.pools.push(payloadPool);
+          } else {
+            state.memberDetails.pools.push(payloadPool);
+          }
         });
 
         state.memberDetailsLoading = false;
@@ -499,7 +501,7 @@ const slice = createSlice({
           if (action.meta.arg.pool) {
             state.liquidityHistory = action.payload;
           } else {
-          //@ts-ignore
+            //@ts-ignore
             state.liquidityGlobalHistory = actions.payload;
           }
         },
@@ -673,7 +675,9 @@ const slice = createSlice({
         });
       })
       .addCase(midgardActions.approveAssetPoll.rejected, (state, {payload}) => {
-        if (!payload) return;
+        if (!payload) {
+          return;
+        }
 
         const index = state.assetApprovals.findIndex(a => a.asset === payload);
 
@@ -720,13 +724,18 @@ export const selectState = (state: RootState) => state.midgard;
 export const selectPoolsMarketCap = createSelector(
   (state: RootState) => state.midgard.pools,
   pools => {
+    console.log(pools, "poolspoolspoolspoolspoolspoolspoolspools");
     const sorted = [...pools];
     return sorted.sort((a, b) => (a.marketCap < b.marketCap ? 1 : -1));
   },
 );
 
 export const selectAvailablePoolsMarketCap = createSelector(
-  (state: RootState) => state.midgard.pools,
+  (state: RootState) => {
+    console.log(state);
+
+    return state.midgard.pools;
+  },
   pools => {
     const sorted = [...pools];
     return sorted

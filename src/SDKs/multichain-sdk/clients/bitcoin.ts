@@ -1,18 +1,18 @@
-import {Client as BtcClient} from '@thorwallet/xchain-bitcoin';
+import {Client as BtcClient} from '@xchainjs/xchain-bitcoin';
 import {
   TxHash,
   Balance,
   TxParams as ClientTxParams,
   Network,
   FeeOption,
-} from '@thorwallet/xchain-client';
+} from '@xchainjs/xchain-client';
 import {
   baseAmount,
   Chain,
   BTCChain,
   assetToString,
   AssetBTC,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 import axios from 'axios';
 
 import {BTC_DECIMAL} from '../../multichain-sdk/constants';

@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState, useMemo} from 'react';
 
 import {useDispatch} from 'react-redux';
 
-import {FeeOption} from '@thorwallet/xchain-client';
+import {FeeOption} from '@xchainjs/xchain-client';
 import {
   Amount,
   AmountType,

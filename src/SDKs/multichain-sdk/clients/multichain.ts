@@ -7,13 +7,13 @@ import {
   TxHistoryParams,
   Tx,
   FeeOption,
-} from '@thorwallet/xchain-client';
-import {decryptFromKeystore, Keystore} from '@thorwallet/xchain-crypto';
+} from '@xchainjs/xchain-client';
+import {decryptFromKeystore, Keystore} from '@xchainjs/xchain-crypto';
 import {
   Client as EthClient,
   getTokenAddress,
-} from '@thorwallet/xchain-ethereum';
-import {getChainIds, getDefaultClientUrl} from '@thorwallet/xchain-thorchain';
+} from '@xchainjs/xchain-ethereum';
+import {getChainIds, getDefaultClientUrl} from '@xchainjs/xchain-thorchain';
 import {
   baseAmount,
   Chain,
@@ -24,7 +24,7 @@ import {
   LTCChain,
   BCHChain,
   CosmosChain,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 import {MetaMaskClient, WalletStatus} from '../../metamask-sdk';
 import {MidgardV2, InboundAddressesItem} from '../../midgard-sdk';
 import {
@@ -178,7 +178,7 @@ export class MultiChain implements IMultiChain {
     this.eth = new EthChain({network});
     this.ltc = new LtcChain({network});
     this.bch = new BchChain({network});
-    this.doge = new DogeChain({network});
+    // this.doge = new DogeChain({network});
     this.cosmos = new GaiaChain({network});
   }
 

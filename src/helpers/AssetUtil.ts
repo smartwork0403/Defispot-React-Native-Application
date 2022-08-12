@@ -1,4 +1,4 @@
-import {Chain} from '@thorwallet/xchain-util';
+import {Chain} from '@xchainjs/xchain-util';
 import BigNumber from 'bignumber.js';
 import {ActionTypeEnum} from '../SDKs/midgard-sdk';
 import {

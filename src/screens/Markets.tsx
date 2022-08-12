@@ -18,7 +18,7 @@ import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
 import {useAppSelector} from '../redux/hooks';
 import {selectAvailablePoolsMarketCap} from '../redux/midgard/slice';
 import {useEffect} from 'react';
-
+import {REACT_APP_MIDGARD_TESTNET_URL} from '@env';
 const sortByItems = [
   {
     name: 'volume',
@@ -54,6 +54,7 @@ const MarketsScreen: React.FC = () => {
 
   useEffect(() => {
     console.log(pools);
+    console.log(REACT_APP_MIDGARD_TESTNET_URL);
   }, [pools]);
 
   return (

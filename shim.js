@@ -27,8 +27,4 @@ if (typeof localStorage !== 'undefined') {
   localStorage.debug = isDev ? '*' : '';
 }
 
-require('crypto');
-require('http');
-require('https');
-require('fs');
-require('path');
+// require('react-native-randombytes');

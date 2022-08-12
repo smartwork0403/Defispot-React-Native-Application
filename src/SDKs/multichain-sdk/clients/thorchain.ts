@@ -3,19 +3,19 @@ import {
   TxHash,
   Balance,
   Network,
-} from '@thorwallet/xchain-client';
+} from '@xchainjs/xchain-client';
 import {
   ChainIds,
   Client as ThorClient,
   DepositParam as ClientDepositParam,
-} from '@thorwallet/xchain-thorchain';
+} from '@xchainjs/xchain-thorchain';
 import {
   assetToString,
   baseAmount,
   Chain,
   THORChain,
   Asset as BasicAsset,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 import {THORChainLedger} from '../../wallet-core/ledger/thorchain';
 import {WalletConnectClient} from '../../wallet-core/walletconnect';
 

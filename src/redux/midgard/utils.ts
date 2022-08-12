@@ -1,4 +1,4 @@
-import {THORChain} from '@thorwallet/xchain-util';
+import {THORChain} from '@xchainjs/xchain-util';
 import {MemberPool} from '../../SDKs/midgard-sdk';
 import * as moment from 'moment';
 import {SupportedChain} from '../../SDKs/multichain-sdk';

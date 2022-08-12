@@ -1,5 +1,5 @@
 import {WalletCore, TW} from '@trustwallet/wallet-core';
-import {BNBChain, ETHChain, THORChain} from '@thorwallet/xchain-util';
+import {BNBChain, ETHChain, THORChain} from '@xchainjs/xchain-util';
 
 export const supportedNetworks: WalletCore.CoinType[] = [
   WalletCore.CoinType.binance,

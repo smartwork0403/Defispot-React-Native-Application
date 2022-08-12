@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {hexlify} from '@ethersproject/bytes';
-import {Network} from '@thorwallet/xchain-client';
-import {DOGEChain} from '@thorwallet/xchain-util';
+import {Network} from '@xchainjs/xchain-client';
+import {DOGEChain} from '@xchainjs/xchain-util';
 
 import {
   Provider,

@@ -1,4 +1,4 @@
-import {Network} from '@thorwallet/xchain-client';
+import {Network} from '@xchainjs/xchain-client';
 
 import {getInboundData} from './api';
 import {InboundAddressesItem} from './types';

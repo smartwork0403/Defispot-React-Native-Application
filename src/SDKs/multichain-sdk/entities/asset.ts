@@ -1,6 +1,6 @@
 import {EtherscanProvider} from '@ethersproject/providers';
-import {AssetAtom} from '@thorwallet/xchain-cosmos';
-import {getDecimal} from '@thorwallet/xchain-ethereum';
+import {AssetAtom} from '@xchainjs/xchain-cosmos';
+import {getDecimal} from '@xchainjs/xchain-ethereum';
 import {
   BNBChain,
   BTCChain,
@@ -18,7 +18,7 @@ import {
   // AssetUST,
   Asset as AssetObj,
   CosmosChain,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 
 import {ETHERSCAN_API_KEY, NETWORK_TYPE} from '../../multichain-sdk/config';
 
@@ -160,6 +160,7 @@ export class Asset implements IAsset {
     let chain: Chain;
     let symbol: string;
     let synth: boolean;
+    console.log(asset, 'assettttttttttttt');
 
     // check if synth or not
     if (asset.includes('/')) {

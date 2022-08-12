@@ -1,9 +1,9 @@
 import {parseUnits} from '@ethersproject/units';
-import {FeeOption} from '@thorwallet/xchain-client';
+import {FeeOption} from '@xchainjs/xchain-client';
 import {
   Client as EthClient,
   estimateDefaultFeesWithGasPricesAndLimits,
-} from '@thorwallet/xchain-ethereum';
+} from '@xchainjs/xchain-ethereum';
 import BigNumber from 'bignumber.js';
 
 /**

@@ -1,4 +1,4 @@
-import {Network as NetworkType} from '@thorwallet/xchain-client';
+import {Network as NetworkType} from '@xchainjs/xchain-client';
 
 import {DefaultApi, THORNameDetails} from './api';
 import {Configuration} from './api/configuration';

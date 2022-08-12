@@ -1,4 +1,4 @@
-import {Chain} from '@thorwallet/xchain-util';
+import {Chain} from '@xchainjs/xchain-util';
 import {Pool, Asset} from '../../SDKs/multichain-sdk';
 
 export const getRuneYieldInfoRoute = ({

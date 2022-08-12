@@ -1,4 +1,4 @@
-import {delay} from '@thorwallet/xchain-util';
+import {delay} from '@xchainjs/xchain-util';
 
 export const downloadAsFile = async (filename: string, text: string) => {
   const element = document.createElement('a');

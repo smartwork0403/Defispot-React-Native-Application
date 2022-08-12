@@ -3,21 +3,21 @@ import {
   AddressParams,
   Client as BchClient,
   ErrorResponse,
-} from '@thorwallet/xchain-bitcoincash';
+} from '@xchainjs/xchain-bitcoincash';
 import {
   TxHash,
   Balance,
   Network,
   TxParams as ClientTxParams,
   FeeOption,
-} from '@thorwallet/xchain-client';
+} from '@xchainjs/xchain-client';
 import {
   baseAmount,
   Chain,
   BCHChain,
   assetToString,
   AssetBCH,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 import axios from 'axios';
 
 import {HASKOIN_API_URL} from '../../../settings/config';

@@ -1,4 +1,4 @@
-import {Keystore} from '@thorwallet/xchain-crypto';
+import {Keystore} from '@xchainjs/xchain-crypto';
 import {Asset} from '../SDKs/multichain-sdk';
 
 import {AsyncStorage} from 'react-native';
@@ -18,7 +18,8 @@ export const saveBaseCurrency = (currency: string) => {
 
 export const getBaseCurrency = (): string => {
   let base = AsyncStorage.getItem(BASE_CURRENCY);
-  return (base as unknown as string) || Asset.USD().toString();
+  console.log(base, 'Asetetetete');
+  return Asset.USD().toString();
 };
 
 export const saveKeystore = (keystore: Keystore) => {

@@ -7,7 +7,7 @@ import {
   BCHChain,
   THORChain,
   CosmosChain,
-} from '@thorwallet/xchain-util';
+} from '@xchainjs/xchain-util';
 
 export const getAssetType = (
   chain: Chain,
