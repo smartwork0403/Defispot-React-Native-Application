@@ -15,7 +15,7 @@ import {
 } from '@xchainjs/xchain-util';
 import axios from 'axios';
 
-import {BTC_DECIMAL} from 'multichain-sdk/constants';
+import {BTC_DECIMAL} from '../../multichain-sdk/constants';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';

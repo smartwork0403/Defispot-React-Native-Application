@@ -1,4 +1,4 @@
-import {useLayoutEffect} from 'react';
+import {useEffect} from 'react';
 
 import {useHttp} from './useHttp';
 
@@ -10,7 +10,7 @@ export const useAppSetup = () => {
     midgardResponseInterceptor,
   } = useHttp();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const httpV2Instance = getHttpClientV2();
     const response = responseInterceptor(httpV2Instance);
     return () => {
@@ -18,7 +18,7 @@ export const useAppSetup = () => {
     };
   }, [getHttpClientV2, responseInterceptor]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const midgardInstance = getMidgardClient();
     const response = midgardResponseInterceptor(midgardInstance);
     return () => {

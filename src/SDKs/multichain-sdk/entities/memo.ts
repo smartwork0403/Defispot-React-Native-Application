@@ -1,8 +1,8 @@
 import {Network} from '@xchainjs/xchain-client';
 
-import {AFFILIATE_FEE} from 'multichain-sdk/config';
+import {AFFILIATE_FEE} from '../../multichain-sdk/config';
 
-import {config} from 'settings/config';
+import {config} from '../../../settings/config';
 
 import {getTradeLimitWithIdentifier} from '../utils/memo';
 import {Amount} from './amount';

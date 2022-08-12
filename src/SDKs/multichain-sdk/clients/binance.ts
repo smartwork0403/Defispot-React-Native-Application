@@ -12,12 +12,12 @@ import {
   assetToString,
   baseToAsset,
 } from '@xchainjs/xchain-util';
-import {BinanceLedger} from 'wallet-core/ledger/binance';
+import {BinanceLedger} from '../../wallet-core/ledger/binance';
 import {
   WalletConnectClient,
   getSignRequestMsg,
   BINANCE_NETWORK_ID,
-} from 'wallet-core/walletconnect';
+} from '../../wallet-core/walletconnect';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';

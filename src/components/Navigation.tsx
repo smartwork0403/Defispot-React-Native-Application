@@ -25,6 +25,10 @@ import SignInEmailScreen from '../screens/SignInEmail';
 import WelcomeScreen from '../screens/Welcome';
 import GetStartedScreen from '../screens/GetStarted';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useAppSetup} from '../hooks/useAppSetup';
+import {useGlobalRefresh} from '../hooks/useGlobalRefresh';
+
 export type RootStackParamList = {
   Home: undefined;
   Asset: undefined;
@@ -91,12 +95,22 @@ const navItems = [
 ];
 
 const MainTabs = () => {
+  const insets = useSafeAreaInsets();
+
   return (
     <RootTabNavigator.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: styles.container,
+        tabBarStyle: {
+          elevation: 0,
+          borderColor: colors.neutral0,
+          backgroundColor: colors.neutral0,
+          paddingLeft: 15,
+          paddingRight: 15,
+          height: 56 + insets.bottom,
+          paddingBottom: 13,
+        },
       }}>
       {navItems.map(nav => {
         return (
@@ -106,7 +120,7 @@ const MainTabs = () => {
             component={nav.component}
             options={{
               tabBarIcon: ({focused}) => (
-                <View style={styles.nav}>
+                <View style={[styles.nav, {paddingBottom: insets.bottom}]}>
                   <nav.icon
                     width={20}
                     height={20}
@@ -131,6 +145,8 @@ const MainTabs = () => {
 };
 
 const Navigation: React.FC = () => {
+  useAppSetup();
+  useGlobalRefresh();
   return (
     <RootStack.Navigator
       screenOptions={{

@@ -6,7 +6,6 @@ import {
   LTCChain,
   BCHChain,
   THORChain,
-  DOGEChain,
   CosmosChain,
 } from '@xchainjs/xchain-util';
 
@@ -27,8 +26,6 @@ export const getAssetType = (
     networkType = 'BTC';
   } else if (chain === BNBChain) {
     networkType = 'BNB';
-  } else if (chain === DOGEChain) {
-    networkType = 'DOGE';
   } else if (chain === ETHChain) {
     networkType = 'ETH';
   } else if (chain === CosmosChain) {
@@ -48,7 +45,7 @@ export const getNetworkName = (chain: Chain, ticker: string): string => {
   if (chain === BTCChain) return 'Bitcoin';
   if (chain === LTCChain) return 'Litecoin';
   if (chain === BCHChain) return 'Bitcoin Cash';
-  if (chain === DOGEChain) return 'Dogecoin';
+  // if (chain === DOGEChain) return 'Dogecoin';
   if (chain === CosmosChain) return 'Gaia';
   if (chain === ETHChain && ticker === 'ETH') {
     return 'Ethereum';
@@ -70,7 +67,7 @@ const AssetMap = {
   btc: 'Bitcoin',
   ltc: 'Litecoin',
   usdt: 'Tether USD',
-  doge: 'Dogecoin',
+  // doge: 'Dogecoin',
   bch: 'Bitcoin Cash',
   eth: 'Ethereum',
   rune: 'THORChain',

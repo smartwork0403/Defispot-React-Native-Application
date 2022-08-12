@@ -1,3 +1,6 @@
+// import 'react-native-crypto';
+// import 'react-native-randombytes';
+import './shim.js';
 import {registerRootComponent} from 'expo';
 import {AppRegistry, LogBox, Platform} from 'react-native';
 import App from './App';

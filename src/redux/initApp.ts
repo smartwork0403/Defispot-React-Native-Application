@@ -1,5 +1,5 @@
 import {calculateGraphData} from '../common/helper/calculateGraphData';
-
+import {REACT_APP_API_V1_URL} from '@env';
 import {
   setThorchainChartData,
   setTotalThorchainChartData,
@@ -9,9 +9,7 @@ import {
 export const initThorchainChartData = async store => {
   try {
     store.dispatch(setThorchainChartLoading(true));
-    const res = await fetch(
-      `${process.env.REACT_APP_API_V1_URL}/get/graph/data`,
-    );
+    const res = await fetch(`${REACT_APP_API_V1_URL}/get/graph/data`);
 
     const {
       graph: {data},

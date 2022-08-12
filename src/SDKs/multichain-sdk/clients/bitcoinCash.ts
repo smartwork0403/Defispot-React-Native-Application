@@ -20,7 +20,7 @@ import {
 } from '@xchainjs/xchain-util';
 import axios from 'axios';
 
-import {HASKOIN_API_URL} from 'settings/config';
+import {HASKOIN_API_URL} from '../../../settings/config';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {AmountType, Amount, Asset, AssetAmount} from '../entities';

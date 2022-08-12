@@ -3,6 +3,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import {initApp} from './initApp';
 import {middleware} from './middleware';
 import rootReducer from './rootReducer';
+import {NODE_ENV} from '@env';
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -12,7 +13,7 @@ export const store = configureStore({
     }),
     ...middleware,
   ],
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: NODE_ENV !== 'production',
 });
 
 initApp(store);

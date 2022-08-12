@@ -1,10 +1,18 @@
 import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+// import RNBootSplash from 'react-native-bootsplash';
+import * as Random from 'expo-random';
+
 import {colors} from './src/styles';
+// import RNBootSplash from 'react-native-bootsplash';
+import {Provider as ReduxProvider} from 'react-redux';
+import {store as reduxStore} from './src/redux/store';
 
 import Navigation from './src/components/Navigation';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import {CustomStatusBar} from './src/components/CustomStatusBar';
 
 const App = () => {
   const [fontloaded, setfontloaded] = useState(false);
@@ -35,9 +43,15 @@ const App = () => {
     );
   }
   return (
-    <NavigationContainer theme={{colors: {background: colors.neutral50}}}>
-      <Navigation />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <CustomStatusBar backgroundColor={colors.blue} />
+      <NavigationContainer theme={{colors: {background: colors.neutral50}}}>
+      <ReduxProvider store={reduxStore}>
+        <Navigation />
+      </ReduxProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
+
   );
 };
 
