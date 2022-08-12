@@ -21,6 +21,8 @@ import NotificationsScreen from '../screens/Notifications';
 import AssetScreen from '../screens/Asset';
 import HistoryScreen from '../screens/History';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useAppSetup} from '../hooks/useAppSetup';
+import {useGlobalRefresh} from '../hooks/useGlobalRefresh';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -134,6 +136,8 @@ const MainTabs = () => {
 };
 
 const Navigation: React.FC = () => {
+  useAppSetup();
+  useGlobalRefresh();
   return (
     <RootStack.Navigator
       screenOptions={{

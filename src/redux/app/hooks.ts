@@ -16,9 +16,11 @@ import {multichain} from '../../services/multichain';
 export const useApp = () => {
   const dispatch = useAppDispatch();
   const appState = useAppSelector(selectAppState);
-
+  console.log(appState, 'AppStateeeeeeeeeee');
+  
   const baseCurrencyAsset =
-    Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
+  Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
+  console.log(baseCurrencyAsset, 'AppStateeeeeeeeeee');
 
   const setBaseCurrency = useCallback(
     (baseAsset: Asset) => {

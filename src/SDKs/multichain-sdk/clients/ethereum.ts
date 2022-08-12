@@ -1,4 +1,4 @@
-import {toast} from 'react-toastify';
+// import {toast} from 'react-toastify';
 
 import {BigNumber as BN} from '@ethersproject/bignumber';
 import {hexlify} from '@ethersproject/bytes';
@@ -21,13 +21,13 @@ import {
 import BigNumber from 'bignumber.js';
 import {ethers, Wallet} from 'ethers';
 import {parseUnits} from 'ethers/lib/utils';
-import {MetaMaskClient} from 'metamask-sdk';
-import {WalletConnectClient} from 'wallet-core/walletconnect';
+import {MetaMaskClient} from '../../metamask-sdk';
+import {WalletConnectClient} from '../../wallet-core/walletconnect';
 
-import {ETH_DECIMAL} from 'multichain-sdk/constants';
-import {getGasPrice} from 'multichain-sdk/utils/gas';
+import {ETH_DECIMAL} from '../../multichain-sdk/constants';
+import {getGasPrice} from '../../multichain-sdk/utils/gas';
 
-import {REACT_APP_MOCK_PHRASE} from 'settings/config';
+import {REACT_APP_MOCK_PHRASE} from '../../../settings/config';
 
 import {XdefiClient} from '../../xdefi-sdk';
 import {
@@ -97,7 +97,7 @@ export class EthChain implements IEthChain {
     // NOTE: we need to do this to make sure we dont have valid wallet
     // because somehow feunds ended up in the mock wallet
     this.client.transfer = () => {
-      toast.error('wallet error, please reconnect');
+      // toast.error('wallet error, please reconnect');
       return new Promise(resolve => {
         resolve('wallet error, please reconnect');
       });
@@ -154,7 +154,7 @@ export class EthChain implements IEthChain {
     // NOTE: we need to do this to make sure we dont have valid wallet
     // because somehow feunds ended up in the mock wallet
     this.client.transfer = () => {
-      toast.error('wallet error, please reconnect');
+      // toast.error('wallet error, please reconnect');
       return new Promise(resolve => {
         resolve('wallet error, please reconnect');
       });
@@ -301,7 +301,7 @@ export class EthChain implements IEthChain {
     // NOTE: we need to do this to make sure we dont have valid wallet
     // because somehow feunds ended up in the mock wallet
     this.client.transfer = () => {
-      toast.error('wallet error, please reconnect');
+      // toast.error('wallet error, please reconnect');
       return new Promise(resolve => {
         resolve('wallet error, please reconnect');
       });
@@ -441,7 +441,7 @@ export class EthChain implements IEthChain {
     // NOTE: we need to do this to make sure we dont have valid wallet
     // because somehow feunds ended up in the mock wallet
     this.client.transfer = () => {
-      toast.error('wallet error, please reconnect');
+      // toast.error('wallet error, please reconnect');
       return new Promise(resolve => {
         resolve('wallet error, please reconnect');
       });

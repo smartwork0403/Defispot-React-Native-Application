@@ -1,0 +1,17 @@
+diff --git a/node_modules/react-native-crypto/index.js b/node_modules/react-native-crypto/index.js
+index f644543..f531eaf 100644
+--- a/node_modules/react-native-crypto/index.js
++++ b/node_modules/react-native-crypto/index.js
+@@ -1,6 +1,11 @@
+ 'use strict'
+ 
+-import { randomBytes } from 'react-native-randombytes'
++import {getRandomBytes as randomBytesArray} from 'expo-random';
++import toBuffer from 'typedarray-to-buffer';
++
++function randomBytes(bytes) {
++  return toBuffer(randomBytesArray(bytes))
++}
+ exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = randomBytes
+ 
+ // implement window.getRandomValues(), for packages that rely on it

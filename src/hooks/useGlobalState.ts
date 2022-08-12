@@ -1,4 +1,4 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 
 import {Amount, Asset, Price, runeToAsset} from '../SDKs/multichain-sdk';
 
@@ -11,8 +11,8 @@ export const useGlobalState = () => {
   const dispatch = useAppDispatch();
   const {actions, pools} = useMidgard();
   const {baseCurrency} = useApp();
-
   const loadInitialData = useCallback(() => {
+    console.log(actions);
     dispatch(actions.getVolume24h());
     dispatch(actions.getPools());
     dispatch(actions.getStats());

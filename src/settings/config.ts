@@ -1,6 +1,20 @@
 import {ClientUrl} from '@xchainjs/xchain-bitcoincash';
 import {Network} from '@xchainjs/xchain-client';
 
+import {
+  REACT_APP_API_V1_URL,
+  REACT_APP_API_V2_URL,
+  REACT_APP_HASKOIN_BCH_MAINNET_URL,
+  REACT_APP_HASKOIN_BCH_TESTNET_URL,
+  REACT_APP_BLOCKCYPHER_URL,
+  REACT_APP_SOCHAIN_URL,
+  REACT_APP_IS_SYNTH_ACTIVE,
+  REACT_APP_MOCK_PHRASE as a,
+  REACT_APP_NETWORK,
+  REACT_APP_AFFILIATE_ADDRESS_TESTNET,
+  REACT_APP_AFFILIATE_ADDRESS_MAINNET,
+} from '@env';
+
 const safeEnv = (defaultEnv: string, env?: string) => {
   return env || defaultEnv;
 };
@@ -24,42 +38,37 @@ export const envOrDefault = (env: ENV | undefined, defaultValue: string) =>
   isEnv(env) ? env : defaultValue;
 
 const APP_HASKOIN_BCH_MAINNET_URL = envOrDefault(
-  process.env.REACT_APP_HASKOIN_BCH_MAINNET_URL,
+  REACT_APP_HASKOIN_BCH_MAINNET_URL,
   'https://haskoin.ninerealms.com/bch',
 );
 
 export const HASKOIN_API_URL: ClientUrl = {
   testnet: envOrDefault(
-    process.env.REACT_APP_HASKOIN_BCH_TESTNET_URL,
+    REACT_APP_HASKOIN_BCH_TESTNET_URL,
     'https://haskoin.ninerealms.com/bchtest',
   ),
   stagenet: APP_HASKOIN_BCH_MAINNET_URL,
   mainnet: APP_HASKOIN_BCH_MAINNET_URL,
 };
 export const getBlockcypherUrl = (): string =>
-  envOrDefault(
-    process.env.REACT_APP_BLOCKCYPHER_URL,
-    'https://api.blockcypher.com/v1',
-  );
+  envOrDefault(REACT_APP_BLOCKCYPHER_URL, 'https://api.blockcypher.com/v1');
 
 export const getSochainUrl = (): string =>
-  envOrDefault(process.env.REACT_APP_SOCHAIN_URL, 'https://sochain.com/api/v2');
+  envOrDefault(REACT_APP_SOCHAIN_URL, 'https://sochain.com/api/v2');
 
-export const IS_TESTNET =
-  safeEnv('testnet', process.env.REACT_APP_NETWORK) === 'testnet';
+export const IS_TESTNET = safeEnv('testnet', REACT_APP_NETWORK) === 'testnet';
 
 export const IS_SYNTH_ACTIVE =
-  safeEnv('testnet', process.env.REACT_APP_IS_SYNTH_ACTIVE) === 'true';
+  safeEnv('testnet', REACT_APP_IS_SYNTH_ACTIVE) === 'true';
 
-export const {REACT_APP_MOCK_PHRASE} = process.env;
-
+export const REACT_APP_MOCK_PHRASE = a;
 export const config: Config = {
-  network: safeEnv('testnet', process.env.REACT_APP_NETWORK) as Network,
-  apiV1Url: process.env.REACT_APP_API_V1_URL,
-  apiV2Url: process.env.REACT_APP_API_V2_URL,
+  network: safeEnv('testnet', REACT_APP_NETWORK) as Network,
+  apiV1Url: REACT_APP_API_V1_URL,
+  apiV2Url: REACT_APP_API_V2_URL,
   affiliateAddress: IS_TESTNET
-    ? process.env.REACT_APP_AFFILIATE_ADDRESS_TESTNET
-    : process.env.REACT_APP_AFFILIATE_ADDRESS_MAINNET,
+    ? REACT_APP_AFFILIATE_ADDRESS_TESTNET
+    : REACT_APP_AFFILIATE_ADDRESS_MAINNET,
 };
 
 if (!config.apiV1Url) {

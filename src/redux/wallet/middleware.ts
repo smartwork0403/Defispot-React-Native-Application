@@ -6,7 +6,7 @@ import {
   SUPPORTED_CHAINS,
 } from '../../SDKs/multichain-sdk';
 
-import {actions as AppActions} from '../app/app-slice';
+// import {actions as AppActions} from '../app/app-slice';
 import serverService from '../server/server.service';
 import {
   setPortfolioGraphDataLoading,
@@ -72,12 +72,12 @@ export const walletMiddleware = middlewareOptions => next => async action => {
   };
   // Transactions
   if (walletActions.loadAllWallets.fulfilled.match(action)) {
-    dispatch(
-      AppActions.setNotification({
-        type: 'success',
-        text: 'Wallet is connected!',
-      }),
-    );
+    // dispatch(
+    //   AppActions.setNotification({
+    //     type: 'success',
+    //     text: 'Wallet is connected!',
+    //   }),
+    // );
     dispatch(setPortfolioGraphDataLoading(true));
     const wallet = action.payload;
     const getTokenPriceInUSD = (asset?: Asset) =>
@@ -165,12 +165,12 @@ export const walletMiddleware = middlewareOptions => next => async action => {
     }
   }
   if (actions.disconnect.match(action)) {
-    dispatch(
-      AppActions.setNotification({
-        type: 'success',
-        text: 'Wallet is disconnected!',
-      }),
-    );
+    // dispatch(
+    //   AppActions.setNotification({
+    //     type: 'success',
+    //     text: 'Wallet is disconnected!',
+    //   }),
+    // );
   }
 
   return result;
