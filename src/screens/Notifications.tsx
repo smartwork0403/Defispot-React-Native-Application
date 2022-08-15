@@ -5,7 +5,6 @@ import {colors} from '../styles';
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
 
-import SettingsSvg from '../assets/icons/settings.svg';
 import ArrowUpRightSvg from '../assets/icons/arrow-up-right.svg';
 import SwapSvg from '../assets/icons/swap.svg';
 import CheckCircleSvg from '../assets/icons/check-circle.svg';
@@ -81,11 +80,10 @@ const Notification: React.FC<{
 const NotificationsScreen: React.FC = () => {
   return (
     <Layout
+      accent="white"
       header={{
         title: 'Notifications',
-        minimal: true,
-        action: {type: 'icon', icon: SettingsSvg},
-        back: true,
+        minimal: {title: 'Notifications', back: true},
       }}
       contentStyle={{paddingBottom: 4}}>
       <View>

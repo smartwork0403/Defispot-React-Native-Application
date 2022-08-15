@@ -86,7 +86,10 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
 
             {stickyAction && (
               <View style={styles.actions}>
-                <Button accent={stickyAction.accent} {...stickyAction}>
+                <Button
+                  accent={stickyAction.accent}
+                  size="large"
+                  {...stickyAction}>
                   {stickyAction.label}
                 </Button>
               </View>
@@ -120,6 +123,7 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: colors.neutral0,
+    backgroundColor: colors.red,
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
   },
@@ -141,16 +145,18 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingBottom: 12,
+    backgroundColor: 'blue',
   },
   actions: {
-    flex: 1,
-    position: 'absolute',
-    bottom: 12,
-    marginBottom: 12,
-    marginRight: 16,
-    marginLeft: 16,
-    left: 0,
-    right: 0,
+    // flex: 1,
+    // position: 'absolute',
+    // bottom: 12,
+    // marginBottom: 12,
+    // marginRight: 16,
+    // marginLeft: 16,
+    // left: 0,
+    // right: 0,
+    backgroundColor: 'red',
   },
 });
 

@@ -110,142 +110,139 @@ const AssetScreen: React.FC = () => {
   const [isShowMore, setIsShowMore] = useState(false);
 
   return (
-    <Layout
-      statusBarColor={colors.neutral0}
-      customContent={
-        <>
-          <AssetHeader />
+    <Layout statusBarColor={colors.neutral0}>
+      <>
+        <AssetHeader />
 
-          <ScrollView style={globalStyles.wrapper}>
-            <AssetChart />
+        <ScrollView style={globalStyles.wrapper}>
+          <AssetChart />
 
-            <View style={styles.content}>
-              <CustomText weight="medium" style={styles.title}>
-                Statistics
-              </CustomText>
-              <View style={styles.statics}>
-                <Static
-                  title="Market Cap"
-                  value="$4.5B"
-                  style={{
-                    width: '50%',
-                    borderRightColor: colors.neutral100,
-                    borderBottomColor: colors.neutral100,
-                    borderRightWidth: 1,
-                    borderBottomWidth: 1,
-                  }}
-                />
-                <Static
-                  title="Volume (24h)"
-                  value="$4.5B"
-                  valueExtra={{hasIcon: true, color: 'green', text: '6.8%'}}
-                  style={{
-                    width: '50%',
-                    borderBottomColor: colors.neutral100,
-                    borderBottomWidth: 1,
-                  }}
-                />
-                <Static
-                  title="All Time High"
-                  value="$0,94"
-                  style={{
-                    width: '50%',
-                    borderRightColor: colors.neutral100,
-                    borderBottomColor: colors.neutral100,
-                    borderRightWidth: 1,
-                    borderBottomWidth: 1,
-                  }}
-                />
-                <Static
-                  title="Price Change (7D)"
-                  value="-%8,57"
-                  valueColor="red"
-                  style={{
-                    width: '50%',
-                    borderBottomColor: colors.neutral100,
-                    borderBottomWidth: 1,
-                  }}
-                />
-                <Static
-                  title="Circulating Supply"
-                  value="24.8B LINK"
-                  valueExtra={{hasIcon: false, text: '%75  of total supply'}}
-                  style={{
-                    width: '100%',
-                  }}
-                />
-              </View>
-
-              <CustomText weight="medium" style={styles.title}>
-                Details
-              </CustomText>
-              <View style={styles.details}>
-                <CustomText weight="medium" style={styles.detailsTitle}>
-                  About Stellar Lumens
-                </CustomText>
-                <CustomText style={styles.detailsText}>
-                  {!isShowMore ? (
-                    <>
-                      Chainlink (LINK) is an Ethereum token that powers the
-                      Chainlink decentralized oracle network. This network
-                      allows smart contracts...
-                    </>
-                  ) : (
-                    <>
-                      Chainlink (LINK) is an Ethereum token that powers the
-                      Chainlink decentralized oracle network. This network
-                      allows smart contracts on Ethereum to securely connect to
-                      external data sources, APIs, and payment systems.
-                    </>
-                  )}
-                </CustomText>
-
-                {!isShowMore && (
-                  <Pressable
-                    style={styles.showMore}
-                    onPress={() => setIsShowMore(true)}>
-                    <CustomText weight="medium" style={styles.showMoreText}>
-                      Show More
-                    </CustomText>
-                  </Pressable>
-                )}
-
-                <View style={styles.detailsDivider} />
-
-                {detailLinks.map(link => (
-                  <Pressable style={styles.detailsLink} key={link.label}>
-                    <View style={styles.detailsLinkIconContainer}>
-                      <link.icon height={12} width={12} color={colors.blue} />
-                    </View>
-                    <CustomText weight="medium" style={styles.detailsLinkText}>
-                      {link.label}
-                    </CustomText>
-                  </Pressable>
-                ))}
-              </View>
+          <View style={styles.content}>
+            <CustomText weight="medium" style={styles.title}>
+              Statistics
+            </CustomText>
+            <View style={styles.statics}>
+              <Static
+                title="Market Cap"
+                value="$4.5B"
+                style={{
+                  width: '50%',
+                  borderRightColor: colors.neutral100,
+                  borderBottomColor: colors.neutral100,
+                  borderRightWidth: 1,
+                  borderBottomWidth: 1,
+                }}
+              />
+              <Static
+                title="Volume (24h)"
+                value="$4.5B"
+                valueExtra={{hasIcon: true, color: 'green', text: '6.8%'}}
+                style={{
+                  width: '50%',
+                  borderBottomColor: colors.neutral100,
+                  borderBottomWidth: 1,
+                }}
+              />
+              <Static
+                title="All Time High"
+                value="$0,94"
+                style={{
+                  width: '50%',
+                  borderRightColor: colors.neutral100,
+                  borderBottomColor: colors.neutral100,
+                  borderRightWidth: 1,
+                  borderBottomWidth: 1,
+                }}
+              />
+              <Static
+                title="Price Change (7D)"
+                value="-%8,57"
+                valueColor="red"
+                style={{
+                  width: '50%',
+                  borderBottomColor: colors.neutral100,
+                  borderBottomWidth: 1,
+                }}
+              />
+              <Static
+                title="Circulating Supply"
+                value="24.8B LINK"
+                valueExtra={{hasIcon: false, text: '%75  of total supply'}}
+                style={{
+                  width: '100%',
+                }}
+              />
             </View>
-          </ScrollView>
 
-          <View style={styles.stickyActions}>
-            <Button
-              outlined
-              prependIcon={{icon: PlusSvg}}
-              style={{marginRight: 16}}>
-              Add Liquidity
-            </Button>
-            <Button accent="black" style={{marginRight: 16}}>
-              Trade
-            </Button>
-            <IconButton
-              icon={StartOutlinedSvg}
-              color={colors.neutral400}
-              style={{marginRight: 8}}
-            />
-            <IconButton icon={ShareSvg} color={colors.neutral400} />
+            <CustomText weight="medium" style={styles.title}>
+              Details
+            </CustomText>
+            <View style={styles.details}>
+              <CustomText weight="medium" style={styles.detailsTitle}>
+                About Stellar Lumens
+              </CustomText>
+              <CustomText style={styles.detailsText}>
+                {!isShowMore ? (
+                  <>
+                    Chainlink (LINK) is an Ethereum token that powers the
+                    Chainlink decentralized oracle network. This network allows
+                    smart contracts...
+                  </>
+                ) : (
+                  <>
+                    Chainlink (LINK) is an Ethereum token that powers the
+                    Chainlink decentralized oracle network. This network allows
+                    smart contracts on Ethereum to securely connect to external
+                    data sources, APIs, and payment systems.
+                  </>
+                )}
+              </CustomText>
+
+              {!isShowMore && (
+                <Pressable
+                  style={styles.showMore}
+                  onPress={() => setIsShowMore(true)}>
+                  <CustomText weight="medium" style={styles.showMoreText}>
+                    Show More
+                  </CustomText>
+                </Pressable>
+              )}
+
+              <View style={styles.detailsDivider} />
+
+              {detailLinks.map(link => (
+                <Pressable style={styles.detailsLink} key={link.label}>
+                  <View style={styles.detailsLinkIconContainer}>
+                    <link.icon height={12} width={12} color={colors.blue} />
+                  </View>
+                  <CustomText weight="medium" style={styles.detailsLinkText}>
+                    {link.label}
+                  </CustomText>
+                </Pressable>
+              ))}
+            </View>
           </View>
-        </>
-      }
-    />
+        </ScrollView>
+
+        <View style={styles.stickyActions}>
+          <Button
+            outlined
+            prependIcon={{icon: PlusSvg}}
+            style={{marginRight: 16}}>
+            Add Liquidity
+          </Button>
+          <Button accent="black" style={{marginRight: 16}}>
+            Trade
+          </Button>
+          <IconButton
+            icon={StartOutlinedSvg}
+            color={colors.neutral400}
+            style={{marginRight: 8}}
+          />
+          <IconButton icon={ShareSvg} color={colors.neutral400} />
+        </View>
+      </>
+    </Layout>
   );
 };
 

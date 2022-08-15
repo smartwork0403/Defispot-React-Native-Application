@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
+import type {Props as ButtonProps} from './Button';
+
 import {colors} from '../styles';
 
 import Button from './Button';
@@ -11,14 +13,10 @@ import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
 type Item = {name: string; label: string; icon?: any};
 
-interface Props {
+interface Props extends ButtonProps {
   label: string;
-  accent?: 'black' | 'blue';
-  shadowStyle?: StyleProp<ViewStyle>;
-  size?: 'small' | 'tiny';
   items: Item[];
   selected: string;
-  outlined?: boolean;
   onSelect: (name: string) => void;
   header?: {
     title: string;
@@ -29,14 +27,11 @@ interface Props {
 
 const Select: React.FC<Props> = ({
   label,
-  size,
-  accent,
-  shadowStyle,
   items,
   selected,
-  outlined = false,
   onSelect,
   header,
+  ...btnProps
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [previewSelected, setPreviewSelected] = useState(selected);
@@ -47,18 +42,7 @@ const Select: React.FC<Props> = ({
 
   return (
     <View>
-      <Button
-        onPress={() => setIsOpen(true)}
-        size={size}
-        accent={accent}
-        shadowStyle={shadowStyle}
-        style={{
-          borderColor: isOpen
-            ? colors.blue
-            : outlined
-            ? colors.neutral200
-            : 'transparent',
-        }}>
+      <Button onPress={() => setIsOpen(true)} {...btnProps}>
         <View style={styles.btn}>
           <CustomText weight="medium">{label}</CustomText>
           <View style={styles.btnIcon}>
@@ -77,7 +61,6 @@ const Select: React.FC<Props> = ({
         noPadding
         stickyAction={{
           label: 'Apply',
-          accent: 'blue',
           onPress: () => {
             onSelect(previewSelected);
             setIsOpen(false);
@@ -88,11 +71,7 @@ const Select: React.FC<Props> = ({
             <CustomText weight="medium" style={styles.headerTitle}>
               {header.title}
             </CustomText>
-            <Button
-              onPress={header.onHeaderActionPress}
-              text
-              noPadding
-              textAccent="blue">
+            <Button onPress={header.onHeaderActionPress} text>
               {header.actionLabel}
             </Button>
           </View>

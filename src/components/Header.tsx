@@ -29,11 +29,7 @@ const Action: React.FC<{action?: ActionType; accent?: 'white'}> = ({
   return (
     <>
       {action && action.text && (
-        <Button
-          noPadding
-          text
-          textAccent={accent === 'white' ? 'blue' : 'white'}
-          onPress={action.onActionPress}>
+        <Button text accent="white" onPress={action.onActionPress}>
           {action.text}
         </Button>
       )}
@@ -91,7 +87,14 @@ const Header: React.FC<Props> = ({
   if (minimal) {
     return (
       <View style={{backgroundColor: accentBgColor, alignItems: 'center'}}>
-        <View style={minimalStyles.header}>
+        <View
+          style={[
+            minimalStyles.header,
+            {
+              borderBottomColor:
+                accent === 'white' ? colors.neutral100 : colors.blue,
+            },
+          ]}>
           <View style={{minWidth: 40}}>
             {minimal.back && (
               <IconButton
@@ -145,9 +148,11 @@ const Header: React.FC<Props> = ({
               <>
                 <TextField
                   placeholder={searchable?.inputPlaceholder ?? 'Search...'}
-                  icon={MagnifySvg}
+                  prependIcon={{icon: MagnifySvg}}
                   autoFocus
-                  style={{backgroundColor: colors.neutral50}}
+                  accent="grey"
+                  style={{flex: 1}}
+                  size="small"
                 />
                 <Button
                   style={{marginLeft: 16}}
@@ -156,9 +161,8 @@ const Header: React.FC<Props> = ({
                     // TODO: this dose not work cause of conditional rendering items, (at this time there is no <TextInput /> in the page)
                     searchableActionInputRef.current?.blur();
                   }}
-                  noPadding
                   text
-                  textAccent={accent === 'white' ? 'blue' : 'white'}>
+                  accent="white">
                   Cancel
                 </Button>
               </>
@@ -166,10 +170,12 @@ const Header: React.FC<Props> = ({
               <>
                 <TextField
                   placeholder={searchable.inputPlaceholder ?? 'Search...'}
-                  icon={MagnifySvg}
-                  style={{backgroundColor: colors.neutral50}}
+                  prependIcon={{icon: MagnifySvg}}
                   onFocus={() => searchable.onSearchToggle?.(true)}
+                  accent="grey"
+                  size="small"
                   ref={searchableActionInputRef}
+                  style={{flex: 1}}
                 />
                 <IconButton
                   icon={searchable.action.icon}
@@ -243,6 +249,7 @@ const minimalStyles = StyleSheet.create({
     maxWidth: config.MAX_CONTENT_WIDTH,
     width: '100%',
     minHeight: 48,
+    borderBottomWidth: 1,
   },
   titleContainer: {
     minHeight: 40,

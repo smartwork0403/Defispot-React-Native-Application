@@ -6,7 +6,7 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 const IconButton: React.FC<{
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
@@ -16,9 +16,21 @@ const IconButton: React.FC<{
   iconSize?: {width: number; height: number};
   style?: StyleProp<ViewStyle>;
   outlined?: boolean;
-}> = ({onPress, icon: Icon, size, color, iconSize, style, outlined}) => {
+  accent?: 'white';
+  shadow?: boolean;
+}> = ({
+  onPress,
+  icon: Icon,
+  size,
+  color,
+  iconSize,
+  style,
+  outlined,
+  accent,
+  shadow,
+}) => {
   const getStyles = () => {
-    const customStyles: StyleProp<ViewStyle> = {};
+    let customStyles: StyleProp<ViewStyle> = {};
 
     if (size === 'small') {
       customStyles.height = 32;
@@ -37,6 +49,14 @@ const IconButton: React.FC<{
     if (outlined) {
       customStyles.borderWidth = 1;
       customStyles.borderColor = colors.neutral100;
+    }
+
+    if (accent === 'white') {
+      customStyles.backgroundColor = colors.neutral0;
+    }
+
+    if (shadow) {
+      customStyles = Object.assign(customStyles, globalStyles.shadow);
     }
 
     return customStyles;

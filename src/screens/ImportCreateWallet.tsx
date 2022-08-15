@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+
+import type {RootStackParamList} from '../components/Navigation';
+import {importCreateWalletParamsList} from '../components/Navigation';
+import type {ImportCreateWalletScreenProps} from '../components/Navigation';
 
 import {colors} from '../styles';
 
@@ -7,9 +13,7 @@ import Wizard from '../components/Wizard';
 import CustomText from '../components/CustomText';
 import TextField from '../components/TextField';
 import Button from '../components/Button';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
-import type {RootStackParamList} from '../components/Navigation';
+import RecoveryPhrase from '../components/RecoveryPhraseModal';
 
 import WalletBubbleSvg from '../assets/svg-shapes/wallet-bubble.svg';
 import RefreshBubbleSvg from '../assets/svg-shapes/refresh-bubble.svg';
@@ -24,11 +28,70 @@ const STEP_NAMES = {
   BIOMETRICS: 'biometrics',
 };
 
-const ImportCreateWallet: React.FC = () => {
-  const isImport = true;
+const recoveryPhrases = [
+  {
+    text: 'jump',
+    name: 'jump',
+  },
+  {
+    text: 'stuff',
+    name: 'stuff',
+  },
+  {
+    text: 'brand',
+    name: 'brand',
+  },
+  {
+    text: 'wasp',
+    name: 'wasp',
+  },
+  {
+    text: 'provide',
+    name: 'provide',
+  },
+  {
+    text: 'mistake',
+    name: 'mistake',
+  },
+  {
+    text: 'gorilla',
+    name: 'gorilla',
+  },
+  {
+    text: 'tiger',
+    name: 'tiger',
+  },
+  {
+    text: 'dinner',
+    name: 'dinner',
+  },
+  {
+    text: 'peanut',
+    name: 'peanut',
+  },
+  {
+    text: 'expose',
+    name: 'expose',
+  },
+  {
+    text: 'install',
+    name: 'install',
+  },
+];
+
+const ImportCreateWallet: React.FC<
+  ImportCreateWalletScreenProps<'ImportCreateWallet'>
+> = ({
+  route: {
+    params: {type},
+  },
+}) => {
+  const isImport = type === importCreateWalletParamsList.IMPORT;
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [step, setStep] = useState(STEP_NAMES.WELCOME);
+  const [isRecoveryPhraseModalOpen, setIsRecoveryPhraseModalOpen] =
+    useState(false);
 
   const steps = [
     {
@@ -84,7 +147,10 @@ const ImportCreateWallet: React.FC = () => {
       title: 'Backup your wallet',
       subtitle: 'Will ask you to write down your seed.',
       actions: [
-        {label: 'Backup Wallet', onPress: () => setStep(STEP_NAMES.BIOMETRICS)},
+        {
+          label: 'Backup Wallet',
+          onPress: () => setIsRecoveryPhraseModalOpen(true),
+        },
       ],
       content: (
         <View style={backupStyles.container}>
@@ -98,6 +164,13 @@ const ImportCreateWallet: React.FC = () => {
             - your funds will be stolen. The seed is the only way to recover
             your account.
           </CustomText>
+
+          <RecoveryPhrase
+            phrases={recoveryPhrases}
+            isOpen={isRecoveryPhraseModalOpen}
+            onClose={() => setIsRecoveryPhraseModalOpen(false)}
+            onActionPress={() => setStep(STEP_NAMES.BIOMETRICS)}
+          />
         </View>
       ),
     },

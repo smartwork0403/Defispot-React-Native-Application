@@ -119,6 +119,7 @@ const TextField = forwardRef<TextInput, Props>(
             {label}
           </CustomText>
         )}
+
         <View
           style={[
             styles.inputContainer,
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 100,
-    flex: 1,
+    // flex: 1,
     display: 'flex',
     borderWidth: 1,
   },

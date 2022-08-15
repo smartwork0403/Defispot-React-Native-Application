@@ -1,13 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Table, TableWrapper, Cell} from 'react-native-table-component';
@@ -24,7 +17,6 @@ import UnorderedListSVG from '../assets/icons/unordered-list.svg';
 import ArrowUpSVG from '../assets/icons/arrow-up.svg';
 import ArrowDownSVG from '../assets/icons/arrow-down.svg';
 import Asset from '../components/Asset';
-import Header from '../components/Header';
 
 const carouselItems = [
   require('../assets/images/banner.png'),
@@ -58,6 +50,8 @@ const HomeScreen: React.FC = () => {
 
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
   const [currentSwitch, setCurrentSwitch] = useState(switchItems[0].name);
+
+  const [isSearchShown, setIsSearchShown] = useState(false);
 
   const stakingHeaderItems = [
     {
@@ -109,236 +103,214 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Layout
-      customContent={
-        <ScrollView>
-          <Header
-            searchable={{
-              persistence: {
-                actionIcon: BellUnreadSvg,
-                onActionIconClick: () => navigation.navigate('Notifications'),
-              },
-              inputPlaceholder: 'Search market...',
+      contentStyle={{padding: 0}}
+      header={{
+        searchable: {
+          action: {
+            icon: BellUnreadSvg,
+            onActionPress: () => navigation.navigate('Notifications'),
+          },
+          inputPlaceholder: 'Search market...',
+          onSearchToggle: () => setIsSearchShown(!isSearchShown),
+          isShown: isSearchShown,
+        },
+        extended: true,
+      }}>
+      <GestureHandlerRootView>
+        <View style={styles.carouselContainer}>
+          <Carousel
+            width={windowWidth - 32}
+            height={170}
+            loop
+            autoPlay
+            autoPlayInterval={5000}
+            data={carouselItems}
+            renderItem={({item}) => (
+              <Image
+                source={item}
+                style={{
+                  backgroundColor: 'green',
+                  flex: 1,
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            )}
+            panGestureHandlerProps={{
+              activeOffsetX: [-10, 10],
             }}
-            card={
-              <GestureHandlerRootView>
-                <View style={styles.carouselContainer}>
-                  <Carousel
-                    width={windowWidth - 32}
-                    height={170}
-                    loop
-                    autoPlay
-                    autoPlayInterval={5000}
-                    data={carouselItems}
-                    renderItem={({item}) => (
-                      <Image
-                        source={item}
-                        style={{
-                          backgroundColor: 'green',
-                          flex: 1,
-                          width: '100%',
-                          height: '100%',
-                        }}
-                      />
-                    )}
-                    panGestureHandlerProps={{
-                      activeOffsetX: [-10, 10],
-                    }}
-                    onScrollEnd={index => setCurrentCarouselIndex(index)}
-                  />
-
-                  <View style={styles.carouselIndex}>
-                    <CustomText
-                      weight="medium"
-                      style={styles.carouselIndexText}>
-                      {currentCarouselIndex + 1}/{carouselItems.length}
-                    </CustomText>
-                  </View>
-                </View>
-              </GestureHandlerRootView>
-            }
-            cardStyle={{
-              paddingLeft: 0,
-              paddingRight: 0,
-              paddingBottom: 0,
-              paddingTop: 0,
-              overflow: 'hidden',
-            }}
+            onScrollEnd={index => setCurrentCarouselIndex(index)}
           />
 
-          <View style={globalStyles.wrapper}>
-            <View style={styles.stakingSpecial}>
-              <AnnouncementSVG
-                height={12}
-                width={12}
-                style={{marginRight: 8}}
-                color={colors.neutral400}
-              />
-              <CustomText weight="medium" style={styles.stakingSpecialText}>
-                #Defspot Staking Special
-              </CustomText>
-              <UnorderedListSVG
-                height={11}
-                width={11}
-                color={colors.neutral400}
-              />
-            </View>
+          <View style={styles.carouselIndex}>
+            <CustomText weight="medium" style={styles.carouselIndexText}>
+              {currentCarouselIndex + 1}/{carouselItems.length}
+            </CustomText>
+          </View>
+        </View>
+      </GestureHandlerRootView>
 
-            <View style={styles.content}>
-              <View style={styles.header}>
-                {stakingHeaderItems.map(item => (
-                  <View style={styles.headerItem} key={item.name}>
-                    <View style={styles.headerItemTop}>
-                      <CustomText
-                        weight="medium"
-                        style={styles.headerItemTopName}>
-                        {item.name}
-                      </CustomText>
-                      {item.upward ? (
-                        <ArrowUpSVG
-                          height={10}
-                          width={7}
-                          style={{marginLeft: 9, marginRight: 9}}
-                          color={colors.green}
-                        />
-                      ) : (
-                        <ArrowDownSVG
-                          height={10}
-                          width={7}
-                          style={{marginLeft: 9, marginRight: 9}}
-                          color={colors.red}
-                        />
-                      )}
+      <View style={globalStyles.wrapper}>
+        <View style={styles.stakingSpecial}>
+          <AnnouncementSVG
+            height={12}
+            width={12}
+            style={{marginRight: 8}}
+            color={colors.neutral400}
+          />
+          <CustomText weight="medium" style={styles.stakingSpecialText}>
+            #Defspot Staking Special
+          </CustomText>
+          <UnorderedListSVG height={11} width={11} color={colors.neutral400} />
+        </View>
 
-                      <CustomText
-                        weight="medium"
-                        style={{
-                          ...styles.headerItemTopPercent,
-                          color: item.upward ? colors.green : colors.red,
-                        }}>
-                        {item.percent}%
-                      </CustomText>
-                    </View>
+        <View style={styles.content}>
+          <View style={styles.header}>
+            {stakingHeaderItems.map(item => (
+              <View style={styles.headerItem} key={item.name}>
+                <View style={styles.headerItemTop}>
+                  <CustomText weight="medium" style={styles.headerItemTopName}>
+                    {item.name}
+                  </CustomText>
+                  {item.upward ? (
+                    <ArrowUpSVG
+                      height={10}
+                      width={7}
+                      style={{marginLeft: 9, marginRight: 9}}
+                      color={colors.green}
+                    />
+                  ) : (
+                    <ArrowDownSVG
+                      height={10}
+                      width={7}
+                      style={{marginLeft: 9, marginRight: 9}}
+                      color={colors.red}
+                    />
+                  )}
+
+                  <CustomText
+                    weight="medium"
+                    style={{
+                      ...styles.headerItemTopPercent,
+                      color: item.upward ? colors.green : colors.red,
+                    }}>
+                    {item.percent}%
+                  </CustomText>
+                </View>
+                <CustomText
+                  weight="medium"
+                  style={styles.headerItemBottomValue}>
+                  {item.value}
+                </CustomText>
+              </View>
+            ))}
+          </View>
+          <View style={styles.divider} />
+          <View style={styles.switchContainer}>
+            {switchItems.map(item => (
+              <Pressable
+                style={{
+                  ...styles.switch,
+                  backgroundColor:
+                    currentSwitch === item.name
+                      ? colors.neutral100
+                      : 'transparent',
+                }}
+                onPress={() => setCurrentSwitch(item.name)}
+                key={item.name}>
+                <CustomText weight="medium" style={styles.switchText}>
+                  {item.label}
+                </CustomText>
+              </Pressable>
+            ))}
+          </View>
+          <View style={styles.table}>
+            <Table>
+              {/* header */}
+              <TableWrapper style={styles.tableHeader}>
+                <Cell
+                  data={
+                    <CustomText weight="medium" style={styles.tableHeaderText}>
+                      Name
+                    </CustomText>
+                  }
+                  style={{flex: 1.5}}
+                />
+                <Cell
+                  data={
+                    <CustomText weight="medium" style={styles.tableHeaderText}>
+                      Last Price
+                    </CustomText>
+                  }
+                />
+                <Cell
+                  data={
                     <CustomText
                       weight="medium"
-                      style={styles.headerItemBottomValue}>
-                      {item.value}
+                      style={{
+                        ...styles.tableHeaderText,
+                        textAlign: 'right',
+                      }}>
+                      24h chg%
                     </CustomText>
-                  </View>
-                ))}
-              </View>
+                  }
+                />
+              </TableWrapper>
 
-              <View style={styles.divider} />
-
-              <View style={styles.switchContainer}>
-                {switchItems.map(item => (
-                  <Pressable
-                    style={{
-                      ...styles.switch,
-                      backgroundColor:
-                        currentSwitch === item.name
-                          ? colors.neutral100
-                          : 'transparent',
-                    }}
-                    onPress={() => setCurrentSwitch(item.name)}
-                    key={item.name}>
-                    <CustomText weight="medium" style={styles.switchText}>
-                      {item.label}
-                    </CustomText>
-                  </Pressable>
-                ))}
-              </View>
-
-              <View style={styles.table}>
-                <Table>
-                  {/* header */}
-                  <TableWrapper style={styles.tableHeader}>
-                    <Cell
-                      data={
-                        <CustomText
-                          weight="medium"
-                          style={styles.tableHeaderText}>
-                          Name
-                        </CustomText>
-                      }
-                      style={{flex: 1.5}}
-                    />
-                    <Cell
-                      data={
-                        <CustomText
-                          weight="medium"
-                          style={styles.tableHeaderText}>
-                          Last Price
-                        </CustomText>
-                      }
-                    />
-                    <Cell
-                      data={
+              {/* rows */}
+              {tableRows.map(row => (
+                <TableWrapper
+                  style={{
+                    ...styles.tableRow,
+                    marginBottom: 24,
+                  }}
+                  key={row.asset.name}>
+                  <Cell
+                    data={<Asset name={row.asset.name} size="small" />}
+                    style={{flex: 1.5}}
+                  />
+                  <Cell
+                    data={
+                      <CustomText weight="medium">{row.lastPrice}</CustomText>
+                    }
+                  />
+                  <Cell
+                    data={
+                      <View style={styles.tableItemChangeContainer}>
                         <CustomText
                           weight="medium"
                           style={{
-                            ...styles.tableHeaderText,
-                            textAlign: 'right',
+                            ...styles.tableItemChange,
+                            color: row.upward
+                              ? colors.greenDark
+                              : colors.redDark,
+                            backgroundColor: row.upward
+                              ? colors.greenLight
+                              : colors.redLight,
                           }}>
-                          24h chg%
+                          {row.upward ? '+' : '-'}
+                          {row.change}%
                         </CustomText>
-                      }
-                    />
-                  </TableWrapper>
-
-                  {/* rows */}
-                  {tableRows.map(row => (
-                    <TableWrapper
-                      style={{
-                        ...styles.tableRow,
-                        marginBottom: 24,
-                      }}
-                      key={row.asset.name}>
-                      <Cell
-                        data={<Asset name={row.asset.name} size="small" />}
-                        style={{flex: 1.5}}
-                      />
-                      <Cell
-                        data={
-                          <CustomText weight="medium">
-                            {row.lastPrice}
-                          </CustomText>
-                        }
-                      />
-                      <Cell
-                        data={
-                          <View style={styles.tableItemChangeContainer}>
-                            <CustomText
-                              weight="medium"
-                              style={{
-                                ...styles.tableItemChange,
-                                color: row.upward
-                                  ? colors.greenDark
-                                  : colors.redDark,
-                                backgroundColor: row.upward
-                                  ? colors.greenLight
-                                  : colors.redLight,
-                              }}>
-                              {row.upward ? '+' : '-'}
-                              {row.change}%
-                            </CustomText>
-                          </View>
-                        }
-                      />
-                    </TableWrapper>
-                  ))}
-                </Table>
-              </View>
-            </View>
+                      </View>
+                    }
+                  />
+                </TableWrapper>
+              ))}
+            </Table>
           </View>
-        </ScrollView>
-      }
-    />
+        </View>
+      </View>
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
   carouselContainer: {
     position: 'relative',
+    marginLeft: 16,
+    marginRight: 16,
+    borderRadius: 8,
+    overflow: 'hidden',
   },
   carouselIndex: {
     position: 'absolute',
@@ -378,7 +350,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 24,
     paddingTop: 8,
     paddingBottom: 8,
-    flex: 1,
   },
   header: {
     flexDirection: 'row',

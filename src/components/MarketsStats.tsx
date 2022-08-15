@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import CustomText from './CustomText';
 
 const MarketsStats: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, globalStyles.shadow]}>
       <View>
         <CustomText weight="medium" style={styles.statsTitle}>
           24h Volume
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: colors.neutral0,
+    padding: 12,
+    borderRadius: 8,
   },
   statsTitle: {
     fontSize: 11,

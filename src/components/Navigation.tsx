@@ -1,7 +1,15 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createBottomTabNavigator,
+  BottomTabScreenProps,
+} from '@react-navigation/bottom-tabs';
+import {
+  createNativeStackNavigator,
+  StackScreenProps,
+} from '@react-navigation/native-stack';
+import type {CompositeScreenProps} from '@react-navigation/native';
 import {StyleSheet, View} from 'react-native';
+
 import {colors} from '../styles';
 
 import CustomText from './CustomText';
@@ -24,20 +32,36 @@ import ImportCreateWalletScreen from '../screens/ImportCreateWallet';
 import SignInEmailScreen from '../screens/SignInEmail';
 import WelcomeScreen from '../screens/Welcome';
 import GetStartedScreen from '../screens/GetStarted';
+import ConnectWalletScreen from '../screens/ConnectWallet';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useAppSetup} from '../hooks/useAppSetup';
 import {useGlobalRefresh} from '../hooks/useGlobalRefresh';
 
+export const importCreateWalletParamsList = {
+  IMPORT: 'import',
+  CREATE: 'create',
+};
+
 export type RootStackParamList = {
   Home: undefined;
   Asset: undefined;
   History: undefined;
-  ImportCreateWallet: undefined;
+  ImportCreateWallet: {type: 'import' | 'create'};
   SignInEmail: undefined;
   Welcome: undefined;
   GetStarted: undefined;
+  ConnectWalletScreen: undefined;
 };
+
+export type RootStackScreenProps<T extends keyof RootStackParamList> =
+  StackScreenProps<RootStackParamList, T>;
+
+export type ImportCreateWalletScreenProps<T extends keyof RootStackParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<RootStackParamList, T>,
+    RootStackScreenProps<keyof RootStackParamList>
+  >;
 
 export type HomeStackParamList = {
   Home: undefined;
@@ -159,6 +183,7 @@ const Navigation: React.FC = () => {
         name="ImportCreateWallet"
         component={ImportCreateWalletScreen}
       />
+      <RootStack.Screen name="ConnectWallet" component={ConnectWalletScreen} />
       <RootStack.Screen name="SignInEmail" component={SignInEmailScreen} />
 
       <RootStack.Screen name="Home" component={MainTabs} />
@@ -170,13 +195,21 @@ const Navigation: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    elevation: 0,
     borderColor: colors.neutral0,
     backgroundColor: colors.neutral0,
     paddingLeft: 15,
     paddingRight: 15,
     height: 56 + 13,
     paddingBottom: 13,
+
+    shadowColor: colors.neutral500,
+    shadowOffset: {
+      width: 0,
+      height: -4,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 8,
   },
   nav: {
     alignItems: 'center',
