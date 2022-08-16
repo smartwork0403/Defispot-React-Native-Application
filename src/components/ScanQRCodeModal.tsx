@@ -36,6 +36,7 @@ const ScanQRCodeModal: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
+      stickyActionSpaceSize="large"
       stickyAction={{
         label: isEnterURL ? 'Continue' : 'Enter URL Instead',
         outlined: !isEnterURL,
@@ -67,13 +68,14 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
     paddingBottom: 24,
+    marginTop: 14,
   },
   scannerContainer: {
     backgroundColor: 'red',
     marginLeft: 'auto',
     marginRight: 'auto',
     aspectRatio: 0.75,
-    marginTop: -4,
+    marginTop: 10,
   },
 });
 

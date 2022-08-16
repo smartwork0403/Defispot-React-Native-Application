@@ -1,13 +1,20 @@
 import React, {type PropsWithChildren} from 'react';
-import {Text, StyleSheet, StyleProp, TextStyle} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  StyleProp,
+  TextStyle,
+  GestureResponderEvent,
+} from 'react-native';
 import {fonts, colors} from '../styles';
 
 const CustomText: React.FC<
   PropsWithChildren<{
     style?: StyleProp<TextStyle>;
     weight?: 'medium' | 'semi-bold' | 'bold';
+    onPress?: ((event: GestureResponderEvent) => void) | undefined;
   }>
-> = ({children, style, weight}) => {
+> = ({children, style, weight, onPress}) => {
   const getFontFamily = () => {
     if (weight === 'medium') {
       return fonts.interMedium;
@@ -20,7 +27,9 @@ const CustomText: React.FC<
   };
 
   return (
-    <Text style={[styles.text, {fontFamily: getFontFamily()}, style]}>
+    <Text
+      onPress={onPress}
+      style={[styles.text, {fontFamily: getFontFamily()}, style]}>
       {children}
     </Text>
   );

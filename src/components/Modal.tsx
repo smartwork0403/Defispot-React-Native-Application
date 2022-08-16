@@ -1,5 +1,13 @@
 import React, {type PropsWithChildren} from 'react';
-import {StyleSheet, View, ScrollView, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Pressable,
+  StyleProp,
+  ViewStyle,
+  Dimensions,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import {colors} from '../styles';
 
@@ -18,11 +26,13 @@ interface StickyAction extends ActionProps {
 interface Props {
   noHandle?: boolean;
   stickyAction?: StickyAction;
+  stickyActionSpaceSize?: 'large';
   isOpen: boolean;
   onClose: () => void;
   noPadding?: boolean;
   header?: {
     title: string;
+    style?: 'no-close';
   };
   fullHeight?: boolean;
 }
@@ -30,6 +40,7 @@ interface Props {
 const CustomModal: React.FC<PropsWithChildren<Props>> = ({
   noHandle = false,
   stickyAction,
+  stickyActionSpaceSize,
   isOpen,
   onClose,
   children,
@@ -37,6 +48,67 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
   header,
   fullHeight,
 }) => {
+  const windowHeight = Dimensions.get('window').height;
+
+  const getStickyActionStyles = () => {
+    let customStyles: StyleProp<ViewStyle> = {};
+
+    customStyles.paddingLeft = 16;
+    customStyles.paddingRight = 16;
+    customStyles.paddingBottom = 12;
+    customStyles.paddingTop = 12;
+
+    if (stickyActionSpaceSize === 'large') {
+      customStyles.paddingLeft = 24;
+      customStyles.paddingRight = 24;
+      customStyles.paddingBottom = 24;
+      customStyles.paddingTop = 24;
+    }
+
+    return customStyles;
+  };
+
+  const getContentStyle = () => {
+    const customStyles: StyleProp<ViewStyle> = {};
+
+    customStyles.paddingLeft = 24;
+    customStyles.paddingRight = 24;
+    customStyles.paddingTop = 24;
+
+    if (!stickyAction) {
+      customStyles.paddingBottom = 24;
+    }
+
+    if (noPadding) {
+      customStyles.paddingLeft = 0;
+      customStyles.paddingRight = 0;
+      customStyles.paddingBottom = 0;
+      customStyles.paddingTop = 0;
+    }
+
+    return customStyles;
+  };
+
+  const getHeaderStyle = () => {
+    const customStyles: StyleProp<ViewStyle> = {};
+
+    customStyles.paddingTop = 20;
+    customStyles.paddingBottom = 10;
+    customStyles.paddingRight = 70;
+    customStyles.paddingLeft = 70;
+
+    if (header && header.style === 'no-close') {
+      customStyles.paddingTop = 16;
+      customStyles.paddingBottom = 16;
+      customStyles.paddingRight = 20;
+      customStyles.paddingLeft = 20;
+      customStyles.borderBottomColor = colors.neutral100;
+      customStyles.borderBottomWidth = 1;
+    }
+
+    return customStyles;
+  };
+
   return (
     <View>
       <Modal
@@ -48,19 +120,23 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
         customBackdrop={
           <Pressable style={styles.backdrop} onPress={onClose} />
         }>
-        <View style={styles.wrapper}>
+        <View style={styles.handleContainer}>
           {!noHandle && <View style={styles.handle} />}
+        </View>
 
-          <View
-            style={{
-              ...styles.container,
-              height: fullHeight ? '100%' : 'auto',
-            }}>
-            {header && (
-              <View style={styles.header}>
-                <CustomText weight="medium" style={styles.headerTitle}>
-                  {header.title}
-                </CustomText>
+        <View
+          style={{
+            ...styles.container,
+            maxHeight: windowHeight - 60,
+            height: fullHeight ? '100%' : 'auto',
+          }}>
+          {header && (
+            <View style={[styles.header, getHeaderStyle()]}>
+              <CustomText weight="medium" style={styles.headerTitle}>
+                {header.title}
+              </CustomText>
+
+              {header.style !== 'no-close' && (
                 <IconButton
                   icon={CloseSvg}
                   onPress={onClose}
@@ -69,32 +145,24 @@ const CustomModal: React.FC<PropsWithChildren<Props>> = ({
                   iconSize={{width: 10, height: 10}}
                   style={styles.headerClose}
                 />
-              </View>
-            )}
+              )}
+            </View>
+          )}
 
-            <ScrollView style={{marginBottom: stickyAction ? 80 : 24}}>
-              <View
-                style={{
-                  ...styles.content,
-                  marginTop: noPadding ? 14 : 24,
-                  paddingRight: noPadding ? 0 : 24,
-                  paddingLeft: noPadding ? 0 : 24,
-                }}>
-                {children}
-              </View>
-            </ScrollView>
+          <ScrollView>
+            <View style={getContentStyle()}>{children}</View>
+          </ScrollView>
 
-            {stickyAction && (
-              <View style={styles.actions}>
-                <Button
-                  accent={stickyAction.accent}
-                  size="large"
-                  {...stickyAction}>
-                  {stickyAction.label}
-                </Button>
-              </View>
-            )}
-          </View>
+          {stickyAction && (
+            <View style={[getStickyActionStyles()]}>
+              <Button
+                accent={stickyAction.accent}
+                size="large"
+                {...stickyAction}>
+                {stickyAction.label}
+              </Button>
+            </View>
+          )}
         </View>
       </Modal>
     </View>
@@ -106,35 +174,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(18,19,21,0.32)',
     flex: 1,
   },
-  wrapper: {
-    marginTop: 28,
-    maxWidth: 600,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '100%',
+  handleContainer: {
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   handle: {
     height: 4,
     width: 48,
     borderRadius: 4,
     backgroundColor: colors.neutral0,
-    marginBottom: 12,
-    alignSelf: 'center',
   },
   container: {
     backgroundColor: colors.neutral0,
-    backgroundColor: colors.red,
-    borderTopRightRadius: 24,
-    borderTopLeftRadius: 24,
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
+    width: '100%',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 20,
-    paddingBottom: 10,
-    paddingRight: 70,
-    paddingLeft: 70,
   },
   headerTitle: {
     fontSize: 18,
@@ -142,21 +202,6 @@ const styles = StyleSheet.create({
   headerClose: {
     position: 'absolute',
     right: 12,
-  },
-  content: {
-    paddingBottom: 12,
-    backgroundColor: 'blue',
-  },
-  actions: {
-    // flex: 1,
-    // position: 'absolute',
-    // bottom: 12,
-    // marginBottom: 12,
-    // marginRight: 16,
-    // marginLeft: 16,
-    // left: 0,
-    // right: 0,
-    backgroundColor: 'red',
   },
 });
 

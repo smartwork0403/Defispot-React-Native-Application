@@ -33,6 +33,13 @@ import SignInEmailScreen from '../screens/SignInEmail';
 import WelcomeScreen from '../screens/Welcome';
 import GetStartedScreen from '../screens/GetStarted';
 import ConnectWalletScreen from '../screens/ConnectWallet';
+import ExportPrivateKeyScreen from '../screens/ExportPrivateKey';
+import TermsOfServiceScreen from '../screens/TermsOfService';
+import NotificationsSettingsScreen from '../screens/NotificationsSettings';
+import SecurityAlertsScreen from '../screens/SecurityAlerts';
+import AccountActivityScreen from '../screens/AccountActivity';
+import PriceAlertsScreen from '../screens/PriceAlerts';
+import ProductAnnouncementsScreen from '../screens/ProductAnnouncements';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useAppSetup} from '../hooks/useAppSetup';
@@ -51,7 +58,13 @@ export type RootStackParamList = {
   SignInEmail: undefined;
   Welcome: undefined;
   GetStarted: undefined;
-  ConnectWalletScreen: undefined;
+  ConnectWallet: undefined;
+  ExportPrivateKey: undefined;
+  NotificationsSettings: undefined;
+  SecurityAlerts: undefined;
+  AccountActivity: undefined;
+  PriceAlerts: undefined;
+  ProductAnnouncements: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
@@ -68,9 +81,15 @@ export type HomeStackParamList = {
   Notifications: undefined;
 };
 
+export type ProfileStackParamList = {
+  Profile: undefined;
+  TermsOfService: undefined;
+};
+
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootTabNavigator = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+const ProfileStack = createNativeStackNavigator<ProfileStackParamList>();
 
 const HomeScreenStack = () => {
   return (
@@ -82,6 +101,22 @@ const HomeScreenStack = () => {
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="Notifications" component={NotificationsScreen} />
     </HomeStack.Navigator>
+  );
+};
+
+const ProfileScreenStack = () => {
+  return (
+    <ProfileStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'slide_from_right',
+      }}>
+      <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+      <ProfileStack.Screen
+        name="TermsOfService"
+        component={TermsOfServiceScreen}
+      />
+    </ProfileStack.Navigator>
   );
 };
 
@@ -113,7 +148,7 @@ const navItems = [
   {
     name: 'profile',
     label: 'Profile',
-    component: ProfileScreen,
+    component: ProfileScreenStack,
     icon: UserSvg,
   },
 ];
@@ -183,7 +218,28 @@ const Navigation: React.FC = () => {
         name="ImportCreateWallet"
         component={ImportCreateWalletScreen}
       />
+      <RootStack.Screen
+        name="SecurityAlerts"
+        component={SecurityAlertsScreen}
+      />
+      <RootStack.Screen
+        name="AccountActivity"
+        component={AccountActivityScreen}
+      />
+      <RootStack.Screen
+        name="ProductAnnouncements"
+        component={ProductAnnouncementsScreen}
+      />
+      <RootStack.Screen name="PriceAlerts" component={PriceAlertsScreen} />
       <RootStack.Screen name="ConnectWallet" component={ConnectWalletScreen} />
+      <RootStack.Screen
+        name="NotificationsSettings"
+        component={NotificationsSettingsScreen}
+      />
+      <RootStack.Screen
+        name="ExportPrivateKey"
+        component={ExportPrivateKeyScreen}
+      />
       <RootStack.Screen name="SignInEmail" component={SignInEmailScreen} />
 
       <RootStack.Screen name="Home" component={MainTabs} />

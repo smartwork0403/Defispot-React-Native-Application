@@ -77,36 +77,34 @@ const Select: React.FC<Props> = ({
           </View>
         )}
 
-        <View style={styles.list}>
-          {items.map(item => (
-            <Pressable
-              onPress={() => setPreviewSelected(item.name)}
-              style={{
-                ...styles.item,
-                backgroundColor:
-                  previewSelected === item.name
-                    ? colors.neutral50
-                    : colors.neutral0,
-              }}
-              key={item.name}>
-              {item.icon && (
-                <View style={styles.itemIcon}>
-                  <item.icon width={12} height={12} color={colors.neutral400} />
-                </View>
-              )}
+        {items.map(item => (
+          <Pressable
+            onPress={() => setPreviewSelected(item.name)}
+            style={{
+              ...styles.item,
+              backgroundColor:
+                previewSelected === item.name
+                  ? colors.neutral50
+                  : colors.neutral0,
+            }}
+            key={item.name}>
+            {item.icon && (
+              <View style={styles.itemIcon}>
+                <item.icon width={12} height={12} color={colors.neutral400} />
+              </View>
+            )}
 
-              <CustomText weight="medium" style={styles.itemText}>
-                {item.label}
-              </CustomText>
+            <CustomText weight="medium" style={styles.itemText}>
+              {item.label}
+            </CustomText>
 
-              {previewSelected === item.name && (
-                <View style={styles.itemIcon}>
-                  <CheckSvg width={12} height={12} color={colors.blue} />
-                </View>
-              )}
-            </Pressable>
-          ))}
-        </View>
+            {previewSelected === item.name && (
+              <View style={styles.itemIcon}>
+                <CheckSvg width={12} height={12} color={colors.blue} />
+              </View>
+            )}
+          </Pressable>
+        ))}
       </Modal>
     </View>
   );
@@ -128,10 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 2,
-    paddingBottom: 16,
-    paddingRight: 24,
-    paddingLeft: 24,
+    padding: 16,
     borderBottomColor: colors.neutral100,
     borderBottomWidth: 1,
   },
@@ -139,17 +134,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginRight: 16,
   },
-  list: {
-    paddingTop: 2,
-  },
   item: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 12,
     paddingBottom: 12,
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   itemIcon: {
     height: 20,

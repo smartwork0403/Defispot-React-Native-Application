@@ -1,162 +1,161 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {colors} from '../styles';
+import React, {useState} from 'react';
+import {GestureResponderEvent, StyleSheet, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import type {
+  RootStackParamList,
+  ProfileStackParamList,
+} from '../components/Navigation';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {colors, globalStyles} from '../styles';
 
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
-import CollapsibleCard from '../components/CollapsibleCard';
+import CollapsibleArrow from '../components/CollapsibleArrow';
+import ProfileDangerZoneModal from '../components/ProfileDangerZoneModal';
+import Card from '../components/Card';
+import NativeCurrencyPickerModal from '../components/NativeCurrencyPickerModal';
+import CountryPickerModal from '../components/CountryPickerModal';
 
 import FlowerShapeSvg from '../assets/icons/flower-shape.svg';
-import MessageSvg from '../assets/icons/message.svg';
-import {ScrollView} from 'react-native-gesture-handler';
+import DiscordSvg from '../assets/icons/discord.svg';
+import NewspaperSvg from '../assets/icons/newspaper.svg';
+
+const CardItem: React.FC<{
+  title: string;
+  icon?: any;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
+}> = ({title, icon: Icon, onPress}) => {
+  return (
+    <Card style={cardStyles.card} onPress={onPress}>
+      {Icon && (
+        <View style={cardStyles.cardIconContainer}>
+          <Icon height={13} width={15} color={colors.neutral400} />
+        </View>
+      )}
+      <CustomText weight="medium" style={cardStyles.cardTitle}>
+        {title}
+      </CustomText>
+      <CollapsibleArrow rotate={false} startArrowAngel="right" />
+    </Card>
+  );
+};
 
 const ProfileScreen: React.FC = () => {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList & ProfileStackParamList>
+    >();
+
+  const [isProfileDangerZoneModalOpen, setIsProfileDangerZoneModalOpen] =
+    useState(false);
+  const [isNativeCurrencyPickerModalOpen, setIsNativeCurrencyPickerModalOpen] =
+    useState(false);
+  const [isCountryPickerModalOpen, setIsCountryPickerModalOpen] =
+    useState(false);
+
   return (
     <Layout
-      preventScrollView
+      accent="white"
       header={{
-        title: 'Profile',
-        minimal: true,
+        minimal: {
+          title: 'Profile',
+          back: true,
+        },
       }}
       contentStyle={{
         padding: 0,
       }}>
-      <ScrollView>
-        <View style={styles.overview}>
-          <View style={styles.overviewIconContainer}>
-            <FlowerShapeSvg height={24} width={24} color={colors.blueDark} />
-          </View>
-
-          <View>
-            <CustomText style={styles.overviewEmail}>
-              kevin@fintory.com
-            </CustomText>
-            <CustomText weight="medium" style={styles.overviewName}>
-              Kevin Dukkon
-            </CustomText>
-          </View>
+      <View style={[styles.overview, globalStyles.shadow]}>
+        <View style={styles.overviewIconContainer}>
+          <FlowerShapeSvg height={24} width={24} color={colors.blueDark} />
         </View>
 
-        <View style={styles.content}>
-          <View style={styles.setting}>
-            <CustomText weight="medium" style={styles.settingTitle}>
-              Account
-            </CustomText>
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    Native currency
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    Country
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    Privacy
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    Phone numbers
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    Notifications settings
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-          </View>
-
-          <View style={styles.setting}>
-            <CustomText weight="medium" style={styles.settingTitle}>
-              General
-            </CustomText>
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <View style={styles.itemTopIconContainer}>
-                    <MessageSvg
-                      height={13}
-                      width={15}
-                      color={colors.neutral400}
-                    />
-                  </View>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    Support
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-
-            <CollapsibleCard
-              style={styles.item}
-              top={
-                <View style={styles.itemTopContainer}>
-                  <View style={styles.itemTopIconContainer}>
-                    <MessageSvg
-                      height={13}
-                      width={15}
-                      color={colors.neutral400}
-                    />
-                  </View>
-                  <CustomText weight="medium" style={styles.itemTitle}>
-                    App Se
-                  </CustomText>
-                </View>
-              }
-              bottom={<CustomText>collapsed content</CustomText>}
-              startArrowAngel="right"
-            />
-          </View>
+        <View>
+          <CustomText style={styles.overviewEmail}>
+            kevin@fintory.com
+          </CustomText>
+          <CustomText weight="medium" style={styles.overviewName}>
+            Kevin Dukkon
+          </CustomText>
         </View>
-      </ScrollView>
+      </View>
+
+      <View style={styles.content}>
+        <View style={styles.setting}>
+          <CustomText weight="medium" style={styles.settingTitle}>
+            Account
+          </CustomText>
+
+          <CardItem
+            title="Native currency"
+            onPress={() => setIsNativeCurrencyPickerModalOpen(true)}
+          />
+          <CardItem
+            title="Country"
+            onPress={() => setIsCountryPickerModalOpen(true)}
+          />
+          <CardItem
+            title="Export private key"
+            onPress={() => setIsProfileDangerZoneModalOpen(true)}
+          />
+          <CardItem
+            title="Notifications settings"
+            onPress={() => navigation.navigate('NotificationsSettings')}
+          />
+        </View>
+
+        <View style={styles.setting}>
+          <CustomText weight="medium" style={styles.settingTitle}>
+            General
+          </CustomText>
+          <CardItem title="Support" icon={DiscordSvg} />
+          <CardItem
+            title="Terms of Service"
+            icon={NewspaperSvg}
+            onPress={() => navigation.navigate('TermsOfService')}
+          />
+        </View>
+      </View>
+
+      <ProfileDangerZoneModal
+        isOpen={isProfileDangerZoneModalOpen}
+        onClose={() => setIsProfileDangerZoneModalOpen(false)}
+        onContinuePress={() => {
+          setIsProfileDangerZoneModalOpen(false);
+          navigation.navigate('ExportPrivateKey');
+        }}
+      />
+
+      <NativeCurrencyPickerModal
+        isOpen={isNativeCurrencyPickerModalOpen}
+        onClose={() => setIsNativeCurrencyPickerModalOpen(false)}
+      />
+
+      <CountryPickerModal
+        isOpen={isCountryPickerModalOpen}
+        onClose={() => setIsCountryPickerModalOpen(false)}
+      />
     </Layout>
   );
 };
+
+const cardStyles = StyleSheet.create({
+  card: {
+    marginBottom: 12,
+  },
+  cardIconContainer: {
+    height: 24,
+    width: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 8,
+  },
+  cardTitle: {
+    flexGrow: 1,
+    marginLeft: 4,
+  },
+});
 
 const styles = StyleSheet.create({
   overview: {
@@ -182,7 +181,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 16,
-    paddingBottom: 140,
+    paddingBottom: 0,
   },
   setting: {
     marginBottom: 6,
@@ -190,24 +189,6 @@ const styles = StyleSheet.create({
   settingTitle: {
     fontSize: 18,
     marginBottom: 16,
-  },
-  item: {
-    marginBottom: 12,
-  },
-  itemTopContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 'auto',
-  },
-  itemTopIconContainer: {
-    height: 24,
-    width: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
-  },
-  itemTitle: {
-    paddingLeft: 4,
   },
 });
 

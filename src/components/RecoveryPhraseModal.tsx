@@ -29,6 +29,7 @@ const RecoveryPhrase: React.FC<Props> = ({
       noPadding
       stickyAction={{label: 'Continue', onPress: onActionPress}}
       noHandle
+      stickyActionSpaceSize="large"
       fullHeight
       header={{title: 'Your recovery phrase'}}>
       <CustomText style={styles.info}>
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     marginBottom: 24,
     textAlign: 'center',
+    marginTop: 14,
   },
   content: {
     padding: 24,

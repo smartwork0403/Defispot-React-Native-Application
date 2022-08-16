@@ -1,13 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Pressable, StyleProp, ViewStyle} from 'react-native';
+import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import {VictoryGroup, VictoryLine} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
 import type {RootStackParamList} from './Navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
 import {colors} from '../styles';
 
 import Asset from './Asset';
 import CustomText from './CustomText';
+import Card from './Card';
 
 const AssetsList: React.FC<{
   style?: StyleProp<ViewStyle>;
@@ -18,7 +20,7 @@ const AssetsList: React.FC<{
   return (
     <View style={style}>
       {[...Array(20).keys()].map(k => (
-        <Pressable
+        <Card
           style={styles.item}
           key={k}
           onPress={() => navigation.navigate('Asset')}>
@@ -67,7 +69,7 @@ const AssetsList: React.FC<{
               -2.54%
             </CustomText>
           </View>
-        </Pressable>
+        </Card>
       ))}
     </View>
   );
@@ -77,16 +79,8 @@ const styles = StyleSheet.create({
   item: {
     paddingTop: 12,
     paddingBottom: 12,
-    paddingRight: 16,
-    paddingLeft: 16,
-    borderRadius: 8,
-    backgroundColor: colors.neutral0,
-    flexDirection: 'row',
-    borderColor: colors.neutral100,
-    borderWidth: 1,
+    marginBottom: 8,
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
   },
   chart: {
     width: 64,
