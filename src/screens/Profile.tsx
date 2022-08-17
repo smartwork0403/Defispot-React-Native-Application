@@ -41,7 +41,7 @@ const CardItem: React.FC<{
   );
 };
 
-const ProfileScreen: React.FC = () => {
+const Profile: React.FC = () => {
   const navigation =
     useNavigation<
       NativeStackNavigationProp<RootStackParamList & ProfileStackParamList>
@@ -192,4 +192,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default Profile;

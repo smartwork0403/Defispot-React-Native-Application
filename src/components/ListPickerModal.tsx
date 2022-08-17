@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Pressable,
-  Image,
-  GestureResponderEvent,
-} from 'react-native';
+import {View, StyleSheet, Pressable, Image} from 'react-native';
 import {colors} from '../styles';
 
 import CustomText from './CustomText';
@@ -26,6 +20,7 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  infoPosition?: 'left';
   searchPlaceholder?: string;
   items: Item[];
   selected: string;
@@ -36,6 +31,7 @@ const ListPickerModal: React.FC<Props> = ({
   isOpen,
   onClose,
   title,
+  infoPosition,
   searchPlaceholder,
   items,
   selected,
@@ -75,11 +71,21 @@ const ListPickerModal: React.FC<Props> = ({
             ]}
             key={item.value}>
             {item.icon && <Image source={item.icon} style={styles.itemImage} />}
-            <CustomText weight="medium" style={styles.itemText}>
+            <CustomText
+              weight="medium"
+              style={[
+                styles.itemText,
+                {flexGrow: infoPosition === 'left' ? 0 : 1},
+              ]}>
               {item.title}
             </CustomText>
             {item.info && (
-              <CustomText weight="medium" style={styles.itemInfo}>
+              <CustomText
+                weight="medium"
+                style={[
+                  styles.itemInfo,
+                  {flexGrow: infoPosition === 'left' ? 1 : 0},
+                ]}>
                 {item.info}
               </CustomText>
             )}
@@ -120,8 +126,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   itemText: {
-    flexGrow: 1,
-    paddingRight: 12,
+    paddingRight: 4,
   },
   itemInfo: {
     marginRight: 12,

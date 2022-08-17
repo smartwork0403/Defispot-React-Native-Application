@@ -10,7 +10,7 @@
       "backgroundColor": "#0077FF"
     },
     "androidStatusBar": {
-      "barStyle": "dark-content"
+      "hidden": true
     },
     "ios": {
       "bundleIdentifier": "com.defispot.defispot",

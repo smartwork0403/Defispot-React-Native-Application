@@ -64,7 +64,7 @@ const Banner: React.FC<{noData: boolean}> = ({noData}) => {
   );
 };
 
-const WalletScreen: React.FC = () => {
+const Wallet: React.FC = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const noData = false;
@@ -233,4 +233,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WalletScreen;
+export default Wallet;

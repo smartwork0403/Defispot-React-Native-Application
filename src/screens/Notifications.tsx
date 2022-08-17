@@ -96,7 +96,7 @@ const History: React.FC = () => {
   );
 };
 
-const NotificationsScreen: React.FC = () => {
+const Notifications: React.FC = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -236,4 +236,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationsScreen;
+export default Notifications;

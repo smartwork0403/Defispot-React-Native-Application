@@ -94,7 +94,6 @@ const AssetChart: React.FC = () => {
             sortByItems.find(item => item.name === sortBy)?.shortLabel ?? sortBy
           }
           size="small"
-          outlined
         />
       </View>
 

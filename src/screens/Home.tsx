@@ -44,7 +44,7 @@ const switchItems = [
   },
 ];
 
-const HomeScreen: React.FC = () => {
+const Home: React.FC = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
   const windowWidth = Dimensions.get('window').width;
@@ -490,4 +490,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default Home;

@@ -48,7 +48,7 @@ const sortByItems = [
   },
 ];
 
-const MarketsScreen: React.FC = () => {
+const Markets: React.FC = () => {
   const [sortBy, setSortBy] = useState('volume');
   const [isSearchShown, setIsSearchShown] = useState(false);
   // const pools = useAppSelector(selectAvailablePoolsMarketCap);
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MarketsScreen;
+export default Markets;

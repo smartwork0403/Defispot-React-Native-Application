@@ -23,7 +23,6 @@ import UserSvg from '../assets/icons/navigation/user.svg';
 import HomeScreen from '../screens/Home';
 import MarketsScreen from '../screens/Markets';
 import ProfileScreen from '../screens/Profile';
-import TradeScreen from '../screens/Trade';
 import WalletScreen from '../screens/Wallet';
 import NotificationsScreen from '../screens/Notifications';
 import AssetScreen from '../screens/Asset';
@@ -40,6 +39,10 @@ import SecurityAlertsScreen from '../screens/SecurityAlerts';
 import AccountActivityScreen from '../screens/AccountActivity';
 import PriceAlertsScreen from '../screens/PriceAlerts';
 import ProductAnnouncementsScreen from '../screens/ProductAnnouncements';
+import DepositScreen from '../screens/Deposit';
+import WithdrawScreen from '../screens/Withdraw';
+import SwapScreen from '../screens/Swap';
+import DepositWithNetworkScreen from '../screens/DepositWithNetwork';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useAppSetup} from '../hooks/useAppSetup';
@@ -65,6 +68,7 @@ export type RootStackParamList = {
   AccountActivity: undefined;
   PriceAlerts: undefined;
   ProductAnnouncements: undefined;
+  DepositWithNetwork: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
@@ -81,6 +85,12 @@ export type HomeStackParamList = {
   Notifications: undefined;
 };
 
+export type TradeStackParamList = {
+  Deposit: undefined;
+  Swap: undefined;
+  Withdraw: undefined;
+};
+
 export type ProfileStackParamList = {
   Profile: undefined;
   TermsOfService: undefined;
@@ -89,6 +99,7 @@ export type ProfileStackParamList = {
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const RootTabNavigator = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+const TradeStack = createNativeStackNavigator<TradeStackParamList>();
 const ProfileStack = createNativeStackNavigator<ProfileStackParamList>();
 
 const HomeScreenStack = () => {
@@ -101,6 +112,20 @@ const HomeScreenStack = () => {
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="Notifications" component={NotificationsScreen} />
     </HomeStack.Navigator>
+  );
+};
+
+const TradeScreenStack = () => {
+  return (
+    <TradeStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'none',
+      }}>
+      <TradeStack.Screen name="Deposit" component={DepositScreen} />
+      <TradeStack.Screen name="Swap" component={SwapScreen} />
+      <TradeStack.Screen name="Withdraw" component={WithdrawScreen} />
+    </TradeStack.Navigator>
   );
 };
 
@@ -136,7 +161,7 @@ const navItems = [
   {
     name: 'trade',
     label: 'Trade',
-    component: TradeScreen,
+    component: TradeScreenStack,
     icon: TradeSvg,
   },
   {
@@ -235,6 +260,10 @@ const Navigation: React.FC = () => {
       <RootStack.Screen
         name="NotificationsSettings"
         component={NotificationsSettingsScreen}
+      />
+      <RootStack.Screen
+        name="DepositWithNetwork"
+        component={DepositWithNetworkScreen}
       />
       <RootStack.Screen
         name="ExportPrivateKey"

@@ -42,7 +42,12 @@ const Select: React.FC<Props> = ({
 
   return (
     <View>
-      <Button onPress={() => setIsOpen(true)} {...btnProps}>
+      <Button
+        onPress={() => setIsOpen(true)}
+        accent="white"
+        outlined
+        style={{borderColor: isOpen ? colors.blue : colors.neutral200}}
+        {...btnProps}>
         <View style={styles.btn}>
           <CustomText weight="medium">{label}</CustomText>
           <View style={styles.btnIcon}>
