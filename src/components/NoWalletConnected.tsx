@@ -26,7 +26,7 @@ const NoWalletConnected: React.FC<{
       <CustomText style={styles.subtitle}>
         Get started by connecting your wallet.
       </CustomText>
-      <Button prependIcon={{icon: PlusSvg}} accent="blue">
+      <Button prependIcon={{icon: PlusSvg}} style={{paddingLeft: 10}}>
         Connect Wallet
       </Button>
     </View>

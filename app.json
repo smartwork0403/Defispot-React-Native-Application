@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "DefispotReactNative",
+    "name": "Defispot",
     "icon": "./icons/ios_icon.png",
     "version": "1.0.0",
     "slug": "defispot",
@@ -8,6 +8,9 @@
       "image": "./src/assets/images/splash-blue.png",
       "resizeMode": "cover",
       "backgroundColor": "#0077FF"
+    },
+    "androidStatusBar": {
+      "barStyle": "dark-content"
     },
     "ios": {
       "bundleIdentifier": "com.defispot.defispot",

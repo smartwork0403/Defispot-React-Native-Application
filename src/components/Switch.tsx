@@ -17,7 +17,6 @@ const Switch: React.FC<Props> = ({isActive, onToggle}) => {
     <Pressable
       style={{borderRadius: 28 / 2}}
       onPress={() => {
-        onToggle(!isActive);
         if (isActive) {
           circleRef?.current?.transitionTo(
             {
@@ -45,6 +44,7 @@ const Switch: React.FC<Props> = ({isActive, onToggle}) => {
             200,
           );
         }
+        onToggle(!isActive);
       }}>
       <Animatable.View
         ref={switchRef}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {colors, globalStyles} from '../styles';
 
 import CustomText from '../components/CustomText';
@@ -9,7 +9,8 @@ import Button from '../components/Button';
 import CollapsibleArrow from '../components/CollapsibleArrow';
 import NoWalletConnected from '../components/NoWalletConnected';
 import TransactionDetails from '../components/TransactionDetailsModal';
-import Header from '../components/Header';
+import Card from '../components/Card';
+import Select from '../components/Select';
 
 import MagnifySvg from '../assets/icons/magnify.svg';
 import DownloadSvg from '../assets/icons/download.svg';
@@ -19,6 +20,11 @@ import SwapSvg from '../assets/icons/swap.svg';
 import BTCLogoSvg from '../assets/crypto-logos/btc.svg';
 import ETHLogoSvg from '../assets/crypto-logos/eth.svg';
 import AVAXLogoSvg from '../assets/crypto-logos/avax.svg';
+import ChartSvg from '../assets/icons/chart.svg';
+import ArrowUpSvg from '../assets/icons/arrow-up.svg';
+import ArrowDownSvg from '../assets/icons/arrow-down.svg';
+import CursorTextSvg from '../assets/icons/cursor-text.svg';
+import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
 
 const HistoryItem: React.FC<{
   type: 'sent' | 'exchange';
@@ -28,7 +34,7 @@ const HistoryItem: React.FC<{
 
   return (
     <>
-      <Pressable
+      <Card
         style={historyItemStyle.historyItem}
         onPress={() => setIsDetailsModalOpen(true)}>
         <View style={historyItemStyle.iconContainer}>
@@ -57,7 +63,7 @@ const HistoryItem: React.FC<{
         </View>
 
         <CollapsibleArrow startArrowAngel="right" finishArrowAngel="right" />
-      </Pressable>
+      </Card>
 
       <TransactionDetails
         isOpen={isDetailsModalOpen}
@@ -69,17 +75,7 @@ const HistoryItem: React.FC<{
 
 const historyItemStyle = StyleSheet.create({
   historyItem: {
-    paddingTop: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingBottom: 16,
-    borderRadius: 8,
-    borderColor: colors.neutral100,
-    borderWidth: 1,
     marginBottom: 8,
-    backgroundColor: colors.neutral0,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   iconContainer: {
     marginRight: 12,
@@ -181,9 +177,38 @@ let historyLists: HistoryLists = [
 
 // historyLists = [];
 
+const sortByItems = [
+  {
+    name: 'volume',
+    label: 'volume',
+    icon: ChartSvg,
+  },
+  {
+    name: 'gainers',
+    label: 'Gainers',
+    icon: ArrowUpSvg,
+  },
+  {
+    name: 'losers',
+    label: 'Losers',
+    icon: ArrowDownSvg,
+  },
+  {
+    name: 'name',
+    label: 'Name',
+    icon: CursorTextSvg,
+  },
+  {
+    name: 'price',
+    label: 'Price',
+    icon: DollarCircleSvg,
+  },
+];
+
 const History: React.FC = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(filters[0].name);
+  const [sortBy, setSortBy] = useState('volume');
 
   const shouldFiltersBeShown = () => {
     if (historyLists.length === 0) {
@@ -195,86 +220,14 @@ const History: React.FC = () => {
 
   return (
     <Layout
-      customContent={
+      accent="white"
+      footer={
         <>
-          <ScrollView>
-            <Header title="Trade" minimal back />
-            <View
-              style={{
-                ...styles.container,
-                ...globalStyles.wrapper,
-                paddingBottom: 0,
-              }}>
-              <TextField
-                placeholder="Filter by protocol, token, event, etc..."
-                icon={MagnifySvg}
-                onFocus={() => setIsSearchFocused(true)}
-                shadowStyle={globalStyles.shadow}
-                onBlur={() => setIsSearchFocused(false)}
-              />
-            </View>
-
-            {shouldFiltersBeShown() && (
-              <ScrollView
-                style={styles.filters}
-                horizontal
-                showsHorizontalScrollIndicator={false}>
-                {filters.map((filter, i) => (
-                  <Button
-                    key={filter.label}
-                    onPress={() => setSelectedFilter(filter.name)}
-                    outlined={filter.name === selectedFilter}
-                    size="small"
-                    style={{
-                      marginTop: 16,
-                      marginBottom: 16,
-                      paddingLeft: filter.icon ? 6 : 12,
-                      marginRight: filters.length === i + 1 ? 16 : 12,
-                      marginLeft: i === 0 ? 16 : 0,
-                    }}
-                    prependIcon={{
-                      icon: filter.icon ?? null,
-                      width: 20,
-                      height: 20,
-                    }}
-                    shadowStyle={globalStyles.shadow}>
-                    {filter.label}
-                  </Button>
-                ))}
-              </ScrollView>
-            )}
-
-            <View
-              style={{
-                ...styles.container,
-                ...globalStyles.wrapper,
-                paddingTop: shouldFiltersBeShown() ? 0 : 16,
-              }}>
-              {historyLists.length !== 0 ? (
-                historyLists.map(list => (
-                  <View style={styles.list} key={list.time}>
-                    <CustomText weight="medium" style={styles.listTitle}>
-                      {list.time}
-                    </CustomText>
-                    {list.items.map(item => (
-                      <HistoryItem
-                        type={item.type}
-                        time={item.time}
-                        key={item.time}
-                      />
-                    ))}
-                  </View>
-                ))
-              ) : (
-                <NoWalletConnected shapes />
-              )}
-            </View>
-          </ScrollView>
-
           {historyLists.length !== 0 && (
             <View style={styles.stickyActionContainer}>
               <Button
                 outlined
+                accent="white"
                 prependIcon={{icon: DownloadSvg}}
                 style={globalStyles.wrapper}>
                 Download CSV
@@ -283,7 +236,109 @@ const History: React.FC = () => {
           )}
         </>
       }
-    />
+      contentStyle={{padding: 0}}
+      header={{
+        minimal: {
+          title: 'History',
+          back: true,
+        },
+      }}>
+      <View
+        style={[globalStyles.wrapper, styles.container, {paddingBottom: 0}]}>
+        <TextField
+          placeholder="Filter by protocol, token, event, etc..."
+          prependIcon={{icon: MagnifySvg}}
+          onFocus={() => setIsSearchFocused(true)}
+          onBlur={() => setIsSearchFocused(false)}
+          noOutline
+          shadow
+        />
+      </View>
+
+      {shouldFiltersBeShown() && (
+        <ScrollView
+          style={styles.filters}
+          horizontal
+          showsHorizontalScrollIndicator={false}>
+          {filters.map((filter, i) => {
+            if (i !== 1) {
+              return (
+                <Button
+                  key={filter.label}
+                  onPress={() => setSelectedFilter(filter.name)}
+                  outlined={filter.name === selectedFilter}
+                  accent="white"
+                  size="small"
+                  style={{
+                    marginTop: 16,
+                    marginBottom: 16,
+                    paddingLeft: filter.icon ? 6 : 12,
+                    marginRight: filters.length === i + 1 ? 16 : 12,
+                    marginLeft: i === 0 ? 16 : 0,
+                  }}
+                  prependIcon={{
+                    icon: filter.icon ?? null,
+                    width: 20,
+                    height: 20,
+                  }}
+                  shadow>
+                  {filter.label}
+                </Button>
+              );
+            } else {
+              return (
+                <Select
+                  header={{
+                    title: 'Sort by',
+                    actionLabel: 'Reset',
+                    onHeaderActionPress: () => setSortBy('volume'),
+                  }}
+                  items={sortByItems}
+                  selected={sortBy}
+                  onSelect={name => setSortBy(name)}
+                  label="Sort by"
+                  size="small"
+                  accent="white"
+                  shadow
+                  style={{
+                    marginTop: 16,
+                    marginBottom: 16,
+                    marginRight: 12,
+                  }}
+                />
+              );
+            }
+          })}
+        </ScrollView>
+      )}
+
+      <View
+        style={{
+          ...styles.container,
+          ...globalStyles.wrapper,
+          paddingTop: shouldFiltersBeShown() ? 0 : 16,
+          paddingBottom: 0,
+        }}>
+        {historyLists.length !== 0 ? (
+          historyLists.map(list => (
+            <View style={styles.list} key={list.time}>
+              <CustomText weight="medium" style={styles.listTitle}>
+                {list.time}
+              </CustomText>
+              {list.items.map(item => (
+                <HistoryItem
+                  type={item.type}
+                  time={item.time}
+                  key={item.time}
+                />
+              ))}
+            </View>
+          ))
+        ) : (
+          <NoWalletConnected />
+        )}
+      </View>
+    </Layout>
   );
 };
 
@@ -302,7 +357,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.neutral0,
   },
   list: {
-    marginBottom: 16,
+    marginBottom: 8,
   },
   listTitle: {
     marginBottom: 8,

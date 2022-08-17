@@ -78,6 +78,7 @@ const TransactionDetails: React.FC<Props> = ({isOpen, onClose}) => {
       stickyAction={{
         label: 'Share',
         outlined: true,
+        accent: 'white',
         prependIcon: {icon: ShareLinkSvg},
         onPress: handleShare,
       }}>

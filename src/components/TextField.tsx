@@ -32,6 +32,7 @@ interface Props {
   accent?: 'grey';
   type?: 'password';
   textarea?: boolean;
+  noOutline?: boolean;
 }
 
 const TextField = forwardRef<TextInput, Props>(
@@ -53,6 +54,7 @@ const TextField = forwardRef<TextInput, Props>(
       accent,
       type,
       textarea,
+      noOutline,
     },
     ref,
   ) => {
@@ -68,9 +70,15 @@ const TextField = forwardRef<TextInput, Props>(
         customStyles.borderColor = colors.neutral200;
       }
 
+      customStyles.backgroundColor = colors.neutral0;
+
       if (accent === 'grey') {
         customStyles.borderColor = colors.neutral50;
         customStyles.backgroundColor = colors.neutral50;
+      }
+
+      if (noOutline) {
+        customStyles.borderColor = colors.neutral0;
       }
 
       customStyles.paddingTop = 10;
@@ -123,8 +131,8 @@ const TextField = forwardRef<TextInput, Props>(
         <View
           style={[
             styles.inputContainer,
-            {borderColor: isFocused ? colors.blue : 'transparent'},
             getStyles(),
+            {borderColor: isFocused ? colors.blue : 'transparent'},
           ]}>
           {prependIcon && (
             <View style={[styles.iconContainer, {marginRight: 8}]}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import CustomText from './CustomText';
 import Asset from './Asset';
@@ -11,8 +11,6 @@ import SwapSvg from '../assets/icons/swap.svg';
 import RefreshSvg from '../assets/icons/refresh.svg';
 
 const Item: React.FC = () => {
-  const windowWidth = Dimensions.get('window').width;
-
   return (
     <CollapsibleCard
       style={styles.item}
@@ -29,15 +27,17 @@ const Item: React.FC = () => {
           <Button
             outlined
             size="small"
+            accent="white"
             prependIcon={{icon: SwapSvg}}
-            style={{marginRight: 8, width: windowWidth / 2 - 41}}>
+            style={{marginRight: 8, flexGrow: 1}}>
             Trade
           </Button>
           <Button
             outlined
             size="small"
+            accent="white"
             prependIcon={{icon: RefreshSvg}}
-            style={{marginLeft: 8, width: windowWidth / 2 - 41}}>
+            style={{marginLeft: 8, flexGrow: 1}}>
             Deposit
           </Button>
         </View>
