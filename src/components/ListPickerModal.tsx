@@ -13,6 +13,7 @@ interface Item {
   icon?: any;
   title: string;
   info?: string;
+  append?: string;
   value: string;
 }
 
@@ -46,6 +47,7 @@ const ListPickerModal: React.FC<Props> = ({
       fullHeight
       stickyAction={{
         label: 'Select',
+        onPress: onClose,
       }}
       header={{
         title,
@@ -70,7 +72,12 @@ const ListPickerModal: React.FC<Props> = ({
               },
             ]}
             key={item.value}>
-            {item.icon && <Image source={item.icon} style={styles.itemImage} />}
+            {item.icon && (
+              <Image
+                source={item.icon}
+                style={[styles.itemImage, {marginRight: item.append ? 12 : 16}]}
+              />
+            )}
             <CustomText
               weight="medium"
               style={[
@@ -88,6 +95,9 @@ const ListPickerModal: React.FC<Props> = ({
                 ]}>
                 {item.info}
               </CustomText>
+            )}
+            {item.append && (
+              <CustomText style={[styles.itemAppend]}>{item.append}</CustomText>
             )}
             {item.value === selected && (
               <View style={styles.itemCheckContainer}>
@@ -123,7 +133,6 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 20 / 2,
-    marginRight: 16,
   },
   itemText: {
     paddingRight: 4,
@@ -131,6 +140,9 @@ const styles = StyleSheet.create({
   itemInfo: {
     marginRight: 12,
     color: colors.neutral500,
+  },
+  itemAppend: {
+    marginRight: 12,
   },
   itemCheckContainer: {
     height: 24,

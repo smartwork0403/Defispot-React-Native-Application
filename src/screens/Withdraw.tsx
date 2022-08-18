@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import type {
   RootStackParamList,
@@ -12,10 +12,37 @@ import {colors} from '../styles';
 
 import CustomText from '../components/CustomText';
 import Layout from '../components/Layout';
+import Select from '../components/Select';
 
 import {toggles} from './Deposit';
 
+const assetItems = [
+  {
+    icon: require('../assets/images/sample.png'),
+    title: 'BTC',
+    info: 'Bitcoin',
+    append: '$12,400.00',
+    value: 'btc',
+  },
+  {
+    icon: require('../assets/images/sample.png'),
+    title: 'LINK',
+    info: 'Chainlink',
+    append: '$2,324.00',
+    value: 'link',
+  },
+  {
+    icon: require('../assets/images/sample.png'),
+    title: 'BCH',
+    info: 'Bitcoin Cash',
+    append: '$0.00',
+    value: 'bch',
+  },
+];
+
 const Withdraw: React.FC = () => {
+  const [selectedAsset, setSelectedAsset] = useState<string | null>(null);
+
   const navigation =
     useNavigation<
       NativeStackNavigationProp<TradeStackParamList & RootStackParamList>
@@ -53,7 +80,16 @@ const Withdraw: React.FC = () => {
             />
           </View>
         </View>
-      }></Layout>
+      }>
+      <Select
+        items={assetItems}
+        title="Select a token"
+        searchPlaceholder="Search all assets"
+        label="Select Asset"
+        selected={selectedAsset}
+        onChange={value => setSelectedAsset(value)}
+      />
+    </Layout>
   );
 };
 

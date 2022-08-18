@@ -10,7 +10,7 @@ import CollapsibleArrow from '../components/CollapsibleArrow';
 import NoWalletConnected from '../components/NoWalletConnected';
 import TransactionDetails from '../components/TransactionDetailsModal';
 import Card from '../components/Card';
-import Select from '../components/Select';
+import SortBy from '../components/SortBy';
 
 import MagnifySvg from '../assets/icons/magnify.svg';
 import DownloadSvg from '../assets/icons/download.svg';
@@ -287,7 +287,7 @@ const History: React.FC = () => {
               );
             } else {
               return (
-                <Select
+                <SortBy
                   header={{
                     title: 'Sort by',
                     actionLabel: 'Reset',

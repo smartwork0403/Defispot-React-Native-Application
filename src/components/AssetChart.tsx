@@ -8,7 +8,7 @@ import {
 } from 'victory-native';
 import {colors, fonts} from '../styles';
 
-import Select from './Select';
+import SortBy from './SortBy';
 
 import PieSvg from '../assets/icons/pie-chart.svg';
 import ChartSvg from '../assets/icons/chart.svg';
@@ -81,7 +81,7 @@ const AssetChart: React.FC = () => {
           </View>
         </Pressable>
 
-        <Select
+        <SortBy
           header={{
             title: 'Time-Frame',
             actionLabel: 'Reset',

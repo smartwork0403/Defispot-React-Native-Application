@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import AssetsList from '../components/AssetsList';
 import MarketsStats from '../components/MarketsStats';
 import Button from '../components/Button';
-import Select from '../components/Select';
+import SortBy from '../components/SortBy';
 import IconButton from '../components/IconButton';
 
 import StarSvg from '../assets/icons/star-outlined-thick.svg';
@@ -93,7 +93,7 @@ const Markets: React.FC = () => {
             DeFi
           </Button>
 
-          <Select
+          <SortBy
             header={{
               title: 'Sort by',
               actionLabel: 'Reset',

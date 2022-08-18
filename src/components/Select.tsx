@@ -1,162 +1,136 @@
-import React, {useEffect, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
-import type {Props as ButtonProps} from './Button';
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Pressable,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 
 import {colors} from '../styles';
 
-import Button from './Button';
 import CustomText from './CustomText';
-import Modal from './Modal';
+import ListPickerModal from './ListPickerModal';
 
-import CheckSvg from '../assets/icons/check.svg';
-import ChevronDownSvg from '../assets/icons/chevron-down.svg';
+import ChevronDownSVG from '../assets/icons/chevron-down.svg';
 
-type Item = {name: string; label: string; icon?: any};
+interface Item {
+  icon?: any;
+  title: string;
+  info?: string;
+  append?: string;
+  value: string;
+}
 
-interface Props extends ButtonProps {
-  label: string;
+interface Props {
   items: Item[];
-  selected: string;
-  onSelect: (name: string) => void;
-  header?: {
-    title: string;
-    actionLabel: string;
-    onHeaderActionPress: () => void;
-  };
+  title: string;
+  searchPlaceholder: string;
+  placeholder?: string;
+  label?: string;
+  selected: string | null;
+  onChange: (value: string) => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 const Select: React.FC<Props> = ({
-  label,
   items,
+  title,
+  searchPlaceholder,
+  placeholder,
+  label,
   selected,
-  onSelect,
-  header,
-  ...btnProps
+  onChange,
+  style,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [previewSelected, setPreviewSelected] = useState(selected);
 
-  useEffect(() => {
-    setPreviewSelected(selected);
-  }, [isOpen, selected]);
+  const selectedItem = items.find(item => item.value === selected);
 
   return (
-    <View>
-      <Button
+    <View style={style}>
+      <CustomText weight="medium">{label}</CustomText>
+      <Pressable
         onPress={() => setIsOpen(true)}
-        accent="white"
-        outlined
-        style={{borderColor: isOpen ? colors.blue : colors.neutral200}}
-        {...btnProps}>
-        <View style={styles.btn}>
-          <CustomText weight="medium">{label}</CustomText>
-          <View style={styles.btnIcon}>
-            <ChevronDownSvg
-              width={10}
-              color={isOpen ? colors.blue : colors.neutral900}
-              style={{transform: [{rotate: isOpen ? '180deg' : '0deg'}]}}
-            />
-          </View>
+        style={[
+          styles.select,
+          {
+            paddingLeft: selectedItem ? 10 : 16,
+          },
+        ]}>
+        <View style={styles.value}>
+          {selectedItem ? (
+            <>
+              <Image source={selectedItem.icon} style={styles.icon} />
+              <CustomText weight="medium">{selectedItem.title}</CustomText>
+              {selectedItem.info && (
+                <CustomText style={styles.placeholder}>
+                  {' '}
+                  - {selectedItem.info}
+                </CustomText>
+              )}
+            </>
+          ) : (
+            <CustomText style={styles.placeholder}>
+              {placeholder ?? 'Select an option'}
+            </CustomText>
+          )}
         </View>
-      </Button>
 
-      <Modal
+        <View style={styles.dropdown}>
+          <ChevronDownSVG height={5} width={8} color={colors.neutral400} />
+        </View>
+      </Pressable>
+
+      <ListPickerModal
+        title={title}
+        searchPlaceholder={searchPlaceholder}
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        noPadding
-        stickyAction={{
-          label: 'Apply',
-          onPress: () => {
-            onSelect(previewSelected);
-            setIsOpen(false);
-          },
-        }}>
-        {header && (
-          <View style={styles.header}>
-            <CustomText weight="medium" style={styles.headerTitle}>
-              {header.title}
-            </CustomText>
-            <Button onPress={header.onHeaderActionPress} text>
-              {header.actionLabel}
-            </Button>
-          </View>
-        )}
-
-        {items.map(item => (
-          <Pressable
-            onPress={() => setPreviewSelected(item.name)}
-            style={{
-              ...styles.item,
-              backgroundColor:
-                previewSelected === item.name
-                  ? colors.neutral50
-                  : colors.neutral0,
-            }}
-            key={item.name}>
-            {item.icon && (
-              <View style={styles.itemIcon}>
-                <item.icon width={12} height={12} color={colors.neutral400} />
-              </View>
-            )}
-
-            <CustomText weight="medium" style={styles.itemText}>
-              {item.label}
-            </CustomText>
-
-            {previewSelected === item.name && (
-              <View style={styles.itemIcon}>
-                <CheckSvg width={12} height={12} color={colors.blue} />
-              </View>
-            )}
-          </Pressable>
-        ))}
-      </Modal>
+        items={items}
+        selected={selected ?? ''}
+        onChange={value => onChange(value)}
+        infoPosition="left"
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  btn: {
+  label: {
+    marginBottom: 4,
+  },
+  select: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 8,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: colors.neutral200,
+    backgroundColor: colors.neutral0,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  btnIcon: {
-    height: 20,
-    width: 5,
+  value: {
+    flexGrow: 1,
+    flexDirection: 'row',
     alignItems: 'center',
+  },
+  placeholder: {
+    color: colors.neutral500,
+  },
+  dropdown: {
+    height: 24,
+    width: 24,
     justifyContent: 'center',
-    marginLeft: 16,
-  },
-  header: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
-    borderBottomColor: colors.neutral100,
-    borderBottomWidth: 1,
   },
-  headerTitle: {
-    fontSize: 18,
-    marginRight: 16,
-  },
-  item: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-  itemIcon: {
-    height: 20,
-    width: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
-  },
-  itemText: {
-    marginRight: 'auto',
+  icon: {
+    height: 24,
+    width: 24,
+    borderRadius: 24 / 2,
+    marginRight: 8,
   },
 });
 

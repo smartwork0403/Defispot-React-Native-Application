@@ -67,7 +67,11 @@ const TextField = forwardRef<TextInput, Props>(
       if (isFocused) {
         customStyles.borderColor = colors.blue;
       } else {
-        customStyles.borderColor = colors.neutral200;
+        if (noOutline) {
+          customStyles.borderColor = colors.neutral0;
+        } else {
+          customStyles.borderColor = colors.neutral200;
+        }
       }
 
       customStyles.backgroundColor = colors.neutral0;
@@ -75,10 +79,6 @@ const TextField = forwardRef<TextInput, Props>(
       if (accent === 'grey') {
         customStyles.borderColor = colors.neutral50;
         customStyles.backgroundColor = colors.neutral50;
-      }
-
-      if (noOutline) {
-        customStyles.borderColor = colors.neutral0;
       }
 
       customStyles.paddingTop = 10;
@@ -128,12 +128,7 @@ const TextField = forwardRef<TextInput, Props>(
           </CustomText>
         )}
 
-        <View
-          style={[
-            styles.inputContainer,
-            getStyles(),
-            {borderColor: isFocused ? colors.blue : 'transparent'},
-          ]}>
+        <View style={[styles.inputContainer, getStyles()]}>
           {prependIcon && (
             <View style={[styles.iconContainer, {marginRight: 8}]}>
               <prependIcon.icon
