@@ -1,33 +1,38 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import ListPickerModal from './ListPickerModal';
+
+export const items = [
+  {
+    title: 'BTC',
+    info: 'Ethereum (ERC20)',
+    value: 'BTC',
+  },
+  {
+    title: 'ETH',
+    info: 'Ethereum (ERC20)',
+    value: 'eth',
+  },
+  {
+    title: 'AVAX',
+    info: 'Ethereum (ERC20)',
+    value: 'avax',
+  },
+];
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  selected: string;
+  onChange: (value: string) => void;
 }
 
-const NetworkPickerModal: React.FC<Props> = ({isOpen, onClose}) => {
-  const [selected, setSelected] = useState('eth');
-
-  const items = [
-    {
-      title: 'BTC',
-      info: 'Ethereum (ERC20)',
-      value: 'BTC',
-    },
-    {
-      title: 'ETH',
-      info: 'Ethereum (ERC20)',
-      value: 'eth',
-    },
-    {
-      title: 'AVAX',
-      info: 'Ethereum (ERC20)',
-      value: 'avax',
-    },
-  ];
-
+const NetworkPickerModal: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  selected,
+  onChange,
+}) => {
   return (
     <ListPickerModal
       title="Select network"
@@ -36,7 +41,7 @@ const NetworkPickerModal: React.FC<Props> = ({isOpen, onClose}) => {
       onClose={onClose}
       items={items}
       selected={selected}
-      onChange={value => setSelected(value)}
+      onChange={value => onChange(value)}
       infoPosition="left"
     />
   );

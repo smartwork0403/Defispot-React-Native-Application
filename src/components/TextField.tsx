@@ -11,6 +11,7 @@ import {
 import {colors, fonts, globalStyles} from '../styles';
 
 import CustomText from './CustomText';
+import Button from './Button';
 
 import EyeSvg from '../assets/icons/eye.svg';
 import EyeOffSvg from '../assets/icons/eye-off.svg';
@@ -20,6 +21,7 @@ interface Props {
   value?: string | undefined;
   prependIcon?: {icon: any; width?: number; height?: number; color?: string};
   appendIcon?: {icon: any; width?: number; height?: number; color?: string};
+  appendAction?: {label: string; onPress: () => void};
   onAppendIconPress?: () => void;
   placeholder?: string;
   autoFocus?: boolean;
@@ -42,6 +44,7 @@ const TextField = forwardRef<TextInput, Props>(
       value,
       prependIcon,
       appendIcon,
+      appendAction,
       onAppendIconPress,
       placeholder,
       autoFocus,
@@ -178,17 +181,27 @@ const TextField = forwardRef<TextInput, Props>(
               )}
             </Pressable>
           ) : (
-            appendIcon && (
-              <Pressable
-                onPress={onAppendIconPress}
-                style={[styles.iconContainer, {marginLeft: 8}]}>
-                <appendIcon.icon
-                  height={appendIcon.width ?? 15}
-                  width={appendIcon.width ?? 15}
-                  color={appendIcon.color ?? colors.neutral400}
-                />
-              </Pressable>
-            )
+            <>
+              {appendIcon && (
+                <Pressable
+                  onPress={onAppendIconPress}
+                  style={[styles.iconContainer, {marginLeft: 8}]}>
+                  <appendIcon.icon
+                    height={appendIcon.width ?? 15}
+                    width={appendIcon.width ?? 15}
+                    color={appendIcon.color ?? colors.neutral400}
+                  />
+                </Pressable>
+              )}
+              {appendAction && (
+                <Button
+                  style={{marginLeft: 8}}
+                  onPress={appendAction.onPress}
+                  text>
+                  {appendAction.label}
+                </Button>
+              )}
+            </>
           )}
         </View>
       </View>

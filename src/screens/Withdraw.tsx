@@ -13,35 +13,16 @@ import {colors} from '../styles';
 import CustomText from '../components/CustomText';
 import Layout from '../components/Layout';
 import Select from '../components/Select';
+import TextField from '../components/TextField';
+import Button from '../components/Button';
+
+import FileScanSVG from '../assets/icons/file-scan.svg';
 
 import {toggles} from './Deposit';
 
-const assetItems = [
-  {
-    icon: require('../assets/images/sample.png'),
-    title: 'BTC',
-    info: 'Bitcoin',
-    append: '$12,400.00',
-    value: 'btc',
-  },
-  {
-    icon: require('../assets/images/sample.png'),
-    title: 'LINK',
-    info: 'Chainlink',
-    append: '$2,324.00',
-    value: 'link',
-  },
-  {
-    icon: require('../assets/images/sample.png'),
-    title: 'BCH',
-    info: 'Bitcoin Cash',
-    append: '$0.00',
-    value: 'bch',
-  },
-];
-
 const Withdraw: React.FC = () => {
   const [selectedAsset, setSelectedAsset] = useState<string | null>(null);
+  const [selectedNetwork, setSelectedNetwork] = useState<string | null>(null);
 
   const navigation =
     useNavigation<
@@ -82,13 +63,44 @@ const Withdraw: React.FC = () => {
         </View>
       }>
       <Select
-        items={assetItems}
-        title="Select a token"
-        searchPlaceholder="Search all assets"
+        type="asset"
         label="Select Asset"
         selected={selectedAsset}
         onChange={value => setSelectedAsset(value)}
+        style={{marginBottom: 16}}
       />
+      <Select
+        type="network"
+        label="Deposit Network"
+        selected={selectedNetwork}
+        onChange={value => setSelectedNetwork(value)}
+        style={{marginBottom: 16}}
+      />
+      <TextField
+        label="Amount"
+        placeholder="0.0000"
+        style={{marginBottom: 16}}
+        appendAction={{label: 'Max', onPress: () => {}}}
+      />
+      <TextField
+        label="Recipient Address"
+        placeholder="Recipient Address"
+        appendIcon={{icon: FileScanSVG}}
+        style={{marginBottom: 16}}
+      />
+
+      <View style={styles.detail}>
+        <CustomText style={styles.detailTitle}>DefiSpot Fee</CustomText>
+        <CustomText weight="medium">0,00</CustomText>
+      </View>
+      <View style={[styles.detail, {marginBottom: 16}]}>
+        <CustomText style={styles.detailTitle}>Total</CustomText>
+        <CustomText weight="medium">0,00</CustomText>
+      </View>
+
+      <Button size="large" disabled>
+        Withdraw
+      </Button>
     </Layout>
   );
 };
@@ -117,6 +129,15 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     borderBottomColor: colors.neutral100,
     borderBottomWidth: 1,
+  },
+  detail: {
+    marginBottom: 8,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  detailTitle: {
+    color: colors.neutral500,
   },
 });
 

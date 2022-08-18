@@ -14,6 +14,11 @@ import CustomText from './CustomText';
 import ListPickerModal from './ListPickerModal';
 
 import ChevronDownSVG from '../assets/icons/chevron-down.svg';
+import NetworkPickerModal from './NetworkPickerModal';
+import AssetPickerModal from './AssetPickerModal';
+
+import {items as networkItems} from './NetworkPickerModal';
+import {items as assetItems} from './AssetPickerModal';
 
 interface Item {
   icon?: any;
@@ -24,18 +29,19 @@ interface Item {
 }
 
 interface Props {
-  items: Item[];
-  title: string;
-  searchPlaceholder: string;
+  items?: Item[];
+  title?: string;
+  searchPlaceholder?: string;
   placeholder?: string;
   label?: string;
   selected: string | null;
   onChange: (value: string) => void;
   style?: StyleProp<ViewStyle>;
+  type?: 'asset' | 'network';
 }
 
 const Select: React.FC<Props> = ({
-  items,
+  items = [],
   title,
   searchPlaceholder,
   placeholder,
@@ -43,26 +49,83 @@ const Select: React.FC<Props> = ({
   selected,
   onChange,
   style,
+  type,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const selectedItem = items.find(item => item.value === selected);
+  let selectedItem: Item | null = null;
+
+  const findSelectedItem = list => {
+    return list.find(item => item.value === selected) ?? null;
+  };
+
+  if (type === 'network') {
+    selectedItem = findSelectedItem(networkItems);
+  } else if (type === 'asset') {
+    selectedItem = findSelectedItem(assetItems);
+  } else {
+    selectedItem = findSelectedItem(items);
+  }
+
+  const getTargetPickerModal = () => {
+    if (type === 'network') {
+      return (
+        <NetworkPickerModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          selected={selected ?? ''}
+          onChange={value => onChange(value)}
+        />
+      );
+    }
+
+    if (type === 'asset') {
+      return (
+        <AssetPickerModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          selected={selected ?? ''}
+          onChange={value => onChange(value)}
+        />
+      );
+    }
+
+    return (
+      <ListPickerModal
+        title={title ?? 'Select'}
+        searchPlaceholder={searchPlaceholder}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        items={items}
+        selected={selected ?? ''}
+        onChange={value => onChange(value)}
+        infoPosition="left"
+      />
+    );
+  };
 
   return (
     <View style={style}>
-      <CustomText weight="medium">{label}</CustomText>
+      {label && (
+        <CustomText weight="medium" style={styles.label}>
+          {label}
+        </CustomText>
+      )}
+
       <Pressable
         onPress={() => setIsOpen(true)}
         style={[
           styles.select,
           {
-            paddingLeft: selectedItem ? 10 : 16,
+            paddingLeft: selectedItem?.icon ? 10 : 16,
           },
         ]}>
         <View style={styles.value}>
           {selectedItem ? (
             <>
-              <Image source={selectedItem.icon} style={styles.icon} />
+              {selectedItem.icon && (
+                <Image source={selectedItem.icon} style={styles.icon} />
+              )}
               <CustomText weight="medium">{selectedItem.title}</CustomText>
               {selectedItem.info && (
                 <CustomText style={styles.placeholder}>
@@ -83,16 +146,7 @@ const Select: React.FC<Props> = ({
         </View>
       </Pressable>
 
-      <ListPickerModal
-        title={title}
-        searchPlaceholder={searchPlaceholder}
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        items={items}
-        selected={selected ?? ''}
-        onChange={value => onChange(value)}
-        infoPosition="left"
-      />
+      {getTargetPickerModal()}
     </View>
   );
 };
