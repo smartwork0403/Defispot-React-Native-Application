@@ -156,7 +156,10 @@ const TextField = forwardRef<TextInput, Props>(
             value={value}
             style={[
               styles.input,
-              {textAlignVertical: textarea ? 'top' : 'center'},
+              {
+                textAlignVertical: textarea ? 'top' : 'center',
+                height: textarea ? 'auto' : 24,
+              },
             ]}
             placeholder={placeholder}
             autoFocus={autoFocus}
@@ -227,7 +230,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   input: {
     fontSize: 14,
     lineHeight: 24,

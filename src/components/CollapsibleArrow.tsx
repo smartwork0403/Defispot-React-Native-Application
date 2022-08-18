@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {colors} from '../styles';
 
@@ -9,7 +9,15 @@ const CollapsibleArrow: React.FC<{
   startArrowAngel?: 'down' | 'right';
   finishArrowAngel?: 'up' | 'right';
   rotate?: boolean;
-}> = ({startArrowAngel = 'down', finishArrowAngel = 'up', rotate}) => {
+  style?: StyleProp<ViewStyle>;
+  color?: string;
+}> = ({
+  startArrowAngel = 'down',
+  finishArrowAngel = 'up',
+  rotate,
+  style,
+  color,
+}) => {
   const ref = useRef<Animatable.View & View>(null);
 
   const getStartAngel = () => {
@@ -61,12 +69,17 @@ const CollapsibleArrow: React.FC<{
 
   return (
     <Animatable.View
-      style={{
-        ...styles.btn,
-        transform: [{rotate: startArrowAngel === 'right' ? '-90deg' : '0deg'}],
-      }}
+      style={[
+        styles.btn,
+        style,
+        {
+          transform: [
+            {rotate: startArrowAngel === 'right' ? '-90deg' : '0deg'},
+          ],
+        },
+      ]}
       ref={ref}>
-      <ChevronDownSvg height={4} width={7} color={colors.neutral900} />
+      <ChevronDownSvg height={4} width={7} color={color ?? colors.neutral900} />
     </Animatable.View>
   );
 };

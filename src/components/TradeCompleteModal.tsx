@@ -19,7 +19,7 @@ const TradeCompleteModal: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
-      stickyAction={{label: 'Done', accent: 'black', onPress: onClose}}>
+      stickyAction={{label: 'Done', onPress: onClose}}>
       <View style={styles.header}>
         <View style={styles.headerIcon}>
           <CheckSvg width={21} height={16} color={colors.neutral0} />
@@ -59,7 +59,7 @@ const TradeCompleteModal: React.FC<Props> = ({isOpen, onClose}) => {
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 18,
+    paddingTop: 32,
     paddingBottom: 12,
     paddingLeft: 24,
     paddingRight: 24,

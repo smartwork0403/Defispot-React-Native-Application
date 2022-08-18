@@ -20,7 +20,7 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
       isOpen={isOpen}
       onClose={onClose}
       noPadding
-      stickyAction={{label: 'Confirm Trade', accent: 'black'}}
+      stickyAction={{label: 'Confirm Swap'}}
       noHandle
       fullHeight
       header={{title: 'Confirm'}}>
