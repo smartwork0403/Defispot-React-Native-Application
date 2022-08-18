@@ -18,6 +18,7 @@ import TradeConfirmModal from '../components/TradeConfirmModal';
 import TradeModule from '../components/TradeModule';
 import ToggleBar from '../components/ToggleBar';
 import CollapsibleArrow from '../components/CollapsibleArrow';
+import SlippageModal from '../components/SlippageModal';
 
 import SwapSVG from '../assets/icons/swap.svg';
 import ArrowRightSVG from '../assets/icons/arrow-right.svg';
@@ -112,6 +113,8 @@ const Swap: React.FC = () => {
     >();
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const [isSlippageModalOpen, setIsSlippageModalOpen] = useState(false);
+
   const [isDetailsCollapsed, setIsDetailsCollapsed] = useState(true);
 
   const detailItems = [
@@ -178,7 +181,9 @@ const Swap: React.FC = () => {
             </Button>
           </View>
 
-          <Pressable style={styles.slippageAction}>
+          <Pressable
+            style={styles.slippageAction}
+            onPress={() => setIsSlippageModalOpen(!isSlippageModalOpen)}>
             <SwapSVG
               style={{transform: [{rotate: '90deg'}]}}
               height={28}
@@ -232,6 +237,10 @@ const Swap: React.FC = () => {
       <TradeCompleteModal
         isOpen={isCompleteModalOpen}
         onClose={() => setIsCompleteModalOpen(false)}
+      />
+      <SlippageModal
+        isOpen={isSlippageModalOpen}
+        onClose={() => setIsSlippageModalOpen(false)}
       />
     </Layout>
   );

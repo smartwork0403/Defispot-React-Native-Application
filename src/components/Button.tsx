@@ -14,7 +14,7 @@ import CustomText from './CustomText';
 
 export interface Props {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
-  accent?: 'black' | 'white' | 'red';
+  accent?: 'black' | 'white' | 'red' | 'grey';
   size?: 'large' | 'small' | 'tiny';
   prependIcon?: {icon: any; width?: number; height?: number; color?: string};
   outlined?: boolean;
@@ -66,6 +66,9 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
     } else if (accent === 'red') {
       customStyles.backgroundColor = colors.red;
       customStyles.borderColor = colors.red;
+    } else if (accent === 'grey') {
+      customStyles.backgroundColor = colors.neutral50;
+      customStyles.borderColor = colors.neutral50;
     } else if (accent === 'white') {
       customStyles.backgroundColor = colors.neutral0;
       customStyles.borderColor = colors.neutral0;
@@ -117,16 +120,14 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
     if (!outlined) {
       customStyles.color = colors.neutral0;
 
-      if (accent === 'white') {
+      if (accent === 'white' || accent === 'grey') {
         customStyles.color = colors.neutral900;
       }
     } else {
-      if (accent === 'black') {
+      if (accent === 'black' || accent === 'white' || accent === 'grey') {
         customStyles.color = colors.neutral900;
       } else if (accent === 'red') {
         customStyles.color = colors.red;
-      } else if (accent === 'white') {
-        customStyles.color = colors.neutral900;
       } else {
         // default
         customStyles.color = colors.blue;
