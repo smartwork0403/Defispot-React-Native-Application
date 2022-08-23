@@ -23,8 +23,7 @@ const Action: React.FC<{action?: ActionType; accent?: 'white'}> = ({
   action,
   accent,
 }) => {
-  const accentItemsColor =
-    accent === 'white' ? colors.neutral900 : colors.neutral0;
+  const accentItemsColor = colors.neutral900;
 
   return (
     <>
@@ -80,9 +79,8 @@ const Header: React.FC<Props> = ({
   const navigation = useNavigation();
   const searchableActionInputRef = useRef<TextInput>(null);
 
-  const accentBgColor = accent === 'white' ? colors.neutral0 : colors.blue;
-  const accentItemsColor =
-    accent === 'white' ? colors.neutral900 : colors.neutral0;
+  const accentBgColor = colors.neutral0;
+  const accentItemsColor = colors.neutral900;
 
   if (minimal) {
     return (

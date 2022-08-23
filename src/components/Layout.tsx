@@ -6,9 +6,9 @@ import {
   StyleSheet,
   View,
   ViewStyle,
+  StatusBar,
 } from 'react-native';
 import {colors, globalStyles} from '../styles';
-import {StatusBar} from 'expo-status-bar';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import Header from './Header';
@@ -43,43 +43,35 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
       return statusBarColor;
     }
 
-    if (accent === 'white') {
-      return colors.neutral0;
-    }
-
-    return colors.blue;
+    return colors.neutral0;
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>
+    <>
       <View style={{height: insets.top, backgroundColor}}>
-        <StatusBar
-          backgroundColor={getStatusBarColor()}
-          style={accent === 'white' ? 'auto' : 'light'}
-          translucent
-          animated
-        />
+        <StatusBar backgroundColor={getStatusBarColor()} />
       </View>
-
-      {stickyHeader ? (
-        <>
-          {header && <Header {...header} accent={accent} />}
-          {!header && customStickyHeader ? customStickyHeader : null}
-          <ScrollView bounces={false}>
-            <View style={[styles.content, contentStyle]}>{children}</View>
-          </ScrollView>
-          {footer && footer}
-        </>
-      ) : (
-        <>
-          <ScrollView bounces={false}>
+      <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>
+        {stickyHeader ? (
+          <>
             {header && <Header {...header} accent={accent} />}
-            <View style={[styles.content, contentStyle]}>{children}</View>
-          </ScrollView>
-          {footer && footer}
-        </>
-      )}
-    </SafeAreaView>
+            {!header && customStickyHeader ? customStickyHeader : null}
+            <ScrollView bounces={false}>
+              <View style={[styles.content, contentStyle]}>{children}</View>
+            </ScrollView>
+            {footer && footer}
+          </>
+        ) : (
+          <>
+            <ScrollView bounces={false}>
+              {header && <Header {...header} accent={accent} />}
+              <View style={[styles.content, contentStyle]}>{children}</View>
+            </ScrollView>
+            {footer && footer}
+          </>
+        )}
+      </SafeAreaView>
+    </>
   );
 };
 
