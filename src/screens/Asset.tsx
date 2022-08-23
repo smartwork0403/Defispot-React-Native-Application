@@ -126,7 +126,6 @@ const Asset: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       contentStyle={{padding: 0}}
       statusBarColor={colors.neutral0}
       stickyHeader

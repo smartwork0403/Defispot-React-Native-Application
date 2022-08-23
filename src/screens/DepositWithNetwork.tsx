@@ -8,6 +8,7 @@ import CustomText from '../components/CustomText';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import NetworkPickerModal from '../components/NetworkPickerModal';
+import {items as networkItems} from './NetworkPickerModal';
 
 import SampleQrCodeSvg from '../assets/icons/sample-qr-code.svg';
 import CopySvg from '../assets/icons/copy.svg';
@@ -57,11 +58,11 @@ const CardItem: React.FC<{
 const DepositWithNetwork: React.FC = () => {
   const [isAddressCopied, setIsAddressCopied] = useState(false);
   const [isNetworkPickerModalOpen, setIsNetworkPickerModal] = useState(false);
+  const [selectedNetwork, setSelectedNetwork] = useState('');
 
   return (
     <Layout
       contentStyle={{paddingTop: 24, paddingBottom: 16}}
-      accent="white"
       header={{minimal: {title: 'Deposit with network', back: true}}}
       footer={
         <View style={styles.footer}>
@@ -130,6 +131,8 @@ const DepositWithNetwork: React.FC = () => {
       <NetworkPickerModal
         isOpen={isNetworkPickerModalOpen}
         onClose={() => setIsNetworkPickerModal(false)}
+        selected={selectedNetwork ?? ''}
+        onChange={value => setSelectedNetwork(value)}
       />
     </Layout>
   );

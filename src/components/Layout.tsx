@@ -17,7 +17,6 @@ import {Props as HeaderProps} from './Header';
 interface Props {
   header?: HeaderProps;
   stickyHeader?: boolean;
-  accent?: 'white';
   footer?: React.ReactNode;
   customStickyHeader?: React.ReactNode;
   contentStyle?: StyleProp<ViewStyle>;
@@ -29,7 +28,6 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   children,
   header,
   stickyHeader,
-  accent,
   footer,
   customStickyHeader,
   contentStyle,
@@ -48,13 +46,14 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
 
   return (
     <>
-      <View style={{height: insets.top, backgroundColor}}>
+      <View style={{height: insets.top, backgroundColor: getStatusBarColor()}}>
         <StatusBar backgroundColor={getStatusBarColor()} />
       </View>
+
       <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>
         {stickyHeader ? (
           <>
-            {header && <Header {...header} accent={accent} />}
+            {header && <Header {...header} />}
             {!header && customStickyHeader ? customStickyHeader : null}
             <ScrollView bounces={false}>
               <View style={[styles.content, contentStyle]}>{children}</View>
@@ -64,7 +63,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
         ) : (
           <>
             <ScrollView bounces={false}>
-              {header && <Header {...header} accent={accent} />}
+              {header && <Header {...header} />}
               <View style={[styles.content, contentStyle]}>{children}</View>
             </ScrollView>
             {footer && footer}

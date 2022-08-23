@@ -12,9 +12,7 @@ import Notification from '../components/Notification';
 
 const AccountActivity: React.FC = () => {
   return (
-    <Layout
-      accent="white"
-      header={{minimal: {title: 'Account activity', back: true}}}>
+    <Layout header={{minimal: {title: 'Account activity', back: true}}}>
       <Card style={styles.preview}>
         <CustomText weight="medium" style={styles.previewTitle}>
           Account activity preview

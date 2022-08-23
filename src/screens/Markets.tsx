@@ -60,6 +60,7 @@ const Markets: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       header={{
         title: 'Markets',
         searchable: {

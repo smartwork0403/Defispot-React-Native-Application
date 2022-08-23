@@ -19,12 +19,7 @@ interface ActionType {
   onActionPress?: () => void;
 }
 
-const Action: React.FC<{action?: ActionType; accent?: 'white'}> = ({
-  action,
-  accent,
-}) => {
-  const accentItemsColor = colors.neutral900;
-
+const Action: React.FC<{action?: ActionType}> = ({action}) => {
   return (
     <>
       {action && action.text && (
@@ -35,7 +30,7 @@ const Action: React.FC<{action?: ActionType; accent?: 'white'}> = ({
       {action && !action.text && action.icon && (
         <IconButton
           icon={action.icon}
-          color={accentItemsColor}
+          color={colors.neutral900}
           onPress={action.onActionPress}
           size="large"
         />
@@ -64,7 +59,6 @@ export interface Props {
       onActionPress?: () => void;
     };
   };
-  accent?: 'white';
   extended?: boolean;
 }
 
@@ -73,24 +67,19 @@ const Header: React.FC<Props> = ({
   action,
   searchable,
   minimal,
-  accent,
   extended = false,
 }) => {
   const navigation = useNavigation();
   const searchableActionInputRef = useRef<TextInput>(null);
 
-  const accentBgColor = colors.neutral0;
-  const accentItemsColor = colors.neutral900;
-
   if (minimal) {
     return (
-      <View style={{backgroundColor: accentBgColor, alignItems: 'center'}}>
+      <View style={{backgroundColor: colors.neutral0, alignItems: 'center'}}>
         <View
           style={[
             minimalStyles.header,
             {
-              borderBottomColor:
-                accent === 'white' ? colors.neutral100 : colors.blue,
+              borderBottomColor: colors.neutral100,
             },
           ]}>
           <View style={{minWidth: 40}}>
@@ -98,16 +87,14 @@ const Header: React.FC<Props> = ({
               <IconButton
                 icon={NavBackSvg}
                 iconSize={{width: 9, height: 16}}
-                color={accentItemsColor}
+                color={colors.neutral900}
                 onPress={() => navigation.goBack()}
                 size="large"
               />
             )}
           </View>
           <View style={minimalStyles.titleContainer}>
-            <CustomText
-              weight="medium"
-              style={[minimalStyles.title, {color: accentItemsColor}]}>
+            <CustomText weight="medium" style={[minimalStyles.title]}>
               {minimal.title}
             </CustomText>
           </View>
@@ -115,7 +102,7 @@ const Header: React.FC<Props> = ({
             {minimal.action && (
               <IconButton
                 icon={minimal.action.icon}
-                color={accentItemsColor}
+                color={colors.neutral900}
                 onPress={minimal.action.onActionPress}
                 size="large"
               />
@@ -131,7 +118,7 @@ const Header: React.FC<Props> = ({
       <View style={{position: 'relative'}}>
         <View
           style={{
-            backgroundColor: accentBgColor,
+            backgroundColor: colors.neutral0,
             alignItems: 'center',
           }}>
           <View
@@ -177,7 +164,7 @@ const Header: React.FC<Props> = ({
                 />
                 <IconButton
                   icon={searchable.action.icon}
-                  color={accentItemsColor}
+                  color={colors.neutral900}
                   onPress={() => searchable.action?.onActionPress?.()}
                   style={{marginLeft: 18}}
                   size="small"
@@ -185,14 +172,12 @@ const Header: React.FC<Props> = ({
               </>
             ) : (
               <>
-                <CustomText
-                  weight="semi-bold"
-                  style={[styles.headerTitle, {color: accentItemsColor}]}>
+                <CustomText weight="semi-bold" style={styles.headerTitle}>
                   {title}
                 </CustomText>
                 <IconButton
                   icon={MagnifySvg}
-                  color={accentItemsColor}
+                  color={colors.neutral900}
                   onPress={() => searchable.onSearchToggle?.(true)}
                 />
               </>
@@ -201,7 +186,7 @@ const Header: React.FC<Props> = ({
         </View>
 
         {extended && (
-          <View style={[styles.extended, {backgroundColor: accentBgColor}]} />
+          <View style={[styles.extended, {backgroundColor: colors.neutral0}]} />
         )}
       </View>
     );
@@ -210,7 +195,7 @@ const Header: React.FC<Props> = ({
   return (
     <View
       style={{
-        backgroundColor: accentBgColor,
+        backgroundColor: colors.neutral0,
         alignItems: 'center',
         position: 'relative',
       }}>
@@ -222,16 +207,14 @@ const Header: React.FC<Props> = ({
             maxWidth: config.MAX_CONTENT_WIDTH,
           },
         ]}>
-        <CustomText
-          style={[styles.headerTitle, {color: accentItemsColor}]}
-          weight="semi-bold">
+        <CustomText style={styles.headerTitle} weight="semi-bold">
           {title}
         </CustomText>
-        <Action action={action} accent={accent} />
+        <Action action={action} />
       </View>
 
       {extended && (
-        <View style={[styles.extended, {backgroundColor: accentBgColor}]} />
+        <View style={[styles.extended, {backgroundColor: colors.neutral0}]} />
       )}
     </View>
   );

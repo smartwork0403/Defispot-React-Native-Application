@@ -17,8 +17,7 @@ const ConnectWallet: React.FC = () => {
     <Layout
       backgroundColor={colors.neutral0}
       contentStyle={{padding: 0}}
-      header={{accent: 'white', minimal: {back: true, title: 'Connect Wallet'}}}
-      accent="white"
+      header={{minimal: {back: true, title: 'Connect Wallet'}}}
       footer={
         <View style={styles.footer}>
           <Button size="large" onPress={() => setScanQRCodeModal(true)}>

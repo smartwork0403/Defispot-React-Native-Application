@@ -129,6 +129,7 @@ const Home: React.FC = () => {
   return (
     <Layout
       contentStyle={{padding: 0}}
+      stickyHeader
       header={{
         searchable: {
           action: {

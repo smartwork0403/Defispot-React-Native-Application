@@ -61,7 +61,6 @@ const Deposit: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       header={{
         minimal: {
           title: 'Deposit',

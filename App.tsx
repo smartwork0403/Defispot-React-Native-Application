@@ -12,7 +12,6 @@ import {colors} from './src/styles';
 import Navigation from './src/components/Navigation';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import {CustomStatusBar} from './src/components/CustomStatusBar';
 
 const App = () => {
   const [fontloaded, setfontloaded] = useState(false);
