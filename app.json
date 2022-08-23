@@ -4,6 +4,7 @@
     "icon": "./icons/ios_icon.png",
     "version": "1.0.0",
     "slug": "defispot",
+    "owner": "defispot",
     "splash": {
       "image": "./src/assets/images/splash-blue.png",
       "resizeMode": "cover",

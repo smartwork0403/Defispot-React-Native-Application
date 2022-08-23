@@ -186,6 +186,7 @@ const MainTabs = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+        unmountOnBlur: true,
         tabBarStyle: {
           elevation: 0,
           borderColor: colors.neutral0,
