@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
-import type {Props as ButtonProps} from './Button';
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 
-import {colors} from '../styles';
+import {colors, globalStyles} from '../styles';
 
 import Button from './Button';
 import CustomText from './CustomText';
@@ -13,7 +19,7 @@ import ChevronDownSvg from '../assets/icons/chevron-down.svg';
 
 type Item = {name: string; label: string; icon?: any};
 
-interface Props extends ButtonProps {
+interface Props {
   label: string;
   items: Item[];
   selected: string;
@@ -23,6 +29,9 @@ interface Props extends ButtonProps {
     actionLabel: string;
     onHeaderActionPress: () => void;
   };
+  style?: StyleProp<ViewStyle>;
+  shadow?: boolean;
+  outlined?: boolean;
 }
 
 const SortBy: React.FC<Props> = ({
@@ -31,7 +40,9 @@ const SortBy: React.FC<Props> = ({
   selected,
   onSelect,
   header,
-  ...btnProps
+  style,
+  shadow,
+  outlined,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [previewSelected, setPreviewSelected] = useState(selected);
@@ -41,24 +52,30 @@ const SortBy: React.FC<Props> = ({
   }, [isOpen, selected]);
 
   return (
-    <View>
-      <Button
+    <>
+      <TouchableOpacity
         onPress={() => setIsOpen(true)}
-        accent="white"
-        outlined
-        style={{borderColor: isOpen ? colors.blue : colors.neutral200}}
-        {...btnProps}>
-        <View style={styles.btn}>
-          <CustomText weight="medium">{label}</CustomText>
-          <View style={styles.btnIcon}>
-            <ChevronDownSvg
-              width={10}
-              color={isOpen ? colors.blue : colors.neutral900}
-              style={{transform: [{rotate: isOpen ? '180deg' : '0deg'}]}}
-            />
-          </View>
+        style={[
+          styles.btn,
+          style,
+          shadow ? globalStyles.shadow : [],
+          {
+            borderColor: isOpen
+              ? colors.blue
+              : outlined
+              ? colors.neutral200
+              : colors.neutral0,
+          },
+        ]}>
+        <CustomText weight="medium">{label}</CustomText>
+        <View style={styles.btnIcon}>
+          <ChevronDownSvg
+            width={10}
+            color={isOpen ? colors.blue : colors.neutral900}
+            style={{transform: [{rotate: isOpen ? '180deg' : '0deg'}]}}
+          />
         </View>
-      </Button>
+      </TouchableOpacity>
 
       <Modal
         isOpen={isOpen}
@@ -111,7 +128,7 @@ const SortBy: React.FC<Props> = ({
           </Pressable>
         ))}
       </Modal>
-    </View>
+    </>
   );
 };
 
@@ -119,6 +136,14 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderWidth: 1,
+    borderRadius: 100,
+    backgroundColor: colors.neutral0,
   },
   btnIcon: {
     height: 20,

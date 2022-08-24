@@ -15,6 +15,7 @@ const ConnectWallet: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       backgroundColor={colors.neutral0}
       contentStyle={{padding: 0}}
       header={{minimal: {back: true, title: 'Connect Wallet'}}}

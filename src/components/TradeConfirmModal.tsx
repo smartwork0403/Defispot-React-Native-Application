@@ -24,7 +24,7 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
       noHandle
       fullHeight
       header={{title: 'Confirm'}}>
-      <View style={styles.trade}>
+      <View style={[styles.trade, {marginTop: 14}]}>
         <Asset name="123" value="LINK" size="large" />
         <CustomText weight="medium" style={styles.tradeType}>
           Native
@@ -67,7 +67,9 @@ const Select: React.FC<Props> = ({isOpen, onClose}) => {
         </View>
         <View style={styles.detail}>
           <CustomText style={styles.detailTitle}>Recipient</CustomText>
-          <CustomText style={{color: colors.blue}}>tho...5w3</CustomText>
+          <CustomText weight="medium" style={{color: colors.blue}}>
+            tho...5w3
+          </CustomText>
         </View>
       </View>
     </Modal>
@@ -119,15 +121,17 @@ const styles = StyleSheet.create({
     height: 56,
     width: 56,
     borderRadius: 56 / 2,
-    backgroundColor: colors.neutral900,
+    backgroundColor: colors.neutral0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.neutral100,
   },
   switchIcon: {
     height: 20,
     width: 20,
-    color: colors.neutral0,
+    color: colors.neutral400,
     transform: [{rotate: '90deg'}],
   },
   details: {

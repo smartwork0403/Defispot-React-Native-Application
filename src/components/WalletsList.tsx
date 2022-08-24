@@ -49,7 +49,7 @@ const Item: React.FC = () => {
 const WalletsList: React.FC = () => {
   return (
     <View>
-      {[...Array(3).keys()].map(k => (
+      {[...Array(5).keys()].map(k => (
         <Item key={k} />
       ))}
     </View>

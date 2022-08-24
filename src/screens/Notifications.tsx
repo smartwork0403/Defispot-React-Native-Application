@@ -102,6 +102,7 @@ const Notifications: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       header={{
         title: 'Notifications',
         minimal: {

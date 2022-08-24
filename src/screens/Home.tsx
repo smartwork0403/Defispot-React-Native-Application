@@ -10,20 +10,21 @@ import {colors, globalStyles} from '../styles';
 import type {HomeStackParamList} from '../components/Navigation';
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
+import Asset from '../components/Asset';
+import AssetsList from '../components/AssetsList';
+import Button from '../components/Button';
 
 import BellUnreadSvg from '../assets/icons/bell-unread.svg';
 import AnnouncementSVG from '../assets/icons/announcement.svg';
 import UnorderedListSVG from '../assets/icons/unordered-list.svg';
 import ArrowUpSVG from '../assets/icons/arrow-up.svg';
 import ArrowDownSVG from '../assets/icons/arrow-down.svg';
-import Asset from '../components/Asset';
-import AssetsList from '../components/AssetsList';
+import SwapSVG from '../assets/icons/swap.svg';
+import AlignArrowUpSVG from '../assets/icons/align-arrow-up.svg';
+import AlignArrowDownSVG from '../assets/icons/align-arrow-down.svg';
+import ArrowDownRightSVG from '../assets/icons/arrow-down-right.svg';
 
-const carouselItems = [
-  require('../assets/images/banner.png'),
-  require('../assets/images/banner.png'),
-  require('../assets/images/banner.png'),
-];
+const carouselItems = [require('../assets/images/banner.png')];
 
 const switchItems = [
   {
@@ -41,6 +42,25 @@ const switchItems = [
   {
     label: '24h Vol',
     name: '24h-vol',
+  },
+];
+
+const filterItems = [
+  {
+    name: 'swap',
+    icon: SwapSVG,
+  },
+  {
+    name: 'ascending',
+    icon: AlignArrowUpSVG,
+  },
+  {
+    name: 'descending',
+    icon: AlignArrowDownSVG,
+  },
+  {
+    name: 'down',
+    icon: ArrowDownRightSVG,
   },
 ];
 
@@ -136,7 +156,7 @@ const Home: React.FC = () => {
             icon: BellUnreadSvg,
             onActionPress: () => navigation.navigate('Notifications'),
           },
-          inputPlaceholder: 'Search market...',
+          inputPlaceholder: 'Search...',
           onSearchToggle: () => setIsSearchShown(!isSearchShown),
           isShown: isSearchShown,
         },
@@ -147,6 +167,10 @@ const Home: React.FC = () => {
           styles.assetsContainer,
           {display: isSearchShown ? 'flex' : 'none'},
         ]}>
+        {/* <Card style={styles.noResult}>
+        <CustomText weight="medium">No results for “Kevin”</CustomText>
+      </Card> */}
+
         <AssetsList />
       </View>
 
@@ -177,11 +201,11 @@ const Home: React.FC = () => {
               onScrollEnd={index => setCurrentCarouselIndex(index)}
             />
 
-            <View style={styles.carouselIndex}>
+            {/* <View style={styles.carouselIndex}>
               <CustomText weight="medium" style={styles.carouselIndexText}>
                 {currentCarouselIndex + 1}/{carouselItems.length}
               </CustomText>
-            </View>
+            </View> */}
           </View>
         </GestureHandlerRootView>
 
@@ -246,7 +270,26 @@ const Home: React.FC = () => {
                 </View>
               ))}
             </View>
-            <View style={styles.divider} />
+
+            <View style={styles.filters}>
+              {filterItems.map((filter, i) => (
+                <Button
+                  outlined
+                  style={{marginRight: filterItems.length !== i + 1 ? 12 : 0}}
+                  accent="white"
+                  size="large"
+                  key={filter.name}>
+                  <View style={styles.filterIconContainer}>
+                    <filter.icon
+                      height={12}
+                      width={12}
+                      color={colors.neutral900}
+                    />
+                  </View>
+                </Button>
+              ))}
+            </View>
+
             <View style={styles.switchContainer}>
               {switchItems.map(item => (
                 <Pressable
@@ -357,6 +400,10 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
   },
+  noResult: {
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
   carouselContainer: {
     position: 'relative',
     marginLeft: 16,
@@ -427,12 +474,20 @@ const styles = StyleSheet.create({
   headerItemBottomValue: {
     fontSize: 18,
   },
-  divider: {
-    height: 1,
-    backgroundColor: colors.neutral100,
+  filters: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
     marginLeft: 16,
     marginRight: 16,
+  },
+  filterIconContainer: {
+    height: 20,
+    width: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 4,
+    marginRight: 4,
   },
   switchContainer: {
     marginBottom: 20,

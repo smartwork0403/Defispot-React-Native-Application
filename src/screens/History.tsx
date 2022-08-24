@@ -220,6 +220,7 @@ const History: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       footer={
         <>
           {historyLists.length !== 0 && (

@@ -93,7 +93,7 @@ const AssetChart: React.FC = () => {
           label={
             sortByItems.find(item => item.name === sortBy)?.shortLabel ?? sortBy
           }
-          size="small"
+          outlined
         />
       </View>
 
@@ -290,6 +290,7 @@ const styles = StyleSheet.create({
     padding: 4,
     flexDirection: 'row',
     alignItems: 'center',
+    marginRight: 'auto',
   },
   headerSwitchIconContainer: {
     height: 32,

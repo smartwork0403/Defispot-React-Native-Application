@@ -18,6 +18,7 @@ import FileSvg from '../assets/icons/file.svg';
 import WorldSvg from '../assets/icons/world.svg';
 import TwitterSvg from '../assets/icons/twitter.svg';
 import RedditSvg from '../assets/icons/reddit.svg';
+import CoinsSvg from '../assets/icons/coins.svg';
 
 const Static: React.FC<{
   title: string;
@@ -139,6 +140,14 @@ const Asset: React.FC = () => {
           <IconButton icon={ShareSvg} color={colors.neutral400} />
         </View>
       }>
+      <View style={styles.balance}>
+        <View style={styles.balanceIconContainer}>
+          <CoinsSvg height={13} width={13} color={colors.neutral300} />
+        </View>
+        <CustomText style={styles.balanceTitle}>My Balance: </CustomText>
+        <CustomText weight="medium">4,234 LINK</CustomText>
+      </View>
+
       <AssetChart />
 
       <View style={styles.content}>
@@ -257,6 +266,26 @@ const Asset: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  balance: {
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.neutral0,
+    borderBottomColor: colors.neutral100,
+    borderBottomWidth: 1,
+  },
+  balanceIconContainer: {
+    height: 24,
+    width: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 8,
+  },
+  balanceTitle: {
+    marginRight: 16,
+    flexGrow: 1,
+    color: colors.neutral400,
+  },
   content: {
     padding: 16,
   },

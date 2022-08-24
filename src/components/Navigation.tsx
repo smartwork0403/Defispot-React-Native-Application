@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/bottom-tabs';
 import {
   createNativeStackNavigator,
-  StackScreenProps,
+  NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import type {CompositeScreenProps} from '@react-navigation/native';
 import {StyleSheet, View} from 'react-native';
@@ -74,7 +74,7 @@ export type RootStackParamList = {
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
-  StackScreenProps<RootStackParamList, T>;
+  NativeStackScreenProps<RootStackParamList, T>;
 
 export type ImportCreateWalletScreenProps<T extends keyof RootStackParamList> =
   CompositeScreenProps<
@@ -240,10 +240,25 @@ const Navigation: React.FC = () => {
         animation: 'simple_push',
       }}>
       <RootStack.Screen name="Welcome" component={WelcomeScreen} />
+      <RootStack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <RootStack.Screen name="GetStarted" component={GetStartedScreen} />
+      <RootStack.Screen name="ConnectWallet" component={ConnectWalletScreen} />
+      <RootStack.Screen name="SignInEmail" component={SignInEmailScreen} />
       <RootStack.Screen
         name="ImportCreateWallet"
         component={ImportCreateWalletScreen}
+      />
+
+      <RootStack.Screen name="Asset" component={AssetScreen} />
+      <RootStack.Screen name="History" component={HistoryScreen} />
+
+      <RootStack.Screen
+        name="ExportPrivateKey"
+        component={ExportPrivateKeyScreen}
+      />
+      <RootStack.Screen
+        name="NotificationsSettings"
+        component={NotificationsSettingsScreen}
       />
       <RootStack.Screen
         name="SecurityAlerts"
@@ -258,25 +273,13 @@ const Navigation: React.FC = () => {
         component={ProductAnnouncementsScreen}
       />
       <RootStack.Screen name="PriceAlerts" component={PriceAlertsScreen} />
-      <RootStack.Screen name="ConnectWallet" component={ConnectWalletScreen} />
-      <RootStack.Screen
-        name="NotificationsSettings"
-        component={NotificationsSettingsScreen}
-      />
-      <RootStack.Screen name="OnBoarding" component={OnBoardingScreen} />
+
       <RootStack.Screen
         name="DepositWithNetwork"
         component={DepositWithNetworkScreen}
       />
-      <RootStack.Screen
-        name="ExportPrivateKey"
-        component={ExportPrivateKeyScreen}
-      />
-      <RootStack.Screen name="SignInEmail" component={SignInEmailScreen} />
 
       <RootStack.Screen name="Home" component={MainTabs} />
-      <RootStack.Screen name="Asset" component={AssetScreen} />
-      <RootStack.Screen name="History" component={HistoryScreen} />
     </RootStack.Navigator>
   );
 };

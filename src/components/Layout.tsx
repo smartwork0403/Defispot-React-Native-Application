@@ -47,7 +47,10 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   return (
     <>
       <View style={{height: insets.top, backgroundColor: getStatusBarColor()}}>
-        <StatusBar backgroundColor={getStatusBarColor()} />
+        <StatusBar
+          backgroundColor={getStatusBarColor()}
+          barStyle="dark-content"
+        />
       </View>
 
       <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>

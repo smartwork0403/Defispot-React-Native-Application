@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {colors} from '../styles';
 
 import Layout from '../components/Layout';
 import AssetsList from '../components/AssetsList';
 import MarketsStats from '../components/MarketsStats';
 import Button from '../components/Button';
 import SortBy from '../components/SortBy';
-import IconButton from '../components/IconButton';
+import Card from '../components/Card';
+import CustomText from '../components/CustomText';
 
-import StarSvg from '../assets/icons/star-outlined-thick.svg';
 import ChartSvg from '../assets/icons/chart.svg';
 import ArrowUpSvg from '../assets/icons/arrow-up.svg';
 import ArrowDownSvg from '../assets/icons/arrow-down.svg';
@@ -78,15 +77,6 @@ const Markets: React.FC = () => {
             All
           </Button>
 
-          <IconButton
-            icon={StarSvg}
-            iconSize={{width: 12, height: 12}}
-            color={colors.neutral900}
-            size="small"
-            style={styles.filter}
-            accent="white"
-            shadow
-          />
           <Button size="small" shadow accent="white" style={styles.filter}>
             Layer 1
           </Button>
@@ -104,12 +94,15 @@ const Markets: React.FC = () => {
             selected={sortBy}
             onSelect={name => setSortBy(name)}
             label="Sort by"
-            size="small"
-            accent="white"
+            style={styles.sortBy}
             shadow
           />
         </View>
       )}
+
+      {/* <Card style={styles.noResult}>
+        <CustomText weight="medium">No results for “Kevin”</CustomText>
+      </Card> */}
 
       <AssetsList style={{marginTop: isSearchShown ? 4 : 0}} />
     </Layout>
@@ -126,6 +119,13 @@ const styles = StyleSheet.create({
   },
   filter: {
     marginRight: 12,
+  },
+  sortBy: {
+    flexGrow: 1,
+  },
+  noResult: {
+    paddingTop: 12,
+    paddingBottom: 12,
   },
 });
 

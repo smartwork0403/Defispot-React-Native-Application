@@ -9,6 +9,7 @@ import CustomText from '../components/CustomText';
 const TermsOfService: React.FC = () => {
   return (
     <Layout
+      stickyHeader
       backgroundColor={colors.neutral0}
       header={{minimal: {title: 'Terms of Service', back: true}}}>
       <CustomText style={styles.text}>

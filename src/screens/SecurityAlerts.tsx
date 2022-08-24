@@ -13,7 +13,9 @@ import LockSvg from '../assets/icons/lock.svg';
 
 const SecurityAlerts: React.FC = () => {
   return (
-    <Layout header={{minimal: {title: 'Security alerts', back: true}}}>
+    <Layout
+      stickyHeader
+      header={{minimal: {title: 'Security alerts', back: true}}}>
       <Card style={styles.preview}>
         <CustomText weight="medium" style={styles.previewTitle}>
           Security alert preview

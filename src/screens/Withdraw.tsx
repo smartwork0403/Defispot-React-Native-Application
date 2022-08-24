@@ -31,6 +31,7 @@ const Withdraw: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       header={{
         minimal: {
           title: 'Withdraw',

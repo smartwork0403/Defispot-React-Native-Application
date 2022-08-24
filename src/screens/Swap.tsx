@@ -115,7 +115,7 @@ const Swap: React.FC = () => {
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
   const [isSlippageModalOpen, setIsSlippageModalOpen] = useState(false);
 
-  const [isDetailsCollapsed, setIsDetailsCollapsed] = useState(true);
+  const [isDetailsCollapsed, setIsDetailsCollapsed] = useState(false);
 
   const detailItems = [
     {
@@ -144,6 +144,7 @@ const Swap: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       header={{
         minimal: {
           title: 'Swap',

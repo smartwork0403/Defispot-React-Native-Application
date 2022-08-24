@@ -23,7 +23,7 @@ const Action: React.FC<{action?: ActionType}> = ({action}) => {
   return (
     <>
       {action && action.text && (
-        <Button text accent="white" onPress={action.onActionPress}>
+        <Button text onPress={action.onActionPress}>
           {action.text}
         </Button>
       )}
@@ -146,8 +146,7 @@ const Header: React.FC<Props> = ({
                     // TODO: this dose not work cause of conditional rendering items, (at this time there is no <TextInput /> in the page)
                     searchableActionInputRef.current?.blur();
                   }}
-                  text
-                  accent="white">
+                  text>
                   Cancel
                 </Button>
               </>

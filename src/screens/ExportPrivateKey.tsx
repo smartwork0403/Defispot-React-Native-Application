@@ -15,6 +15,7 @@ const ExportPrivateKey: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       footer={
         <View style={styles.footer}>
           <Button size="large">Export key to clipboard</Button>

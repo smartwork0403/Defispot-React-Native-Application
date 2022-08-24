@@ -56,6 +56,7 @@ const Profile: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       header={{
         minimal: {
           title: 'Profile',

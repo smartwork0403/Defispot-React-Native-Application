@@ -62,6 +62,7 @@ const DepositWithNetwork: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       contentStyle={{paddingTop: 24, paddingBottom: 16}}
       header={{minimal: {title: 'Deposit with network', back: true}}}
       footer={

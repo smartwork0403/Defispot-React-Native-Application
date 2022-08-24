@@ -89,13 +89,18 @@ const Wallet: React.FC = () => {
 
   return (
     <Layout
+      stickyHeader
       contentStyle={{paddingTop: 0}}
       header={{
         title: 'Wallet',
         action: {
           type: 'text',
-          text: 'History',
-          onActionPress: () => navigation.navigate('History'),
+          text: noData ? '' : 'History',
+          onActionPress: () => {
+            if (!noData) {
+              navigation.navigate('History');
+            }
+          },
         },
         extended: true,
       }}>
@@ -114,7 +119,7 @@ const Wallet: React.FC = () => {
               size="small"
               shadow
               accent="white"
-              style={{marginRight: 8}}>
+              style={{marginRight: 8, flexGrow: 1}}>
               Deposit
             </Button>
             <Button
@@ -122,15 +127,16 @@ const Wallet: React.FC = () => {
               size="small"
               shadow
               accent="white"
-              style={{marginRight: 8}}>
+              style={{marginRight: 8, flexGrow: 1}}>
               Withdraw
             </Button>
             <Button
               prependIcon={{icon: RefreshSvg}}
               accent="white"
               size="small"
+              style={{flexGrow: 1}}
               shadow>
-              Convert
+              Swap
             </Button>
           </View>
 
@@ -182,6 +188,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     marginBottom: 16,
+    borderWidth: 0,
   },
   headerCardTitle: {
     color: colors.neutral400,

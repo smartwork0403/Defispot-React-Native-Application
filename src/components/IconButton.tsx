@@ -67,8 +67,8 @@ const IconButton: React.FC<{
       onPress={onPress}
       style={[styles.btn, getStyles(), style]}>
       <Icon
-        width={iconSize?.width ?? 19.33}
-        height={iconSize?.height ?? 19.33}
+        width={iconSize?.width ?? 20}
+        height={iconSize?.height ?? 20}
         color={color}
       />
     </TouchableOpacity>
