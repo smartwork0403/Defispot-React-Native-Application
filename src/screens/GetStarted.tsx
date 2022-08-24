@@ -28,7 +28,6 @@ const GetStarted: React.FC = () => {
     <Layout
       contentStyle={{padding: 24}}
       statusBarColor={colors.neutral0}
-      accent="white"
       footer={
         <View style={styles.footer}>
           <CustomText style={styles.info}>

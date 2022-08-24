@@ -220,7 +220,6 @@ const History: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       footer={
         <>
           {historyLists.length !== 0 && (

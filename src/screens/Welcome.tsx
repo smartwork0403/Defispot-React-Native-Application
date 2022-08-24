@@ -53,7 +53,7 @@ const Welcome: React.FC = () => {
           </CustomText>
 
           <Button
-            onPress={() => navigation.navigate('GetStarted')}
+            onPress={() => navigation.navigate('OnBoarding')}
             size="large">
             Get Started
           </Button>

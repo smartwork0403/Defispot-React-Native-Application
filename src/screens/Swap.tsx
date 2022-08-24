@@ -144,7 +144,6 @@ const Swap: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       header={{
         minimal: {
           title: 'Swap',

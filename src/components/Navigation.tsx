@@ -43,6 +43,7 @@ import DepositScreen from '../screens/Deposit';
 import WithdrawScreen from '../screens/Withdraw';
 import SwapScreen from '../screens/Swap';
 import DepositWithNetworkScreen from '../screens/DepositWithNetwork';
+import OnBoardingScreen from '../screens/OnBoarding';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useAppSetup} from '../hooks/useAppSetup';
@@ -69,6 +70,7 @@ export type RootStackParamList = {
   PriceAlerts: undefined;
   ProductAnnouncements: undefined;
   DepositWithNetwork: undefined;
+  OnBoarding: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
@@ -186,7 +188,6 @@ const MainTabs = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        unmountOnBlur: true,
         tabBarStyle: {
           elevation: 0,
           borderColor: colors.neutral0,
@@ -262,6 +263,7 @@ const Navigation: React.FC = () => {
         name="NotificationsSettings"
         component={NotificationsSettingsScreen}
       />
+      <RootStack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <RootStack.Screen
         name="DepositWithNetwork"
         component={DepositWithNetworkScreen}

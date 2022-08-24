@@ -10,7 +10,6 @@ const TermsOfService: React.FC = () => {
   return (
     <Layout
       backgroundColor={colors.neutral0}
-      accent="white"
       header={{minimal: {title: 'Terms of Service', back: true}}}>
       <CustomText style={styles.text}>
         We may also refuse to complete or block, cancel or reverse a transaction

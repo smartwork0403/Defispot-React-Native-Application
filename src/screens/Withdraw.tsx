@@ -31,7 +31,6 @@ const Withdraw: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       header={{
         minimal: {
           title: 'Withdraw',

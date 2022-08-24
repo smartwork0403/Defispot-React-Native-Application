@@ -20,12 +20,12 @@ import RefreshBubbleSvg from '../assets/svg-shapes/refresh-bubble.svg';
 import BiometricsBubbleSvg from '../assets/svg-shapes/biometrics-bubble.svg';
 
 const STEP_NAMES = {
-  WELCOME: 'welcome',
-  SECURE: 'secure',
-  BACKUP: 'backup',
+  WELCOME: 'WELCOME',
+  SECURE: 'SECURE',
+  BACKUP: 'BACKUP',
   // for import mode
-  IMPORT: 'import',
-  BIOMETRICS: 'biometrics',
+  IMPORT: 'IMPORT',
+  BIOMETRICS: 'BIOMETRICS',
 };
 
 const recoveryPhrases = [

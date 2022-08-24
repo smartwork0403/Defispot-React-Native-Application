@@ -102,7 +102,6 @@ const Notifications: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       header={{
         title: 'Notifications',
         minimal: {

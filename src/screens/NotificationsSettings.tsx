@@ -36,7 +36,6 @@ const NotificationsSettings: React.FC = () => {
 
   return (
     <Layout
-      accent="white"
       header={{
         minimal: {title: 'Notifications settings', back: true},
       }}>

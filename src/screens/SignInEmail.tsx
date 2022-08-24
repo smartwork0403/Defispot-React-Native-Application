@@ -8,7 +8,7 @@ import Wizard from '../components/Wizard';
 import TextField from '../components/TextField';
 
 const STEP_NAMES = {
-  SIGN_IN: 'sign-in',
+  SIGN_IN: 'SIGN_IN',
 };
 
 const SignInEmail: React.FC = () => {

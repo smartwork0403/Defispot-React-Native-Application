@@ -11,9 +11,7 @@ import SwitchCard from '../components/SwitchCard';
 
 const ProductAnnouncements: React.FC = () => {
   return (
-    <Layout
-      accent="white"
-      header={{minimal: {title: 'Product announcements', back: true}}}>
+    <Layout header={{minimal: {title: 'Product announcements', back: true}}}>
       <Card style={styles.preview}>
         <CustomText weight="medium" style={styles.previewTitle}>
           Price alert preview

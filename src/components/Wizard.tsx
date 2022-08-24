@@ -50,7 +50,6 @@ const Wizard: React.FC<Props> = ({steps = [], step, onBack}) => {
     <Layout
       contentStyle={{padding: 0}}
       backgroundColor={colors.neutral0}
-      accent="white"
       footer={
         <View style={styles.footer}>
           {currentStep.actions.map(action => (

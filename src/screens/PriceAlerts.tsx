@@ -12,9 +12,7 @@ import Notification from '../components/Notification';
 
 const PriceAlerts: React.FC = () => {
   return (
-    <Layout
-      accent="white"
-      header={{minimal: {title: 'Price Alerts', back: true}}}>
+    <Layout header={{minimal: {title: 'Price Alerts', back: true}}}>
       <Card style={styles.preview}>
         <CustomText weight="medium" style={styles.previewTitle}>
           Price alert preview

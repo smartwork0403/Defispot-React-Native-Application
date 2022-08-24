@@ -6,9 +6,9 @@
     "slug": "defispot",
     "owner": "defispot",
     "splash": {
-      "image": "./src/assets/images/splash-blue.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#0077FF"
+      "backgroundColor": "#fff"
     },
     "androidStatusBar": {
       "hidden": true
