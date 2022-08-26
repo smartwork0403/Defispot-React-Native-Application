@@ -14,6 +14,8 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Header from './Header';
 import {Props as HeaderProps} from './Header';
 
+import NoInternet from './NoInternet';
+
 interface Props {
   header?: HeaderProps;
   stickyHeader?: boolean;
@@ -72,6 +74,8 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
             {footer && footer}
           </>
         )}
+
+        <NoInternet />
       </SafeAreaView>
     </>
   );

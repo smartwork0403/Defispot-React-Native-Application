@@ -239,6 +239,8 @@ const Navigation: React.FC = () => {
         headerShown: false,
         animation: 'simple_push',
       }}>
+      <RootStack.Screen name="Home" component={MainTabs} />
+
       <RootStack.Screen name="Welcome" component={WelcomeScreen} />
       <RootStack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <RootStack.Screen name="GetStarted" component={GetStartedScreen} />
@@ -278,8 +280,6 @@ const Navigation: React.FC = () => {
         name="DepositWithNetwork"
         component={DepositWithNetworkScreen}
       />
-
-      <RootStack.Screen name="Home" component={MainTabs} />
     </RootStack.Navigator>
   );
 };
