@@ -237,7 +237,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 1,
     fontFamily: fonts.inter,
-    height: 24,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingVertical: 0,
   },
 });
 

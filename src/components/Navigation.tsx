@@ -124,8 +124,8 @@ const TradeScreenStack = () => {
         headerShown: false,
         animation: 'none',
       }}>
-      <TradeStack.Screen name="Deposit" component={DepositScreen} />
       <TradeStack.Screen name="Swap" component={SwapScreen} />
+      <TradeStack.Screen name="Deposit" component={DepositScreen} />
       <TradeStack.Screen name="Withdraw" component={WithdrawScreen} />
     </TradeStack.Navigator>
   );

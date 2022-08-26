@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Dimensions, Image, Pressable, StyleSheet, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Table, TableWrapper, Cell} from 'react-native-table-component';
@@ -273,11 +280,11 @@ const Home: React.FC = () => {
 
             <View style={styles.filters}>
               {filterItems.map((filter, i) => (
-                <Button
-                  outlined
-                  style={{marginRight: filterItems.length !== i + 1 ? 12 : 0}}
-                  accent="white"
-                  size="large"
+                <TouchableOpacity
+                  style={[
+                    styles.filterBtn,
+                    {marginRight: filterItems.length !== i + 1 ? 12 : 0},
+                  ]}
                   key={filter.name}>
                   <View style={styles.filterIconContainer}>
                     <filter.icon
@@ -286,7 +293,7 @@ const Home: React.FC = () => {
                       color={colors.neutral900}
                     />
                   </View>
-                </Button>
+                </TouchableOpacity>
               ))}
             </View>
 
@@ -478,16 +485,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-    marginLeft: 16,
-    marginRight: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
+  filterBtn: {
+    paddingBottom: 12,
+    paddingTop: 12,
+    paddingLeft: 28,
+    paddingRight: 28,
+    backgroundColor: colors.neutral0,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: colors.neutral200,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   filterIconContainer: {
     height: 20,
     width: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 4,
-    marginRight: 4,
   },
   switchContainer: {
     marginBottom: 20,
