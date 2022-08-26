@@ -118,6 +118,8 @@ const TextField = forwardRef<TextInput, Props>(
 
       if (textarea) {
         customStyles.borderRadius = 12;
+        customStyles.minHeight = 90;
+        customStyles.alignItems = 'flex-start';
       }
 
       return customStyles;
@@ -158,7 +160,6 @@ const TextField = forwardRef<TextInput, Props>(
               styles.input,
               {
                 textAlignVertical: textarea ? 'top' : 'center',
-                height: textarea ? 'auto' : 24,
               },
             ]}
             placeholder={placeholder}
@@ -232,7 +233,6 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 14,
-    lineHeight: 24,
     padding: 0,
     flexGrow: 1,
     flexShrink: 1,
