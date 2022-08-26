@@ -106,16 +106,27 @@ const Preview: React.FC<{icon: any; title: string; subtitle: string}> = ({
   );
 };
 
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
+
 const Swap: React.FC = () => {
   const navigation =
     useNavigation<
       NativeStackNavigationProp<TradeStackParamList & RootStackParamList>
     >();
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
   const [isSlippageModalOpen, setIsSlippageModalOpen] = useState(false);
 
   const [isDetailsCollapsed, setIsDetailsCollapsed] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setIsRefreshing(true);
+    wait(2000).then(() => setIsRefreshing(false));
+  }, []);
 
   const detailItems = [
     {
@@ -145,6 +156,7 @@ const Swap: React.FC = () => {
   return (
     <Layout
       stickyHeader
+      pulldownRefresh={{isRefreshing, onRefresh}}
       header={{
         minimal: {
           title: 'Swap',

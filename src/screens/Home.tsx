@@ -19,7 +19,6 @@ import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
 import Asset from '../components/Asset';
 import AssetsList from '../components/AssetsList';
-import Button from '../components/Button';
 
 import BellUnreadSvg from '../assets/icons/bell-unread.svg';
 import AnnouncementSVG from '../assets/icons/announcement.svg';
@@ -71,6 +70,10 @@ const filterItems = [
   },
 ];
 
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
+
 const Home: React.FC = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
@@ -80,6 +83,12 @@ const Home: React.FC = () => {
   const [currentSwitch, setCurrentSwitch] = useState(switchItems[0].name);
 
   const [isSearchShown, setIsSearchShown] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setIsRefreshing(true);
+    wait(2000).then(() => setIsRefreshing(false));
+  }, []);
 
   const stakingHeaderItems = [
     {
@@ -157,6 +166,7 @@ const Home: React.FC = () => {
     <Layout
       contentStyle={{padding: 0}}
       stickyHeader
+      pulldownRefresh={{isRefreshing, onRefresh}}
       header={{
         searchable: {
           action: {

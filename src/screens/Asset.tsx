@@ -122,12 +122,23 @@ const detailLinks = [
   },
 ];
 
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
+
 const Asset: React.FC = () => {
   const [isAboutInfoModalOpen, setAboutInfoModal] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setIsRefreshing(true);
+    wait(2000).then(() => setIsRefreshing(false));
+  }, []);
 
   return (
     <Layout
       contentStyle={{padding: 0}}
+      pulldownRefresh={{isRefreshing, onRefresh}}
       statusBarColor={colors.neutral0}
       stickyHeader
       customStickyHeader={<AssetHeader />}

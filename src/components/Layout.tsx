@@ -7,6 +7,7 @@ import {
   View,
   ViewStyle,
   StatusBar,
+  RefreshControl,
 } from 'react-native';
 import {colors, globalStyles} from '../styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -24,6 +25,10 @@ interface Props {
   contentStyle?: StyleProp<ViewStyle>;
   backgroundColor?: string;
   statusBarColor?: string;
+  pulldownRefresh?: {
+    isRefreshing: boolean;
+    onRefresh: () => void;
+  };
 }
 
 const Layout: React.FC<PropsWithChildren<Props>> = ({
@@ -35,6 +40,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   contentStyle,
   backgroundColor,
   statusBarColor,
+  pulldownRefresh,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -60,14 +66,32 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
           <>
             {header && <Header {...header} />}
             {!header && customStickyHeader ? customStickyHeader : null}
-            <ScrollView bounces={false}>
+            <ScrollView
+              bounces={false}
+              refreshControl={
+                pulldownRefresh ? (
+                  <RefreshControl
+                    refreshing={pulldownRefresh?.isRefreshing}
+                    onRefresh={pulldownRefresh?.onRefresh}
+                  />
+                ) : undefined
+              }>
               <View style={[styles.content, contentStyle]}>{children}</View>
             </ScrollView>
             {footer && footer}
           </>
         ) : (
           <>
-            <ScrollView bounces={false}>
+            <ScrollView
+              bounces={false}
+              refreshControl={
+                pulldownRefresh ? (
+                  <RefreshControl
+                    refreshing={pulldownRefresh?.isRefreshing}
+                    onRefresh={pulldownRefresh?.onRefresh}
+                  />
+                ) : undefined
+              }>
               {header && <Header {...header} />}
               <View style={[styles.content, contentStyle]}>{children}</View>
             </ScrollView>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {VictoryPie} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
@@ -64,10 +64,21 @@ const Banner: React.FC<{noData: boolean}> = ({noData}) => {
   );
 };
 
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
+
 const Wallet: React.FC = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
   const noData = false;
+
+  const onRefresh = React.useCallback(() => {
+    setIsRefreshing(true);
+    wait(2000).then(() => setIsRefreshing(false));
+  }, []);
 
   const chartData = [
     {
@@ -90,6 +101,7 @@ const Wallet: React.FC = () => {
   return (
     <Layout
       stickyHeader
+      pulldownRefresh={{isRefreshing, onRefresh}}
       contentStyle={{paddingTop: 0}}
       header={{
         title: 'Wallet',
