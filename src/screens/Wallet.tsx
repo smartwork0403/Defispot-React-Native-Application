@@ -131,6 +131,7 @@ const Wallet: React.FC = () => {
               size="small"
               shadow
               accent="white"
+              onPress={() => navigation.navigate('Trade', {screen: 'Deposit'})}
               style={{marginRight: 8, flexGrow: 1}}>
               Deposit
             </Button>
@@ -139,6 +140,7 @@ const Wallet: React.FC = () => {
               size="small"
               shadow
               accent="white"
+              onPress={() => navigation.navigate('Trade', {screen: 'Withdraw'})}
               style={{marginRight: 8, flexGrow: 1}}>
               Withdraw
             </Button>
@@ -147,6 +149,7 @@ const Wallet: React.FC = () => {
               accent="white"
               size="small"
               style={{flexGrow: 1}}
+              onPress={() => navigation.navigate('Trade', {screen: 'Swap'})}
               shadow>
               Swap
             </Button>

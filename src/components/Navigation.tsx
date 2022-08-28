@@ -149,31 +149,31 @@ const ProfileScreenStack = () => {
 
 const navItems = [
   {
-    name: 'home',
+    name: 'Home',
     label: 'Home',
     component: HomeScreenStack,
     icon: HomeSvg,
   },
   {
-    name: 'markets',
+    name: 'Markets',
     label: 'Markets',
     component: MarketsScreen,
     icon: ChartSvg,
   },
   {
-    name: 'trade',
+    name: 'Trade',
     label: 'Trade',
     component: TradeScreenStack,
     icon: TradeSvg,
   },
   {
-    name: 'wallet',
+    name: 'Wallet',
     label: 'Wallet',
     component: WalletScreen,
     icon: WalletSvg,
   },
   {
-    name: 'profile',
+    name: 'Profile',
     label: 'Profile',
     component: ProfileScreenStack,
     icon: UserSvg,
