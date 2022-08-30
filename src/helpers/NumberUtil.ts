@@ -15,7 +15,7 @@ export const formatNumberString = (strValue: string) => {
   }
   return '0';
 };
-export const formatFloat = (newValue: number) => {
+export const formatFloat = (newValue: number, decimalPlaces = 1) => {
   const suffixes = ['', 'K', 'M', 'B', 'T', 'Q', 'Q', 's'];
   let suffixNum = 0;
 
@@ -23,7 +23,7 @@ export const formatFloat = (newValue: number) => {
     newValue /= 1000;
     suffixNum++;
   }
-  return `${newValue.toFixed(1)}${
+  return `${newValue.toFixed(decimalPlaces)}${
     suffixNum > 0 ? `${suffixes[suffixNum]}` : ''
   }`;
 };

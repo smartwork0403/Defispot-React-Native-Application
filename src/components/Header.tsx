@@ -45,6 +45,8 @@ export interface Props {
   searchable?: {
     isShown?: boolean;
     onSearchToggle?: (isShown: boolean) => void;
+    onInputChangeText?: ((text: string) => void) | undefined;
+    inputValue?: string | undefined;
     inputPlaceholder?: string;
     action?: {
       icon: any;
@@ -138,6 +140,8 @@ const Header: React.FC<Props> = ({
                   accent="grey"
                   style={{flex: 1}}
                   size="small"
+                  value={searchable?.inputValue}
+                  onChangeText={text => searchable?.onInputChangeText?.(text)}
                 />
                 <Button
                   style={{marginLeft: 16}}
@@ -160,6 +164,8 @@ const Header: React.FC<Props> = ({
                   size="small"
                   ref={searchableActionInputRef}
                   style={{flex: 1}}
+                  value={searchable?.inputValue}
+                  onChangeText={text => searchable?.onInputChangeText?.(text)}
                 />
                 <IconButton
                   icon={searchable.action.icon}

@@ -6,22 +6,29 @@ import {
   ViewStyle,
   ImageStyle,
   TextStyle,
+  Image,
 } from 'react-native';
 import {colors, fonts} from '../styles';
 
 import CustomText from './CustomText';
 
-import BTCLogoSvg from '../assets/crypto-logos/btc.svg';
-import AVAXLogoSvg from '../assets/crypto-logos/avax.svg';
-
 interface Props {
+  image: string;
+  networkImage?: string;
   name?: string;
   value?: string;
   size?: 'medium' | 'large' | 'small';
   horizontal?: boolean;
 }
 
-const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
+const Asset: React.FC<Props> = ({
+  image,
+  networkImage,
+  size,
+  name,
+  value,
+  horizontal,
+}) => {
   const getIconContainerStyles = () => {
     const style: StyleProp<ViewStyle> = {};
     if (size === 'large') {
@@ -131,11 +138,16 @@ const Asset: React.FC<Props> = ({size, name, value, horizontal}) => {
   return (
     <View style={styles.asset}>
       <View style={getIconContainerStyles()}>
-        <BTCLogoSvg style={getIconStyles()} />
-        <View
-          style={{...styles.networkContainer, ...getNetworkContainerStyles()}}>
-          <AVAXLogoSvg style={getNetworkStyles()} />
-        </View>
+        <Image style={getIconStyles()} source={{uri: image}} />
+        {networkImage && (
+          <View
+            style={{
+              ...styles.networkContainer,
+              ...getNetworkContainerStyles(),
+            }}>
+            <Image style={getNetworkStyles()} source={{uri: networkImage}} />
+          </View>
+        )}
       </View>
       <View
         style={{

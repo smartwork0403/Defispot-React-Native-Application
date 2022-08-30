@@ -1,35 +1,69 @@
 import React from 'react';
-import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
+import {View, StyleSheet, StyleProp, ViewStyle, FlatList} from 'react-native';
 import {VictoryGroup, VictoryLine} from 'victory-native';
 import {useNavigation} from '@react-navigation/native';
 import type {RootStackParamList} from './Navigation';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {formatFloat} from '../helpers/NumberUtil';
 
 import {colors} from '../styles';
 
 import Asset from './Asset';
 import CustomText from './CustomText';
 import Card from './Card';
-import CollapsibleArrow from './CollapsibleArrow';
+
+export interface Asset {
+  cmcId: number;
+  name: string;
+  symbol: string;
+  chain: string;
+  chainSymbol: string;
+  address: string;
+  image: string;
+  marketCap: number;
+  percentChange24: number;
+  price: number;
+  volume24: number;
+}
 
 const AssetsList: React.FC<{
   style?: StyleProp<ViewStyle>;
-}> = ({style}) => {
+  assets: Asset[];
+}> = ({style, assets = []}) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
-    <View style={style}>
-      {[...Array(5).keys()].map(k => (
-        <Card
-          style={styles.item}
-          key={k}
-          onPress={() => navigation.navigate('Asset')}>
-          <Asset name="XLM" value="$253,71M" />
-          <CollapsibleArrow rotate={false} startArrowAngel="right" />
+    <FlatList
+      style={style}
+      data={assets}
+      keyExtractor={item => item.cmcId.toString()}
+      renderItem={({item}) => (
+        <Card style={styles.item} onPress={() => navigation.navigate('Asset')}>
+          <Asset
+            image={item.image}
+            name={item.name}
+            value={formatFloat(item.volume24, 2)}
+          />
+          <View>
+            <CustomText weight="medium" style={styles.price}>
+              ${formatFloat(item.price, 2)}
+            </CustomText>
+            <CustomText
+              weight="medium"
+              style={{
+                ...styles.changes,
+                color: item.percentChange24.toString().includes('-')
+                  ? colors.red
+                  : colors.green,
+              }}>
+              {item.percentChange24.toFixed(2)}%
+            </CustomText>
+          </View>
         </Card>
-      ))}
-    </View>
+      )}
+    />
   );
 };
 
@@ -39,6 +73,14 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     marginBottom: 8,
     justifyContent: 'space-between',
+  },
+  price: {
+    textAlign: 'right',
+  },
+  changes: {
+    fontSize: 12,
+    lineHeight: 16,
+    textAlign: 'right',
   },
 });
 
