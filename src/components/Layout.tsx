@@ -8,6 +8,8 @@ import {
   ViewStyle,
   StatusBar,
   RefreshControl,
+  Platform,
+  ActivityIndicator,
 } from 'react-native';
 import {colors, globalStyles} from '../styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -67,7 +69,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
             {header && <Header {...header} />}
             {!header && customStickyHeader ? customStickyHeader : null}
             <ScrollView
-              bounces={false}
+              // bounces={false}
               refreshControl={
                 pulldownRefresh ? (
                   <RefreshControl
@@ -76,6 +78,15 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
                   />
                 ) : undefined
               }>
+              {Platform.OS === 'ios' && (
+                <View style={styles.iosPullDown}>
+                  {pulldownRefresh && (
+                    <View style={styles.loadingContainer}>
+                      <ActivityIndicator color={colors.blue} size="large" />
+                    </View>
+                  )}
+                </View>
+              )}
               <View style={[styles.content, contentStyle]}>{children}</View>
             </ScrollView>
             {footer && footer}
@@ -83,7 +94,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
         ) : (
           <>
             <ScrollView
-              bounces={false}
+              // bounces={false}
               refreshControl={
                 pulldownRefresh ? (
                   <RefreshControl
@@ -109,6 +120,21 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
     ...globalStyles.wrapper,
+  },
+  iosPullDown: {
+    backgroundColor: colors.neutral0,
+    height: 1000,
+    position: 'absolute',
+    top: -1000,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingContainer: {
+    padding: 20,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
 });
 
