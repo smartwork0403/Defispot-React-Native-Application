@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 // import * as Random from 'expo-random';
-// import {Provider as ReduxProvider} from 'react-redux';
-// import {store as reduxStore} from './src/redux/store';
+import {Provider as ReduxProvider} from 'react-redux';
+import {store as reduxStore} from './src/redux/store';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
@@ -43,9 +43,9 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer theme={{colors: {background: colors.neutral50}}}>
-        {/* <ReduxProvider store={reduxStore}> */}
-        <Navigation />
-        {/* </ReduxProvider> */}
+        <ReduxProvider store={reduxStore}>
+          <Navigation />
+        </ReduxProvider>
       </NavigationContainer>
     </SafeAreaProvider>
   );

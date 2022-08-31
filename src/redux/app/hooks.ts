@@ -12,14 +12,15 @@ import {
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 
 import {multichain} from '../../services/multichain';
+import type {Asset as AssetType} from '../../components/AssetsList';
 
 export const useApp = () => {
   const dispatch = useAppDispatch();
   const appState = useAppSelector(selectAppState);
   console.log(appState, 'AppStateeeeeeeeeee');
-  
+
   const baseCurrencyAsset =
-  Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
+    Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
   console.log(baseCurrencyAsset, 'AppStateeeeeeeeeee');
 
   const setBaseCurrency = useCallback(
@@ -40,6 +41,13 @@ export const useApp = () => {
   const setTheme = useCallback(
     (theme: 'light' | 'dark') => {
       dispatch(actions.setTheme(theme));
+    },
+    [dispatch],
+  );
+
+  const setAssetsList = useCallback(
+    (assets: {state: string; data: AssetType[]}) => {
+      dispatch(actions.setAssetsList(assets));
     },
     [dispatch],
   );
@@ -118,6 +126,7 @@ export const useApp = () => {
     toggleSettings,
     toggleFastSwap,
     setTheme,
+    setAssetsList,
     setSlippageTolerance,
     setSlippage,
     setFeeOptionType,

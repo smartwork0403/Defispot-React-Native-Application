@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
+  ActivityIndicator,
   Dimensions,
   Image,
   Pressable,
@@ -12,13 +13,19 @@ import Carousel from 'react-native-reanimated-carousel';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Table, TableWrapper, Cell} from 'react-native-table-component';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {cloneDeep} from 'lodash';
+
 import {colors, globalStyles} from '../styles';
+import {ASSETS_STATE} from '../hooks/useAssets';
+import {useApp} from '../redux/app/hooks';
+import {formatFloat} from '../helpers/NumberUtil';
 
 import type {HomeStackParamList} from '../components/Navigation';
 import Layout from '../components/Layout';
 import CustomText from '../components/CustomText';
 import Asset from '../components/Asset';
-import AssetsList from '../components/AssetsList';
+import AssetsList, {Asset as AssetType} from '../components/AssetsList';
+import Card from '../components/Card';
 
 import BellUnreadSvg from '../assets/icons/bell-unread.svg';
 import AnnouncementSVG from '../assets/icons/announcement.svg';
@@ -51,25 +58,6 @@ const switchItems = [
   },
 ];
 
-const filterItems = [
-  {
-    name: 'swap',
-    icon: SwapSVG,
-  },
-  {
-    name: 'ascending',
-    icon: AlignArrowUpSVG,
-  },
-  {
-    name: 'descending',
-    icon: AlignArrowDownSVG,
-  },
-  {
-    name: 'down',
-    icon: ArrowDownRightSVG,
-  },
-];
-
 const wait = timeout => {
   return new Promise(resolve => setTimeout(resolve, timeout));
 };
@@ -84,83 +72,170 @@ const Home: React.FC = () => {
 
   const [isSearchShown, setIsSearchShown] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [stakingHeaderItems, setStakingHeaderItems] = useState([
+    {
+      symbol: 'RUNE',
+      percentChange24: 0,
+      price: 0,
+    },
+    {
+      symbol: 'BTC',
+      percentChange24: 0,
+      price: 0,
+    },
+    {
+      symbol: 'ETH',
+      percentChange24: 0,
+      price: 0,
+    },
+  ]);
+
+  const [searchInputValue, setSearchInputValue] = useState('');
+  const [showingAssetsList, setShowingAssetsList] = useState<AssetType[]>([]);
+  const [homeAssetsList, setHomeAssetsList] = useState<AssetType[]>([]);
+
+  const {assetsList} = useApp();
 
   const onRefresh = React.useCallback(() => {
     setIsRefreshing(true);
     wait(2000).then(() => setIsRefreshing(false));
   }, []);
 
-  const stakingHeaderItems = [
+  const navigationItems = [
     {
-      name: 'ETH',
-      percent: 1.2,
-      upward: false,
-      value: '235,6',
+      name: 'swap',
+      icon: SwapSVG,
+      onPress: () => navigation.navigate('Trade', {screen: 'Swap'}),
     },
     {
-      name: 'BTC',
-      percent: 6.8,
-      upward: true,
-      value: '20.187,57',
+      name: 'ascending',
+      icon: AlignArrowUpSVG,
+      onPress: () => navigation.navigate('Trade', {screen: 'Withdraw'}),
     },
     {
-      name: 'LINK',
-      percent: 3.4,
-      upward: true,
-      value: '1232,2',
+      name: 'descending',
+      icon: AlignArrowDownSVG,
+      onPress: () => navigation.navigate('Trade', {screen: 'Deposit'}),
+    },
+    {
+      name: 'down',
+      icon: ArrowDownRightSVG,
+      onPress: () => navigation.navigate('Trade', {screen: 'Deposit'}),
     },
   ];
 
-  const tableRows = [
-    {
-      asset: {name: 'LINK'},
-      lastPrice: '235,0',
-      change: '1,90',
-      upward: true,
-    },
-    {
-      asset: {name: 'BTC'},
-      lastPrice: '20.206,57',
-      change: '4,90',
-      upward: true,
-    },
-    {
-      asset: {name: 'ETH'},
-      lastPrice: '36,27',
-      change: '0,20',
-      upward: false,
-    },
-    {
-      asset: {name: 'AVAX'},
-      lastPrice: '235,0',
-      change: '2,90',
-      upward: true,
-    },
-    {
-      asset: {name: 'LINK'},
-      lastPrice: '235,0',
-      change: '1,90',
-      upward: true,
-    },
-    {
-      asset: {name: 'BTC'},
-      lastPrice: '20.206,57',
-      change: '4,90',
-      upward: true,
-    },
-    {
-      asset: {name: 'ETH'},
-      lastPrice: '36,27',
-      change: '0,20',
-      upward: false,
-    },
-    {
-      asset: {name: 'AVAX'},
-      lastPrice: '235,0',
-      change: '2,90',
-      upward: true,
-    },
-  ];
+  useEffect(() => {
+    if (
+      assetsList.state === ASSETS_STATE.success &&
+      assetsList.data.length > 0
+    ) {
+      // find stacking header items
+      const rune = assetsList.data.find(asset => asset.symbol === 'RUNE');
+      const btc = assetsList.data.find(asset => asset.symbol === 'BTC');
+      const eth = assetsList.data.find(asset => asset.symbol === 'ETH');
+
+      if (rune && btc && eth) {
+        setStakingHeaderItems([
+          {
+            symbol: 'RUNE',
+            percentChange24: rune.percentChange24,
+            price: rune.price,
+          },
+          {
+            symbol: 'BTC',
+            percentChange24: btc.percentChange24,
+            price: btc.price,
+          },
+          {
+            symbol: 'ETH',
+            percentChange24: eth.percentChange24,
+            price: eth.price,
+          },
+        ]);
+      }
+    }
+  }, [assetsList, assetsList.state, assetsList.data]);
+
+  useEffect(() => {
+    if (
+      assetsList.state === ASSETS_STATE.success &&
+      assetsList.data.length > 0
+    ) {
+      const list = cloneDeep(assetsList.data).sort((a, b) => {
+        if (currentSwitch === 'hot') {
+          return a.marketCap - b.marketCap;
+        }
+
+        if (currentSwitch === 'gainers') {
+          return b.percentChange24 - a.percentChange24;
+        }
+
+        if (currentSwitch === 'losers') {
+          return a.percentChange24 - b.percentChange24;
+        }
+
+        if (currentSwitch === '24h-vol') {
+          return a.volume24 - b.volume24;
+        }
+
+        return 0;
+      });
+
+      setHomeAssetsList(list.slice(0, 10));
+    }
+  }, [assetsList.data, assetsList.state, currentSwitch]);
+
+  useEffect(() => {
+    setShowingAssetsList(assetsList.data);
+  }, [assetsList.data]);
+
+  const handleSearch = inputValue => {
+    if (inputValue.length > 0) {
+      const filteredData = assetsList.data.filter(asset =>
+        asset.name.toLowerCase().includes(inputValue.toLowerCase()),
+      );
+      setShowingAssetsList(filteredData);
+    } else {
+      setShowingAssetsList(assetsList.data);
+    }
+  };
+
+  const getAssetsList = () => {
+    if (assetsList.state === ASSETS_STATE.success) {
+      if (assetsList.data.length === 0) {
+        return (
+          <Card>
+            <CustomText>No asset found!</CustomText>
+          </Card>
+        );
+      }
+
+      if (showingAssetsList.length === 0) {
+        return (
+          <Card style={styles.noResult}>
+            <CustomText weight="medium">
+              No results for “{searchInputValue}”
+            </CustomText>
+          </Card>
+        );
+      }
+
+      return (
+        <AssetsList
+          assets={showingAssetsList}
+          style={{marginTop: isSearchShown ? 4 : 0}}
+        />
+      );
+    }
+
+    return (
+      <Card>
+        <CustomText style={{color: colors.red}}>
+          Error while fetching data!
+        </CustomText>
+      </Card>
+    );
+  };
 
   return (
     <Layout
@@ -174,8 +249,21 @@ const Home: React.FC = () => {
             onActionPress: () => navigation.navigate('Notifications'),
           },
           inputPlaceholder: 'Search...',
-          onSearchToggle: () => setIsSearchShown(!isSearchShown),
+          onSearchToggle: isShown => {
+            setIsSearchShown(isShown);
+
+            if (!isShown) {
+              setShowingAssetsList(assetsList.data);
+            } else {
+              handleSearch(searchInputValue);
+            }
+          },
           isShown: isSearchShown,
+          inputValue: searchInputValue,
+          onInputChangeText: text => {
+            setSearchInputValue(text);
+            handleSearch(text);
+          },
         },
         extended: true,
       }}>
@@ -184,11 +272,14 @@ const Home: React.FC = () => {
           styles.assetsContainer,
           {display: isSearchShown ? 'flex' : 'none'},
         ]}>
-        {/* <Card style={styles.noResult}>
-        <CustomText weight="medium">No results for “Kevin”</CustomText>
-      </Card> */}
-
-        <AssetsList />
+        {assetsList.state === ASSETS_STATE.loading ||
+        assetsList.state === ASSETS_STATE.idle ? (
+          <View style={styles.assetsLoadingContainer}>
+            <ActivityIndicator size="large" color={colors.blue} />
+          </View>
+        ) : (
+          getAssetsList()
+        )}
       </View>
 
       <View style={{display: isSearchShown ? 'none' : 'flex'}}>
@@ -247,26 +338,26 @@ const Home: React.FC = () => {
           <View style={styles.content}>
             <View style={styles.header}>
               {stakingHeaderItems.map(item => (
-                <View style={styles.headerItem} key={item.name}>
+                <View style={styles.headerItem} key={item.symbol}>
                   <View style={styles.headerItemTop}>
                     <CustomText
                       weight="medium"
                       style={styles.headerItemTopName}>
-                      {item.name}
+                      {item.symbol}
                     </CustomText>
-                    {item.upward ? (
-                      <ArrowUpSVG
-                        height={10}
-                        width={7}
-                        style={{marginLeft: 9, marginRight: 9}}
-                        color={colors.green}
-                      />
-                    ) : (
+                    {item.percentChange24.toString().includes('-') ? (
                       <ArrowDownSVG
                         height={10}
                         width={7}
                         style={{marginLeft: 9, marginRight: 9}}
                         color={colors.red}
+                      />
+                    ) : (
+                      <ArrowUpSVG
+                        height={10}
+                        width={7}
+                        style={{marginLeft: 9, marginRight: 9}}
+                        color={colors.green}
                       />
                     )}
 
@@ -274,29 +365,32 @@ const Home: React.FC = () => {
                       weight="medium"
                       style={{
                         ...styles.headerItemTopPercent,
-                        color: item.upward ? colors.green : colors.red,
+                        color: item.percentChange24.toString().includes('-')
+                          ? colors.red
+                          : colors.green,
                       }}>
-                      {item.percent}%
+                      {item.percentChange24.toFixed(2)}%
                     </CustomText>
                   </View>
                   <CustomText
                     weight="medium"
                     style={styles.headerItemBottomValue}>
-                    {item.value}
+                    ${formatFloat(item.price, 2)}
                   </CustomText>
                 </View>
               ))}
             </View>
 
-            <View style={styles.filters}>
-              {filterItems.map((filter, i) => (
+            <View style={styles.navigationList}>
+              {navigationItems.map((filter, i) => (
                 <TouchableOpacity
                   style={[
-                    styles.filterBtn,
-                    {marginRight: filterItems.length !== i + 1 ? 12 : 0},
+                    styles.navigationBtn,
+                    {marginRight: navigationItems.length !== i + 1 ? 12 : 0},
                   ]}
+                  onPress={filter.onPress}
                   key={filter.name}>
-                  <View style={styles.filterIconContainer}>
+                  <View style={styles.navigationIconContainer}>
                     <filter.icon
                       height={12}
                       width={12}
@@ -362,45 +456,73 @@ const Home: React.FC = () => {
                   />
                 </TableWrapper>
 
-                {/* rows */}
-                {tableRows.map(row => (
-                  <TableWrapper
-                    style={{
-                      ...styles.tableRow,
-                      marginBottom: 24,
-                    }}
-                    key={row.asset.name}>
-                    <Cell
-                      data={<Asset name={row.asset.name} size="small" />}
-                      style={{flex: 1.5}}
-                    />
-                    <Cell
-                      data={
-                        <CustomText weight="medium">{row.lastPrice}</CustomText>
-                      }
-                    />
-                    <Cell
-                      data={
-                        <View style={styles.tableItemChangeContainer}>
-                          <CustomText
-                            weight="medium"
-                            style={{
-                              ...styles.tableItemChange,
-                              color: row.upward
-                                ? colors.greenDark
-                                : colors.redDark,
-                              backgroundColor: row.upward
-                                ? colors.greenLight
-                                : colors.redLight,
-                            }}>
-                            {row.upward ? '+' : '-'}
-                            {row.change}%
+                {assetsList.state === ASSETS_STATE.loading ||
+                assetsList.state === ASSETS_STATE.idle ? (
+                  <View style={styles.tableLoadingContainer}>
+                    <ActivityIndicator size="large" color={colors.blue} />
+                  </View>
+                ) : assetsList.state === ASSETS_STATE.error ? (
+                  <Card>
+                    <CustomText style={{color: colors.red}}>
+                      Error while fetching data!
+                    </CustomText>
+                  </Card>
+                ) : (
+                  homeAssetsList.map(asset => (
+                    <TableWrapper
+                      style={{
+                        ...styles.tableRow,
+                        marginBottom: 24,
+                      }}
+                      key={asset.cmcId}>
+                      <Cell
+                        data={
+                          <Asset
+                            name={asset.name}
+                            image={asset.image}
+                            size="small"
+                          />
+                        }
+                        style={{flex: 1.5}}
+                      />
+                      <Cell
+                        data={
+                          <CustomText weight="medium">
+                            ${formatFloat(asset.price, 2)}
                           </CustomText>
-                        </View>
-                      }
-                    />
-                  </TableWrapper>
-                ))}
+                        }
+                      />
+                      <Cell
+                        data={
+                          <View style={styles.tableItemChangeContainer}>
+                            <CustomText
+                              weight="medium"
+                              style={[
+                                styles.tableItemChange,
+                                {
+                                  color: asset.percentChange24
+                                    .toString()
+                                    .includes('-')
+                                    ? colors.redDark
+                                    : colors.greenDark,
+                                  backgroundColor: asset.percentChange24
+                                    .toString()
+                                    .includes('-')
+                                    ? colors.redLight
+                                    : colors.greenLight,
+                                },
+                              ]}>
+                              {asset.percentChange24.toString().includes('-')
+                                ? ''
+                                : '+'}
+                              {asset.percentChange24.toFixed(2)}%
+                            </CustomText>
+                          </View>
+                        }
+                      />
+                    </TableWrapper>
+                  ))
+                )}
               </Table>
             </View>
           </View>
@@ -416,6 +538,9 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  assetsLoadingContainer: {
+    marginTop: 70,
   },
   noResult: {
     paddingTop: 12,
@@ -491,14 +616,14 @@ const styles = StyleSheet.create({
   headerItemBottomValue: {
     fontSize: 18,
   },
-  filters: {
+  navigationList: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
     paddingLeft: 16,
     paddingRight: 16,
   },
-  filterBtn: {
+  navigationBtn: {
     paddingBottom: 12,
     paddingTop: 12,
     paddingLeft: 28,
@@ -510,7 +635,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  filterIconContainer: {
+  navigationIconContainer: {
     height: 20,
     width: 20,
     justifyContent: 'center',
@@ -548,6 +673,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     color: colors.neutral400,
+  },
+  tableLoadingContainer: {
+    marginTop: 30,
+    marginBottom: 200,
   },
   tableRow: {
     flexDirection: 'row',

@@ -34,7 +34,7 @@ const GetStarted: React.FC = () => {
             All sensitive information is storred only on your device. This
             process does not require an internet connection.
           </CustomText>
-          <Button size="large" onPress={() => navigation.navigate('Home')}>
+          <Button size="large" onPress={() => navigation.navigate('MainTabs')}>
             Use Without Login
           </Button>
         </View>

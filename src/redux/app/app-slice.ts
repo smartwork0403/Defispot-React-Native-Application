@@ -13,8 +13,10 @@ import {
 } from '../../helpers/storage';
 
 import {DEFAULT_SLIPPAGE_TOLERANCE} from '../../settings/constants';
+import {ASSETS_STATE} from '../../hooks/useAssets';
 
 import type {RootState} from '../store';
+import type {Asset as AssetType} from '../../components/AssetsList';
 
 const initialState: AppStateModel = {
   data: [],
@@ -34,7 +36,11 @@ const initialState: AppStateModel = {
   sendAsset: Asset.BTC(),
   withdrawAsset: Asset.BTC(),
   receiveAsset: Asset.BTC(),
-  theme: 'light'
+  theme: 'light',
+  assetsList: {
+    state: ASSETS_STATE.idle,
+    data: [],
+  },
 };
 
 export const appSlice = createSlice({
@@ -57,6 +63,15 @@ export const appSlice = createSlice({
     },
     setTheme(state, action: PayloadAction<'light' | 'dark'>) {
       state.theme = action.payload;
+    },
+    setAssetsList(
+      state,
+      action: PayloadAction<{state: string; data: AssetType[]}>,
+    ) {
+      state.assetsList = {
+        state: action.payload.state,
+        data: action.payload.data,
+      };
     },
     setSlippageTolerance(state, action: PayloadAction<number>) {
       state.slippageTolerance = action.payload;

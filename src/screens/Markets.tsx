@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import axios from 'axios';
+import {useApp} from '../redux/app/hooks';
 
 import Layout from '../components/Layout';
 import AssetsList from '../components/AssetsList';
@@ -11,6 +11,7 @@ import Card from '../components/Card';
 import CustomText from '../components/CustomText';
 
 import type {Asset} from '../components/AssetsList';
+import {ASSETS_STATE} from '../hooks/useAssets';
 
 import {colors} from '../styles';
 
@@ -20,11 +21,10 @@ import ArrowDownSvg from '../assets/icons/arrow-down.svg';
 import CursorTextSvg from '../assets/icons/cursor-text.svg';
 import DollarCircleSvg from '../assets/icons/dollar-circle.svg';
 
-// import Header from '../components/Header';
 // import {useAppSelector} from '../redux/hooks';
 // import {selectAvailablePoolsMarketCap} from '../redux/midgard/slice';
-// import {useEffect} from 'react';
 // import {REACT_APP_MIDGARD_TESTNET_URL} from '@env';
+
 const sortByItems = [
   {
     name: 'volume',
@@ -53,92 +53,40 @@ const sortByItems = [
   },
 ];
 
-const ASSETS_STATE = {
-  loading: 'loading',
-  success: 'success',
-  error: 'error',
-};
-
 const Markets: React.FC = () => {
   const [sortBy, setSortBy] = useState('volume');
   const [isSearchShown, setIsSearchShown] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState('');
-  const [assetsState, setAssetsState] = useState(ASSETS_STATE.loading);
-  const [assetsListData, setAssetsListData] = useState<Asset[]>([]);
+
   const [showingAssetsList, setShowingAssetsList] = useState<Asset[]>([]);
 
-  // const pools = useAppSelector(selectAvailablePoolsMarketCap);
+  const {assetsList} = useApp();
 
-  // useEffect(() => {
-  //   console.log(pools);
-  //   console.log(REACT_APP_MIDGARD_TESTNET_URL);
-  // }, [pools]);
+  /*  const pools = useAppSelector(selectAvailablePoolsMarketCap);
+
+  useEffect(() => {
+    console.log('pools', pools);
+    console.log(REACT_APP_MIDGARD_TESTNET_URL);
+  }, [pools]); */
+
+  useEffect(() => {
+    setShowingAssetsList(assetsList.data);
+  }, [assetsList.data]);
 
   const handleSearch = inputValue => {
     if (inputValue.length > 0) {
-      const filteredData = assetsListData.filter(asset =>
+      const filteredData = assetsList.data.filter(asset =>
         asset.name.toLowerCase().includes(inputValue.toLowerCase()),
       );
       setShowingAssetsList(filteredData);
     } else {
-      setShowingAssetsList(assetsListData);
-    }
-  };
-
-  useEffect(() => {
-    if (assetsListData.length === 0) {
-      getData();
-    }
-  }, [assetsListData]);
-
-  const getData = async () => {
-    try {
-      const dataSet1 = await axios.get(
-        'https://fi40rvt5l0.execute-api.us-east-1.amazonaws.com/test/api/v2/assets/info',
-      );
-      const dataSet2 = await axios.get(
-        'https://api.rango.exchange/meta?apiKey=57e66bdb-07ae-4956-a117-7570276a02d6',
-      );
-
-      const assetsImageMap = new Map();
-      dataSet2.data.tokens.forEach(token => {
-        assetsImageMap.set(token.symbol, token.image);
-      });
-
-      console.log('dataSet1', dataSet1);
-
-      const data: Asset[] = [];
-
-      dataSet1.data.forEach(asset => {
-        data.push({
-          cmcId: asset.cmcId,
-          name: asset.asset_full_name,
-          symbol: asset.symbol,
-          chain: asset.chain,
-          chainSymbol: asset.chain_full_name,
-          address: asset.token_address,
-          image: assetsImageMap.get(asset.symbol),
-          marketCap: asset.market_cap,
-          percentChange24: asset.percent_change_24h,
-          price: asset.price,
-          volume24: asset.volume_24h,
-        });
-      });
-
-      console.log('data', data);
-
-      setAssetsListData(data);
-      setShowingAssetsList(data);
-      setAssetsState(ASSETS_STATE.success);
-    } catch (e) {
-      console.log('Error while fetching data in markets page', e);
-      setAssetsState(ASSETS_STATE.error);
+      setShowingAssetsList(assetsList.data);
     }
   };
 
   const getAssetsList = () => {
-    if (assetsState === ASSETS_STATE.success) {
-      if (assetsListData.length === 0) {
+    if (assetsList.state === ASSETS_STATE.success) {
+      if (assetsList.data.length === 0) {
         return (
           <Card>
             <CustomText>No asset found!</CustomText>
@@ -184,7 +132,7 @@ const Markets: React.FC = () => {
             setIsSearchShown(isShown);
 
             if (!isShown) {
-              setShowingAssetsList(assetsListData);
+              setShowingAssetsList(assetsList.data);
             } else {
               handleSearch(searchInputValue);
             }
@@ -229,7 +177,8 @@ const Markets: React.FC = () => {
         </View>
       )}
 
-      {assetsState === ASSETS_STATE.loading ? (
+      {assetsList.state === ASSETS_STATE.loading ||
+      assetsList.state === ASSETS_STATE.idle ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.blue} />
         </View>

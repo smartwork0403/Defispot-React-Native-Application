@@ -4,6 +4,7 @@ import {Asset} from '../SDKs/multichain-sdk';
 // import {NotificationProps} from 'components/Notifications/Notifications';
 
 import {DataModel} from './DataModel';
+import type {Asset as AssetType} from '../components/AssetsList';
 
 export interface AppStateModel {
   data: DataModel[] | null;
@@ -20,4 +21,8 @@ export interface AppStateModel {
   sendAsset: Asset;
   withdrawAsset: Asset;
   receiveAsset: Asset;
+  assetsList: {
+    state: string;
+    data: AssetType[];
+  };
 }

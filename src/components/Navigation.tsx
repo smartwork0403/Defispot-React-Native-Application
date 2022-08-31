@@ -48,6 +48,7 @@ import OnBoardingScreen from '../screens/OnBoarding';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useAppSetup} from '../hooks/useAppSetup';
 import {useGlobalRefresh} from '../hooks/useGlobalRefresh';
+import {useAssets} from '../hooks/useAssets';
 
 export const importCreateWalletParamsList = {
   IMPORT: 'import',
@@ -55,7 +56,7 @@ export const importCreateWalletParamsList = {
 };
 
 export type RootStackParamList = {
-  Home: undefined;
+  MainTabs: undefined;
   Asset: undefined;
   History: undefined;
   ImportCreateWallet: {type: 'import' | 'create'};
@@ -83,7 +84,7 @@ export type ImportCreateWalletScreenProps<T extends keyof RootStackParamList> =
   >;
 
 export type HomeStackParamList = {
-  Home: undefined;
+  Index: undefined;
   Notifications: undefined;
 };
 
@@ -111,7 +112,7 @@ const HomeScreenStack = () => {
         headerShown: false,
         animation: 'slide_from_right',
       }}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Index" component={HomeScreen} />
       <HomeStack.Screen name="Notifications" component={NotificationsScreen} />
     </HomeStack.Navigator>
   );
@@ -231,16 +232,17 @@ const MainTabs = () => {
 };
 
 const Navigation: React.FC = () => {
-  useAppSetup();
-  useGlobalRefresh();
+  useAssets();
+
+  // useAppSetup();
+  // useGlobalRefresh();
+
   return (
     <RootStack.Navigator
       screenOptions={{
         headerShown: false,
         animation: 'simple_push',
       }}>
-      <RootStack.Screen name="Home" component={MainTabs} />
-
       <RootStack.Screen name="Welcome" component={WelcomeScreen} />
       <RootStack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <RootStack.Screen name="GetStarted" component={GetStartedScreen} />
@@ -280,6 +282,8 @@ const Navigation: React.FC = () => {
         name="DepositWithNetwork"
         component={DepositWithNetworkScreen}
       />
+
+      <RootStack.Screen name="MainTabs" component={MainTabs} />
     </RootStack.Navigator>
   );
 };
