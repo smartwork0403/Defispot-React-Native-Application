@@ -5,7 +5,7 @@ import Button from './Button';
 import CustomText from './CustomText';
 
 export interface Props {
-  list: {text: string; name: string}[];
+  list: string[];
   style?: StyleProp<ViewStyle>;
 }
 
@@ -14,11 +14,11 @@ const RecoveryPhraseList: React.FC<Props> = ({list = [], style}) => {
     <View style={[styles.container, style]}>
       <View style={styles.list}>
         {list.map((phrase, index) => (
-          <View style={styles.phrase} key={phrase.name}>
+          <View style={styles.phrase} key={phrase}>
             <CustomText weight="medium" style={styles.phraseNum}>
               {index + 1}
             </CustomText>
-            <CustomText weight="medium">{phrase.text}</CustomText>
+            <CustomText weight="medium">{phrase}</CustomText>
           </View>
         ))}
       </View>

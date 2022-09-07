@@ -22,9 +22,11 @@ export interface Asset {
   address: string;
   image: string;
   marketCap: number;
-  percentChange24: number;
+  percentChange24h: number;
+  percentChange7d: number;
   price: number;
   volume24: number;
+  volumeChange24h: number;
 }
 
 const AssetsList: React.FC<{
@@ -40,7 +42,9 @@ const AssetsList: React.FC<{
       data={assets}
       keyExtractor={item => item.cmcId.toString()}
       renderItem={({item}) => (
-        <Card style={styles.item} onPress={() => navigation.navigate('Asset')}>
+        <Card
+          style={styles.item}
+          onPress={() => navigation.navigate('Asset', {id: item.cmcId})}>
           <Asset
             image={item.image}
             name={item.name}
@@ -54,11 +58,11 @@ const AssetsList: React.FC<{
               weight="medium"
               style={{
                 ...styles.changes,
-                color: item.percentChange24.toString().includes('-')
+                color: item.percentChange24h.toString().includes('-')
                   ? colors.red
                   : colors.green,
               }}>
-              {item.percentChange24.toFixed(2)}%
+              {item.percentChange24h.toFixed(2)}%
             </CustomText>
           </View>
         </Card>

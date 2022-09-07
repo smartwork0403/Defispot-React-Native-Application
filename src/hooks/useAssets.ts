@@ -45,9 +45,11 @@ export const useAssets = () => {
             address: asset.token_address,
             image: assetsImageMap.get(asset.symbol),
             marketCap: asset.market_cap,
-            percentChange24: asset.percent_change_24h,
+            percentChange24h: asset.percent_change_24h,
+            percentChange7d: asset.percent_change_7d,
             price: asset.price,
             volume24: asset.volume_24h,
+            volumeChange24h: asset.volume_change_24h,
           });
         });
 

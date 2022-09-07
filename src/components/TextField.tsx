@@ -17,8 +17,8 @@ import EyeSvg from '../assets/icons/eye.svg';
 import EyeOffSvg from '../assets/icons/eye-off.svg';
 
 interface Props {
-  onChangeText?: ((text: string) => void) | undefined;
-  value?: string | undefined;
+  onChangeText?: (text: string) => void;
+  value?: string;
   prependIcon?: {icon: any; width?: number; height?: number; color?: string};
   appendIcon?: {icon: any; width?: number; height?: number; color?: string};
   appendAction?: {label: string; onPress: () => void};

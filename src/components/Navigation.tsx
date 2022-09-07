@@ -57,7 +57,7 @@ export const importCreateWalletParamsList = {
 
 export type RootStackParamList = {
   MainTabs: undefined;
-  Asset: undefined;
+  Asset: {id: number};
   History: undefined;
   ImportCreateWallet: {type: 'import' | 'create'};
   SignInEmail: undefined;
@@ -234,8 +234,8 @@ const MainTabs = () => {
 const Navigation: React.FC = () => {
   useAssets();
 
-  // useAppSetup();
-  // useGlobalRefresh();
+  useAppSetup();
+  useGlobalRefresh();
 
   return (
     <RootStack.Navigator

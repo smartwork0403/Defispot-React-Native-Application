@@ -9,6 +9,7 @@ import {
   StatusBar,
   RefreshControl,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import {colors, globalStyles} from '../styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -30,6 +31,7 @@ interface Props {
     isRefreshing: boolean;
     onRefresh: () => void;
   };
+  loading?: boolean;
 }
 
 const Layout: React.FC<PropsWithChildren<Props>> = ({
@@ -42,6 +44,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   backgroundColor,
   statusBarColor,
   pulldownRefresh,
+  loading,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -62,55 +65,72 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
         />
       </View>
 
-      <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>
-        {stickyHeader ? (
-          <>
-            {header && <Header {...header} />}
-            {!header && customStickyHeader ? customStickyHeader : null}
-            <ScrollView
-              // bounces={false}
-              refreshControl={
-                pulldownRefresh ? (
-                  <RefreshControl
-                    style={{position: 'relative', zIndex: 10}}
-                    refreshing={pulldownRefresh?.isRefreshing}
-                    onRefresh={pulldownRefresh?.onRefresh}
-                  />
-                ) : undefined
-              }>
-              {Platform.OS === 'ios' && <View style={styles.iosPullDown} />}
-              <View style={[styles.content, contentStyle]}>{children}</View>
-            </ScrollView>
-            {footer && footer}
-          </>
-        ) : (
-          <>
-            <ScrollView
-              // bounces={false}
-              refreshControl={
-                pulldownRefresh ? (
-                  <RefreshControl
-                    style={{position: 'relative', zIndex: 10}}
-                    refreshing={pulldownRefresh?.isRefreshing}
-                    onRefresh={pulldownRefresh?.onRefresh}
-                  />
-                ) : undefined
-              }>
+      {loading ? (
+        <SafeAreaView
+          style={[
+            styles.loadingContainer,
+            {
+              backgroundColor: backgroundColor,
+            },
+          ]}>
+          <ActivityIndicator size="large" color={colors.blue} />
+        </SafeAreaView>
+      ) : (
+        <SafeAreaView style={{flex: 1, backgroundColor: backgroundColor}}>
+          {stickyHeader ? (
+            <>
               {header && <Header {...header} />}
-              {Platform.OS === 'ios' && <View style={styles.iosPullDown} />}
-              <View style={[styles.content, contentStyle]}>{children}</View>
-            </ScrollView>
-            {footer && footer}
-          </>
-        )}
+              {!header && customStickyHeader ? customStickyHeader : null}
+              <ScrollView
+                // bounces={false}
+                refreshControl={
+                  pulldownRefresh ? (
+                    <RefreshControl
+                      style={{position: 'relative', zIndex: 10}}
+                      refreshing={pulldownRefresh?.isRefreshing}
+                      onRefresh={pulldownRefresh?.onRefresh}
+                    />
+                  ) : undefined
+                }>
+                {Platform.OS === 'ios' && <View style={styles.iosPullDown} />}
+                <View style={[styles.content, contentStyle]}>{children}</View>
+              </ScrollView>
+              {footer && footer}
+            </>
+          ) : (
+            <>
+              <ScrollView
+                // bounces={false}
+                refreshControl={
+                  pulldownRefresh ? (
+                    <RefreshControl
+                      style={{position: 'relative', zIndex: 10}}
+                      refreshing={pulldownRefresh?.isRefreshing}
+                      onRefresh={pulldownRefresh?.onRefresh}
+                    />
+                  ) : undefined
+                }>
+                {header && <Header {...header} />}
+                {Platform.OS === 'ios' && <View style={styles.iosPullDown} />}
+                <View style={[styles.content, contentStyle]}>{children}</View>
+              </ScrollView>
+              {footer && footer}
+            </>
+          )}
 
-        <NoInternet />
-      </SafeAreaView>
+          <NoInternet />
+        </SafeAreaView>
+      )}
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   content: {
     padding: 16,
     ...globalStyles.wrapper,

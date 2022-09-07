@@ -75,17 +75,17 @@ const Home: React.FC = () => {
   const [stakingHeaderItems, setStakingHeaderItems] = useState([
     {
       symbol: 'RUNE',
-      percentChange24: 0,
+      percentChange24h: 0,
       price: 0,
     },
     {
       symbol: 'BTC',
-      percentChange24: 0,
+      percentChange24h: 0,
       price: 0,
     },
     {
       symbol: 'ETH',
-      percentChange24: 0,
+      percentChange24h: 0,
       price: 0,
     },
   ]);
@@ -138,17 +138,17 @@ const Home: React.FC = () => {
         setStakingHeaderItems([
           {
             symbol: 'RUNE',
-            percentChange24: rune.percentChange24,
+            percentChange24h: rune.percentChange24h,
             price: rune.price,
           },
           {
             symbol: 'BTC',
-            percentChange24: btc.percentChange24,
+            percentChange24h: btc.percentChange24h,
             price: btc.price,
           },
           {
             symbol: 'ETH',
-            percentChange24: eth.percentChange24,
+            percentChange24h: eth.percentChange24h,
             price: eth.price,
           },
         ]);
@@ -167,11 +167,11 @@ const Home: React.FC = () => {
         }
 
         if (currentSwitch === 'gainers') {
-          return b.percentChange24 - a.percentChange24;
+          return b.percentChange24h - a.percentChange24h;
         }
 
         if (currentSwitch === 'losers') {
-          return a.percentChange24 - b.percentChange24;
+          return a.percentChange24h - b.percentChange24h;
         }
 
         if (currentSwitch === '24h-vol') {
@@ -345,7 +345,7 @@ const Home: React.FC = () => {
                       style={styles.headerItemTopName}>
                       {item.symbol}
                     </CustomText>
-                    {item.percentChange24.toString().includes('-') ? (
+                    {item.percentChange24h.toString().includes('-') ? (
                       <ArrowDownSVG
                         height={10}
                         width={7}
@@ -365,11 +365,11 @@ const Home: React.FC = () => {
                       weight="medium"
                       style={{
                         ...styles.headerItemTopPercent,
-                        color: item.percentChange24.toString().includes('-')
+                        color: item.percentChange24h.toString().includes('-')
                           ? colors.red
                           : colors.green,
                       }}>
-                      {item.percentChange24.toFixed(2)}%
+                      {item.percentChange24h.toFixed(2)}%
                     </CustomText>
                   </View>
                   <CustomText
@@ -500,22 +500,22 @@ const Home: React.FC = () => {
                               style={[
                                 styles.tableItemChange,
                                 {
-                                  color: asset.percentChange24
+                                  color: asset.percentChange24h
                                     .toString()
                                     .includes('-')
                                     ? colors.redDark
                                     : colors.greenDark,
-                                  backgroundColor: asset.percentChange24
+                                  backgroundColor: asset.percentChange24h
                                     .toString()
                                     .includes('-')
                                     ? colors.redLight
                                     : colors.greenLight,
                                 },
                               ]}>
-                              {asset.percentChange24.toString().includes('-')
+                              {asset.percentChange24h.toString().includes('-')
                                 ? ''
                                 : '+'}
-                              {asset.percentChange24.toFixed(2)}%
+                              {asset.percentChange24h.toFixed(2)}%
                             </CustomText>
                           </View>
                         }
