@@ -15,18 +15,18 @@ import Card from './Card';
 
 export interface Asset {
   cmcId: number;
-  name: string;
+  asset_full_name: string;
   symbol: string;
   chain: string;
-  chainSymbol: string;
-  address: string;
+  chain_full_name: string;
+  token_address: string;
   image: string;
-  marketCap: number;
-  percentChange24h: number;
-  percentChange7d: number;
+  market_cap: number | null;
+  percent_change_24h: number;
+  percent_change_7d: number;
   price: number;
-  volume24: number;
-  volumeChange24h: number;
+  volume_24h: number;
+  volume_change_24h: number;
 }
 
 const AssetsList: React.FC<{
@@ -47,8 +47,8 @@ const AssetsList: React.FC<{
           onPress={() => navigation.navigate('Asset', {id: item.cmcId})}>
           <Asset
             image={item.image}
-            name={item.name}
-            value={formatFloat(item.volume24, 2)}
+            name={item.asset_full_name}
+            value={formatFloat(item.volume_24h, 2)}
           />
           <View>
             <CustomText weight="medium" style={styles.price}>
@@ -58,11 +58,11 @@ const AssetsList: React.FC<{
               weight="medium"
               style={{
                 ...styles.changes,
-                color: item.percentChange24h.toString().includes('-')
+                color: item.percent_change_24h.toString().includes('-')
                   ? colors.red
                   : colors.green,
               }}>
-              {item.percentChange24h.toFixed(2)}%
+              {item.percent_change_24h.toFixed(2)}%
             </CustomText>
           </View>
         </Card>

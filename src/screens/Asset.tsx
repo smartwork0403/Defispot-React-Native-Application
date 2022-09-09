@@ -1,6 +1,7 @@
 import React, {useState, PropsWithChildren, useEffect} from 'react';
 import {View, StyleSheet, StyleProp, ViewStyle, Pressable} from 'react-native';
 import {colors} from '../styles';
+import {cloneDeep, merge} from 'lodash';
 
 import Layout from '../components/Layout';
 import AssetHeader from '../components/AssetHeader';
@@ -23,6 +24,31 @@ import WorldSvg from '../assets/icons/world.svg';
 import TwitterSvg from '../assets/icons/twitter.svg';
 import RedditSvg from '../assets/icons/reddit.svg';
 import CoinsSvg from '../assets/icons/coins.svg';
+
+const FETCH_STATE = {
+  loading: 'loading',
+  success: 'success',
+  error: 'error',
+};
+
+interface FetchData {
+  price: number;
+  volume_24h: number;
+  volume_change_24h: number;
+  percent_change_1h: number;
+  percent_change_24h: number;
+  percent_change_7d: number;
+  percent_change_30d: number;
+  percent_change_60d: number;
+  percent_change_90d: number;
+  market_cap: null | number;
+  market_cap_dominance: number;
+  fully_diluted_market_cap: number;
+  tvl: null | number;
+  last_updated: string;
+}
+
+interface AssetDetail extends AssetType, FetchData {}
 
 const Static: React.FC<{
   title: string;
@@ -126,10 +152,6 @@ const detailLinks = [
   },
 ];
 
-const wait = timeout => {
-  return new Promise(resolve => setTimeout(resolve, timeout));
-};
-
 const Asset: React.FC<ImportCreateWalletScreenProps<'Asset'>> = ({
   route: {
     params: {id},
@@ -139,22 +161,44 @@ const Asset: React.FC<ImportCreateWalletScreenProps<'Asset'>> = ({
 
   const [isAboutInfoModalOpen, setAboutInfoModal] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [data, setData] = useState<AssetType>();
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<AssetDetail>();
+  const [state, setState] = useState(FETCH_STATE.loading);
 
   const onRefresh = React.useCallback(() => {
     setIsRefreshing(true);
-    wait(2000).then(() => setIsRefreshing(false));
+    fetchData().then(() => setIsRefreshing(false));
   }, []);
 
   useEffect(() => {
-    setLoading(true);
+    setState(FETCH_STATE.loading);
+    // make API request
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
     const targetAsset = assetsList.data.find(ast => ast.cmcId === id);
     if (targetAsset) {
-      setData(targetAsset);
-      setLoading(false);
+      try {
+        const apiEndPoint = `https://fi40rvt5l0.execute-api.us-east-1.amazonaws.com/test/api/v2/asset/current-price?assets=${
+          targetAsset.chain
+        }.${targetAsset.symbol}${
+          targetAsset.token_address ? `-${targetAsset.token_address}` : ''
+        }`;
+
+        const res = await fetch(apiEndPoint);
+        const resData: FetchData = await res.json();
+        const asset: AssetDetail = merge(cloneDeep(targetAsset), resData);
+
+        console.log('asset', asset);
+
+        setData(asset);
+        setState(FETCH_STATE.success);
+      } catch (e) {
+        setState(FETCH_STATE.error);
+        console.log('Error in fetchData func in Assets screen', e);
+      }
     }
-  }, [assetsList.data, id]);
+  };
 
   return (
     <Layout
@@ -162,15 +206,15 @@ const Asset: React.FC<ImportCreateWalletScreenProps<'Asset'>> = ({
       pulldownRefresh={{isRefreshing, onRefresh}}
       statusBarColor={colors.neutral0}
       stickyHeader
-      loading={loading}
+      loading={state === FETCH_STATE.loading}
       customStickyHeader={
         data && (
           <AssetHeader
             image={data.image}
-            name={data.name}
+            name={data.asset_full_name}
             chain={data.chain}
             price={data.price}
-            percent={data.percentChange24h}
+            percent={data.percent_change_24h}
           />
         )
       }
@@ -202,7 +246,9 @@ const Asset: React.FC<ImportCreateWalletScreenProps<'Asset'>> = ({
             <View style={styles.statics}>
               <Static
                 title="Market Cap"
-                value={`$${formatFloat(data.marketCap, 2)}`}
+                value={`$${
+                  data.market_cap ? formatFloat(data.market_cap, 2) : '0'
+                }`}
                 style={{
                   width: '50%',
                   borderRightColor: colors.neutral100,
@@ -213,13 +259,13 @@ const Asset: React.FC<ImportCreateWalletScreenProps<'Asset'>> = ({
               />
               <Static
                 title="Volume (24h)"
-                value={`$${formatFloat(data.volume24, 2)}`}
+                value={`$${formatFloat(data.volume_24h, 2)}`}
                 valueExtra={{
                   hasIcon: true,
-                  color: data.volumeChange24h.toString().includes('-')
+                  color: data.volume_change_24h.toString().includes('-')
                     ? 'red'
                     : 'green',
-                  text: data.volumeChange24h.toFixed(2),
+                  text: data.volume_change_24h.toFixed(2),
                 }}
                 style={{
                   width: '50%',
@@ -240,9 +286,9 @@ const Asset: React.FC<ImportCreateWalletScreenProps<'Asset'>> = ({
               />
               <Static
                 title="Price Change (7D)"
-                value={`%${data.percentChange7d.toFixed(2)}`}
+                value={`%${data.percent_change_7d.toFixed(2)}`}
                 valueColor={
-                  data.percentChange7d.toString().includes('-')
+                  data.percent_change_7d.toString().includes('-')
                     ? 'red'
                     : 'green'
                 }

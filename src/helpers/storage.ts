@@ -18,7 +18,7 @@ export const saveBaseCurrency = (currency: string) => {
 
 export const getBaseCurrency = (): string => {
   let base = AsyncStorage.getItem(BASE_CURRENCY);
-  console.log(base, 'Asetetetete');
+  // console.log(base, 'Asetetetete');
   return Asset.USD().toString();
 };
 

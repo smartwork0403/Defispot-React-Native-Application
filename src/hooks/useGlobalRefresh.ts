@@ -31,25 +31,25 @@ import {useWallet} from './useWallet';
  * NOTE: useRefresh hooks should be imported and used only once, to avoid multiple usage of useInterval
  */
 export const useGlobalRefresh = async () => {
-  console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=');
+  // console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=');
   const dispatch = useAppDispatch();
-  console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=');
+  // console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=');
 
   const {getInboundData, getGlobalHistory, assets, pools} = useMidgard();
-  console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=3', pools);
+  // console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=3', pools);
 
   const {fetchCurrentAssetPriceData} = useServer();
-  console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=4', pools);
+  // console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=4', pools);
 
   const {refreshPage} = useGlobalState();
-  console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=5', pools);
+  // console.log('=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=5', pools);
 
   const {getTxData} = useMidgard();
   const {isConnected, wallet} = useWallet();
   const {connectedAddresses} = useAddress();
-  console.log(
-    'connectedAddresses=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=',
-  );
+  // console.log(
+  //   'connectedAddresses=========-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=',
+  // );
 
   const assetAmounts = useAppSelector(selectAvailableThorchainAssetAmounts);
 

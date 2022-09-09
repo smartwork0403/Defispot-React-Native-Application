@@ -17,11 +17,11 @@ import type {Asset as AssetType} from '../../components/AssetsList';
 export const useApp = () => {
   const dispatch = useAppDispatch();
   const appState = useAppSelector(selectAppState);
-  console.log(appState, 'AppStateeeeeeeeeee');
+  // console.log(appState, 'AppStateeeeeeeeeee');
 
   const baseCurrencyAsset =
     Asset.fromAssetString(appState.baseCurrency) || Asset.USD();
-  console.log(baseCurrencyAsset, 'AppStateeeeeeeeeee');
+  // console.log(baseCurrencyAsset, 'AppStateeeeeeeeeee');
 
   const setBaseCurrency = useCallback(
     (baseAsset: Asset) => {

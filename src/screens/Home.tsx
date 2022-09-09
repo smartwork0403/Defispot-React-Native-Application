@@ -138,17 +138,17 @@ const Home: React.FC = () => {
         setStakingHeaderItems([
           {
             symbol: 'RUNE',
-            percentChange24h: rune.percentChange24h,
+            percentChange24h: rune.percent_change_24h,
             price: rune.price,
           },
           {
             symbol: 'BTC',
-            percentChange24h: btc.percentChange24h,
+            percentChange24h: btc.percent_change_24h,
             price: btc.price,
           },
           {
             symbol: 'ETH',
-            percentChange24h: eth.percentChange24h,
+            percentChange24h: eth.percent_change_24h,
             price: eth.price,
           },
         ]);
@@ -162,20 +162,20 @@ const Home: React.FC = () => {
       assetsList.data.length > 0
     ) {
       const list = cloneDeep(assetsList.data).sort((a, b) => {
-        if (currentSwitch === 'hot') {
-          return a.marketCap - b.marketCap;
+        if (currentSwitch === 'hot' && a.market_cap && b.market_cap) {
+          return a.market_cap - b.market_cap;
         }
 
         if (currentSwitch === 'gainers') {
-          return b.percentChange24h - a.percentChange24h;
+          return b.percent_change_24h - a.percent_change_24h;
         }
 
         if (currentSwitch === 'losers') {
-          return a.percentChange24h - b.percentChange24h;
+          return a.percent_change_24h - b.percent_change_24h;
         }
 
         if (currentSwitch === '24h-vol') {
-          return a.volume24 - b.volume24;
+          return a.volume_24h - b.volume_24h;
         }
 
         return 0;
@@ -192,7 +192,7 @@ const Home: React.FC = () => {
   const handleSearch = inputValue => {
     if (inputValue.length > 0) {
       const filteredData = assetsList.data.filter(asset =>
-        asset.name.toLowerCase().includes(inputValue.toLowerCase()),
+        asset.asset_full_name.toLowerCase().includes(inputValue.toLowerCase()),
       );
       setShowingAssetsList(filteredData);
     } else {
@@ -478,7 +478,7 @@ const Home: React.FC = () => {
                       <Cell
                         data={
                           <Asset
-                            name={asset.name}
+                            name={asset.asset_full_name}
                             image={asset.image}
                             size="small"
                           />
@@ -500,22 +500,22 @@ const Home: React.FC = () => {
                               style={[
                                 styles.tableItemChange,
                                 {
-                                  color: asset.percentChange24h
+                                  color: asset.percent_change_24h
                                     .toString()
                                     .includes('-')
                                     ? colors.redDark
                                     : colors.greenDark,
-                                  backgroundColor: asset.percentChange24h
+                                  backgroundColor: asset.percent_change_24h
                                     .toString()
                                     .includes('-')
                                     ? colors.redLight
                                     : colors.greenLight,
                                 },
                               ]}>
-                              {asset.percentChange24h.toString().includes('-')
+                              {asset.percent_change_24h.toString().includes('-')
                                 ? ''
                                 : '+'}
-                              {asset.percentChange24h.toFixed(2)}%
+                              {asset.percent_change_24h.toFixed(2)}%
                             </CustomText>
                           </View>
                         }
