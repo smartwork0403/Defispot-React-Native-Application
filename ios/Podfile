@@ -6,6 +6,7 @@ platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'DefispotReactNative' do
+  project 'DefispotReactNative'
   use_expo_modules!
   post_integrate do |installer|
     begin
