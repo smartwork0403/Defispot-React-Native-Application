@@ -57,7 +57,7 @@ export const importCreateWalletParamsList = {
 
 export type RootStackParamList = {
   MainTabs: undefined;
-  Asset: undefined;
+  Asset: {id: number};
   History: undefined;
   ImportCreateWallet: {type: 'import' | 'create'};
   SignInEmail: undefined;
@@ -243,6 +243,8 @@ const Navigation: React.FC = () => {
         headerShown: false,
         animation: 'simple_push',
       }}>
+      <RootStack.Screen name="MainTabs" component={MainTabs} />
+
       <RootStack.Screen name="Welcome" component={WelcomeScreen} />
       <RootStack.Screen name="OnBoarding" component={OnBoardingScreen} />
       <RootStack.Screen name="GetStarted" component={GetStartedScreen} />
@@ -282,8 +284,6 @@ const Navigation: React.FC = () => {
         name="DepositWithNetwork"
         component={DepositWithNetworkScreen}
       />
-
-      <RootStack.Screen name="MainTabs" component={MainTabs} />
     </RootStack.Navigator>
   );
 };

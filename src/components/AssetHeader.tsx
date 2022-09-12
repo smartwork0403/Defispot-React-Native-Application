@@ -8,8 +8,17 @@ import IconButton from './IconButton';
 import NavBackSvg from '../assets/icons/nav-back.svg';
 import Asset from './Asset';
 import CustomText from './CustomText';
+import {formatFloat} from '../helpers/NumberUtil';
 
-const AssetHeader: React.FC = () => {
+interface Props {
+  image: string;
+  name: string;
+  chain: string;
+  price: number;
+  percent: number;
+}
+
+const AssetHeader: React.FC<Props> = ({image, name, chain, price, percent}) => {
   const navigation = useNavigation();
 
   return (
@@ -27,13 +36,22 @@ const AssetHeader: React.FC = () => {
           onPress={() => navigation.goBack()}
           style={{marginRight: 12}}
         />
-        <Asset name="LINK" value="Chainlink" size="medium" />
+        <Asset image={image} name={name} value={chain} size="medium" />
         <View style={styles.info}>
           <CustomText weight="medium" style={styles.infoValue}>
-            $3,352.00
+            ${formatFloat(price, 2)}
           </CustomText>
-          <CustomText weight="medium" style={styles.infoPercent}>
-            12.54%
+          <CustomText
+            weight="medium"
+            style={[
+              styles.infoPercent,
+              {
+                color: percent.toString().includes('-')
+                  ? colors.red
+                  : colors.green,
+              },
+            ]}>
+            {percent.toFixed(2)}%
           </CustomText>
         </View>
       </View>
@@ -62,7 +80,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontSize: 12,
     lineHeight: 16,
-    color: colors.green,
   },
 });
 

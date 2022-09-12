@@ -52,17 +52,14 @@ export const useKeystore = ({onConnect}) => {
     }
   }, [filesContent, onChangeFile]);
 
-  const onPasswordChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-      setInvalideStatus(false);
-    },
-    [],
-  );
+  const onPasswordChange = useCallback((text: string) => {
+    setPassword(text);
+    setInvalideStatus(false);
+  }, []);
   const handleConfirmPasswordChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setConfirmPassword(e.target.value);
-      if (password !== e.target.value) {
+    (text: string) => {
+      setConfirmPassword(text);
+      if (password !== text) {
         setInvalideStatus(true);
       } else {
         setInvalideStatus(false);
@@ -99,24 +96,38 @@ export const useKeystore = ({onConnect}) => {
 
       try {
         const phrase = generatePhrase();
+
+        console.log('phrase enter');
+
         const isValid = validatePhrase(phrase);
+        console.log('phrase enter', isValid);
+
         if (!isValid) {
           return;
         }
 
+        console.log('keystoreValue enter');
+
         const keystoreValue = await encryptToKeyStore(phrase, password);
 
-        await downloadAsFile(
-          'defispot-keystore.txt',
-          JSON.stringify(keystoreValue),
-        );
+        console.log('keystoreValue leave');
+
+        // await downloadAsFile(
+        //   'defispot-keystore.txt',
+        //   JSON.stringify(keystoreValue),
+        // );
 
         // clean up
         setPassword('');
         setConfirmPassword('');
+        console.log('on connect enter');
 
         onConnect(keystoreValue, phrase);
+        console.log('on connect leave');
+
+        return phrase;
       } catch (error) {
+        console.log(error);
         setInvalideStatus(true);
         dispatch(
           AppActions.setNotification({

@@ -160,7 +160,7 @@ export class Asset implements IAsset {
     let chain: Chain;
     let symbol: string;
     let synth: boolean;
-    console.log(asset, 'assettttttttttttt');
+    // console.log(asset, 'assettttttttttttt');
 
     // check if synth or not
     if (asset.includes('/')) {

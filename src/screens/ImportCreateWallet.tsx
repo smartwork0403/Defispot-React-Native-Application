@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
@@ -6,6 +6,10 @@ import {useNavigation} from '@react-navigation/native';
 import type {RootStackParamList} from '../components/Navigation';
 import {importCreateWalletParamsList} from '../components/Navigation';
 import type {ImportCreateWalletScreenProps} from '../components/Navigation';
+
+import {useKeystore} from '../hooks/useKeystore';
+import {useWallet} from '../hooks/useWallet';
+import {Keystore as KeystoreType} from '@xchainjs/xchain-crypto';
 
 import {colors} from '../styles';
 
@@ -28,57 +32,6 @@ const STEP_NAMES = {
   BIOMETRICS: 'BIOMETRICS',
 };
 
-const recoveryPhrases = [
-  {
-    text: 'jump',
-    name: 'jump',
-  },
-  {
-    text: 'stuff',
-    name: 'stuff',
-  },
-  {
-    text: 'brand',
-    name: 'brand',
-  },
-  {
-    text: 'wasp',
-    name: 'wasp',
-  },
-  {
-    text: 'provide',
-    name: 'provide',
-  },
-  {
-    text: 'mistake',
-    name: 'mistake',
-  },
-  {
-    text: 'gorilla',
-    name: 'gorilla',
-  },
-  {
-    text: 'tiger',
-    name: 'tiger',
-  },
-  {
-    text: 'dinner',
-    name: 'dinner',
-  },
-  {
-    text: 'peanut',
-    name: 'peanut',
-  },
-  {
-    text: 'expose',
-    name: 'expose',
-  },
-  {
-    text: 'install',
-    name: 'install',
-  },
-];
-
 const ImportCreateWallet: React.FC<
   ImportCreateWalletScreenProps<'ImportCreateWallet'>
 > = ({
@@ -92,6 +45,22 @@ const ImportCreateWallet: React.FC<
   const [step, setStep] = useState(STEP_NAMES.WELCOME);
   const [isRecoveryPhraseModalOpen, setIsRecoveryPhraseModalOpen] =
     useState(false);
+
+  const [recoveryPhrases, setRecoveryPhrases] = useState<string[]>([]);
+
+  const {unlockWallet} = useWallet();
+
+  const onConnect = useCallback(
+    async (keystore: KeystoreType, phrase: string) => {
+      await unlockWallet(keystore, phrase);
+    },
+    [unlockWallet],
+  );
+
+  const {handleCreate, handleConfirmPasswordChange, onPasswordChange} =
+    useKeystore({
+      onConnect,
+    });
 
   const steps = [
     {
@@ -133,11 +102,13 @@ const ImportCreateWallet: React.FC<
             label="Password"
             placeholder="Enter password"
             type="password"
+            onChangeText={onPasswordChange}
           />
           <TextField
             label="Confirm Password"
             placeholder="Confirm Password"
             type="password"
+            onChangeText={handleConfirmPasswordChange}
           />
         </View>
       ),
@@ -149,7 +120,14 @@ const ImportCreateWallet: React.FC<
       actions: [
         {
           label: 'Backup Wallet',
-          onPress: () => setIsRecoveryPhraseModalOpen(true),
+          onPress: async () => {
+            const phrases = await handleCreate();
+            if (phrases && phrases.length > 0) {
+              console.log('phrases.split()', phrases.split(' '));
+              setRecoveryPhrases(phrases.split(' '));
+              setIsRecoveryPhraseModalOpen(true);
+            }
+          },
         },
       ],
       content: (
